@@ -23,34 +23,27 @@ tomcat
 *.class
 
 # Maven 
-target/
+project/target/
 
 # IntelliJ project files 
 *.iml
 *.iws
 *.ipr
-.idea/
+project/.idea/
 
-# eclipse project file
-.settings/
-.classpath
-.project
 
 # NetBeans specific
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
+project/nbproject/private/
+project/build/
+project/nbbuild/
+project/dist/
+project/nbdist/
+project/nbactions.xml
+project/nb-configuration.xml
 
-
-# OS
-.DS_Store
 
 # Misc
 *.swp
-release.properties
-pom.xml.releaseBackup
-pom.xml.tag
+project/release.properties
+project/pom.xml.releaseBackup
+project/pom.xml.tag
