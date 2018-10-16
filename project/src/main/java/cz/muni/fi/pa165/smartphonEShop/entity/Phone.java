@@ -1,16 +1,21 @@
 package cz.muni.fi.pa165.smartphonEShop.entity;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: Phone Entity
  */
 @Entity
+@Getter
+@Setter
 public class Phone {
+
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
@@ -30,54 +35,6 @@ public class Phone {
 
     @Column(nullable=false)
     private Long stockId;
-
-    public Long getId() {
-        return id;
-    }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getTechnicalInfo() {
-        return technicalInfo;
-    }
-
-    public void setTechnicalInfo(String technicalInfo) {
-        this.technicalInfo = technicalInfo;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public Long getStockId() {
-        return stockId;
-    }
-
-    public void setStockId(Long stockId) {
-        this.stockId = stockId;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,14 +1,19 @@
 package cz.muni.fi.pa165.smartphonEShop.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: Stock Entity
  */
 
 @Entity
+@Getter
+@Setter
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -20,30 +25,6 @@ public class Stock {
 
     @Column(nullable=false)
     private Long addressId;
-
-    public Long getId() {
-        return id;
-    }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
-    }
 
     @Override
     public boolean equals(Object obj) {
