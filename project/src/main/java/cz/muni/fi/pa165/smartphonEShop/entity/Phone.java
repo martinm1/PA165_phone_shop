@@ -2,29 +2,32 @@ package cz.muni.fi.pa165.smartphonEShop.entity;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by Stefan Holecko
  * Class represents:
  */
-
+@Entity
 public class Phone {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
+
     @Column(nullable=false)
     private String modelName;
+
     @Column(nullable=false)
     private int price;
+
     @Column(nullable=false)
     private String technicalInfo;
+
     @Column(nullable=false)
+    @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
+
     @Column(nullable=false)
     private Long stockId;
 
@@ -32,9 +35,9 @@ public class Phone {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getModelName() {
         return modelName;
@@ -90,4 +93,5 @@ public class Phone {
     public int hashCode() {
         return Objects.hash(getModelName(), getTechnicalInfo(), getManufacturer());
     }
+
 }

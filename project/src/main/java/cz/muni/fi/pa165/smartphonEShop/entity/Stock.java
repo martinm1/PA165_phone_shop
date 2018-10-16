@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Stefan Holecko
@@ -13,6 +14,7 @@ public class Stock {
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
 
+    @NotNull
     @Column(nullable=false,unique=true)
     private String name;
 
@@ -67,5 +69,4 @@ public class Stock {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
-
 }
