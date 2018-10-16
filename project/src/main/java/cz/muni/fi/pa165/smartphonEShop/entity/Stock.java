@@ -23,9 +23,9 @@ public class Stock {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -67,4 +67,5 @@ public class Stock {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
+
 }
