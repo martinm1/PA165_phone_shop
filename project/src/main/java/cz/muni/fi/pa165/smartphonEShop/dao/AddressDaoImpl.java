@@ -1,0 +1,58 @@
+package cz.muni.fi.pa165.smartphonEShop.dao;
+
+import com.sun.xml.internal.bind.v2.TODO;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+/**
+ * Created by Stefan Holecko
+ * Class represents:
+ */
+
+@Repository
+public class AddressDaoImpl implements AddressDao {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public void create(Address address) {
+        if (address == null){
+            throw new IllegalArgumentException("Address is null!");
+        }
+        entityManager.persist(address);
+    }
+
+    @Override
+    public void update(Address address) {
+        if (address == null){
+            throw new IllegalArgumentException("Address is null!");
+        }
+        // TODO
+    }
+
+    @Override
+    public void delete(Address address) {
+        if (address == null){
+            throw new IllegalArgumentException("Address is null!");
+        }
+        entityManager.remove(address);
+    }
+
+    @Override
+    public Address findById(Long id) {
+        if (id == null || id < 0){
+            throw new IllegalArgumentException("Id is null or less than 0!");
+        }
+        return entityManager.find(Address.class, id);
+    }
+
+    @Override
+    public List<Address> findAll() {
+        return entityManager.createQuery("select a from Address a", Address.class) // TODO ma tu byt a? nvm
+                .getResultList();
+    }
+}
