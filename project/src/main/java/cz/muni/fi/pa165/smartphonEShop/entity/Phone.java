@@ -11,6 +11,7 @@ import java.util.Objects;
  * Created by Stefan Holecko
  * Class represents: Phone Entity
  */
+
 @Entity
 @Getter
 @Setter
