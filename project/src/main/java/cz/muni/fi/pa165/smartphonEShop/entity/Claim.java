@@ -96,15 +96,15 @@ public class Claim
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Claim)) return false;
         Claim claim = (Claim) o;
-        return Objects.equals(id, claim.id) &&
-                Objects.equals(orderId, claim.orderId);
+        return Objects.equals(getOrderId(), claim.getOrderId()) &&
+                getWantedSolutionByCustomer() == claim.getWantedSolutionByCustomer();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(id, orderId);
+        return Objects.hash(getOrderId(), getWantedSolutionByCustomer());
     }
 }

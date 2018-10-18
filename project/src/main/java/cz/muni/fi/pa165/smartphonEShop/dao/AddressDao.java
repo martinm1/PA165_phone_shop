@@ -8,28 +8,28 @@ import java.util.List;
  * Created by Roman Nahalka
  * Interface represents: Manager for AddressDaoImpl
  */
-public class AddressDao
+public interface AddressDao
 {
     /**
      * Create new address in database.
      * @param address to be created.
      * @throws IllegalArgumentException when address is null.
      */
-    public void create(Address address);
+    void create(Address address);
 
     /**
      * Update address in database.
      * @param address to be created.
      * @throws IllegalArgumentException when address is null.
      */
-    public void update(Address address);
+    void update(Address address);
 
     /**
      * Delete address in database.
      * @param address to be deleted.
      * @throws IllegalArgumentException when address is null.
      */
-    public void delete(Address address);
+    void delete(Address address);
 
     /**
      * Find address with specific id in database.
@@ -37,10 +37,10 @@ public class AddressDao
      * @return address with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less then 0.
      */
-    public Address findById(Long id);
+    Address findById(Long id);
 
     /**
-     * @return list of all addresses in database. 
+     * @return list of all addresses in database.
      */
-    public List<Address> findAll();
+    List<Address> findAll();
 }
