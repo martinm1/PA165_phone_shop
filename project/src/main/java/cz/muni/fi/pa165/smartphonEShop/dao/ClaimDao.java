@@ -44,7 +44,7 @@ public interface ClaimDao {
      * @return claim with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less than 0.
      */
-    public Claim findById(String id);
+    public Claim findById(Long id);
 
 
     /**
