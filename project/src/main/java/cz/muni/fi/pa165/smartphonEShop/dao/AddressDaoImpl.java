@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import com.sun.xml.internal.bind.v2.TODO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
