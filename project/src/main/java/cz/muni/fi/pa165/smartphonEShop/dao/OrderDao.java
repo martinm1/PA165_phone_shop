@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import java.util.List;
 
+import java.util.List;
+
 /**
  * Created by Stefan Holecko
  * Interface represents: Manager for OrderDaoImpl
