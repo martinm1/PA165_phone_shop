@@ -12,6 +12,8 @@ import java.util.Objects;
  */
 
 @Entity
+@Getter
+@Setter
 public class Claim
 {
     @Id
@@ -31,66 +33,6 @@ public class Claim
 
     @Column(nullable = false)
     private ClaimState claimState;
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
-    public Long getOrderId()
-    {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId)
-    {
-        this.orderId = orderId;
-    }
-
-    public ClaimSolution getWantedSolutionByCustomer()
-    {
-        return wantedSolutionByCustomer;
-    }
-
-    public void setWantedSolutionByCustomer(ClaimSolution wantedSolutionByCustomer)
-    {
-        this.wantedSolutionByCustomer = wantedSolutionByCustomer;
-    }
-
-    public String getTechnicalReport()
-    {
-        return technicalReport;
-    }
-
-    public void setTechnicalReport(String technicalReport)
-    {
-        this.technicalReport = technicalReport;
-    }
-
-    public String getReasonOfClaim()
-    {
-        return reasonOfClaim;
-    }
-
-    public void setReasonOfClaim(String reasonOfClaim)
-    {
-        this.reasonOfClaim = reasonOfClaim;
-    }
-
-    public ClaimState getClaimState()
-    {
-        return claimState;
-    }
-
-    public void setClaimState(ClaimState claimState)
-    {
-        this.claimState = claimState;
-    }
 
     @Override
     public boolean equals(Object o)
