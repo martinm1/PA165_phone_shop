@@ -24,24 +24,40 @@ public class PhoneDaoImpl implements PhoneDao{
     @Override
     public void create(Phone phone)
     {
+        if (phone == null){
+            throw new IllegalArgumentException("Phone is null!");
+        }
         em.persist(phone);
     }
 
     @Override
     public void update(Phone phone)
     {
+        if (phone == null){
+            throw new IllegalArgumentException("Phone is null!");
+        }
         em.merge(phone);
     }
 
     @Override
     public void delete(Phone phone)
     {
-        em.remove(phone);
+        if (phone == null){
+            throw new IllegalArgumentException("Phone is null!");
+        }
+        if(em.contains(phone)) em.remove(phone);
+        else {
+            Phone phone1 = em.getReference(phone.getClass(), phone.getId());
+            em.remove(phone1);
+        }
     }
 
     @Override
     public Phone findById(Long id)
     {
+        if (id == null || id < 0){
+            throw new IllegalArgumentException("PhoneId is null or less than 0!");
+        }
         return em.find(Phone.class, id);
     }
 
