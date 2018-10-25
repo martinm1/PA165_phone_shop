@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: 
  */
 
 @Repository
@@ -31,15 +31,21 @@ public class AddressDaoImpl implements AddressDao {
         if (address == null){
             throw new IllegalArgumentException("Address is null!");
         }
-        // TODO
+        entityManager.merge(address);
     }
 
     @Override
     public void delete(Address address) {
-        if (address == null){
+        if (address == null) {
             throw new IllegalArgumentException("Address is null!");
         }
-        entityManager.remove(address);
+        if (entityManager.contains(address)) {
+            entityManager.remove(address);
+
+        } else {
+            Address a = entityManager.getReference(address.getClass(),address.getId());
+            entityManager.remove(a);
+        }
     }
 
     @Override
@@ -52,7 +58,7 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public List<Address> findAll() {
-        return entityManager.createQuery("select a from Address a", Address.class) // TODO ma tu byt a? nvm
+        return entityManager.createQuery("select a from Address a", Address.class)
                 .getResultList();
     }
 }
