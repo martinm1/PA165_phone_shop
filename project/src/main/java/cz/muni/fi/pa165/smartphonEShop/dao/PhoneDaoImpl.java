@@ -36,7 +36,11 @@ public class PhoneDaoImpl implements PhoneDao{
     @Override
     public void delete(Phone phone)
     {
-        em.remove(phone);
+        if(em.contains(phone)) em.remove(phone);
+        else {
+            Phone phone1 = em.getReference(phone.getClass(), phone.getId());
+            em.remove(phone1);
+        }
     }
 
     @Override

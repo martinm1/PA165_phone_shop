@@ -36,7 +36,11 @@ public class StockDaoImpl implements StockDao{
     @Override
     public void delete(Stock stock)
     {
-        em.remove(stock);
+        if(em.contains(stock)) em.remove(stock);
+        else {
+            Stock stock1 = em.getReference(stock.getClass(), stock.getId());
+            em.remove(stock1);
+        }
     }
 
     @Override
