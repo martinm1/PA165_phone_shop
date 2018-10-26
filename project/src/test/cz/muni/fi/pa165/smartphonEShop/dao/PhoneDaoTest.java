@@ -44,37 +44,8 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         List<Phone> phones = phone.findAll();
         Assert.assertEquals(phones.size(), 2);
 
-        Phone assertPhone1 = new Phone();
-        Phone assertPhone2 = new Phone();
-
-        assertPhone1.setModelName("S6");
-        assertPhone2.setModelName("S7");
-
-        Assert.assertTrue(phones.contains(assertPhone1));
-        Assert.assertTrue(phones.contains(assertPhone2));
-    }
-
-    @Test
-    public void delete()
-    {
-        Phone phone1 = new Phone();
-        Phone phone2 = new Phone();
-
-        phone1.setModelName("S6");
-        phone2.setModelName("S7");
-
-        phone.create(phone1);
-        phone.create(phone2);
-
-        List<Phone> phones = phone.findAll();
-        Assert.assertEquals(phones.size(), 2);
-
-        phone.delete(phone1);
-        Assert.assertEquals(phones.size(), 1);
-        Assert.assertFalse(phones.contains(phone1));
-
-        phone.delete(phone2);
-        Assert.assertEquals(phones.size(), 0);
+        Assert.assertTrue(phones.contains(phone1));
+        Assert.assertTrue(phones.contains(phone2));
     }
 
     @Test
@@ -97,6 +68,32 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
+    public void delete()
+    {
+        Phone phone1 = new Phone();
+        Phone phone2 = new Phone();
+
+        phone1.setModelName("S6");
+        phone2.setModelName("S7");
+
+        phone.create(phone1);
+        phone.create(phone2);
+
+        Assert.assertEquals(phone.findAll(), 2);
+        Assert.assertNotNull(phone.findById(phone1.getId()));
+        Assert.assertNotNull(phone.findById(phone2.getId()));
+
+        phone.delete(phone1);
+        Assert.assertEquals(phone.findAll(), 1);
+        Assert.assertFalse(phone.findAll().contains(phone1));
+        Assert.assertNull(phone.findById(phone1.getId()));
+
+        phone.delete(phone2);
+        Assert.assertEquals(phone.findAll(), 0);
+        Assert.assertNull(phone.findById(phone2.getId()));
+    }
+
+    @Test
     public void update()
     {
         Phone phone1 = new Phone();
@@ -110,5 +107,35 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
         Assert.assertNotEquals("S7", phone.findById(phone1.getId()).getModelName());
         Assert.assertEquals("S6", phone.findById(phone1.getId()).getModelName());
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void createNull()
+    {
+        phone.create(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void updateNull()
+    {
+        phone.update(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void deleteNull()
+    {
+        phone.delete(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findByIdNull()
+    {
+        phone.findById(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findByIdNegative()
+    {
+        phone.findById((long)-1);
     }
 }

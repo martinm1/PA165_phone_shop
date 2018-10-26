@@ -44,7 +44,7 @@ public class OrderDaoImpl implements OrderDao
     @Override
     public Order findById(Long id)
     {
-        if (id < 0)
+        if (id == null || id < 0)
             throw new IllegalArgumentException("Order is null or id si less then 0!");
 
         return em.find(Order.class, id);
