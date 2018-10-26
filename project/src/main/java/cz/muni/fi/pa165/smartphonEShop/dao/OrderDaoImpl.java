@@ -17,24 +17,36 @@ public class OrderDaoImpl implements OrderDao
     @Override
     public void create(Order order)
     {
+        if (order == null)
+            throw new IllegalArgumentException("Order is null!");
+
         em.persist(order);
     }
 
     @Override
     public void update(Order order)
     {
+        if (order == null)
+            throw new IllegalArgumentException("Order is null!");
+
         em.merge(order);
     }
 
     @Override
     public void delete(Order order)
     {
+        if (order == null)
+            throw new IllegalArgumentException("Order is null!");
+
         em.remove(order);
     }
 
     @Override
     public Order findById(Long id)
     {
+        if (id == null || id < 0)
+            throw new IllegalArgumentException("ID is null or less than 0!");
+
         return em.find(Order.class, id);
     }
 
