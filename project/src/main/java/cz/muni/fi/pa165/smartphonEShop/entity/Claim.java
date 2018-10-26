@@ -22,7 +22,7 @@ public class Claim
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @NotNull
     private Order order;
 
