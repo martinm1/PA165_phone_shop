@@ -2,13 +2,14 @@ package cz.muni.fi.pa165.smartphonEShop.entity;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by Roman Nahalka
- * Class represents:
  */
 
 @Entity
@@ -24,6 +25,7 @@ public class Claim
     private Long orderId;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ClaimSolution wantedSolutionByCustomer;
 
     private String technicalReport;
@@ -32,6 +34,7 @@ public class Claim
     private String reasonOfClaim;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ClaimState claimState;
 
     @Override
