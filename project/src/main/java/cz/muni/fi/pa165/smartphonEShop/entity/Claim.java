@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -21,20 +22,24 @@ public class Claim
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false)
-    private Long orderId;
+    @ManyToOne
+    @NotNull
+    private Order order;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @NotNull
     private ClaimSolution wantedSolutionByCustomer;
 
     private String technicalReport;
 
     @Column(nullable = false)
+    @NotNull
     private String reasonOfClaim;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @NotNull
     private ClaimState claimState;
 
     @Override
@@ -43,13 +48,13 @@ public class Claim
         if (this == o) return true;
         if (!(o instanceof Claim)) return false;
         Claim claim = (Claim) o;
-        return Objects.equals(getOrderId(), claim.getOrderId()) &&
+        return Objects.equals(getOrder(), claim.getOrder()) &&
                 getWantedSolutionByCustomer() == claim.getWantedSolutionByCustomer();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getOrderId(), getWantedSolutionByCustomer());
+        return Objects.hash(getOrder(), getWantedSolutionByCustomer());
     }
 }
