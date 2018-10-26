@@ -45,7 +45,7 @@ public class OrderDaoImpl implements OrderDao
     public Order findById(Long id)
     {
         if (id == null || id < 0)
-            throw new IllegalArgumentException("Order is null or id si less then 0!");
+            throw new IllegalArgumentException("ID is null or less than 0!");
 
         return em.find(Order.class, id);
     }
