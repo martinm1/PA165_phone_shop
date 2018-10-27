@@ -41,9 +41,6 @@ public class Stock {
         return Collections.unmodifiableSet(phones);
     }
 
-    @OneToOne(mappedBy = "stock")
-    private Address address = new Address();
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

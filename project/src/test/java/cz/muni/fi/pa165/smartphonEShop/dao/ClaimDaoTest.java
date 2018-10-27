@@ -1,11 +1,13 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
+import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import org.testng.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -24,7 +26,7 @@ import java.util.List;
  * Created by Stefan Holecko
  * Class represents:
  */
-@ContextConfiguration
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class ClaimDaoTest extends AbstractTestNGSpringContextTests {

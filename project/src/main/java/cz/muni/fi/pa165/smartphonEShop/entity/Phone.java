@@ -37,7 +37,7 @@ public class Phone {
 
     @Column(nullable=false)
     private Long stockId;
-    
+
 
     @Override
     public boolean equals(Object o) {
