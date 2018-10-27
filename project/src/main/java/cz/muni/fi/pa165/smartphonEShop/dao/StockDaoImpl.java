@@ -24,24 +24,40 @@ public class StockDaoImpl implements StockDao{
     @Override
     public void create(Stock stock)
     {
+        if (stock == null){
+            throw new IllegalArgumentException("Stock is null!");
+        }
         em.persist(stock);
     }
 
     @Override
     public void update(Stock stock)
     {
+        if (stock == null){
+            throw new IllegalArgumentException("Stock is null!");
+        }
         em.merge(stock);
     }
 
     @Override
     public void delete(Stock stock)
     {
-        em.remove(stock);
+        if (stock == null){
+            throw new IllegalArgumentException("Stock is null!");
+        }
+        if(em.contains(stock)) em.remove(stock);
+        else {
+            Stock stock1 = em.getReference(stock.getClass(), stock.getId());
+            em.remove(stock1);
+        }
     }
 
     @Override
     public Stock findById(Long id)
     {
+        if (id == null || id < 0){
+            throw new IllegalArgumentException("StockId is null or less than 0!");
+        }
         return em.find(Stock.class, id);
     }
 
