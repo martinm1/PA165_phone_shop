@@ -5,7 +5,6 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import org.testng.Assert;
 import org.junit.Rule;
-//import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,7 +27,7 @@ import java.util.List;
 @ContextConfiguration
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class ClaimDaoImplTest extends AbstractTestNGSpringContextTests {
+public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private ClaimDao claim;
@@ -79,7 +78,7 @@ public class ClaimDaoImplTest extends AbstractTestNGSpringContextTests {
         claim.create(claim1);
         claim.create(claim2);
 
-        Assert.assertEquals(order1, claim.findById(claim1.getId()).getOrder());
+        Assert.assertEquals(order1, claim.findById(claim1.getId()).getOrder()); // TODO porovnavat podla equals?
         Assert.assertEquals(order2, claim.findById(claim2.getId()).getOrder());
         Assert.assertNotEquals(order1, claim.findById(claim2.getId()).getOrder());
         Assert.assertNotEquals(order2, claim.findById(claim1.getId()).getOrder());

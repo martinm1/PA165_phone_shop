@@ -5,7 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Stefan Holecko
@@ -26,6 +29,20 @@ public class Stock {
 
     @Column(nullable=false)
     private Long addressId;
+
+    @OneToMany(mappedBy = "stock")
+    private Set<Phone> phones = new HashSet<>();
+
+    public void addPhone(Phone phone) {
+        this.phones.add(phone);
+    }
+
+    public Set<Phone> getPhones() {
+        return Collections.unmodifiableSet(phones);
+    }
+
+    @OneToOne(mappedBy = "stock")
+    private Address address = new Address();
 
     @Override
     public boolean equals(Object o) {

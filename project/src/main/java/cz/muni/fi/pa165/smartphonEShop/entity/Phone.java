@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Stefan Holecko
@@ -36,6 +37,7 @@ public class Phone {
 
     @Column(nullable=false)
     private Long stockId;
+    
 
     @Override
     public boolean equals(Object o) {
