@@ -14,6 +14,7 @@ import java.util.Set;
  */
 
 @Entity
+@Table(name = "phone") //TODO
 @Getter
 @Setter
 public class Phone {
@@ -37,6 +38,15 @@ public class Phone {
 
     @Column(nullable=false)
     private Long stockId;
+
+    @OneToOne(mappedBy = "order")
+    private Order order;
+
+    @ManyToOne
+    @Column(nullable=false)
+    private Stock stock;
+
+
 
 
     @Override

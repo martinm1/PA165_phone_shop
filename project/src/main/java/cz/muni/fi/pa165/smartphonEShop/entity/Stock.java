@@ -16,8 +16,10 @@ import java.util.Set;
  */
 
 @Entity
+@Table(name = "stock") //TODO
 @Getter
 @Setter
+
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -30,7 +32,7 @@ public class Stock {
     @Column(nullable=false)
     private Long addressId;
 
-    @OneToMany(mappedBy = "stock")
+    @OneToMany(mappedBy = "stock") //TODO mappedBy?
     private Set<Phone> phones = new HashSet<>();
 
     public void addPhone(Phone phone) {
@@ -40,6 +42,9 @@ public class Stock {
     public Set<Phone> getPhones() {
         return Collections.unmodifiableSet(phones);
     }
+
+    @OneToOne(mappedBy = "stock")
+    private Address address;
 
     @Override
     public boolean equals(Object o) {
