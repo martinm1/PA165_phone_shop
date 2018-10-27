@@ -5,7 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Stefan Holecko
@@ -13,8 +16,10 @@ import java.util.Objects;
  */
 
 @Entity
+@Table(name = "stock") //TODO
 @Getter
 @Setter
+
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -26,6 +31,20 @@ public class Stock {
 
     @Column(nullable=false)
     private Long addressId;
+
+    @OneToMany(mappedBy = "stock") //TODO mappedBy?
+    private Set<Phone> phones = new HashSet<>();
+
+    public void addPhone(Phone phone) {
+        this.phones.add(phone);
+    }
+
+    public Set<Phone> getPhones() {
+        return Collections.unmodifiableSet(phones);
+    }
+
+    @OneToOne(mappedBy = "stock")
+    private Address address;
 
     @Override
     public boolean equals(Object o) {

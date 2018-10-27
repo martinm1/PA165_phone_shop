@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Stefan Holecko
@@ -13,6 +14,7 @@ import java.util.Objects;
  */
 
 @Entity
+@Table(name = "phone") //TODO
 @Getter
 @Setter
 public class Phone {
@@ -36,6 +38,16 @@ public class Phone {
 
     @Column(nullable=false)
     private Long stockId;
+
+    @OneToOne(mappedBy = "order")
+    private Order order;
+
+    @ManyToOne
+    @Column(nullable=false)
+    private Stock stock;
+
+
+
 
     @Override
     public boolean equals(Object o) {
