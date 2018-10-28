@@ -15,6 +15,7 @@ import java.util.Objects;
  */
 
 @Entity
+@Table(name="\"Order\"")
 @Getter
 @Setter
 public class Order {
@@ -35,6 +36,10 @@ public class Order {
 
     @Column(nullable=false)
     private Long phoneId;
+    
+    @OneToOne
+    @JoinColumn
+    private Phone phone;
 
     @Override
     public boolean equals(Object o) {

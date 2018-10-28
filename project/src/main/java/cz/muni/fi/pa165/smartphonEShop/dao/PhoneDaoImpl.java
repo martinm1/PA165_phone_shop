@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PhoneDaoImpl implements PhoneDao{
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public void create(Phone phone)

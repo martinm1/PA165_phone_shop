@@ -14,7 +14,7 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "phone") //TODO
+@Table(name = "Phone") //TODO
 @Getter
 @Setter
 public class Phone {
@@ -39,11 +39,11 @@ public class Phone {
     @Column(nullable=false)
     private Long stockId;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(mappedBy = "phone")
     private Order order;
 
     @ManyToOne
-    @Column(nullable=false)
+    @JoinColumn//(nullable=false)
     private Stock stock;
 
 
