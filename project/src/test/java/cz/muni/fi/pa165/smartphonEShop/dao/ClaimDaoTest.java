@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
+import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import org.testng.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -55,6 +56,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
+
         claim.create(claim1);
         claim.create(claim2);
 
@@ -77,6 +84,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
+
         claim.create(claim1);
         claim.create(claim2);
 
@@ -98,6 +111,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
+
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
 
         List<Claim> claimList = claim.findAll();
         Assert.assertEquals(claimList.size(), 0);
@@ -127,6 +146,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
+
         claim.create(claim1);
         claim.create(claim2);
 
@@ -148,6 +173,8 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         Order order1 = new Order();
         claim1.setOrder(order1);
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
+        claim1.setReasonOfClaim("reason 1");
+        claim1.setClaimState(ClaimState.ACCEPTED);
         claim.create(claim1);
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
