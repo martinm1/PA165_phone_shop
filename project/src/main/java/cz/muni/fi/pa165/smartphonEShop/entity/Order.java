@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.Objects;
 
 /**
@@ -30,7 +31,7 @@ public class Order {
     private Long personId;
 
     @Column(nullable=false)
-    private LocalDateTime orderDate;
+    private LocalDate orderDate;
 
     @Column(nullable=false)
     private Long phoneId;
