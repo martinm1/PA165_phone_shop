@@ -12,7 +12,7 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao
 {
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public void create(Order order)
@@ -53,8 +53,7 @@ public class OrderDaoImpl implements OrderDao
     @Override
     public List<Order> findAll()
     {
-        TypedQuery<Order> query = em.createQuery("SELECT q FROM Order q", Order.class);
-        return query.getResultList();
+        return em.createQuery("select q from Order q", Order.class).getResultList();
     }
 
 

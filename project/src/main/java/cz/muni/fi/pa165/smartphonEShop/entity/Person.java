@@ -20,6 +20,7 @@ import lombok.Setter;
  * Class represents: Person Entity
  */
 @Entity
+@Table(name = "Person") 
 @Getter
 @Setter
 public class Person {

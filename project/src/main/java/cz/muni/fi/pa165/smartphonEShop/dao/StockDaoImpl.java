@@ -6,11 +6,11 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
-import java.util.List;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 /**
  *
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StockDaoImpl implements StockDao{
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public void create(Stock stock)
@@ -64,8 +64,7 @@ public class StockDaoImpl implements StockDao{
     @Override
     public List<Stock> findAll()
     {
-        TypedQuery<Stock> query = em.createQuery("SELECT q FROM Stock q", Stock.class);
-        return query.getResultList();
+        return em.createQuery("SELECT q FROM Stock q", Stock.class).getResultList();
     }
 
 

@@ -73,8 +73,6 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
 
         Assert.assertEquals("Botanická", address.findById(address1.getId()).getStreetName());
         Assert.assertEquals("Ilkovičova", address.findById(address2.getId()).getStreetName());
-        Assert.assertNotEquals("Botanická", address.findById(address1.getId()).getStreetName());
-        Assert.assertNotEquals("Ilkovičova", address.findById(address2.getId()).getStreetName());
 
     }
 
@@ -99,17 +97,17 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
         address.create(address1);
         address.create(address2);
 
-        Assert.assertEquals(address.findAll(), 2);
+        Assert.assertEquals(address.findAll().size(), 2);
         Assert.assertNotNull(address.findById(address1.getId()));
         Assert.assertNotNull(address.findById(address2.getId()));
 
         address.delete(address1);
-        Assert.assertEquals(address.findAll(), 1);
+        Assert.assertEquals(address.findAll().size(), 1);
         Assert.assertFalse(address.findAll().contains(address1));
         Assert.assertNull(address.findById(address1.getId()));
 
         address.delete(address2);
-        Assert.assertEquals(address.findAll(), 0);
+        Assert.assertEquals(address.findAll().size(), 0);
         Assert.assertNull(address.findById(address2.getId()));
     }
 

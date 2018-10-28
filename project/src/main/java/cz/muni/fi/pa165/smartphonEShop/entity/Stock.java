@@ -16,10 +16,9 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "stock") //TODO
+@Table(name = "Stock") //TODO
 @Getter
 @Setter
-
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -43,8 +42,8 @@ public class Stock {
         return Collections.unmodifiableSet(phones);
     }
 
-    @OneToOne(mappedBy = "stock")
-    private Address address;
+    //@OneToOne(mappedBy = "stockOnAddress")
+    //private Address address;
 
     @Override
     public boolean equals(Object o) {

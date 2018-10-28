@@ -6,36 +6,39 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import java.time.LocalDate;
+import org.testng.Assert;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
+
+import org.testng.annotations.Test;
+
 import java.util.List;
+import org.testng.annotations.BeforeMethod;
 
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class OrderDaoTest extends AbstractTestNGSpringContextTests {
-
-    @PersistenceContext
-    private EntityManager em;
-
+    
+    @Autowired
+    private OrderDao orderDao;
+    
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    @Autowired
-    private OrderDao orderDao;
+    @PersistenceContext
+    private EntityManager em;
 
     private Order order1;
     private Order order2;
@@ -65,7 +68,7 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() {
-    orderDao.create(order1);
+        orderDao.create(order1);
         Assert.assertNotNull(order1.getId());
     }
 
