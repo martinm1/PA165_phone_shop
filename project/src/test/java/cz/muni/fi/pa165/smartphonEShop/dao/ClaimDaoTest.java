@@ -68,6 +68,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
+
         claim.create(claim1);
         claim.create(claim2);
 
@@ -101,6 +107,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
+
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
 
         claim.create(claim1);
         claim.create(claim2);
@@ -138,6 +150,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
+
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
 
         List<Claim> claimList = claim.findAll();
         Assert.assertEquals(claimList.size(), 0);
@@ -179,6 +197,12 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
+        claim1.setReasonOfClaim("reason 1");
+        claim2.setReasonOfClaim("reason 2");
+
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim2.setClaimState(ClaimState.CREATED);
+
         claim.create(claim1);
         claim.create(claim2);
 
@@ -210,6 +234,8 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim1.setClaimState(ClaimState.CREATED);
         
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
+        claim1.setReasonOfClaim("reason 1");
+        claim1.setClaimState(ClaimState.ACCEPTED);
         claim.create(claim1);
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
@@ -221,59 +247,28 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateNull() {
-       // expectedException.expect(IllegalArgumentException.class);
         claim.update(null);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void deleteNull() {
-        //expectedException.expect(IllegalArgumentException.class);
         claim.delete(null);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNull() {
-        //expectedException.expect(IllegalArgumentException.class);
         claim.findById(null);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNegative() {
-        //expectedException.expect(IllegalArgumentException.class);
         claim.findById(-1L);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull(){
-        //expectedException.expect(IllegalArgumentException.class);
-        claim.create(null);
-
-    }
-
-    // Sada rovnakych testov ale inak implementovanych
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void createNull2() {
         claim.create(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void updateNull2() {
-        claim.update(null);
-    }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void deleteNull2() {
-        claim.delete(null);
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void findByIdNull2() {
-        claim.findById(null);
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void findByIdNegative2() {
-        claim.findById((long)-1);
-    }
 }

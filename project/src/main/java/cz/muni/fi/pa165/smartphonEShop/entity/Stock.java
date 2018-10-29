@@ -1,12 +1,13 @@
 package cz.muni.fi.pa165.smartphonEShop.entity;
 
+import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,18 +33,18 @@ public class Stock {
     private Long addressId;
 
     @OneToMany(mappedBy = "stock") //TODO mappedBy?
-    private Set<Phone> phones = new HashSet<>();
+    private List<Phone> phones = new ArrayList<>();
 
     public void addPhone(Phone phone) {
         this.phones.add(phone);
     }
 
-    public Set<Phone> getPhones() {
-        return Collections.unmodifiableSet(phones);
+    public List<Phone> getPhones() {
+        return Collections.unmodifiableList(phones);
     }
 
-    //@OneToOne(mappedBy = "stockOnAddress")
-    //private Address address;
+    @OneToOne(mappedBy = "stock")
+    private Address address;
 
     @Override
     public boolean equals(Object o) {
