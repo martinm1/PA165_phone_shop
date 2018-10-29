@@ -36,7 +36,6 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
-
     @OneToOne(mappedBy = "phone")
     private Order order;
 
