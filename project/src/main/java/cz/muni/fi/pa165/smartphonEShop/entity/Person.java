@@ -37,9 +37,6 @@ public class Person {
     
     @Column(nullable=false)
     private String lastName;
-
-    @Column(nullable=false)
-    private Long addressId;
     
     @ManyToOne
     @JoinColumn
@@ -82,7 +79,7 @@ public class Person {
         Person other = (Person) obj;
         return (    this.getFirstName().equals(other.getFirstName())
                 &&   this.getLastName().equals(other.getLastName())
-                &&  this.getAddressId().equals(other.getAddressId())
+                &&  this.getAddress().equals(other.getAddress())
                 &&      this.getEmail().equals(other.getEmail())
                 &&this.getPhoneNumber().equals(other.getPhoneNumber())
                 &&this.getDateOfBirth().equals(other.getDateOfBirth())

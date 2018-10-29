@@ -36,11 +36,10 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
-
     @OneToOne(mappedBy = "phone")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn//(nullable=false)
     private Stock stock;
 

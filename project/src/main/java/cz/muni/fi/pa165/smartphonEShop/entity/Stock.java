@@ -28,10 +28,7 @@ public class Stock {
     @NotNull
     @Column(nullable=false,unique=true)
     private String name;
-
-    @OneToOne(mappedBy = "stock")
-    private Address address;
-
+  
     @OneToMany(mappedBy = "stock")
     private List<Phone> phones = new ArrayList<>();
 
