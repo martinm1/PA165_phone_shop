@@ -1,13 +1,16 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
+import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
@@ -29,18 +32,40 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @PersistenceContext
     private EntityManager em;
 
-    @Test
-    public void findAll()
+    private Stock stock1;
+    private Stock stock2;
+
+    @BeforeMethod
+    void setUp()
     {
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
+        stock1 = new Stock();
+        stock2 = new Stock();
+        Phone phone1 = new Phone();
+        Phone phone2 = new Phone();
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
+        phone1.setModelName("S6");
+        phone2.setModelName("S7");
 
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-        
+        phone1.setPrice(123);
+        phone2.setPrice(345);
+
+        phone1.setTechnicalInfo("info1");
+        phone2.setTechnicalInfo("info2");
+
+        phone1.setManufacturer(Manufacturer.APPLE);
+        phone2.setManufacturer(Manufacturer.HTC);
+
+        stock1.addPhone(phone1);
+        stock2.addPhone(phone2);
+
+
+    }
+
+    @Test
+    public void findAll()
+    {
         stock.create(stock1);
         stock.create(stock2);
 
@@ -54,15 +79,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void findById()
     {
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
-
-        stock1.setName("Hlavni");
-        stock2.setName("Vedlejsi");
-        
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-
         stock.create(stock1);
         stock.create(stock2);
 
@@ -75,15 +91,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void delete()
     {
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
-
-        stock1.setName("Hlavni");
-        stock2.setName("Vedlejsi");
-        
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-
         stock.create(stock1);
         stock.create(stock2);
 
@@ -96,12 +103,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void update()
     {
-        Stock stock1 = new Stock();
-
-        stock1.setName("Hlavni");
-        
-        stock1.setAddressId(123L);
-
         stock.create(stock1);
 
         stock1.setName("Vedlejsi");
