@@ -165,31 +165,31 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(OrderState.FINISHED, orderDao.findById(order1.getId()).getState());
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull()
     {
         orderDao.create(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateNull()
     {
         orderDao.update(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void deleteNull()
     {
         orderDao.delete(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNull()
     {
         orderDao.findById(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNegative()
     {
         orderDao.findById((long)-1);
