@@ -10,6 +10,8 @@ package cz.muni.fi.pa165.smartphonEShop.entity;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,6 +54,9 @@ public class Person {
     
     @Column(nullable=false)
     private PersonType personType;
+    
+    @OneToMany(mappedBy = "person")
+    private List<Order> orders = new ArrayList<>();
 
     @Override
     public boolean equals(Object obj) {
