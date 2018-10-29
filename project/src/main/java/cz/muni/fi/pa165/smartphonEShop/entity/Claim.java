@@ -28,10 +28,6 @@ public class Claim
     private Order order;
     
     @Column(nullable = false)
-    @NotNull
-    private Long orderId;
-    
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
     private ClaimSolution wantedSolutionByCustomer;
@@ -53,13 +49,13 @@ public class Claim
         if (this == o) return true;
         if (!(o instanceof Claim)) return false;
         Claim claim = (Claim) o;
-        return Objects.equals(getOrderId(), claim.getOrderId()) &&
+        return Objects.equals(getOrder(), claim.getOrder()) &&
                 getWantedSolutionByCustomer() == claim.getWantedSolutionByCustomer();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getOrderId(), getWantedSolutionByCustomer());
+        return Objects.hash(getOrder(), getWantedSolutionByCustomer());
     }
 }
