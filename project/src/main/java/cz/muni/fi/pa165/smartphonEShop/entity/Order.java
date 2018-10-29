@@ -37,6 +37,10 @@ public class Order {
     @Column(nullable=false)
     private Long phoneId;
     
+    @ManyToOne
+    @JoinColumn
+    private Person person;
+    
     @OneToOne
     @JoinColumn
     private Phone phone;
