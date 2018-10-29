@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
-import cz.muni.fi.pa165.smartphonEShop.entity.Order;
+//import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import org.testng.Assert;
@@ -47,11 +47,23 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
     public void findAll() {
         Claim claim1 = new Claim();
         Claim claim2 = new Claim();
-        Order order1 = new Order();
-        Order order2 = new Order();
+        //Order order1 = new Order();
+        //Order order2 = new Order();
+        
+        Long orderId1 = 123L;
+        Long orderId2 = 234L;
 
-        claim1.setOrder(order1);
-        claim2.setOrder(order2);
+        //claim1.setOrder(order1);
+        //claim2.setOrder(order2);
+        
+        claim1.setOrderId(orderId1);
+        claim2.setOrderId(orderId2);
+        
+        claim1.setReasonOfClaim("not working");
+        claim2.setReasonOfClaim("broken");
+        
+        claim1.setClaimState(ClaimState.CREATED);
+        claim2.setClaimState(ClaimState.ACCEPTED);
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
@@ -75,12 +87,24 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
     public void findById() {
         Claim claim1 = new Claim();
         Claim claim2 = new Claim();
-        Order order1 = new Order();
-        Order order2 = new Order();
+        //Order order1 = new Order();
+        //Order order2 = new Order();
+        
+        Long orderId1 = 123L;
+        Long orderId2 = 234L;
 
-        claim1.setOrder(order1);
-        claim2.setOrder(order2);
-
+        //claim1.setOrder(order1);
+        //claim2.setOrder(order2);
+        
+        claim1.setOrderId(orderId1);
+        claim2.setOrderId(orderId2);
+        
+        claim1.setReasonOfClaim("not working");
+        claim2.setReasonOfClaim("broken");
+        
+        claim1.setClaimState(ClaimState.CREATED);
+        claim2.setClaimState(ClaimState.ACCEPTED);
+        
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
 
@@ -93,21 +117,36 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim.create(claim1);
         claim.create(claim2);
 
-        Assert.assertEquals(order1, claim.findById(claim1.getId()).getOrder()); // TODO porovnavat podla equals?
-        Assert.assertEquals(order2, claim.findById(claim2.getId()).getOrder());
-        Assert.assertNotEquals(order1, claim.findById(claim2.getId()).getOrder());
-        Assert.assertNotEquals(order2, claim.findById(claim1.getId()).getOrder());
+        //Assert.assertEquals(order1, claim.findById(claim1.getId()).getOrder()); // TODO porovnavat podla equals?
+        //Assert.assertEquals(order2, claim.findById(claim2.getId()).getOrder());
+        //Assert.assertNotEquals(order1, claim.findById(claim2.getId()).getOrder());
+        //Assert.assertNotEquals(order2, claim.findById(claim1.getId()).getOrder());
+        
+        Assert.assertEquals(orderId1, claim.findById(claim1.getId()).getOrderId()); // TODO porovnavat podla equals?
+        Assert.assertEquals(orderId2, claim.findById(claim2.getId()).getOrderId());
     }
 
     @Test
     public void create() {
         Claim claim1 = new Claim();
         Claim claim2 = new Claim();
-        Order order1 = new Order();
-        Order order2 = new Order();
+        //Order order1 = new Order();
+        //Order order2 = new Order();
+        
+        Long orderId1 = 123L;
+        Long orderId2 = 234L;
 
-        claim1.setOrder(order1);
-        claim2.setOrder(order2);
+        //claim1.setOrder(order1);
+        //claim2.setOrder(order2);
+        
+        claim1.setOrderId(orderId1);
+        claim2.setOrderId(orderId2);
+        
+        claim1.setReasonOfClaim("not working");
+        claim2.setReasonOfClaim("broken");
+        
+        claim1.setClaimState(ClaimState.CREATED);
+        claim2.setClaimState(ClaimState.ACCEPTED);
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
@@ -137,11 +176,23 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
     public void delete() {
         Claim claim1 = new Claim();
         Claim claim2 = new Claim();
-        Order order1 = new Order();
-        Order order2 = new Order();
+        //Order order1 = new Order();
+        //Order order2 = new Order();
+        
+        Long orderId1 = 123L;
+        Long orderId2 = 234L;
 
-        claim1.setOrder(order1);
-        claim2.setOrder(order2);
+        //claim1.setOrder(order1);
+        //claim2.setOrder(order2);
+        
+        claim1.setOrderId(orderId1);
+        claim2.setOrderId(orderId2);
+        
+        claim1.setReasonOfClaim("not working");
+        claim2.setReasonOfClaim("broken");
+        
+        claim1.setClaimState(ClaimState.CREATED);
+        claim2.setClaimState(ClaimState.ACCEPTED);
 
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim2.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
@@ -156,22 +207,32 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         claim.create(claim2);
 
 
-        Assert.assertEquals(claim.findAll(), 2);
+        Assert.assertEquals(claim.findAll().size(), 2);
         Assert.assertNotNull(claim.findById(claim1.getId()));
         Assert.assertNotNull(claim.findById(claim2.getId()));
         claim.delete(claim1);
-        Assert.assertEquals(claim.findAll(), 1);
+        Assert.assertEquals(claim.findAll().size(), 1);
         Assert.assertFalse(claim.findAll().contains(claim1));
         Assert.assertNull(claim.findById(claim1.getId()));
         claim.delete(claim2);
-        Assert.assertEquals(claim.findAll(), 0);
+        Assert.assertEquals(claim.findAll().size(), 0);
         Assert.assertNull(claim.findById(claim2.getId()));
     }
     @Test
     public void update() {
         Claim claim1 = new Claim();
-        Order order1 = new Order();
-        claim1.setOrder(order1);
+        //Order order1 = new Order();
+        
+        Long orderId1 = 123L;
+
+        //claim1.setOrder(order1);
+        
+        claim1.setOrderId(orderId1);
+        
+        claim1.setReasonOfClaim("not working");
+        
+        claim1.setClaimState(ClaimState.CREATED);
+        
         claim1.setWantedSolutionByCustomer(ClaimSolution.MONEY);
         claim1.setReasonOfClaim("reason 1");
         claim1.setClaimState(ClaimState.ACCEPTED);
@@ -184,33 +245,33 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(ClaimSolution.REPAIR, claim.findById(claim1.getId()).getWantedSolutionByCustomer());
     }
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateNull() {
-        expectedException.expect(IllegalArgumentException.class);
+       // expectedException.expect(IllegalArgumentException.class);
         claim.update(null);
     }
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void deleteNull() {
-        expectedException.expect(IllegalArgumentException.class);
+        //expectedException.expect(IllegalArgumentException.class);
         claim.delete(null);
     }
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNull() {
-        expectedException.expect(IllegalArgumentException.class);
+        //expectedException.expect(IllegalArgumentException.class);
         claim.findById(null);
     }
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNegative() {
-        expectedException.expect(IllegalArgumentException.class);
+        //expectedException.expect(IllegalArgumentException.class);
         claim.findById(-1L);
     }
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull(){
-        expectedException.expect(IllegalArgumentException.class);
+        //expectedException.expect(IllegalArgumentException.class);
         claim.create(null);
 
     }

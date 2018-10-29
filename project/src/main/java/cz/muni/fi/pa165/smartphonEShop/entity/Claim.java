@@ -14,6 +14,7 @@ import java.util.Objects;
  */
 
 @Entity
+@Table(name = "Claim") 
 @Getter
 @Setter
 public class Claim
@@ -22,10 +23,14 @@ public class Claim
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne(optional = false)
+    //@ManyToOne(optional = false)
+    //@NotNull
+    //private Order order;
+    
+    @Column(nullable = false)
     @NotNull
-    private Order order;
-
+    private Long orderId;
+    
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
@@ -48,13 +53,13 @@ public class Claim
         if (this == o) return true;
         if (!(o instanceof Claim)) return false;
         Claim claim = (Claim) o;
-        return Objects.equals(getOrder(), claim.getOrder()) &&
+        return Objects.equals(getOrderId(), claim.getOrderId()) &&
                 getWantedSolutionByCustomer() == claim.getWantedSolutionByCustomer();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getOrder(), getWantedSolutionByCustomer());
+        return Objects.hash(getOrderId(), getWantedSolutionByCustomer());
     }
 }

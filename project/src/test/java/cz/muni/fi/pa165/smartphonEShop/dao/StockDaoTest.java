@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
+import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,14 +13,15 @@ import org.testng.annotations.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 /**
  * Created by Roman Nahalka
  */
-@ContextConfiguration //TODO: Persistence Context
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class StockDaoTest
+public class StockDaoTest extends AbstractTestNGSpringContextTests 
 {
     @Autowired
     private StockDao stock;
@@ -36,6 +38,9 @@ public class StockDaoTest
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
 
+        stock1.setAddressId(123L);
+        stock2.setAddressId(234L);
+        
         stock.create(stock1);
         stock.create(stock2);
 
@@ -54,14 +59,17 @@ public class StockDaoTest
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
+        
+        stock1.setAddressId(123L);
+        stock2.setAddressId(234L);
 
         stock.create(stock1);
         stock.create(stock2);
 
-        Assert.assertEquals("Hlavni", stock.findById(stock1.getId()));
-        Assert.assertEquals("Vedlejsi", stock.findById(stock2.getId()));
-        Assert.assertNotEquals("Vedlejsi", stock.findById(stock1.getId()));
-        Assert.assertNotEquals("Hlavni", stock.findById(stock2.getId()));
+        Assert.assertEquals("Hlavni", stock.findById(stock1.getId()).getName());
+        Assert.assertEquals("Vedlejsi", stock.findById(stock2.getId()).getName());
+        Assert.assertNotEquals("Vedlejsi", stock.findById(stock1.getId()).getName());
+        Assert.assertNotEquals("Hlavni", stock.findById(stock2.getId()).getName());
     }
 
     @Test
@@ -72,6 +80,9 @@ public class StockDaoTest
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
+        
+        stock1.setAddressId(123L);
+        stock2.setAddressId(234L);
 
         stock.create(stock1);
         stock.create(stock2);
@@ -88,6 +99,8 @@ public class StockDaoTest
         Stock stock1 = new Stock();
 
         stock1.setName("Hlavni");
+        
+        stock1.setAddressId(123L);
 
         stock.create(stock1);
 
@@ -101,7 +114,7 @@ public class StockDaoTest
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull()
     {
-        stock.create(null);
+       stock.create(null);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

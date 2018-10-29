@@ -1,11 +1,13 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
+import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
+import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -18,7 +20,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Roman Nahalka
  */
-@ContextConfiguration //TODO: Persistence Context
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class PhoneDaoTest extends AbstractTestNGSpringContextTests
@@ -28,7 +30,7 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
     @PersistenceContext
     private EntityManager em;
-
+    
     @Test
     public void findAll()
     {
@@ -37,6 +39,18 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
         phone1.setModelName("S6");
         phone2.setModelName("S7");
+        
+        phone1.setPrice(123);
+        phone2.setPrice(345);
+        
+        phone1.setTechnicalInfo("info1");
+        phone2.setTechnicalInfo("info2");
+        
+        phone1.setManufacturer(Manufacturer.APPLE);
+        phone2.setManufacturer(Manufacturer.HTC);
+        
+        phone1.setStockId(10L);
+        phone2.setStockId(12L);
 
         phone.create(phone1);
         phone.create(phone2);
@@ -56,6 +70,18 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
         phone1.setModelName("S6");
         phone2.setModelName("S7");
+        
+        phone1.setPrice(123);
+        phone2.setPrice(345);
+        
+        phone1.setTechnicalInfo("info1");
+        phone2.setTechnicalInfo("info2");
+        
+        phone1.setManufacturer(Manufacturer.APPLE);
+        phone2.setManufacturer(Manufacturer.HTC);
+        
+        phone1.setStockId(10L);
+        phone2.setStockId(12L);
 
         phone.create(phone1);
         phone.create(phone2);
@@ -75,21 +101,33 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
         phone1.setModelName("S6");
         phone2.setModelName("S7");
+        
+        phone1.setPrice(123);
+        phone2.setPrice(345);
+        
+        phone1.setTechnicalInfo("info1");
+        phone2.setTechnicalInfo("info2");
+        
+        phone1.setManufacturer(Manufacturer.APPLE);
+        phone2.setManufacturer(Manufacturer.HTC);
+        
+        phone1.setStockId(10L);
+        phone2.setStockId(12L);
 
         phone.create(phone1);
         phone.create(phone2);
 
-        Assert.assertEquals(phone.findAll(), 2);
+        Assert.assertEquals(phone.findAll().size(), 2);
         Assert.assertNotNull(phone.findById(phone1.getId()));
         Assert.assertNotNull(phone.findById(phone2.getId()));
 
         phone.delete(phone1);
-        Assert.assertEquals(phone.findAll(), 1);
+        Assert.assertEquals(phone.findAll().size(), 1);
         Assert.assertFalse(phone.findAll().contains(phone1));
         Assert.assertNull(phone.findById(phone1.getId()));
 
         phone.delete(phone2);
-        Assert.assertEquals(phone.findAll(), 0);
+        Assert.assertEquals(phone.findAll().size(), 0);
         Assert.assertNull(phone.findById(phone2.getId()));
     }
 
@@ -99,6 +137,14 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         Phone phone1 = new Phone();
 
         phone1.setModelName("S7");
+        
+        phone1.setPrice(123);
+        
+        phone1.setTechnicalInfo("info1");
+        
+        phone1.setManufacturer(Manufacturer.APPLE);
+        
+        phone1.setStockId(10L);
 
         phone.create(phone1);
 

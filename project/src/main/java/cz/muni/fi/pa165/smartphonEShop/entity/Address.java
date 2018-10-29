@@ -11,6 +11,7 @@ import java.util.Objects;
  * Class represents:
  */
 @Entity
+@Table(name = "Address") 
 @Getter
 @Setter
 public class Address {
