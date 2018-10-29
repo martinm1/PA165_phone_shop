@@ -76,7 +76,7 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         phone.setPrice(123);
         phone.setTechnicalInfo("info1");
         phone.setManufacturer(Manufacturer.APPLE);
-        phone.setStockId(10L);
+        //phone.setStockId(10L);
         phoneDao.create(phone);
 
 
