@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import java.util.Objects;
@@ -42,6 +43,13 @@ public class Order {
     
     @OneToMany(mappedBy = "order")
     private List<Claim> claims;
+
+    public void addClaim(Claim claim) {
+        this.claims.add(claim);
+    }
+    public List<Claim> getClaims() {
+        return Collections.unmodifiableList(claims);
+    }
 
     @Override
     public boolean equals(Object o) {

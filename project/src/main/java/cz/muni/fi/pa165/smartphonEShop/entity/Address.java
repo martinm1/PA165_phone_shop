@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,6 +40,13 @@ public class Address {
 
     @OneToMany(mappedBy = "address")
     private List<Person> people;
+
+    public void addPerson(Person person) {
+        this.people.add(person);
+    }
+    public List<Person> getPeople() {
+        return Collections.unmodifiableList(people);
+    }
 
     @Override
     public boolean equals(Object o) {
