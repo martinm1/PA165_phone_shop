@@ -28,8 +28,8 @@ public class Stock {
     @NotNull
     @Column(nullable=false,unique=true)
     private String name;
-
-    @OneToMany(mappedBy = "stock") //TODO mappedBy?
+  
+    @OneToMany(mappedBy = "stock")
     private List<Phone> phones = new ArrayList<>();
 
     public void addPhone(Phone phone) {
@@ -40,8 +40,7 @@ public class Stock {
         return Collections.unmodifiableList(phones);
     }
 
-    @OneToOne(mappedBy = "stock")
-    private Address address;
+
 
     @Override
     public boolean equals(Object o) {

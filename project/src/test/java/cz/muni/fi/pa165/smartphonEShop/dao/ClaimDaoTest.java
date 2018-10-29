@@ -3,8 +3,10 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 //import cz.muni.fi.pa165.smartphonEShop.entity.Order;
-import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
-import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
+import cz.muni.fi.pa165.smartphonEShop.entity.Order;
+import cz.muni.fi.pa165.smartphonEShop.entity.Person;
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
+import cz.muni.fi.pa165.smartphonEShop.enums.*;
 import org.testng.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -19,8 +21,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -33,15 +37,38 @@ import java.util.List;
 public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private ClaimDao claim;
+    private ClaimDao claimDao;
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    @Autowired
+    private OrderDao orderDao;
+
+    private Claim claim1;
+    private Claim claim2;
+    private Order order1;
+    private Order order2;
 
 
     @PersistenceContext
     private EntityManager em;
 
+
+    @BeforeMethod
+    public void setUp() {
+        claim1 = new Claim();
+        claim1.setOrder(order1);
+        claim1.setClaimState(ClaimState.ACCEPTED);
+        claim1.setReasonOfClaim("rozbity");
+        claim1.setWantedSolutionByCustomer(ClaimSolution.REPAIR);
+        claim1.setTechnicalReport("chyba");
+
+        claim2 = new Claim();
+        claim2.setOrder(order2);
+        claim2.setClaimState(ClaimState.CREATED);
+        claim2.setReasonOfClaim("rozbity2");
+        claim2.setWantedSolutionByCustomer(ClaimSolution.MONEY);
+        claim2.setTechnicalReport("vratene peniaze");
+
+    }
 
     @Test
     public void findAll() {
