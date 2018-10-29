@@ -29,14 +29,8 @@ public class Order {
     private OrderState state;
 
     @Column(nullable=false)
-    private Long personId;
-
-    @Column(nullable=false)
     private LocalDate orderDate;
 
-    @Column(nullable=false)
-    private Long phoneId;
-    
     @ManyToOne
     @JoinColumn
     private Person person;
@@ -51,13 +45,13 @@ public class Order {
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
         return getState() == order.getState() &&
-                Objects.equals(getPersonId(), order.getPersonId()) &&
+                Objects.equals(getPerson(), order.getPerson()) &&
                 Objects.equals(getOrderDate(), order.getOrderDate()) &&
-                Objects.equals(getPhoneId(), order.getPhoneId());
+                Objects.equals(getPhone(), order.getPhone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getState(), getPersonId(), getOrderDate(), getPhoneId());
+        return Objects.hash(getState(), getPerson(), getOrderDate(), getPhone());
     }
 }
