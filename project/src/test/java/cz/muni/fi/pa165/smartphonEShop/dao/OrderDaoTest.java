@@ -4,9 +4,7 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
  * @author Jakub
  */
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
-import cz.muni.fi.pa165.smartphonEShop.entity.Order;
-import cz.muni.fi.pa165.smartphonEShop.entity.Person;
-import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
+import cz.muni.fi.pa165.smartphonEShop.entity.*;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
@@ -45,8 +43,12 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private PersonDao personDao;
-    
 
+    @Autowired
+    private AddressDao addressDao;
+
+    @Autowired
+    private StockDao stockDao;
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -57,13 +59,22 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
     private Order order2;
     private Person person;
     private Phone phone;
+    private Stock stock;
+    private Address address;
 
     @BeforeMethod
     public void setUp() {
+        address = new Address();
+        address.setStreetNumber("3");
+        address.setCity("Brno");
+        address.setCountry("cz");
+        address.setStreetName("hrncirska");
+        addressDao.create(address);
+
         person = new Person();
         person.setFirstName("Franta");
         person.setLastName("Novák");
-        person.setAddressId(123L);
+        person.setAddress(address);
         person.setEmail("zadny-takovyhle-novak-neexistuje12345@seznam.cz");
         person.setPhoneNumber("123");
         person.setDateOfBirth(LocalDate.ofYearDay(1, 2));
@@ -71,12 +82,18 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         person.setPersonType(PersonType.ADMIN);
         personDao.create(person);
 
+        stock = new Stock();
+        stock.setName("tovaren");
+        stock.setAddress(address);
+        stock.setPhones(phoneDao.findAll());
+        stockDao.create(stock);
+
         phone = new Phone();
         phone.setModelName("S6");
         phone.setPrice(123);
         phone.setTechnicalInfo("info1");
         phone.setManufacturer(Manufacturer.APPLE);
-        //phone.setStockId(10L);
+        phone.setStock(stock);
         phoneDao.create(phone);
 
 
@@ -148,31 +165,31 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(OrderState.FINISHED, orderDao.findById(order1.getId()).getState());
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull()
     {
         orderDao.create(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void updateNull()
     {
         orderDao.update(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void deleteNull()
     {
         orderDao.delete(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNull()
     {
         orderDao.findById(null);
     }
 
-    @org.testng.annotations.Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void findByIdNegative()
     {
         orderDao.findById((long)-1);
