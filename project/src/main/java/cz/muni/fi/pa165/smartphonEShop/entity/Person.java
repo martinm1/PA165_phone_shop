@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Getter;
@@ -40,6 +41,10 @@ public class Person {
     @Column(nullable=false)
     private Long addressId;
     
+    @ManyToOne
+    @JoinColumn
+    private Address address;
+    
     @Column(nullable=false)
     private String email;
     
@@ -57,6 +62,14 @@ public class Person {
     
     @OneToMany(mappedBy = "person")
     private List<Order> orders = new ArrayList<>();
+    
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
+
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
+    }
 
     @Override
     public boolean equals(Object obj) {
