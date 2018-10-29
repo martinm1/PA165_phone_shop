@@ -1,11 +1,15 @@
 package cz.muni.fi.pa165.smartphonEShop.entity;
 
+import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Stefan Holecko
@@ -13,9 +17,9 @@ import java.util.*;
  */
 
 @Entity
+@Table(name = "Stock") //TODO
 @Getter
 @Setter
-@Table(name = "Stock")
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -25,7 +29,10 @@ public class Stock {
     @Column(nullable=false,unique=true)
     private String name;
 
-    @OneToMany(mappedBy = "Stock")
+    @Column(nullable=false)
+    private Long addressId;
+
+    @OneToMany(mappedBy = "stock") //TODO mappedBy?
     private List<Phone> phones = new ArrayList<>();
 
     public void addPhone(Phone phone) {
@@ -36,7 +43,7 @@ public class Stock {
         return Collections.unmodifiableList(phones);
     }
 
-    @OneToOne(mappedBy = "Stock")
+    @OneToOne(mappedBy = "stock")
     private Address address;
 
     @Override
