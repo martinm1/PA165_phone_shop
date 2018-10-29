@@ -38,7 +38,6 @@ public class Address {
     private Stock stock;
 
     @OneToMany(mappedBy = "address")
-    @JoinColumn
     private List<Person> people;
 
     @Override
