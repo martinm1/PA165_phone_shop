@@ -48,6 +48,9 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
 
+        stock1.addPhone(phone1);
+        stock2.addPhone(phone2);
+
         phone1.setModelName("S6");
         phone2.setModelName("S7");
 
