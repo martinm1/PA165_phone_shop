@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
@@ -43,8 +44,21 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         Phone phone1 = new Phone();
         Phone phone2 = new Phone();
 
+        Address address1 = new Address();
+        address1.setStreetNumber("3");
+        address1.setCity("Brno");
+        address1.setCountry("cz");
+        address1.setStreetName("hrncirska");
+
+        Address address2 = new Address();
+        address2.setStreetNumber("3");
+        address2.setCity("Brno");
+        address2.setCountry("cz");
+        address2.setStreetName("hrncirska");
+
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
+
         phone1.setModelName("S6");
         phone2.setModelName("S7");
 
@@ -60,7 +74,8 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         stock1.addPhone(phone1);
         stock2.addPhone(phone2);
 
-
+        stock1.setAddress(address1);
+        stock2.setAddress(address2);
     }
 
     @Test

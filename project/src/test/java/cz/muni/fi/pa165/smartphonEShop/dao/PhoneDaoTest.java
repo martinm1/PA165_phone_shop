@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
@@ -42,6 +43,18 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         phone1 = new Phone();
         phone2 = new Phone();
 
+        Address address1 = new Address();
+        address1.setStreetNumber("3");
+        address1.setCity("Brno");
+        address1.setCountry("cz");
+        address1.setStreetName("hrncirska");
+
+        Address address2 = new Address();
+        address2.setStreetNumber("3");
+        address2.setCity("Brno");
+        address2.setCountry("cz");
+        address2.setStreetName("hrncirska");
+
         Stock stock1 = new Stock();
         Stock stock2 = new Stock();
 
@@ -50,6 +63,9 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
         stock1.addPhone(phone1);
         stock2.addPhone(phone2);
+
+        stock1.setAddress(address1);
+        stock2.setAddress(address2);
 
         phone1.setModelName("S6");
         phone2.setModelName("S7");
