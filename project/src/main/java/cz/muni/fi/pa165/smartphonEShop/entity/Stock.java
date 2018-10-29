@@ -36,8 +36,6 @@ public class Stock {
         this.phones.add(phone);
     }
 
-
-
     public List<Phone> getPhones() {
         return Collections.unmodifiableList(phones);
     }
