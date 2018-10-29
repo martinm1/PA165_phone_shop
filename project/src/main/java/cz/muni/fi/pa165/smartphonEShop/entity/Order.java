@@ -48,9 +48,6 @@ public class Order {
     @JoinColumn
     private Phone phone;
 
-    @OneToMany(mappedBy = "order")
-    private List<Claim> claims = new ArrayList<>();
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
