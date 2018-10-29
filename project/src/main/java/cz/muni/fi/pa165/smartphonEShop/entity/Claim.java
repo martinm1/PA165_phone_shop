@@ -23,9 +23,9 @@ public class Claim
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    //@ManyToOne(optional = false)
-    //@NotNull
-    //private Order order;
+    @ManyToOne
+    @JoinColumn
+    private Order order;
     
     @Column(nullable = false)
     @NotNull
