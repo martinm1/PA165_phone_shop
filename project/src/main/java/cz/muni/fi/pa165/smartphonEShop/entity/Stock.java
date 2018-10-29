@@ -5,10 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Stefan Holecko
@@ -16,9 +13,9 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "Stock") //TODO
 @Getter
 @Setter
+@Table(name = "Stock")
 public class Stock {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -28,22 +25,19 @@ public class Stock {
     @Column(nullable=false,unique=true)
     private String name;
 
-    @Column(nullable=false)
-    private Long addressId;
-
-    @OneToMany(mappedBy = "stock") //TODO mappedBy?
-    private Set<Phone> phones = new HashSet<>();
+    @OneToMany(mappedBy = "Stock")
+    private List<Phone> phones = new ArrayList<>();
 
     public void addPhone(Phone phone) {
         this.phones.add(phone);
     }
 
-    public Set<Phone> getPhones() {
-        return Collections.unmodifiableSet(phones);
+    public List<Phone> getPhones() {
+        return Collections.unmodifiableList(phones);
     }
 
-    //@OneToOne(mappedBy = "stockOnAddress")
-    //private Address address;
+    @OneToOne(mappedBy = "Stock")
+    private Address address;
 
     @Override
     public boolean equals(Object o) {

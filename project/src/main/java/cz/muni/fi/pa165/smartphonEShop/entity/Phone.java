@@ -14,9 +14,9 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "Phone") //TODO
 @Getter
 @Setter
+@Table(name = "Phone")
 public class Phone {
 
     @Id
@@ -36,17 +36,13 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
-    @Column(nullable=false)
-    private Long stockId;
 
-    @OneToOne(mappedBy = "phone")
+    @OneToOne(mappedBy = "Order")
     private Order order;
 
     @ManyToOne
-    @JoinColumn//(nullable=false)
+    @JoinColumn
     private Stock stock;
-
-
 
 
     @Override
