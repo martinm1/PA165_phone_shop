@@ -36,10 +36,14 @@ public class Stock {
         this.phones.add(phone);
     }
 
+
+
     public List<Phone> getPhones() {
         return Collections.unmodifiableList(phones);
     }
 
+    @OneToOne(mappedBy = "stock")
+    private Address address;
 
 
     @Override
