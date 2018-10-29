@@ -33,11 +33,11 @@ public class Address {
     @Column(nullable=false)
     private String country;
 
-    @OneToOne//TODO:: mapped by?
+    @OneToOne
     @JoinColumn
     private Stock stock;
 
-    @OneToMany
+    @OneToMany(mappedBy = "address")
     @JoinColumn
     private List<Person> people;
 
