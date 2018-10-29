@@ -45,6 +45,7 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private PersonDao personDao;
+    
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

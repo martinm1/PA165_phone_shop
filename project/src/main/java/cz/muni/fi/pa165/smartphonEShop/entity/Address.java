@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -31,6 +32,14 @@ public class Address {
 
     @Column(nullable=false)
     private String country;
+
+    @OneToOne//TODO:: mapped by?
+    @JoinColumn
+    private Stock stock;
+
+    @OneToMany
+    @JoinColumn
+    private List<Person> people;
 
     @Override
     public boolean equals(Object o) {
