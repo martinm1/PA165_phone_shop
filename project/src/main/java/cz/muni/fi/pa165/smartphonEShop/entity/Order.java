@@ -6,8 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
 import java.util.List;
+
 import java.util.Objects;
 
 /**
@@ -39,8 +39,8 @@ public class Order {
     @OneToOne
     @JoinColumn
     private Phone phone;
-
-    @OneToMany
+    
+    @OneToMany(mappedBy = "order")
     private List<Claim> claims;
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "Claim")
+@Table(name = "Claim") 
 @Getter
 @Setter
 public class Claim
@@ -26,11 +26,11 @@ public class Claim
     @ManyToOne
     @JoinColumn
     private Order order;
-
+    
     @Column(nullable = false)
     @NotNull
     private Long orderId;
-
+    
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
