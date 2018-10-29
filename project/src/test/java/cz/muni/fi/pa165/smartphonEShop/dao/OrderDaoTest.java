@@ -42,7 +42,6 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
 
     private Order order1;
     private Order order2;
-    private Order order3;
 
     @BeforeMethod
     public void setUp() {
@@ -57,12 +56,6 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         order2.setPersonId(2l);
         order2.setPhoneId(2l);
         order2.setState(OrderState.CREATED);
-
-        order3 = new Order();
-        order3.setOrderDate(LocalDate.ofYearDay(2018,10));
-        order3.setPersonId(3l);
-        order3.setPhoneId(3l);
-        order3.setState(OrderState.CREATED);
 
     }
 
