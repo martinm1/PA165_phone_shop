@@ -81,6 +81,12 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         
         address1.setCountry("Česko");
         address2.setCountry("Slovensko");
+        
+        address.create(address1);
+        address.create(address2);
+        
+        person1.setAddress(address1);
+        person2.setAddress(address2);
     
     }
     
