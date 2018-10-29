@@ -25,7 +25,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public void update(Claim claim) {
         if (claim == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new IllegalArgumentException("claim is null!");
         }
         entityManager.merge(claim);
     }
@@ -33,7 +33,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public void delete(Claim claim) {
         if (claim == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new IllegalArgumentException("claim is null!");
         }
         entityManager.remove(claim);
     }
@@ -41,7 +41,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public Claim findById(Long id) {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("AddressId is null or less than 0!");
+            throw new IllegalArgumentException("claim is null or less than 0!");
         }
         return entityManager.find(Claim.class, id);
     }
