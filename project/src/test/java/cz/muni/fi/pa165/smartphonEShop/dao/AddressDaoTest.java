@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import java.util.List;
+import org.testng.annotations.BeforeMethod;
 /**
  *
  * @author martin
@@ -22,12 +23,19 @@ import java.util.List;
 public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     @Autowired
     private AddressDao address;
-
-    @Test
-    public void findAll()
-    {
-        Address address1 = new Address();
-        Address address2 = new Address();
+    
+    @Autowired
+    private StockDao stock;
+    
+    private Address address1;
+    private Address address2;
+    
+    @BeforeMethod
+    public void setUp(){
+        
+        
+        address1 = new Address();
+        address2 = new Address();
 
         address1.setStreetName("Botanická");
         address2.setStreetName("Ilkovičova");
@@ -40,7 +48,11 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
         
         address1.setCountry("Česko");
         address2.setCountry("Slovensko");
-         
+    }
+
+    @Test
+    public void findAll()
+    {
         address.create(address1);
         address.create(address2);
 
@@ -53,21 +65,6 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void findById()
     {
-        Address address1 = new Address();
-        Address address2 = new Address();
-
-        address1.setStreetName("Botanická");
-        address2.setStreetName("Ilkovičova");
-
-        address1.setStreetNumber("68A");
-        address2.setStreetNumber("2");
-        
-        address1.setCity("Brno");
-        address2.setCity("Bratislava");
-        
-        address1.setCountry("Česko");
-        address2.setCountry("Slovensko");
-         
         address.create(address1);
         address.create(address2);
 
@@ -79,21 +76,6 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void delete()
     {
-        Address address1 = new Address();
-        Address address2 = new Address();
-
-        address1.setStreetName("Botanická");
-        address2.setStreetName("Ilkovičova");
-
-        address1.setStreetNumber("68A");
-        address2.setStreetNumber("2");
-        
-        address1.setCity("Brno");
-        address2.setCity("Bratislava");
-        
-        address1.setCountry("Česko");
-        address2.setCountry("Slovensko");
-         
         address.create(address1);
         address.create(address2);
 
@@ -114,16 +96,6 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void update()
     {
-        Address address1 = new Address();
-
-        address1.setStreetName("Botanická");
-
-        address1.setStreetNumber("68A");
-        
-        address1.setCity("Brno");
-        
-        address1.setCountry("Česko");
-         
         address.create(address1);
 
         address1.setStreetNumber("666");

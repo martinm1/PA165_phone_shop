@@ -11,10 +11,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import java.time.LocalDate;
 import java.util.List;
+import org.testng.annotations.BeforeMethod;
 /**
  *
  * @author martin
@@ -25,12 +27,20 @@ import java.util.List;
 public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
     @Autowired
     private PersonDao person;
+    
+    @Autowired
+    private AddressDao address;
 
-    @Test
-    public void findAll()
-    {
-        Person person1 = new Person();
-        Person person2 = new Person();
+    private Person person1;
+    private Person person2;
+    
+    private Address address1;
+    private Address address2;
+    
+    @BeforeMethod
+    public void setUp(){
+        person1 = new Person();
+        person2 = new Person();
 
         person1.setFirstName("Franta");
         person2.setFirstName("Jarda");
@@ -38,8 +48,8 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         person1.setLastName("Novák");
         person2.setLastName("Dvořák");
         
-        person1.setAddressId(123L);
-        person2.setAddressId(456L);
+       // person1.setAddressId(123L);
+      //  person2.setAddressId(456L);
         
         person1.setEmail("zadny-takovyhle-novak-neexistuje12345@seznam.cz");
         person2.setEmail("zadny-takovyhle-dvorak-neexistuje12345@seznam.cz");
@@ -56,6 +66,27 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         person1.setPersonType(PersonType.ADMIN);
         person2.setPersonType(PersonType.SIGNED_USER);
         
+        
+        address1 = new Address();
+        address2 = new Address();
+
+        address1.setStreetName("Botanická");
+        address2.setStreetName("Ilkovičova");
+
+        address1.setStreetNumber("68A");
+        address2.setStreetNumber("2");
+        
+        address1.setCity("Brno");
+        address2.setCity("Bratislava");
+        
+        address1.setCountry("Česko");
+        address2.setCountry("Slovensko");
+    
+    }
+    
+    @Test
+    public void findAll()
+    {
         person.create(person1);
         person.create(person2);
 
@@ -68,33 +99,6 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void findById()
     {
-        Person person1 = new Person();
-        Person person2 = new Person();
-
-        person1.setFirstName("Franta");
-        person2.setFirstName("Jarda");
-
-        person1.setLastName("Novák");
-        person2.setLastName("Dvořák");
-        
-        person1.setAddressId(123L);
-        person2.setAddressId(456L);
-        
-        person1.setEmail("zadny-takovyhle-novak-neexistuje12345@seznam.cz");
-        person2.setEmail("zadny-takovyhle-dvorak-neexistuje12345@seznam.cz");
-         
-        person1.setPhoneNumber("123");
-        person2.setPhoneNumber("456");
-        
-        person1.setDateOfBirth(LocalDate.ofYearDay(1, 2));
-        person2.setDateOfBirth(LocalDate.ofYearDay(3, 4));
-        
-        person1.setGender(Gender.MALE);
-        person2.setGender(Gender.FEMALE);
-        
-        person1.setPersonType(PersonType.ADMIN);
-        person2.setPersonType(PersonType.SIGNED_USER);
-        
         person.create(person1);
         person.create(person2);
 
@@ -106,33 +110,6 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void delete()
     {
-        Person person1 = new Person();
-        Person person2 = new Person();
-
-        person1.setFirstName("Franta");
-        person2.setFirstName("Jarda");
-
-        person1.setLastName("Novák");
-        person2.setLastName("Dvořák");
-        
-        person1.setAddressId(123L);
-        person2.setAddressId(456L);
-        
-        person1.setEmail("zadny-takovyhle-novak-neexistuje12345@seznam.cz");
-        person2.setEmail("zadny-takovyhle-dvorak-neexistuje12345@seznam.cz");
-         
-        person1.setPhoneNumber("123");
-        person2.setPhoneNumber("456");
-        
-        person1.setDateOfBirth(LocalDate.ofYearDay(1, 2));
-        person2.setDateOfBirth(LocalDate.ofYearDay(3, 4));
-        
-        person1.setGender(Gender.MALE);
-        person2.setGender(Gender.FEMALE);
-        
-        person1.setPersonType(PersonType.ADMIN);
-        person2.setPersonType(PersonType.SIGNED_USER);
-        
         person.create(person1);
         person.create(person2);
 
@@ -153,24 +130,6 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
     @Test
     public void update()
     {
-        Person person1 = new Person();
-
-        person1.setFirstName("Franta");
-
-        person1.setLastName("Novák");
-        
-        person1.setAddressId(123L);
-        
-        person1.setEmail("zadny-takovyhle-novak-neexistuje12345@seznam.cz");
-         
-        person1.setPhoneNumber("123");
-        
-        person1.setDateOfBirth(LocalDate.ofYearDay(1, 2));
-        
-        person1.setGender(Gender.MALE);
-        
-        person1.setPersonType(PersonType.ADMIN);
-        
         person.create(person1);
 
         person1.setEmail("zadny-takovyhle-novak-neexistuje12345@centrum.cz");
