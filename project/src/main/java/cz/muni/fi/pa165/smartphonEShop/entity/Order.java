@@ -3,13 +3,10 @@ package cz.muni.fi.pa165.smartphonEShop.entity;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
