@@ -29,8 +29,8 @@ public class Stock {
     @Column(nullable=false,unique=true)
     private String name;
 
-    @Column(nullable=false)
-    private Long addressId;
+    //@Column(nullable=false)
+    //private Long addressId;
 
     @OneToMany(mappedBy = "stock") //TODO mappedBy?
     private List<Phone> phones = new ArrayList<>();

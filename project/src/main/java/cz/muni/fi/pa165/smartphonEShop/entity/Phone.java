@@ -36,8 +36,8 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
-    @Column(nullable=false)
-    private Long stockId;
+    //@Column(nullable=false)
+    //private Long stockId;
 
     @OneToOne(mappedBy = "phone")
     private Order order;

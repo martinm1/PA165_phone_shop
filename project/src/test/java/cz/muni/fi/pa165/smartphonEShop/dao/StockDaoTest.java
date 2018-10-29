@@ -8,6 +8,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
@@ -29,18 +30,22 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @PersistenceContext
     private EntityManager em;
 
-    @Test
-    public void findAll()
+    private Stock stock1;
+    private Stock stock2;
+
+    @BeforeClass
+    void setUp()
     {
         Stock stock1 = new Stock();
         Stock stock2 = new Stock();
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
+    }
 
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-        
+    @Test
+    public void findAll()
+    {
         stock.create(stock1);
         stock.create(stock2);
 
@@ -54,15 +59,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void findById()
     {
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
-
-        stock1.setName("Hlavni");
-        stock2.setName("Vedlejsi");
-        
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-
         stock.create(stock1);
         stock.create(stock2);
 
@@ -75,15 +71,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void delete()
     {
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
-
-        stock1.setName("Hlavni");
-        stock2.setName("Vedlejsi");
-        
-        stock1.setAddressId(123L);
-        stock2.setAddressId(234L);
-
         stock.create(stock1);
         stock.create(stock2);
 
@@ -96,12 +83,6 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Test
     public void update()
     {
-        Stock stock1 = new Stock();
-
-        stock1.setName("Hlavni");
-        
-        stock1.setAddressId(123L);
-
         stock.create(stock1);
 
         stock1.setName("Vedlejsi");
