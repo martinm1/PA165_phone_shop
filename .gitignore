@@ -23,7 +23,7 @@ tomcat
 *.class
 
 # Maven 
-project/target/
+persistence/target/
 
 # IntelliJ project files 
 *.iml
