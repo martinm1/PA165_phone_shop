@@ -1,0 +1,6 @@
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/AddressDaoTest.java
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/PhoneDaoTest.java
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/PersonDaoTest.java
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/ClaimDaoTest.java
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/OrderDaoTest.java
+/home/martin/data-linux/projects/PA165/PA165_phone_shop/persistence/src/test/java/cz/muni/fi/pa165/smartphonEShop/dao/StockDaoTest.java
