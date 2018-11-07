@@ -29,22 +29,22 @@ project/target/
 *.iml
 *.iws
 *.ipr
-project/.idea/
+persistence/.idea/
 .idea/
 
 
 # NetBeans specific
-project/nbproject/private/
-project/build/
-project/nbbuild/
-project/dist/
-project/nbdist/
-project/nbactions.xml
-project/nb-configuration.xml
+persistence/nbproject/private/
+persistence/build/
+persistence/nbbuild/
+persistence/dist/
+persistence/nbdist/
+persistence/nbactions.xml
+persistence/nb-configuration.xml
 
 
 # Misc
 *.swp
-project/release.properties
-project/pom.xml.releaseBackup
-project/pom.xml.tag
+persistence/release.properties
+persistence/pom.xml.releaseBackup
+persistence/pom.xml.tag
