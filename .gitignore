@@ -22,6 +22,8 @@ tomcat
 *.sar
 *.class
 
+#persistence folder
+
 # Maven 
 persistence/target/
 
@@ -48,3 +50,32 @@ persistence/nb-configuration.xml
 persistence/release.properties
 persistence/pom.xml.releaseBackup
 persistence/pom.xml.tag
+
+#service folder
+
+# Maven 
+service/target/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+service/.idea/
+.idea/
+
+
+# NetBeans specific
+service/nbproject/private/
+service/build/
+service/nbbuild/
+service/dist/
+service/nbdist/
+service/nbactions.xml
+service/nb-configuration.xml
+
+
+# Misc
+*.swp
+service/release.properties
+service/pom.xml.releaseBackup
+service/pom.xml.tag
