@@ -11,10 +11,6 @@ import java.util.List;
  */
 
 public interface ClaimFacade {
-    //TODO
-    Collection<ClaimDTO> findClaimBy();
 
-    ClaimDTO findClaimById(Long id);
 
-    
 }
