@@ -21,12 +21,6 @@ public class StockDTO {
     private Long id;
     private String name;
     private List<Phone> phones = new ArrayList<>();
-    public void addPhone(Phone phone) {
-        this.phones.add(phone);
-    }
-    public List<Phone> getPhones() {
-        return Collections.unmodifiableList(phones);
-    }
     private Address address;
 
     @Override
