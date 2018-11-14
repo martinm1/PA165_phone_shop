@@ -55,7 +55,7 @@ public interface PersonFacade
 
     /**
      * Register new person to system.
-     * @param person New person. 
+     * @param person New person.
      */
     void registerPerson(PersonDTO person);
 }
