@@ -175,5 +175,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 <modules>
     <module>persistence</module>
     <module>api</module>
+    <module>service</module>
 </modules>
 </project>
