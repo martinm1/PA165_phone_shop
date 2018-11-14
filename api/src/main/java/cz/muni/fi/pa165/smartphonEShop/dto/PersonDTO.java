@@ -11,6 +11,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Created by Roman Nahalka
+ * Class represents: Data transfer object of Person.
+ */
+
 @Getter
 @Setter
 public class PersonDTO
@@ -25,6 +30,7 @@ public class PersonDTO
     private PersonType personType;
     private Address address;
     private List<Order> orders;
+
 
     @Override
     public boolean equals(Object o)
