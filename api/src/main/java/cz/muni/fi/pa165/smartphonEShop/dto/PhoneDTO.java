@@ -19,7 +19,7 @@ public class PhoneDTO {
     private String technicalInfo;
     private Manufacturer manufacturer;
     private OrderDTO order;
-    //private StockDTO stock;
+    private StockDTO stock;
     
     
     @Override
