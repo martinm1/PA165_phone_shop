@@ -57,7 +57,6 @@ public interface PhoneFacade {
      */
     Collection<PhoneDTO> getAllPhones();
 
-
     /**
      * Register new phone to system.
      * @param phone New phone.

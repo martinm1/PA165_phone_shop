@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: ClaimDTO
  */
 @Getter
 @Setter

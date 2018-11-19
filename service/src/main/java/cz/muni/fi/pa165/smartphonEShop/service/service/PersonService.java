@@ -2,13 +2,11 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
-
-import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: PersonService interface
  */
 
 public interface PersonService {
@@ -52,5 +50,5 @@ public interface PersonService {
      * @return Collection of people with given person type.
      */
     List<Person> getPeopleByPersonType(PersonType personType);
-    
+
 }
