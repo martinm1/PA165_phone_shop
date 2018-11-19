@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: StockDTO
  */
 @Getter
 @Setter
@@ -20,8 +19,8 @@ public class StockDTO {
 
     private Long id;
     private String name;
-    private List<Phone> phones = new ArrayList<>();
-    private Address address;
+    private List<PhoneDTO> phones = new ArrayList<>();
+    private AddressDTO address;
 
     @Override
     public boolean equals(Object o) {

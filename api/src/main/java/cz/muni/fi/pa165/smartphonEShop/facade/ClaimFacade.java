@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: ClaimFacade interface
  */
 
 public interface ClaimFacade {

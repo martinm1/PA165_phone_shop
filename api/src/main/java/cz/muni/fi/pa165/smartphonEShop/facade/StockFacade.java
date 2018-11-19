@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: StockFacade interface
  */
 
 public interface StockFacade {

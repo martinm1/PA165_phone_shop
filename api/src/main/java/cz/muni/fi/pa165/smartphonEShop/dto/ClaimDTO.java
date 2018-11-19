@@ -10,14 +10,14 @@ import java.util.Objects;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: ClaimDTO
  */
 @Getter
 @Setter
 public class ClaimDTO {
 
     private Long id;
-    private Order order;
+    private OrderDTO order;
     private ClaimSolution wantedSolutionByCustomer;
     private String technicalReport;
     private String reasonOfClaim;
