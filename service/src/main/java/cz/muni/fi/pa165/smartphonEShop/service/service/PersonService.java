@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import java.util.List;
@@ -50,5 +52,18 @@ public interface PersonService {
      * @return Collection of people with given person type.
      */
     List<Person> getPeopleByPersonType(PersonType personType);
+
+    /**
+     * Add specific order to specific person.
+     * @param person represents person.
+     * @param order represents order.
+     */
+    void addOrder(Person person, Order order);
+
+    /**
+     * Register new person to system.
+     * @param person New person.
+     */
+    void registerPerson(PersonDTO person);
 
 }
