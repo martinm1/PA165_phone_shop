@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ public interface AddressService {
      * @param id
      * @return Address with specific Id.
      */
-    AddressDTO findAddressById(Long id);
+    Address findAddressById(Long id);
 
     /**
      * @param specificator - HashMap specificator
@@ -29,10 +30,10 @@ public interface AddressService {
      *
      * @return collection of Addreesses filtered by specificator
      */
-    List<AddressDTO> findAllAdressesBy(HashMap<AddressEnum,String> specificator);
+    List<Address> findAllAdressesBy(HashMap<AddressEnum,String> specificator);
 
     /**
      * @return all addreeses
      */
-    List<AddressDTO> getAllAdresses();
+    List<Address> getAllAdresses();
 }
