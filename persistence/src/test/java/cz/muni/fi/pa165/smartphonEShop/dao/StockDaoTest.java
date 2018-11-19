@@ -30,6 +30,12 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     @Autowired
     private StockDao stock;
 
+    @Autowired
+    private PhoneDao phoneDao;
+
+    @Autowired
+    private AddressDao addressDao;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -44,6 +50,7 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         Phone phone1 = new Phone();
         Phone phone2 = new Phone();
 
+
         Address address1 = new Address();
         address1.setStreetNumber("3");
         address1.setCity("Brno");
@@ -55,6 +62,9 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         address2.setCity("Brno");
         address2.setCountry("cz");
         address2.setStreetName("hrncirska");
+
+        addressDao.create(address1);
+        addressDao.create(address2);
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
@@ -71,11 +81,22 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         phone1.setManufacturer(Manufacturer.APPLE);
         phone2.setManufacturer(Manufacturer.HTC);
 
+        phoneDao.create(phone1);
+        phoneDao.create(phone2);
+
         stock1.addPhone(phone1);
         stock2.addPhone(phone2);
 
         stock1.setAddress(address1);
         stock2.setAddress(address2);
+
+    }
+
+    @Test
+    public void create()
+    {
+        stock.create(stock1);
+        Assert.assertNotNull(stock1.getId());
     }
 
     @Test

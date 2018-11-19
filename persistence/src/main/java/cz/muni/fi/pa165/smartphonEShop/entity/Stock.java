@@ -40,7 +40,7 @@ public class Stock {
         return Collections.unmodifiableList(phones);
     }
 
-    @OneToOne(mappedBy = "stock", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "stock")
     @NotNull
     private Address address;
 
