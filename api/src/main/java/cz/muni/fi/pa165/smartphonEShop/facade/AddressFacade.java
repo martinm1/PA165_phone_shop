@@ -29,11 +29,11 @@ public interface AddressFacade {
      *
      * @return collection of Addreesses filtered by specificator
      */
-    Collection<AddressDTO> findAllAdressesBy(HashMap<AddressEnum,String> specificator);
+    Collection<AddressDTO> findAllAddressesBy(HashMap<AddressEnum,String> specificator);
 
     /**
      * @return all addreeses
      */
-    Collection<AddressDTO> getAllAdresses();
+    Collection<AddressDTO> getAllAddresses();
 
 }
