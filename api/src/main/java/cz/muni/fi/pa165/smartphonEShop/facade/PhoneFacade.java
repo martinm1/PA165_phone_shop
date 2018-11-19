@@ -49,7 +49,7 @@ public interface PhoneFacade {
      * @param stockID of phone.
      * @return Collection of phones with given stock.
      */
-    Collection<PhoneDTO> findPhonesByManufacturer (Long stockID);
+    Collection<PhoneDTO> findPhonesByStockID (Long stockID);
     
     /**
      * Find all phones.
