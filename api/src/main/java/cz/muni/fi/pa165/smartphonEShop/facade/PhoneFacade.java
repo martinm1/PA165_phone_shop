@@ -59,20 +59,6 @@ public interface PhoneFacade {
 
 
     /**
-     * Add specific order to specific phone.
-     * @param phoneId primary key for phone.
-     * @param orderId primary key for order.
-     */
-    void addOrder(Long phoneId, Long orderId);
-    
-    /**
-     * Add specific stock to specific phone.
-     * @param phoneId primary key for phone.
-     * @param stockId primary key for stock.
-     */
-    void addStock(Long phoneId, Long stockId);
-
-    /**
      * Register new phone to system.
      * @param phone New phone.
      */
