@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -57,6 +58,10 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void getAllTest()
     {
-        List<Address> = addressService.getAllAdresses();
+        List<Address> addresses = addressService.getAllAddresses();
+
+        Assert.assertEquals(2, addresses.size());
+        Assert.assertTrue(addresses.contains(address1));
+        Assert.assertTrue(addresses.contains(address2));
     }
 }
