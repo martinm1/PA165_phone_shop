@@ -1,10 +1,12 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
+import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -60,5 +62,11 @@ public class AddressDaoImpl implements AddressDao {
     public List<Address> findAll() {
         return entityManager.createQuery("select a from Address a", Address.class)
                 .getResultList();
+    }
+
+    @Override
+    //TODO
+    public List<Address> findAllAddressesBy(HashMap<AddressEnum, String> specificator) {
+        return null;
     }
 }
