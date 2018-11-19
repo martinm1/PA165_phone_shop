@@ -91,15 +91,30 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
     }
     
     @Test
+    public void create() {
+
+        List<Person> persons = person.findAll();
+        Assert.assertEquals(persons.size(), 0);
+
+        person.create(person1);
+        persons = person.findAll();
+        Assert.assertEquals(persons.size(), 1);
+
+        person.create(person2);
+        persons = person.findAll();
+        Assert.assertEquals(persons.size(), 2);
+    }
+    
+    @Test
     public void findAll()
     {
         person.create(person1);
         person.create(person2);
 
-        List<Person> addresses = person.findAll();
-        Assert.assertEquals(addresses.size(), 2);
-        Assert.assertTrue(addresses.contains(person1));
-        Assert.assertTrue(addresses.contains(person2));
+        List<Person> persons = person.findAll();
+        Assert.assertEquals(persons.size(), 2);
+        Assert.assertTrue(persons.contains(person1));
+        Assert.assertTrue(persons.contains(person2));
     }
 
     @Test
@@ -108,8 +123,8 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         person.create(person1);
         person.create(person2);
 
-        Assert.assertEquals("123", person.findById(person1.getId()).getPhoneNumber());
-        Assert.assertEquals("456", person.findById(person2.getId()).getPhoneNumber());
+        Assert.assertEquals(person1, person.findById(person1.getId()));
+        Assert.assertEquals(person2, person.findById(person2.getId()));
 
     }
 
@@ -140,8 +155,9 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
 
         person1.setEmail("zadny-takovyhle-novak-neexistuje12345@centrum.cz");
         person.update(person1);
-
+        
         Assert.assertEquals("zadny-takovyhle-novak-neexistuje12345@centrum.cz", person.findById(person1.getId()).getEmail());
+        Assert.assertEquals(person1, person.findById(person1.getId()));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

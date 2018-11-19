@@ -79,3 +79,4 @@ service/nb-configuration.xml
 service/release.properties
 service/pom.xml.releaseBackup
 service/pom.xml.tag
+/api/target/
