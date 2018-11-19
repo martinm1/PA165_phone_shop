@@ -20,8 +20,8 @@ public class StockDTO {
 
     private Long id;
     private String name;
-    private List<Phone> phones = new ArrayList<>();
-    private Address address;
+    private List<PhoneDTO> phones = new ArrayList<>();
+    private AddressDTO address;
 
     @Override
     public boolean equals(Object o) {

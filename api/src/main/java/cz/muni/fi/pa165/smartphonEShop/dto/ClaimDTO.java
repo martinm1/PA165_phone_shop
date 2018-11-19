@@ -17,7 +17,7 @@ import java.util.Objects;
 public class ClaimDTO {
 
     private Long id;
-    private Order order;
+    private OrderDTO order;
     private ClaimSolution wantedSolutionByCustomer;
     private String technicalReport;
     private String reasonOfClaim;
