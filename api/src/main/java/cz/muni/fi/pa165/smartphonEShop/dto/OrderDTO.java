@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.dto;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class OrderDTO {
     private PersonDTO person;
     private PhoneDTO phone;
     
-    //private List<ClaimDTO> claims;
+    private List<ClaimDTO> claims;
     
     @Override
     public boolean equals(Object o) {

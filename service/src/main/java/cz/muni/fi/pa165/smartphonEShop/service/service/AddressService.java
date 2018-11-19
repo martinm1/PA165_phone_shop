@@ -1,6 +1,9 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+<<<<<<< HEAD
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
+=======
+>>>>>>> 1a86eeeffcfc2c02300f515c26d9528586bfc7af
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 
@@ -30,10 +33,18 @@ public interface AddressService {
      *
      * @return collection of Addreesses filtered by specificator
      */
+<<<<<<< HEAD
     List<Address> findAllAdressesBy(HashMap<AddressEnum,String> specificator);
+=======
+    List<Address> findAllAddressesBy(HashMap<AddressEnum,String> specificator);
+>>>>>>> 1a86eeeffcfc2c02300f515c26d9528586bfc7af
 
     /**
      * @return all addreeses
      */
+<<<<<<< HEAD
     List<Address> getAllAdresses();
+=======
+    List<Address> getAllAddresses();
+>>>>>>> 1a86eeeffcfc2c02300f515c26d9528586bfc7af
 }
