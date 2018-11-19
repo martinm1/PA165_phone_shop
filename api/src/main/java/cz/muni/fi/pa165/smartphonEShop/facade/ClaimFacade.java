@@ -55,4 +55,10 @@ public interface ClaimFacade {
      */
     Collection<ClaimDTO> getAllClaims();
 
+    /**
+     * Register new claim to system.
+     * @param claim New claim.
+     */
+    void registerStock(ClaimDTO claim);
+
 }

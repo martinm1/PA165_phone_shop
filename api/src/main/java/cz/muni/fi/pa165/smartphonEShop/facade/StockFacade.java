@@ -46,5 +46,18 @@ public interface StockFacade {
      */
     Collection<StockDTO> getAllStocks();
 
+    /**
+     * Register new stock to system.
+     * @param stock New stock.
+     */
+    void registerStock(StockDTO stock);
+
+    /**
+     * Add specific phone to specific stock.
+     * @param phoneId primary key for phone.
+     * @param stockId primary key for stockId.
+     */
+    void addPhone(Long stockId, Long phoneId);
+
 
 }
