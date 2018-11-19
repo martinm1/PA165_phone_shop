@@ -1,9 +1,12 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
+import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 
@@ -43,6 +46,51 @@ public class PersonDaoImpl implements PersonDao{
             throw new IllegalArgumentException("AddressId is null or less than 0!");
         }
         return entityManager.find(Person.class, id);
+    }
+
+    @Override
+    public Person findByEmail(String email)
+    {
+        if (email == null || email.isEmpty())
+            throw new IllegalArgumentException("Email is null!");
+
+        try
+        {
+            return entityManager.createQuery("SELECT p FROM Person p WHERE email =: email", Person.class)
+                                                .setParameter("email", email).getSingleResult();
+        }
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public Person findByPhoneNumber(String number)
+    {
+        if (number == null || number.isEmpty())
+            throw new IllegalArgumentException("Phone number is null!");
+
+        try
+        {
+            return entityManager.createQuery("SELECT p FROM Person p WHERE phoneNumber =: number", Person.class)
+                                                .setParameter("number", number).getSingleResult();
+        }
+
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Person> findByPersonType(PersonType type)
+    {
+        if (type == null)
+            throw new IllegalArgumentException("Person type is null!");
+
+        return entityManager.createQuery("SELECT p FROM Person p WHERE personType =: type", Person.class)
+                                                                .setParameter("type", type).getResultList();
     }
 
     @Override
