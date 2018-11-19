@@ -1,10 +1,13 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dao.PersonDao;
+import cz.muni.fi.pa165.smartphonEShop.dao.PersonDaoImpl;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,9 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -55,12 +61,13 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Override
     public void addOrder(Long personId, Long orderId) {
-       
+        personService.addOrder(personService.findPersonById(personId),orderService.findOrderById(orderId));
 
     }
 
     @Override
     public void registerPerson(PersonDTO person) {
+        personService.registerPerson(person);
 
     }
 }
