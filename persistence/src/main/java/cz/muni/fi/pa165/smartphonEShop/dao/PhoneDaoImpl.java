@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -66,6 +68,36 @@ public class PhoneDaoImpl implements PhoneDao{
     {
         TypedQuery<Phone> query = em.createQuery("SELECT q FROM Phone q", Phone.class);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Phone> findPhonesByModelName(String modelName) {
+        return em.createQuery("SELECT p FROM Phone p WHERE p.modelName =: modelName", Phone.class)
+                                .setParameter("modelName", modelName).getResultList();
+    }
+
+    @Override
+    public List<Phone> findPhonesByPrice(int price) {
+        return em.createQuery("SELECT p FROM Phone p WHERE p.price =: price", Phone.class)
+                                .setParameter("price", price).getResultList();
+    }
+
+    @Override
+    public List<Phone> findPhonesByTechnicalInfo(String technicalInfo) {
+        return em.createQuery("SELECT p FROM Phone p WHERE p.technicalInfo =: technicalInfo", Phone.class)
+                                .setParameter("technicalInfo", technicalInfo).getResultList();
+    }
+
+    @Override
+    public List<Phone> findPhonesByManufacturer(Manufacturer manufacturer) {
+        return em.createQuery("SELECT p FROM Phone p WHERE p.manufacturer =: manufacturer", Phone.class)
+                                .setParameter("manufacturer", manufacturer).getResultList();
+    }
+
+    @Override
+    public List<Phone> findPhonesByStock(Long stockId) {
+        return em.createQuery("SELECT p FROM Phone p JOIN p.stock s where s.id =: stockId", Phone.class)
+                                .setParameter("stockId", stockId).getResultList();
     }
 
 

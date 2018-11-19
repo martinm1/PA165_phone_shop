@@ -56,7 +56,7 @@ public class PersonDaoImpl implements PersonDao{
 
         try
         {
-            return entityManager.createQuery("SELECT p FROM Person p WHERE email =: email", Person.class)
+            return entityManager.createQuery("SELECT p FROM Person p WHERE p.email =: email", Person.class)
                                                 .setParameter("email", email).getSingleResult();
         }
         catch (NoResultException ex)
@@ -73,7 +73,7 @@ public class PersonDaoImpl implements PersonDao{
 
         try
         {
-            return entityManager.createQuery("SELECT p FROM Person p WHERE phoneNumber =: number", Person.class)
+            return entityManager.createQuery("SELECT p FROM Person p WHERE p.phoneNumber =: number", Person.class)
                                                 .setParameter("number", number).getSingleResult();
         }
 
@@ -89,7 +89,7 @@ public class PersonDaoImpl implements PersonDao{
         if (type == null)
             throw new IllegalArgumentException("Person type is null!");
 
-        return entityManager.createQuery("SELECT p FROM Person p WHERE personType =: type", Person.class)
+        return entityManager.createQuery("SELECT p FROM Person p WHERE p.personType =: type", Person.class)
                                                                 .setParameter("type", type).getResultList();
     }
 
