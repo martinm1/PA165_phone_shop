@@ -1,7 +1,5 @@
 package cz.muni.fi.pa165.smartphonEShop.dto;
 
-import cz.muni.fi.pa165.smartphonEShop.entity.Address;
-import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import lombok.Getter;
@@ -28,8 +26,8 @@ public class PersonDTO
     private LocalDate dateOfBirth;
     private Gender gender;
     private PersonType personType;
-    private Address address;
-    private List<Order> orders;
+    private AddressDTO address;
+    private List<OrderDTO> orders;
 
 
     @Override

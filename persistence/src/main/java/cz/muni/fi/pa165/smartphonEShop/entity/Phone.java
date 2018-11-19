@@ -39,7 +39,7 @@ public class Phone {
     @OneToOne(mappedBy = "phone")
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn//(nullable=false)
     private Stock stock;
 
