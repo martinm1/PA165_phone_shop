@@ -29,10 +29,16 @@ public interface StockFacade {
     /**
      * Find stock with specific addressId
      * @param addressId of the  stock
-     * @return Stock with given address.
+     * @return Stock with given addressId.
      */
     StockDTO findStockByAddressId(Long addressId);
-    
+
+    /**
+     * Find stock with specific phoneId
+     * @param phoneId of the  stock
+     * @return Stock with given phoneId.
+     */
+    StockDTO findStockByPhoneId(Long phoneId);
 
     /**
      * Find all stocks.
