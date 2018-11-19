@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
+import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 
 import java.util.List;
 
@@ -41,6 +42,30 @@ public interface PersonDao {
      * @throws IllegalArgumentException when id is null or less than 0.
      */
     public Person findById(Long id);
+
+    /**
+     * Find person with specified email in database.
+     * @param email of requested person.
+     * @return person with given email, null if no such exists.
+     * @throws IllegalArgumentException when email is null.
+     */
+    public Person findByEmail(String email);
+
+    /**
+     * Find person with specified phone number in database.
+     * @param number of requested person.
+     * @return person with given phone number, null if no such exists.
+     * @throws IllegalArgumentException when number is null.
+     */
+    public Person findByPhoneNumber(String number);
+
+    /**
+     * Find people with specified person type.
+     * @param type of requested people.
+     * @return people with given person type.
+     * @throws IllegalArgumentException when type is null.
+     */
+    public List<Person> findByPersonType(PersonType type);
 
 
     /**
