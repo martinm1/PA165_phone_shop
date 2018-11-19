@@ -1,4 +1,10 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
-public class OrderFacadeTest {
+/**
+ * Created by Roman Nahalka
+ * Class represents: Tests for OrderFacade.
+ */
+public class OrderFacadeTest
+{
+
 }
