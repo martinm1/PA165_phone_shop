@@ -64,6 +64,6 @@ public interface PersonService {
      * Register new person to system.
      * @param person New person.
      */
-    void registerPerson(PersonDTO person);
+    void createPerson(Person person);
 
 }
