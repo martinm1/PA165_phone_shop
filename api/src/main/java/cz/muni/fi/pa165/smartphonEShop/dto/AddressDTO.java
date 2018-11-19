@@ -24,15 +24,15 @@ public class AddressDTO {
         if (this == o) return true;
         if (!(o instanceof AddressDTO)) return false;
         AddressDTO that = (AddressDTO) o;
-        return Objects.equals(streetName, that.streetName) &&
-                Objects.equals(streetNumber, that.streetNumber) &&
-                Objects.equals(city, that.city) &&
-                Objects.equals(country, that.country);
+        return Objects.equals(getStreetName(), that.getStreetName()) &&
+                Objects.equals(getStreetNumber(), that.getStreetNumber()) &&
+                Objects.equals(getCity(), that.getCity()) &&
+                Objects.equals(getCountry(), that.getCountry());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(streetName, streetNumber, city, country);
+        return Objects.hash(getStreetName(), getStreetNumber(), getCity(), getCountry());
     }
 
     @Override
