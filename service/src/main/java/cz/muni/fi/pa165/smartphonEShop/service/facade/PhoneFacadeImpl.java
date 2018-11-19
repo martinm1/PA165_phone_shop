@@ -53,7 +53,7 @@ public class PhoneFacadeImpl implements PhoneFacade {
     }
 
     @Override
-    public Collection<PhoneDTO> findPhonesByManufacturer(Long stockID) {
+    public Collection<PhoneDTO> findPhonesByStockID(Long stockID) {
         return beanMappingService.mapTo(phoneService.findPhonesByStock(stockID),PhoneDTO.class);
     }
 
