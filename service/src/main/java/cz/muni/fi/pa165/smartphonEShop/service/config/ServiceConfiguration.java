@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.service.facade.OrderFacadeImpl;
-import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneServiceImpl;
+import cz.muni.fi.pa165.smartphonEShop.service.service.AddressServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-@ComponentScan(basePackageClasses = {PhoneServiceImpl.class, OrderFacadeImpl.class})
+@ComponentScan(basePackageClasses = {AddressServiceImpl.class, OrderFacadeImpl.class})
 public class ServiceConfiguration
 {
     @Bean
