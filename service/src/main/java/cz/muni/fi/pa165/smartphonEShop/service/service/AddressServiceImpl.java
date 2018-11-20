@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.dao.AddressDao;
-import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,12 @@ public class AddressServiceImpl implements AddressService{
     }
 
     @Override
-    public List<Address> findAllAdressesBy(HashMap<AddressEnum, String> specificator) {
+    public List<Address> findAllAddressesBy(HashMap<AddressEnum, String> specificator) {
         return addressDao.findAllAddressesBy(specificator);
     }
 
     @Override
-    public List<Address> getAllAdresses() {
+    public List<Address> getAllAddresses() {
         return addressDao.findAll();
     }
 }

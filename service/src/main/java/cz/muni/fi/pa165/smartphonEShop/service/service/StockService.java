@@ -22,6 +22,27 @@ public interface StockService
      * @return Stock with given id.
      */
     Stock findStockById(Long id);
+    
+    /**
+     * Find stock with specific name.
+     * @param name of stock.
+     * @return Stock with given name.
+     */
+    Stock findStockByName(String name);
+    
+    /**
+     * Find stock with specific address ID.
+     * @param addressId of stock.
+     * @return Stock with given addressId.
+     */
+    Stock findStockByAddressId(Long addressId);
+    
+    /**
+     * Find stock with specific phone ID.
+     * @param phoneId of stock.
+     * @return Stock with given phoneId.
+     */
+    Stock findStockByPhoneId(Long phoneId);
 
     /**
      * Find all stocks.
