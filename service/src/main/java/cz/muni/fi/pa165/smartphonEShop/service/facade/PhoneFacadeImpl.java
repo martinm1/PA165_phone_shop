@@ -7,7 +7,9 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,9 @@ public class PhoneFacadeImpl implements PhoneFacade {
 
     @Autowired
     private PhoneService phoneService;
+
+    @Autowired
+    private StockService stockService;
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -69,22 +74,12 @@ public class PhoneFacadeImpl implements PhoneFacade {
     @Override
     public Long createPhone(PhoneDTO phoneDTO) {
         Phone phone = new Phone();
-        Stock stock = new Stock();
-        Address address = new Address();
-
-        address.setCity(phoneDTO.getStock().getAddress().getCity());
-        address.setCountry(phoneDTO.getStock().getAddress().getCountry());
-        address.setStreetName(phoneDTO.getStock().getAddress().getStreetName());
-        address.setStreetNumber(phoneDTO.getStock().getAddress().getStreetNumber());
-
-        stock.setAddress(address);
-        stock.setName(phoneDTO.getStock().getName());
 
         phone.setManufacturer(phoneDTO.getManufacturer());
         phone.setModelName(phoneDTO.getModelName());
         phone.setOrder(phone.getOrder());
         phone.setPrice(phoneDTO.getPrice());
-        phone.setStock(stock);
+        phone.setStock(stockService.findStockByPhoneId(phoneDTO.getId()));
         phone.setTechnicalInfo(phoneDTO.getTechnicalInfo());
         phoneService.createPhone(phone);
         return phone.getId();
