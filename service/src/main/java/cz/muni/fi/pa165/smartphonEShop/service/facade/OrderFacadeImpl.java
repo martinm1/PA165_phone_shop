@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +13,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Roman Nahalka
@@ -22,18 +25,27 @@ import java.util.Collection;
 public class OrderFacadeImpl implements OrderFacade
 {
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private BeanMappingService bms;
 
     @Override
     public OrderDTO findOrderById(Long id)
     {
-        //TODO
-        throw new NotImplementedException();
+        Order order = orderService.findOrderById(id);
+
+        if(order == null)
+            return null;
+
+        else
+            return bms.mapTo(order, OrderDTO.class);
     }
 
     @Override
     public Collection<OrderDTO> findOrdersByOrderState(OrderState state)
     {
+        //List<Order> orders = orderService.findOrdersByOrderState(state);
         //TODO
         throw new NotImplementedException();
     }
@@ -69,12 +81,18 @@ public class OrderFacadeImpl implements OrderFacade
     @Override
     public void addClaim(Long orderId, Long claimId)
     {
+        orderService.addClaim(orderId, claimId);
+    }
+
+    @Override
+    public void removeClaim(Long orderId, Long claimId)
+    {
         //TODO
         throw new NotImplementedException();
     }
 
     @Override
-    public void registerOrder(OrderDTO order)
+    public Long createOrder(OrderDTO order)
     {
         //TODO
         throw new NotImplementedException();
