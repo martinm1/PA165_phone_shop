@@ -60,4 +60,11 @@ public interface PersonService {
      */
     void registerPerson(Person person);
 
+    /**
+     * Add specific order to specific person.
+     * @param person represents person.
+     * @param order represents order.
+     */
+    void removeOrder(Person person, Order order);
+
 }
