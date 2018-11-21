@@ -7,15 +7,15 @@ import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+/**
+ * Created by Jakub Ondrusek
+ * Class represents: implementation of PersonService
+ */
 
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDao personDao;
 
-    @Override
-    public void create(Person person) {
-        personDao.create(person);
-    }
 
     @Override
     public Person findPersonById(Long id) {
@@ -49,9 +49,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void createPerson(Person person) {
+    public void registerPerson(Person person) {
         personDao.create(person);
-
     }
 
     @Override

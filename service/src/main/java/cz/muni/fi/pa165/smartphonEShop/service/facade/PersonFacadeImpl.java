@@ -94,6 +94,6 @@ public class PersonFacadeImpl implements PersonFacade {
         guest.setPersonType(person.getPersonType());
         guest.setPhoneNumber(person.getPhoneNumber());
 
-        personService.createPerson(guest);
+        personService.registerPerson(guest);
     }
 }
