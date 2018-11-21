@@ -18,9 +18,10 @@ public class PhoneServiceImpl implements PhoneService
     private PhoneDao phoneDao;
 
     @Override
-    public void createPhone(Phone phone)
+    public Long createPhone(Phone phone)
     {
         phoneDao.create(phone);
+        return phone.getId();
     }
 
     @Override
