@@ -50,7 +50,7 @@ public class ClaimFacadeImpl implements ClaimFacade
     }
 
     @Override
-    public void registerClaim(ClaimDTO claim) {
-
+    public Long createClaim(ClaimDTO claim) {
+        return null;
     }
 }
