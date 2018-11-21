@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -22,27 +24,27 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Collection<Order> findOrdersByOrderState(OrderState state) {
+    public List<Order> findOrdersByOrderState(OrderState state) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection<Order> findOrdersByOrderDate(LocalDate orderDate) {
+    public List<Order> findOrdersByOrderDate(LocalDate orderDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection<Order> findOrdersByPerson(String personId) {
+    public List<Order> findOrdersByPerson(String personId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection<Order> findOrdersByPhone(Long phoneId) {
+    public List<Order> findOrdersByPhone(Long phoneId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Collection<Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orderDao.findAll();
     }
 
