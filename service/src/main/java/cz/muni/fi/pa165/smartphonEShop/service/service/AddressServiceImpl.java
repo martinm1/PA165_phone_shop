@@ -33,4 +33,10 @@ public class AddressServiceImpl implements AddressService{
     public List<Address> getAllAddresses() {
         return addressDao.findAll();
     }
+
+    @Override
+    public Long createAddress(Address address) {
+        addressDao.create(address);
+        return address.getId();
+    }
 }

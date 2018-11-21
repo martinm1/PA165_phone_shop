@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import java.util.Collection;
@@ -30,4 +31,13 @@ public interface AddressService {
      * @return List of all addresses.
      */
     List<Address> getAllAddresses();
+
+
+    /**
+     * create new address in system.
+     * @param address New address.
+     * @return primary key(id) of address
+     */
+    Long createAddress(Address address);
+
 }
