@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
-import cz.muni.fi.pa165.smartphonEShop.entity.Address;
-
 import java.util.Collection;
 
 /**
@@ -50,7 +48,7 @@ public interface StockFacade {
      * Register new stock to system.
      * @param stock New stock.
      */
-    void registerStock(StockDTO stock);
+    Long createStock(StockDTO stock);
 
     /**
      * Add specific phone to specific stock.
@@ -58,6 +56,14 @@ public interface StockFacade {
      * @param stockId primary key for stockId.
      */
     void addPhone(Long stockId, Long phoneId);
+
+
+    /**
+     * Remove specific phone from specific stock.
+     * @param phoneId primary key for phone.
+     * @param stockId primary key for stockId.
+     */
+    void removePhone(Long stockId, Long phoneId);
 
 
 }

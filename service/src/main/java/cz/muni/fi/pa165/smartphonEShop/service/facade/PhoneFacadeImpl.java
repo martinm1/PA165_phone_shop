@@ -67,35 +67,18 @@ public class PhoneFacadeImpl implements PhoneFacade {
     }
     //TODO
     @Override
-    public void registerPhone(PhoneDTO phoneDTO) {
-        Phone phone = new Phone();
-        phone.setManufacturer(phoneDTO.getManufacturer());
-        phone.setModelName(phoneDTO.getModelName());
-        phone.setOrder(phone.getOrder());
-        phone.setPrice(phoneDTO.getPrice());
-        //phone.setStock(phoneDTO.getStock());
-        phone.setTechnicalInfo(phoneDTO.getTechnicalInfo());
-        phoneService.createPhone(phone);
-
-
-
-    }
-
-
-    //TODO
-    public Long registerPhone(PhoneDTO phoneDTO, StockDTO stockDTO, AddressDTO addressDTO) {
+    public Long createPhone(PhoneDTO phoneDTO) {
         Phone phone = new Phone();
         Stock stock = new Stock();
         Address address = new Address();
 
-        address.setCity(addressDTO.getCity());
-        address.setCountry(addressDTO.getCountry());
-        address.setStreetName(addressDTO.getStreetName());
-        address.setStreetNumber(addressDTO.getStreetNumber());
+        address.setCity(phoneDTO.getStock().getAddress().getCity());
+        address.setCountry(phoneDTO.getStock().getAddress().getCountry());
+        address.setStreetName(phoneDTO.getStock().getAddress().getStreetName());
+        address.setStreetNumber(phoneDTO.getStock().getAddress().getStreetNumber());
 
         stock.setAddress(address);
-        stock.setName(stockDTO.getName());
-        //stock.setPhones(stockDTO.getPhones());
+        stock.setName(phoneDTO.getStock().getName());
 
         phone.setManufacturer(phoneDTO.getManufacturer());
         phone.setModelName(phoneDTO.getModelName());
