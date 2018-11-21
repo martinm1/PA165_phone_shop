@@ -6,6 +6,11 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
 import java.util.List;
 
+
+/**
+ * Created by Jakub Ondrusek
+ * Class represents: OrderService interface
+ */
 public interface OrderService {
     /**
      * Find order with specific id

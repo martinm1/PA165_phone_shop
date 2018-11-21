@@ -54,8 +54,12 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void registerOrder(Order order) {
+    public Long createOrder(Order order) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void removeClaim(Long orderId, Long claimId) {
+
+    }
 }

@@ -24,7 +24,7 @@ public interface AddressService {
      * @param specificator
      * @return Stock with given phoneId.
      */
-    Collection<Address>  findAllAddressesBy(HashMap<AddressEnum, String> specificator);
+    List<Address>  findAllAddressesBy(HashMap<AddressEnum, String> specificator);
 
     /**
      * Find all addresses.
