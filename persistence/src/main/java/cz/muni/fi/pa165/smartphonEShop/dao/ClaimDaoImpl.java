@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
+import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
+import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -49,5 +51,29 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public List<Claim> findAll() {
         return entityManager.createQuery("select c from Claim c", Claim.class).getResultList();
+    }
+
+    @Override
+    public List<Claim> findClaimByOrderId(Long orderId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public List<Claim> findClaimByUserId(Long userId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public List<Claim> findClaimByClaimState(ClaimState claimState) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution) {
+        //TODO
+        return null;
     }
 }

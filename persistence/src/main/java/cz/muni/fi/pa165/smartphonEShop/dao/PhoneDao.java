@@ -16,7 +16,7 @@ public interface PhoneDao {
      * @param phone to be created.
      * @throws IllegalArgumentException when phone is null.
      */
-    public void create(Phone phone);
+    void create(Phone phone);
 
 
     /**
@@ -24,7 +24,7 @@ public interface PhoneDao {
      * @param phone to be updated
      * @throws IllegalArgumentException when phone is null.
      */
-    public void update(Phone phone);
+    void update(Phone phone);
 
 
     /**
@@ -32,7 +32,7 @@ public interface PhoneDao {
      * @param phone to be removed
      * @throws IllegalArgumentException when phone is null.
      */
-    public void delete(Phone phone);
+    void delete(Phone phone);
 
 
     /**
@@ -41,46 +41,46 @@ public interface PhoneDao {
      * @return phone with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less than 0.
      */
-    public Phone findById(Long id);
+    Phone findById(Long id);
 
 
     /**
      * @return List of all phones from database
      */
-    public List<Phone> findAll();
+    List<Phone> findAll();
 
     /**
      * Find phones with specific model name.
      * @param modelName of phone.
      * @return List of phones with given model name.
      */
-    public List<Phone> findPhonesByModelName(String modelName);
+    List<Phone> findPhonesByModelName(String modelName);
 
     /**
      * Find phones with specific price.
      * @param price of phone.
      * @return List of phones with given price.
      */
-    public List<Phone> findPhonesByPrice(int price);
+    List<Phone> findPhonesByPrice(int price);
 
     /**
      * Find phones with specific technical information.
      * @param technicalInfo of phones.
      * @return List of phones with given technical infromation.
      */
-    public List<Phone> findPhonesByTechnicalInfo(String technicalInfo);
+    List<Phone> findPhonesByTechnicalInfo(String technicalInfo);
 
     /**
      * Find phones with specific manufacturer.
      * @param manufacturer of phones.
      * @return List of phones with given manufacturer.
      */
-    public List<Phone> findPhonesByManufacturer(Manufacturer manufacturer);
+    List<Phone> findPhonesByManufacturer(Manufacturer manufacturer);
 
     /**
      * Find phones with specific stock.
      * @param stockId primary key for stock.
      * @return List of phones with given stock.
      */
-    public List<Phone> findPhonesByStock(Long stockId);
+    List<Phone> findPhonesByStock(Long stockId);
 }

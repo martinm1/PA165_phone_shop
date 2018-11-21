@@ -16,7 +16,7 @@ public interface PersonDao {
      * @param person to be created.
      * @throws IllegalArgumentException when person is null.
      */
-    public void create(Person person);
+    void create(Person person);
 
 
     /**
@@ -24,7 +24,7 @@ public interface PersonDao {
      * @param person to be updated
      * @throws IllegalArgumentException when person is null.
      */
-    public void update(Person person);
+    void update(Person person);
 
 
     /**
@@ -32,7 +32,7 @@ public interface PersonDao {
      * @param person to be removed
      * @throws IllegalArgumentException when person is null.
      */
-    public void delete(Person person);
+    void delete(Person person);
 
 
     /**
@@ -41,7 +41,7 @@ public interface PersonDao {
      * @return person with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less than 0.
      */
-    public Person findById(Long id);
+    Person findById(Long id);
 
     /**
      * Find person with specified email in database.
@@ -49,7 +49,7 @@ public interface PersonDao {
      * @return person with given email, null if no such exists.
      * @throws IllegalArgumentException when email is null.
      */
-    public Person findByEmail(String email);
+    Person findByEmail(String email);
 
     /**
      * Find person with specified phone number in database.
@@ -57,7 +57,7 @@ public interface PersonDao {
      * @return person with given phone number, null if no such exists.
      * @throws IllegalArgumentException when number is null.
      */
-    public Person findByPhoneNumber(String number);
+    Person findByPhoneNumber(String number);
 
     /**
      * Find people with specified person type.
@@ -65,11 +65,11 @@ public interface PersonDao {
      * @return people with given person type.
      * @throws IllegalArgumentException when type is null.
      */
-    public List<Person> findByPersonType(PersonType type);
+    List<Person> findByPersonType(PersonType type);
 
 
     /**
      * @return List of all people from database
      */
-    public List<Person> findAll();
+    List<Person> findAll();
 }

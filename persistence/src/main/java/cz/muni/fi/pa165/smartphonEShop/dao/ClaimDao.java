@@ -6,6 +6,10 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
+import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
+import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
+
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,7 +23,7 @@ public interface ClaimDao {
      * @param claim to be created
      * @throws IllegalArgumentException when claim is null.
      */
-    public void create(Claim claim);
+    void create(Claim claim);
 
 
     /**
@@ -27,7 +31,7 @@ public interface ClaimDao {
      * @param claim to be updated
      * @throws IllegalArgumentException when claim is null.
      */
-    public void update(Claim claim);
+    void update(Claim claim);
 
 
     /**
@@ -35,7 +39,7 @@ public interface ClaimDao {
      * @param claim to be removed
      * @throws IllegalArgumentException when claim is null.
      */
-    public void delete(Claim claim);
+    void delete(Claim claim);
 
 
     /**
@@ -44,11 +48,40 @@ public interface ClaimDao {
      * @return claim with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less than 0.
      */
-    public Claim findById(Long id);
+    Claim findById(Long id);
 
 
     /**
      * @return List of all claims from database
      */
-    public List<Claim> findAll();
+    List<Claim> findAll();
+
+
+    /**
+     * Find claims with specific orderId
+     * @param orderId of the  claim
+     * @return Collection of claims with given orderId.
+     */
+    List<Claim> findClaimByOrderId(Long orderId);
+
+    /**
+     * Find claims with specific userId
+     * @param userId of the  claim
+     * @return Collection of claims with given userId.
+     */
+    List<Claim> findClaimByUserId(Long userId);
+
+    /**
+     * Find claims with specific claimState
+     * @param claimState of the  claim
+     * @return Collection of claims with given claimState.
+     */
+    List<Claim> findClaimByClaimState(ClaimState claimState);
+
+    /**
+     * Find claims with specific claimSolution
+     * @param claimSolution of the  claim
+     * @return Collection of claims with given claimSolution.
+     */
+    List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution);
 }
