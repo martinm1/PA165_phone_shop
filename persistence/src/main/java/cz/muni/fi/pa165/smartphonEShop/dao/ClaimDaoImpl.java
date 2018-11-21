@@ -55,25 +55,29 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByOrderId(Long orderId) {
-        //TODO
-        return null;
+        return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId").
+                setParameter("orderId", orderId).
+                getResultList();
     }
 
     @Override
     public List<Claim> findClaimByUserId(Long userId) {
-        //TODO
-        return null;
+        return entityManager.createQuery("select c from Claim c join c.order o join o.person p where p.id = :userId").
+                setParameter("userId", userId).
+                getResultList();
     }
 
     @Override
     public List<Claim> findClaimByClaimState(ClaimState claimState) {
-        //TODO
-        return null;
+        return entityManager.createQuery("select c from Claim c where c.claimState = :claimState").
+                setParameter("claimState", claimState).
+                getResultList();
     }
 
     @Override
     public List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution) {
-        //TODO
-        return null;
+        return entityManager.createQuery("select c from Claim c where c.claimSolution = :claimSolution").
+                setParameter("claimSolution", claimSolution).
+                getResultList();
     }
 }
