@@ -13,8 +13,9 @@ public interface StockService
     /**
      * Add new stock to database.
      * @param stock to be created.
+     * @return id of created stock.
      */
-    void createStock(Stock stock);
+    Long createStock(Stock stock);
 
     /**
      * Find stock with specific id.
@@ -49,4 +50,19 @@ public interface StockService
      * @return List of all stocks.
      */
     List<Stock> findAllStocks();
+
+    /**
+     * Add specific phone to specific stock.
+     * @param phoneId primary key for phone.
+     * @param stockId primary key for stockId.
+     */
+    void addPhone(Long stockId, Long phoneId);
+
+
+    /**
+     * Remove specific phone from specific stock.
+     * @param phoneId primary key for phone.
+     * @param stockId primary key for stockId.
+     */
+    void removePhone(Long stockId, Long phoneId);
 }
