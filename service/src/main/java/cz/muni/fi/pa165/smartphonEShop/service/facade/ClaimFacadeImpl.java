@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
@@ -50,6 +51,7 @@ public class ClaimFacadeImpl implements ClaimFacade
     }
 
     @Override
+
     public Long createClaim(ClaimDTO claim) {
         return null;
     }

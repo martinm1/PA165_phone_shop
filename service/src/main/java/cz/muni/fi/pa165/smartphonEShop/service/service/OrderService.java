@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 public interface OrderService {
     /**
@@ -19,35 +20,34 @@ public interface OrderService {
      * @param state of order.
      * @return Collection of orders with given state.
      */
-    Collection<Order> findOrdersByOrderState(OrderState state);
+    List<Order> findOrdersByOrderState(OrderState state);
 
     /**
      * Find orders with specific order date.
      * @param orderDate of order.
      * @return Collection of orders with given order date.
      */
-    Collection<Order> findOrdersByOrderDate(LocalDate orderDate);
+    List<Order> findOrdersByOrderDate(LocalDate orderDate);
 
     /**
      * Find orders with specific person.
      * @param personId of order.
      * @return Collection of orders with given person.
      */
-    Collection<Order> findOrdersByPerson(String personId);
+    List<Order> findOrdersByPerson(String personId);
 
     /**
      * Find orders with specific phone.
      * @param phoneId of order.
      * @return Collection of orders with given phone.
      */
-    Collection<Order> findOrdersByPhone(Long phoneId);
+    List<Order> findOrdersByPhone(Long phoneId);
 
     /**
      * Find all orders.
      * @return Collection of all orders.
      */
-    Collection<Order> getAllOrders();
-
+    List<Order> getAllOrders();
 
     /**
      * Add specific claim to specific order.
