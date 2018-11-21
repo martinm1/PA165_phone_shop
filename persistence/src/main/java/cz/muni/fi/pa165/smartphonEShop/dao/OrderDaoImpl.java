@@ -61,7 +61,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public Collection<Order> findOrdersByOrderState(OrderState state) {
+    public List<Order> findOrdersByOrderState(OrderState state) {
         if (state == null)
             throw new IllegalArgumentException("State is null!");
         
@@ -70,7 +70,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public Collection<Order> findOrdersByOrderDate(LocalDate orderDate) {
+    public List<Order> findOrdersByOrderDate(LocalDate orderDate) {
         if (orderDate == null)
             throw new IllegalArgumentException("Order date is null!");
         
@@ -79,7 +79,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public Collection<Order> findOrdersByPerson(String personId) {
+    public List<Order> findOrdersByPerson(String personId) {
         if (personId == null)
             throw new IllegalArgumentException("Person id date is null!");
         
@@ -88,7 +88,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public Collection<Order> findOrdersByPhone(Long phoneId) {
+    public List<Order> findOrdersByPhone(Long phoneId) {
         if (phoneId == null)
             throw new IllegalArgumentException("Phone id date is null!");
         

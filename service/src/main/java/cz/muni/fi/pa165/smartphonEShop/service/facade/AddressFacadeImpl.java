@@ -45,8 +45,7 @@ public class AddressFacadeImpl implements AddressFacade{
 
     @Override
     public Long createAddress(AddressDTO address) {
-        addressService.createAddress(address);
-        return address.getId();
+        return addressService.createAddress(beanMappingService.mapTo(address, Address.class));
     }
 
 

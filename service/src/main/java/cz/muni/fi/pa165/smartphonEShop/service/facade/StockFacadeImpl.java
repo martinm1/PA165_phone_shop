@@ -47,18 +47,17 @@ public class StockFacadeImpl implements StockFacade {
     }
 
     @Override
-    public void registerStock(StockDTO stockDTO) {
-        //Stock stock = new Stock();
-        //stock.setAddress(stockDTO.getAddress());
-        //stock.setName(stockDTO.getName());
-        //stock.setPhones(stockDTO.getPhones());
-        //stockService.createStock(phone);
+    public void addPhone(Long stockId, Long phoneId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
     }
 
     @Override
-    public void addPhone(Long stockId, Long phoneId) {
+    public Long createStock(StockDTO stock) {
+        return stockService.createStock(beanMappingService.mapTo(stock, Stock.class));
+    }
+
+    @Override
+    public void removePhone(Long stockId, Long phoneId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
