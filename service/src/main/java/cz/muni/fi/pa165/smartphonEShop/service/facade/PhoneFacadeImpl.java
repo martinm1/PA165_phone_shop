@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
-import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;

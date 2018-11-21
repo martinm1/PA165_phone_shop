@@ -64,6 +64,4 @@ public interface StockFacade {
      * @param stockId primary key for stockId.
      */
     void removePhone(Long stockId, Long phoneId);
-
-
 }

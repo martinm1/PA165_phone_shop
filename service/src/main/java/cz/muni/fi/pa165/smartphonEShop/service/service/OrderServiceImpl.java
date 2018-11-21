@@ -6,9 +6,9 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
-//
+
 /**
  *
  * @author martin

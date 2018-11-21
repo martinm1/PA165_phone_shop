@@ -15,8 +15,9 @@ public interface PhoneService
     /**
      * Add new phone to database.
      * @param phone to be created.
+     * @return id of created phone.
      */
-    void createPhone(Phone phone);
+    Long createPhone(Phone phone);
 
     /**
      * Find phone with specific id.

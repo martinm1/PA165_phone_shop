@@ -13,11 +13,6 @@ import java.util.List;
 
 public interface PersonService {
 
-    /**
-     * Add new person to database.
-     * @param person to be created.
-     */
-    void create(Person person);
 
     /**
      * Find person with specific id.
@@ -64,6 +59,13 @@ public interface PersonService {
      * Register new person to system.
      * @param person New person.
      */
-    void createPerson(Person person);
+    void registerPerson(Person person);
+
+    /**
+     * Add specific order to specific person.
+     * @param person represents person.
+     * @param order represents order.
+     */
+    void removeOrder(Person person, Order order);
 
 }

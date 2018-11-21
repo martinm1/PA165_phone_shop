@@ -44,9 +44,10 @@ public class AddressFacadeImpl implements AddressFacade{
     }
 
     @Override
-    public Long createAddress(Address address) {
+    public Long createAddress(AddressDTO address) {
         addressService.createAddress(address);
         return address.getId();
     }
+
 
 }

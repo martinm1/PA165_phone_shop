@@ -42,6 +42,6 @@ public interface AddressFacade {
      * @param address New address.
      * @return primary key(id) of address
      */
-    Long createAddress(Address address);
+    Long createAddress(AddressDTO address);
 
 }

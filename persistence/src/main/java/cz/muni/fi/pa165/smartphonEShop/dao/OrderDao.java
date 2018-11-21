@@ -17,7 +17,7 @@ public interface OrderDao {
      * @param order to be created.
      * @throws IllegalArgumentException when order is null.
      */
-    public void create(Order order);
+    void create(Order order);
 
 
     /**
@@ -25,7 +25,7 @@ public interface OrderDao {
      * @param order to be updated
      * @throws IllegalArgumentException when order is null.
      */
-    public void update(Order order);
+    void update(Order order);
 
 
     /**
@@ -33,7 +33,7 @@ public interface OrderDao {
      * @param order to be removed
      * @throws IllegalArgumentException when order is null.
      */
-    public void delete(Order order);
+    void delete(Order order);
 
 
     /**
@@ -42,13 +42,13 @@ public interface OrderDao {
      * @return order with given id, null if no such exists.
      * @throws IllegalArgumentException when id is null or less than 0.
      */
-    public Order findById(Long id);
+    Order findById(Long id);
 
 
     /**
      * @return List of all orders from database
      */
-    public List<Order> findAll();
+    List<Order> findAll();
     
     /**
      * Find orders with specific state.
