@@ -59,6 +59,6 @@ public interface ClaimFacade {
      * Register new claim to system.
      * @param claim New claim.
      */
-    void registerStock(ClaimDTO claim);
+    Long createClaim(ClaimDTO claim);
 
 }

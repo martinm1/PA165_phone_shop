@@ -66,8 +66,7 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public void registerPerson(Person person) {
-        personService.registerPerson(person);
-
+    public void registerPerson(PersonDTO person) {
+        personService.createPerson(person);
     }
 }

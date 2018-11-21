@@ -50,7 +50,7 @@ public class ClaimFacadeImpl implements ClaimFacade
     }
 
     @Override
-    public void registerStock(ClaimDTO claim) {
+    public void registerClaim(ClaimDTO claim) {
 
     }
 }
