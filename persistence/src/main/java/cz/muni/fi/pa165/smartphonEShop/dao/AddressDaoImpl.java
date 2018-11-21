@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Stefan Holecko
@@ -65,8 +65,64 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    //TODO
     public List<Address> findAllAddressesBy(HashMap<AddressEnum, String> specificator) {
-        return null;
+        Set<Address> resultset = new HashSet<>();
+        if(specificator.containsKey(AddressEnum.CITY)){
+            Set<Address> temp = new HashSet<>();
+
+            temp.addAll(entityManager.createQuery("select a from Address a where a.city = :city").
+                    setParameter("city", specificator.get(AddressEnum.CITY)).
+                    getResultList());
+
+            if(resultset.isEmpty()) {
+                resultset.addAll(temp);
+            }
+            else {
+                resultset.removeAll(temp);
+            }
+        }
+        if(specificator.containsKey(AddressEnum.COUNTRY)){
+            Set<Address> temp = new HashSet<>();
+
+            temp.addAll(entityManager.createQuery("select a from Address a where a.country = :country").
+                    setParameter("country", specificator.get(AddressEnum.CITY)).
+                    getResultList());
+
+            if(resultset.isEmpty()) {
+                resultset.addAll(temp);
+            }
+            else {
+                resultset.removeAll(temp);
+            }
+        }
+        if(specificator.containsKey(AddressEnum.STREET_NAME)){
+            Set<Address> temp = new HashSet<>();
+
+            temp.addAll(entityManager.createQuery("select a from Address a where a.streetName = :streetName").
+                    setParameter("streetName", specificator.get(AddressEnum.CITY)).
+                    getResultList());
+
+            if(resultset.isEmpty()) {
+                resultset.addAll(temp);
+            }
+            else {
+                resultset.removeAll(temp);
+            }
+        }
+        if(specificator.containsKey(AddressEnum.STREET_NUMBER)){
+            Set<Address> temp = new HashSet<>();
+
+            temp.addAll(entityManager.createQuery("select a from Address a where a.streetNumber = :streetNumber").
+                    setParameter("streetNumber", specificator.get(AddressEnum.CITY)).
+                    getResultList());
+
+            if(resultset.isEmpty()) {
+                resultset.addAll(temp);
+            }
+            else {
+                resultset.removeAll(temp);
+            }
+        }
+        return resultset.stream().collect(Collectors.toList());
     }
 }
