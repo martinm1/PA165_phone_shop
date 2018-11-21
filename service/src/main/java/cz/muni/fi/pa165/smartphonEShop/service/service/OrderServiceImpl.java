@@ -25,23 +25,24 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Order> findOrdersByOrderState(OrderState state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return orderDao.findOrdersByOrderState(state);
     }
 
     @Override
     public List<Order> findOrdersByOrderDate(LocalDate orderDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return orderDao.findOrdersByOrderDate(orderDate);
     }
 
     @Override
     public List<Order> findOrdersByPerson(String personId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return orderDao.findOrdersByPerson(personId);
     }
 
     @Override
     public List<Order> findOrdersByPhone(Long phoneId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return orderDao.findOrdersByPhone(phoneId);
     }
+   
 
     @Override
     public List<Order> getAllOrders() {
