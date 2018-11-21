@@ -58,7 +58,7 @@ public interface PhoneFacade {
     Collection<PhoneDTO> getAllPhones();
 
     /**
-     * Register new phone to system.
+     * creates new phone in system.
      * @param phone New phone.
      */
     Long createPhone(PhoneDTO phone);
