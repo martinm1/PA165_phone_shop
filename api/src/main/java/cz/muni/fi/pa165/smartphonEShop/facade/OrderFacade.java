@@ -60,8 +60,15 @@ public interface OrderFacade {
     void addClaim(Long orderId, Long claimId);
 
     /**
+     * Add specific claim to specific order.
+     * @param orderId primary key for order.
+     * @param claimId primary key for claim.
+     */
+    void removeClaim(Long orderId, Long claimId);
+
+    /**
      * Register new order to system.
      * @param order New order.
      */
-    void registerOrder(OrderDTO order);
+    Long createOrder(OrderDTO order);
 }

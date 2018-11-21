@@ -61,5 +61,5 @@ public interface PhoneFacade {
      * Register new phone to system.
      * @param phone New phone.
      */
-    void registerPhone(PhoneDTO phone);
+    Long createPhone(PhoneDTO phone);
 }

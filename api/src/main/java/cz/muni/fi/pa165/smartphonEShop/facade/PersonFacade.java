@@ -54,6 +54,13 @@ public interface PersonFacade
     void addOrder(Long personId, Long orderId);
 
     /**
+     * Remove specific order from specific person.
+     * @param personId primary key for person.
+     * @param orderId primary key for order.
+     */
+    void removeOrder(Long personId, Long orderId);
+
+    /**
      * Register new person to system.
      * @param person New person.
      */
