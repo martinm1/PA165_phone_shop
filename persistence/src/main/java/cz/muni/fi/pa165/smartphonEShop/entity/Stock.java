@@ -35,6 +35,10 @@ public class Stock {
     public void addPhone(Phone phone) {
         this.phones.add(phone);
     }
+    
+    public void removePhone(Phone phone) {
+        this.phones.remove(phone);
+    }
 
     public List<Phone> getPhones() {
         return Collections.unmodifiableList(phones);
