@@ -20,6 +20,7 @@ import java.util.Collection;
  * Created by Stefan Holecko
  * Class represents: implementation of PhoneFacade
  */
+
 @Service
 @Transactional
 public class PhoneFacadeImpl implements PhoneFacade {
@@ -65,7 +66,8 @@ public class PhoneFacadeImpl implements PhoneFacade {
     public Collection<PhoneDTO> getAllPhones() {
         return beanMappingService.mapTo(phoneService.findAllPhones(),PhoneDTO.class);
     }
-    //TODO
+
+
     @Override
     public Long createPhone(PhoneDTO phoneDTO) {
         Phone phone = new Phone();

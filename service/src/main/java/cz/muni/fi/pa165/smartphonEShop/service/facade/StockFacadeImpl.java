@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author martin
  */
 public class StockFacadeImpl implements StockFacade {
-    
-    
+
     @Autowired
     private StockService stockService;
 
