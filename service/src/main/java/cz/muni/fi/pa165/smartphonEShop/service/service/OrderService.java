@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 public interface OrderService {
@@ -57,8 +56,16 @@ public interface OrderService {
     void addClaim(Long orderId, Long claimId);
 
     /**
+     * Add specific claim to specific order.
+     * @param orderId primary key for order.
+     * @param claimId primary key for claim.
+     */
+    void removeClaim(Long orderId, Long claimId);
+
+    /**
      * Register new order to system.
      * @param order New order.
+     * @return id of created order.
      */
-    void registerOrder(Order order);
+    Long createOrder(Order order);
 }
