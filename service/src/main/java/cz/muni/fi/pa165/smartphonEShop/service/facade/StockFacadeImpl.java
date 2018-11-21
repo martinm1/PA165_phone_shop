@@ -1,11 +1,16 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
+import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -17,6 +22,9 @@ public class StockFacadeImpl implements StockFacade {
     @Autowired
     private StockService stockService;
 
+    @Autowired
+    private PhoneService phoneService;
+    
     @Autowired
     private BeanMappingService beanMappingService;
 
@@ -48,17 +56,32 @@ public class StockFacadeImpl implements StockFacade {
 
     @Override
     public void addPhone(Long stockId, Long phoneId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stockService.findStockById(stockId).addPhone(phoneService.findPhoneById(phoneId));
     }
 
     @Override
-    public Long createStock(StockDTO stock) {
-        return stockService.createStock(beanMappingService.mapTo(stock, Stock.class));
+    public Long createStock(StockDTO stockDTO) {
+        List<Phone> phones = new ArrayList();
+        Stock newstock = new Stock();
+        
+        Address address = new Address();
+
+        address.setCity(stockDTO.getAddress().getCity());
+        address.setCountry(stockDTO.getAddress().getCountry());
+        address.setStreetName(stockDTO.getAddress().getStreetName());
+        address.setStreetNumber(stockDTO.getAddress().getStreetNumber());
+        
+        
+        newstock.setAddress(address);
+        newstock.setName(stockDTO.getName());
+        newstock.setPhones(phones);
+        stockService.createStock(newstock);
+        return newstock.getId();
     }
 
     @Override
     public void removePhone(Long stockId, Long phoneId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stockService.findStockById(stockId).removePhone(phoneService.findPhoneById(phoneId));
     }
     
 }
