@@ -36,4 +36,11 @@ public interface AddressFacade {
      */
     Collection<AddressDTO> getAllAddresses();
 
+    /**
+     * create new address in system.
+     * @param addressDTO New address.
+     * @return primary key(id) of address
+     */
+    Long createAddress(AddressDTO addressDTO);
+
 }
