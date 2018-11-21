@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+
+/**
+ * Created by Jakub Ondrusek
+ * Class represents: implementation of StockService interface
+ */
 public class StockServiceImpl implements StockService {
 
     @Autowired
