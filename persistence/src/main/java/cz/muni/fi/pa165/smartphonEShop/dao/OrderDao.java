@@ -1,5 +1,8 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
+import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 import java.util.List;
@@ -46,4 +49,32 @@ public interface OrderDao {
      * @return List of all orders from database
      */
     public List<Order> findAll();
+    
+    /**
+     * Find orders with specific state.
+     * @param state of order.
+     * @return Collection of orders with given state.
+     */
+    Collection<Order> findOrdersByOrderState(OrderState state);
+    
+    /**
+     * Find orders with specific order date.
+     * @param orderDate of order.
+     * @return Collection of orders with given order date.
+     */
+    Collection<Order> findOrdersByOrderDate(LocalDate orderDate);
+    
+    /**
+     * Find orders with specific person.
+     * @param personId of order.
+     * @return Collection of orders with given person.
+     */
+    Collection<Order> findOrdersByPerson(String personId);
+    
+    /**
+     * Find orders with specific phone.
+     * @param phoneId of order.
+     * @return Collection of orders with given phone.
+     */
+    Collection<Order> findOrdersByPhone(Long phoneId);
 }
