@@ -9,8 +9,6 @@ import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -25,7 +23,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 /**
@@ -58,6 +55,9 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
         address1 = new Address();
         address2 = new Address();
 
+        address1.setId(10L);
+        address2.setId(20L);
+
         address1.setCity("Brno");
         address1.setCountry("Czech");
 
@@ -80,9 +80,6 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void findAddressById()
     {
-        address1.setId(10L);
-        address2.setId(20L);
-
         when(addressDao.findById(address1.getId())).thenReturn(address1);
         when(addressDao.findById(address2.getId())).thenReturn(address2);
 
@@ -100,13 +97,13 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
 
         doAnswer(invocationOnMock ->
         {
-            address.setId(10L);
-            return 10L;
+            address.setId(30L);
+            return 30L;
         }).when(addressDao).create(address);
 
         addressService.createAddress(address);
         Assert.assertNotNull(address.getId());
-        Assert.assertEquals(10L, address.getId().longValue());
+        Assert.assertEquals(30L, address.getId().longValue());
     }
 
     @Test
