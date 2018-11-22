@@ -9,7 +9,6 @@ import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.LocalDate;
 import java.util.Collection;
