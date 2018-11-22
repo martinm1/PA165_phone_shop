@@ -26,9 +26,8 @@ public class ServiceConfiguration
         return dozer;
     }
 
-    private class DozerCustomConfig extends BeanMappingBuilder
+    public class DozerCustomConfig extends BeanMappingBuilder
     {
-
         @Override
         protected void configure()
         {

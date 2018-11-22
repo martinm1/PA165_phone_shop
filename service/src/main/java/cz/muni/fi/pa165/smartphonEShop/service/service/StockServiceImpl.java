@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 import cz.muni.fi.pa165.smartphonEShop.dao.StockDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Created by Jakub Ondrusek
  * Class represents: implementation of StockService interface
  */
+@Service
 public class StockServiceImpl implements StockService {
 
     @Autowired

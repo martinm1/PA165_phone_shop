@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dao.AddressDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * Class represents: implementation of AddressService interface
  */
 
+@Service
 public class AddressServiceImpl implements AddressService{
 
 

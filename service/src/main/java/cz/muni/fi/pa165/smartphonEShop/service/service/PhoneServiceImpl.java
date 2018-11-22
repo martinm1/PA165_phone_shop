@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dao.PhoneDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * Class represents: Implementation of PhoneService.
  */
 
+@Service
 public class PhoneServiceImpl implements PhoneService
 {
     @Autowired
