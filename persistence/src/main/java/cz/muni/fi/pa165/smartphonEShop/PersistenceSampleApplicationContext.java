@@ -26,14 +26,6 @@ import cz.muni.fi.pa165.smartphonEShop.dao.AddressDao;
 @EnableJpaRepositories
 @ComponentScan(basePackageClasses = {AddressDao.class}, basePackages = "cz.muni.fi.pa165.smartphonEShop")
 public class PersistenceSampleApplicationContext {
-	/**
-	 * Enables automatic translation of exceptions to DataAccessExceptions.
-	 */
-	@Bean
-	public PersistenceExceptionTranslationPostProcessor postProcessor() {
-		return new PersistenceExceptionTranslationPostProcessor();
-	}
-
 	@Bean
 	public JpaTransactionManager transactionManager(){
 		return  new JpaTransactionManager(entityManagerFactory().getObject());
