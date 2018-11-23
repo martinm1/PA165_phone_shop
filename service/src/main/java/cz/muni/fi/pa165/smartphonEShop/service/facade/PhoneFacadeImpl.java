@@ -79,7 +79,7 @@ public class PhoneFacadeImpl implements PhoneFacade {
         phone.setModelName(phoneDTO.getModelName());
         phone.setOrder(phone.getOrder());
         phone.setPrice(phoneDTO.getPrice());
-        phone.setStock(stockService.findStockByPhoneId(phoneDTO.getId()));
+        phone.setStock(stockService.findStockById(phoneDTO.getStock().getId()));
         phone.setTechnicalInfo(phoneDTO.getTechnicalInfo());
         phoneService.createPhone(phone);
         return phone.getId();
