@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 /**
@@ -12,6 +13,7 @@ import java.util.List;
  * Class represents: implementation of PersonService
  */
 
+@Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDao personDao;

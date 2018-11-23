@@ -8,11 +8,13 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author martin
  */
+@Service
 public class OrderServiceImpl implements OrderService{
 
     @Autowired

@@ -42,6 +42,9 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
 
     private Phone phone1;
     private Phone phone2;
+
+    private Stock stock1;
+    private Stock stock2;
     
     @BeforeMethod
     void setUp()
@@ -64,8 +67,8 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         addressDao.create(address1);
         addressDao.create(address2);
 
-        Stock stock1 = new Stock();
-        Stock stock2 = new Stock();
+        stock1 = new Stock();
+        stock2 = new Stock();
 
         stock1.setName("Hlavni");
         stock2.setName("Vedlejsi");
@@ -188,5 +191,106 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
     public void findByIdNegative()
     {
         phone.findById((long)-1);
+    }
+
+    @Test
+    public void findPhoneByModelName()
+    {
+        phone.create(phone1);
+        phone.create(phone2);
+
+        List<Phone> phones = phone.findPhonesByModelName("S6");
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone1));
+
+        phones = phone.findPhonesByModelName("S7");
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone2));
+
+        phones = phone.findPhonesByModelName("S8");
+
+        Assert.assertEquals(phones.size(), 0);
+    }
+
+    @Test
+    public void findPhoneByPrice()
+    {
+        phone.create(phone1);
+        phone.create(phone2);
+
+        List<Phone> phones = phone.findPhonesByPrice(123);
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone1));
+
+        phones = phone.findPhonesByPrice(345);
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone2));
+
+        phones = phone.findPhonesByPrice(678);
+
+        Assert.assertEquals(phones.size(), 0);
+    }
+
+    @Test
+    public void findPhonesByTechnicalInfo()
+    {
+        phone.create(phone1);
+        phone.create(phone2);
+
+        List<Phone> phones = phone.findPhonesByTechnicalInfo("info1");
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone1));
+
+        phones = phone.findPhonesByTechnicalInfo("info2");
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone2));
+
+        phones = phone.findPhonesByTechnicalInfo("info3");
+
+        Assert.assertEquals(phones.size(), 0);
+    }
+
+    @Test
+    public void findPhonesByManufacturer()
+    {
+        phone.create(phone1);
+        phone.create(phone2);
+
+        List<Phone> phones = phone.findPhonesByManufacturer(Manufacturer.APPLE);
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone1));
+
+        phones = phone.findPhonesByManufacturer(Manufacturer.HTC);
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone2));
+
+        phones = phone.findPhonesByManufacturer(Manufacturer.HUEAWEI);
+
+        Assert.assertEquals(phones.size(), 0);
+    }
+
+    @Test
+    public void findPhonesByStock()
+    {
+        phone.create(phone1);
+        phone.create(phone2);
+
+        List<Phone> phones = phone.findPhonesByStock(stock1.getId());
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone1));
+
+        phones = phone.findPhonesByStock(stock2.getId());
+
+        Assert.assertEquals(phones.size(), 1);
+        Assert.assertTrue(phones.contains(phone2));
     }
 }

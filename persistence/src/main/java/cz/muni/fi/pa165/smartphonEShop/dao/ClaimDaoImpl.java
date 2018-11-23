@@ -54,7 +54,7 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByOrderId(Long orderId) {
-        return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId", Claim.class).
+        return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId", ).
                 setParameter("orderId", orderId).
                 getResultList();
     }

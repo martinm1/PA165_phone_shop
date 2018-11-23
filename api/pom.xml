@@ -10,7 +10,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>cz.muni.fi.pa165.smartphonEShop</groupId>
     <artifactId>api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
