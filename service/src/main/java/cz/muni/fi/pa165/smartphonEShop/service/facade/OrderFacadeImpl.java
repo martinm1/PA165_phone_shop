@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
-import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.smartphonEShop.service;
+package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,5 +1,6 @@
-package cz.muni.fi.pa165.smartphonEShop.service;
+package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
