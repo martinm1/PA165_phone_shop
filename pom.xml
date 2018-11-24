@@ -145,9 +145,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
             <version>2.1</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>5.5.1</version>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
         </dependency>
     </dependencies>
 </dependencyManagement>

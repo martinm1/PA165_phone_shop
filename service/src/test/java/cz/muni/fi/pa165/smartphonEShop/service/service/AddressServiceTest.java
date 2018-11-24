@@ -17,10 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
 
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
@@ -68,7 +65,8 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void getAllTest()
     {
-        when(addressDao.findAll()).thenReturn(Stream.of(address1, address2).collect(Collectors.toList()));
+        List<Address> ret = Arrays.asList(address1, address2);
+        when(addressDao.findAll()).thenReturn(ret);
 
         List<Address> addresses = addressService.getAllAddresses();
 
@@ -118,8 +116,9 @@ public class AddressServiceTest extends AbstractTestNGSpringContextTests
         hashMap1.put(AddressEnum.CITY, "Bratislava");
         hashMap1.put(AddressEnum.COUNTRY, "Slovakia");
 
-        when(addressDao.findAllAddressesBy(hashMap)).thenReturn(Stream.of(address1).collect(Collectors.toList()));
-        when(addressDao.findAllAddressesBy(hashMap1)).thenReturn(Stream.of(address2).collect(Collectors.toList()));
+
+        when(addressDao.findAllAddressesBy(hashMap)).thenReturn(Collections.singletonList(address1));
+        when(addressDao.findAllAddressesBy(hashMap1)).thenReturn(Collections.singletonList(address2));
 
         List<Address> addresses =  addressService.findAllAddressesBy(hashMap);
         List<Address> addresses1 = addressService.findAllAddressesBy(hashMap1);

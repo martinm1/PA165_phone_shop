@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
-import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.ClaimService;
 import org.springframework.beans.factory.annotation.Autowired;
 
