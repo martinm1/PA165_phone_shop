@@ -48,6 +48,11 @@ public class Order {
     public void addClaim(Claim claim) {
         this.claims.add(claim);
     }
+    
+    public void removeClaim(Claim claim) {
+        this.claims.add(claim);
+    }
+    
     public List<Claim> getClaims() {
         return Collections.unmodifiableList(claims);
     }
