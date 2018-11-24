@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Order {
     private Phone phone;
     
     @OneToMany(mappedBy = "order")
-    private List<Claim> claims;
+    private List<Claim> claims = new ArrayList<>();
 
     public void addClaim(Claim claim) {
         this.claims.add(claim);

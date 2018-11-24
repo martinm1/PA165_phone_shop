@@ -109,7 +109,7 @@ public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
-    public void shouldMapInnerAddresses()
+    public void shouldMapAddresses()
     {
         Collection<AddressDTO> adtos = bms.mapTo(addresses, AddressDTO.class);
 
@@ -117,7 +117,7 @@ public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
-    public void shouldMapInnerStocks()
+    public void shouldMapStocks()
     {
         Collection<StockDTO> stdtos = bms.mapTo(stocks, StockDTO.class);
 
@@ -125,7 +125,7 @@ public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
-    public void shouldMapInnerOrders()
+    public void shouldMapOrders()
     {
         Collection<OrderDTO> ordtos = bms.mapTo(orders, OrderDTO.class);
 

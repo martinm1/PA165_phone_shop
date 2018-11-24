@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 import java.util.Collection;
 import java.util.List;
 
-import org.dozer.Mapper;
+import com.github.dozermapper.core.Mapper;
 
 public interface BeanMappingService
 {
