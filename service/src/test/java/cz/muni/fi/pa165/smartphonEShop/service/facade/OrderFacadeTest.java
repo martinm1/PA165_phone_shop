@@ -1,8 +1,11 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
-import cz.muni.fi.pa165.smartphonEShop.entity.Order;
+import cz.muni.fi.pa165.smartphonEShop.entity.*;
+import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
+import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
@@ -19,10 +22,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.mockito.Mockito.when;
 
@@ -37,7 +39,7 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
     @Mock
     private OrderService orderService;
 
-    @Autowired
+    @Mock
     private BeanMappingService bms;
 
     @Autowired
@@ -46,6 +48,9 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
 
     private Order order1;
     private Order order2;
+
+    private OrderDTO orderDTO1;
+    private OrderDTO orderDTO2;
 
     @BeforeClass
     public void setup() throws ServiceException
@@ -64,21 +69,21 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
 
         order1.setState(OrderState.CREATED);
         order2.setState(OrderState.FINISHED);
+
+        orderDTO1 = new OrderDTO();
+        orderDTO2 = new OrderDTO();
     }
 
     @Test
     public void getAllOrders()
     {
-        OrderDTO orderDTO;
-
-        when(orderService.getAllOrders()).thenReturn(Stream.of(order1, order2).collect(Collectors.toList()));
+        List<Order> retOrders = Arrays.asList(order1, order2);
+        List<OrderDTO> retDTOs = Arrays.asList(orderDTO1, orderDTO2);
+        when(orderService.getAllOrders()).thenReturn(retOrders);
+        when(bms.mapTo(orderService.getAllOrders(), OrderDTO.class)).thenReturn(retDTOs);
 
         Collection<OrderDTO> orders = orderFacade.getAllOrders();
 
         Assert.assertEquals(2, orders.size());
-
-        orderDTO = bms.mapTo(order1, OrderDTO.class);
-        Assert.assertTrue(orders.contains(orderDTO));
-
     }
 }
