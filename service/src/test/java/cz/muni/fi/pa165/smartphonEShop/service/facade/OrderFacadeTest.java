@@ -38,12 +38,14 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
     private OrderService orderService;
 
     @Autowired
+    private BeanMappingService bms;
+
+    @Autowired
     @InjectMocks
     private OrderFacade orderFacade;
 
     private Order order1;
     private Order order2;
-    private BeanMappingService bms;
 
     @BeforeClass
     public void setup() throws ServiceException
