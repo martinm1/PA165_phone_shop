@@ -54,28 +54,32 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByOrderId(Long orderId) {
-        return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId", ).
+        return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId",
+                Claim.class).
                 setParameter("orderId", orderId).
                 getResultList();
     }
 
     @Override
     public List<Claim> findClaimByUserId(Long userId) {
-        return entityManager.createQuery("select c from Claim c join c.order o join o.person p where p.id = :userId", Claim.class).
+        return entityManager.createQuery
+                ("select c from Claim c join c.order o join o.person p where p.id = :userId", Claim.class).
                 setParameter("userId", userId).
                 getResultList();
     }
 
     @Override
     public List<Claim> findClaimByClaimState(ClaimState claimState) {
-        return entityManager.createQuery("select c from Claim c where c.claimState = :claimState", Claim.class).
+        return entityManager.createQuery("select c from Claim c where c.claimState = :claimState",
+                Claim.class).
                 setParameter("claimState", claimState).
                 getResultList();
     }
 
     @Override
     public List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution) {
-        return entityManager.createQuery("select c from Claim c where c.claimSolution = :claimSolution", Claim.class).
+        return entityManager.createQuery("select c from Claim c where c.claimSolution = :claimSolution",
+                Claim.class).
                 setParameter("claimSolution", claimSolution).
                 getResultList();
     }
