@@ -53,6 +53,8 @@ public class PersonFacadeTest {
     private AddressDTO addressDTO1;
     private AddressDTO addressDTO2;
     
+    private Order order2;
+    
     @BeforeClass
     public void setup() throws ServiceException
     {
@@ -168,6 +170,11 @@ public class PersonFacadeTest {
         
         List<OrderDTO> orderDTOs2 = new ArrayList();
         personDTO2.setOrders(orderDTOs2);
+        
+        order2 = new Order();
+        order2.setId(5L);
+        
+        person2.addOrder(order2);
     }
     
     
@@ -262,5 +269,30 @@ public class PersonFacadeTest {
         when(bms.mapTo(person1, PersonDTO.class)).thenReturn(personDTO1);
         
         Assert.assertTrue(personFacade.findPersonById(10L).getOrders().contains(orderDTO));
+    }
+    
+    @Test
+    public void removeOrder()
+    {
+        OrderDTO orderDTO2 = new OrderDTO();
+        orderDTO2.setId(5L);
+        
+        
+        doAnswer(invocationOnMock ->
+        {
+            person2.removeOrder(order2);
+            return 7L;
+        }).when(personService).removeOrder(20L, 5L);
+
+        when(personService.findPersonById(20L)).thenReturn(person2);
+        when(bms.mapTo(person2, PersonDTO.class)).thenReturn(personDTO2);
+        
+        when(bms.mapTo(order2, OrderDTO.class)).thenReturn(orderDTO2);
+
+        bms.mapTo(order2, OrderDTO.class);
+
+        personFacade.removeOrder(20L, 5L);
+        
+        Assert.assertTrue(personFacade.findPersonById(20L).getOrders().isEmpty());
     }
 }

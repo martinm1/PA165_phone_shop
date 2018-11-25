@@ -59,7 +59,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void removeOrder(Person person, Order order) {
-        personDao.create(person);
+    //public void removeOrder(Person person, Order order) {
+    public void removeOrder(Long personId, Long orderId) {
+        //personDao.create(person);
+        personDao.findById(personId).removeOrder(orderDao.findById(orderId));
     }
 }

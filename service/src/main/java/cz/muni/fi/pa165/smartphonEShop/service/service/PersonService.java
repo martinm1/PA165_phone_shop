@@ -73,6 +73,12 @@ public interface PersonService {
      * @param person represents person.
      * @param order represents order.
      */
-    void removeOrder(Person person, Order order);
+    //void removeOrder(Person person, Order order);
 
+    /**
+     * Add specific order to specific person.
+     * @param personID id of person.
+     * @param orderID id of order.
+     */
+    void removeOrder(Long personID, Long orderID);
 }

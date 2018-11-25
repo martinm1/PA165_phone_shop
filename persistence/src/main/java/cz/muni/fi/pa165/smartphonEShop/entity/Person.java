@@ -63,6 +63,10 @@ public class Person {
     public void addOrder(Order order) {
         this.orders.add(order);
     }
+    
+    public void removeOrder(Order order) {
+        this.orders.remove(order);
+    }
 
     public List<Order> getOrders() {
         return Collections.unmodifiableList(orders);
