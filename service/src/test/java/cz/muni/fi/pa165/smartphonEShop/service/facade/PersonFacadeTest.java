@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
+import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PersonService;
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -33,6 +35,7 @@ import org.testng.annotations.Test;
  *
  * @author martin
  */
+@ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonFacadeTest {
     @Mock
     private PersonService personService;
