@@ -66,7 +66,8 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Override
     public void removeOrder(Long personId, Long orderId) {
-        personService.removeOrder(personService.findPersonById(personId), orderService.findOrderById(orderId));
+        //personService.removeOrder(personService.findPersonById(personId), orderService.findOrderById(orderId));
+        personService.removeOrder(personId, orderId);
     }
 
     @Override
