@@ -71,7 +71,7 @@ public class StockFacadeImpl implements StockFacade {
         address.setStreetName(stockDTO.getAddress().getStreetName());
         address.setStreetNumber(stockDTO.getAddress().getStreetNumber());
         
-        
+        newstock.setId(stockDTO.getId());
         newstock.setAddress(address);
         newstock.setName(stockDTO.getName());
         newstock.setPhones(phones);

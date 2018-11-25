@@ -54,6 +54,7 @@ public class AddressFacadeImpl implements AddressFacade{
         List<Person> people = new ArrayList();
         
         Address address = new Address();
+        address.setId(addressDTO.getId());
         address.setCity(addressDTO.getCity());
         address.setCountry(addressDTO.getCountry());
         address.setPeople(people);
