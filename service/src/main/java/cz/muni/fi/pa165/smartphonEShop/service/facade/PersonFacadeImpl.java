@@ -60,8 +60,8 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Override
     public void addOrder(Long personId, Long orderId) {
-        personService.addOrder(personService.findPersonById(personId),orderService.findOrderById(orderId));
-
+        //personService.addOrder(personService.findPersonById(personId),orderService.findOrderById(orderId));
+        personService.addOrder(personId, orderId);
     }
 
     @Override
