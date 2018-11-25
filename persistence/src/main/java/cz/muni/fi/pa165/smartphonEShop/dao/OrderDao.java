@@ -69,7 +69,7 @@ public interface OrderDao {
      * @param personId of order.
      * @return Collection of orders with given person.
      */
-    List<Order> findOrdersByPerson(String personId);
+    List<Order> findOrdersByPerson(Long personId);
     
     /**
      * Find orders with specific phone.
