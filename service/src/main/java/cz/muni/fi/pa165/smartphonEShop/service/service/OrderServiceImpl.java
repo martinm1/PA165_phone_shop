@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Order> findOrdersByPerson(String personId) {
+    public List<Order> findOrdersByPerson(Long personId) {
         return orderDao.findOrdersByPerson(personId);
     }
 

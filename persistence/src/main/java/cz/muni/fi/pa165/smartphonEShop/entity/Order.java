@@ -50,12 +50,12 @@ public class Order {
     }
     
     public void removeClaim(Claim claim) {
-        this.claims.add(claim);
+        this.claims.remove(claim);
     }
     
-    public List<Claim> getClaims() {
-        return Collections.unmodifiableList(claims);
-    }
+    //public List<Claim> getClaims() {
+      //  return Collections.unmodifiableList(claims);
+    //}
 
     @Override
     public boolean equals(Object o) {
