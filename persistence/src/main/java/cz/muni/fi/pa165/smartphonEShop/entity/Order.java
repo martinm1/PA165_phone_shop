@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,14 +43,19 @@ public class Order {
     private Phone phone;
     
     @OneToMany(mappedBy = "order")
-    private List<Claim> claims;
+    private List<Claim> claims = new ArrayList<>();
 
     public void addClaim(Claim claim) {
         this.claims.add(claim);
     }
-    public List<Claim> getClaims() {
-        return Collections.unmodifiableList(claims);
+    
+    public void removeClaim(Claim claim) {
+        this.claims.remove(claim);
     }
+    
+    //public List<Claim> getClaims() {
+      //  return Collections.unmodifiableList(claims);
+    //}
 
     @Override
     public boolean equals(Object o) {

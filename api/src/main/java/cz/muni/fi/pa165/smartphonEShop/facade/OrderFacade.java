@@ -36,7 +36,7 @@ public interface OrderFacade {
      * @param personId of order.
      * @return Collection of orders with given person.
      */
-    Collection<OrderDTO> findOrdersByPerson(String personId);
+    Collection<OrderDTO> findOrdersByPerson(Long personId);
     
     /**
      * Find orders with specific phone.

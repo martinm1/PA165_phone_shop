@@ -10,7 +10,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import cz.muni.fi.pa165.smartphonEShop.facade.AddressFacade;
-import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,6 +54,7 @@ public class AddressFacadeImpl implements AddressFacade{
         List<Person> people = new ArrayList();
         
         Address address = new Address();
+        address.setId(addressDTO.getId());
         address.setCity(addressDTO.getCity());
         address.setCountry(addressDTO.getCountry());
         address.setPeople(people);

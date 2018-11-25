@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
-import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +58,7 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public Collection<OrderDTO> findOrdersByPerson(String personId)
+    public Collection<OrderDTO> findOrdersByPerson(Long personId)
     {
         List<Order> orders = orderService.findOrdersByPerson(personId);
 

@@ -17,9 +17,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
@@ -72,7 +72,8 @@ public class ClaimServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void getAllClaims()
     {
-        when(claimDao.findAll()).thenReturn(Stream.of(claim1, claim2, claim3).collect(Collectors.toList()));
+        List<Claim> ret = Arrays.asList(claim1, claim2, claim3);
+        when(claimDao.findAll()).thenReturn(ret);
 
         List<Claim> claims = claimService.getAllClaims();
 
@@ -120,8 +121,9 @@ public class ClaimServiceTest extends AbstractTestNGSpringContextTests
         Long orderId = 1L;
         Long orderId1 = 2L;
 
-        when(claimDao.findClaimByOrderId(orderId)).thenReturn(Stream.of(claim1).collect(Collectors.toList()));
-        when(claimDao.findClaimByOrderId(orderId1)).thenReturn(Stream.of(claim2, claim3).collect(Collectors.toList()));
+        List<Claim> ret = Arrays.asList(claim2, claim3);
+        when(claimDao.findClaimByOrderId(orderId)).thenReturn(Collections.singletonList(claim1));
+        when(claimDao.findClaimByOrderId(orderId1)).thenReturn(ret);
 
         List<Claim> claims = claimService.findClaimByOrderId(orderId);
 
@@ -141,8 +143,9 @@ public class ClaimServiceTest extends AbstractTestNGSpringContextTests
         Long userId = 1L;
         Long userId1 = 2L;
 
-        when(claimDao.findClaimByUserId(userId)).thenReturn(Stream.of(claim3).collect(Collectors.toList()));
-        when(claimDao.findClaimByUserId(userId1)).thenReturn(Stream.of(claim1, claim2).collect(Collectors.toList()));
+        List<Claim> ret = Arrays.asList(claim1, claim2);
+        when(claimDao.findClaimByUserId(userId)).thenReturn(Collections.singletonList(claim3));
+        when(claimDao.findClaimByUserId(userId1)).thenReturn(ret);
 
         List<Claim> claims = claimService.findClaimByUserId(userId);
 
@@ -159,9 +162,9 @@ public class ClaimServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void findClaimByClaimState()
     {
-        when(claimDao.findClaimByClaimState(ClaimState.CREATED)).thenReturn(Stream.of(claim1).collect(Collectors.toList()));
-        when(claimDao.findClaimByClaimState(ClaimState.ACCEPTED)).thenReturn(Stream.of(claim2).collect(Collectors.toList()));
-        when(claimDao.findClaimByClaimState(ClaimState.REJECTED)).thenReturn(Stream.of(claim3).collect(Collectors.toList()));
+        when(claimDao.findClaimByClaimState(ClaimState.CREATED)).thenReturn(Collections.singletonList(claim1));
+        when(claimDao.findClaimByClaimState(ClaimState.ACCEPTED)).thenReturn(Collections.singletonList(claim2));
+        when(claimDao.findClaimByClaimState(ClaimState.REJECTED)).thenReturn(Collections.singletonList(claim3));
 
         List<Claim> claims = claimService.findClaimByClaimState(ClaimState.CREATED);
 
@@ -182,8 +185,9 @@ public class ClaimServiceTest extends AbstractTestNGSpringContextTests
     @Test
     public void findClaimByClaimSolution()
     {
-        when(claimDao.findClaimByClaimSolution(ClaimSolution.REPAIR)).thenReturn(Stream.of(claim1, claim2).collect(Collectors.toList()));
-        when(claimDao.findClaimByClaimSolution(ClaimSolution.MONEY)).thenReturn(Stream.of(claim3).collect(Collectors.toList()));
+        List<Claim> ret = Arrays.asList(claim1, claim2);
+        when(claimDao.findClaimByClaimSolution(ClaimSolution.REPAIR)).thenReturn(ret);
+        when(claimDao.findClaimByClaimSolution(ClaimSolution.MONEY)).thenReturn(Collections.singletonList(claim3));
 
         List<Claim> claims = claimService.findClaimByClaimSolution(ClaimSolution.REPAIR);
 

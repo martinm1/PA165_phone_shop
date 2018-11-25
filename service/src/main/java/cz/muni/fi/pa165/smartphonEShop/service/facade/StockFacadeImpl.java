@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
-import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
 import java.util.ArrayList;
@@ -71,7 +71,7 @@ public class StockFacadeImpl implements StockFacade {
         address.setStreetName(stockDTO.getAddress().getStreetName());
         address.setStreetNumber(stockDTO.getAddress().getStreetNumber());
         
-        
+        newstock.setId(stockDTO.getId());
         newstock.setAddress(address);
         newstock.setName(stockDTO.getName());
         newstock.setPhones(phones);

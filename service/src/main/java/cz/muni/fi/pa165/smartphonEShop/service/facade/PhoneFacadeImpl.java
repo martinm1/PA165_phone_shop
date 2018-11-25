@@ -6,8 +6,12 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
+<<<<<<< HEAD
 import cz.muni.fi.pa165.smartphonEShop.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
+=======
+import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
+>>>>>>> 2ff7ee18519d12de14c6a62816408acb0e1371f5
 import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;

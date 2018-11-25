@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.dao.OrderDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.PersonDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
@@ -17,7 +18,9 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDao personDao;
-
+    
+    @Autowired
+    private OrderDao orderDao;
 
     @Override
     public Person findPersonById(Long id) {
@@ -45,9 +48,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addOrder(Person person, Order order) {
+    public void addOrder(Long personId, Long orderId) {
         //TODO:: add method to PersonDAO
-
+        personDao.findById(personId).addOrder(orderDao.findById(orderId));
     }
 
     @Override
@@ -56,7 +59,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void removeOrder(Person person, Order order) {
-        personDao.create(person);
+    //public void removeOrder(Person person, Order order) {
+    public void removeOrder(Long personId, Long orderId) {
+        //personDao.create(person);
+        personDao.findById(personId).removeOrder(orderDao.findById(orderId));
     }
 }
