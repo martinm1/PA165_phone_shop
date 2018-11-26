@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 
 import java.util.Collection;
 import java.util.List;
