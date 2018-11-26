@@ -79,7 +79,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public List<Order> findOrdersByPerson(Long personId) {
+    public List<Order> findOrdersByPersonId(Long personId) {
         if (personId == null)
             throw new IllegalArgumentException("Person id date is null!");
         
@@ -88,7 +88,7 @@ public class OrderDaoImpl implements OrderDao
     }
 
     @Override
-    public List<Order> findOrdersByPhone(Long phoneId) {
+    public List<Order> findOrdersByPhoneId(Long phoneId) {
         if (phoneId == null)
             throw new IllegalArgumentException("Phone id date is null!");
         

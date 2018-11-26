@@ -60,7 +60,7 @@ public class OrderFacadeImpl implements OrderFacade
     @Override
     public Collection<OrderDTO> findOrdersByPerson(Long personId)
     {
-        List<Order> orders = orderService.findOrdersByPerson(personId);
+        List<Order> orders = orderService.findOrdersByPersonId(personId);
 
         return bms.mapTo(orders, OrderDTO.class);
     }
@@ -68,7 +68,7 @@ public class OrderFacadeImpl implements OrderFacade
     @Override
     public Collection<OrderDTO> findOrdersByPhone(Long phoneId)
     {
-        List<Order> orders = orderService.findOrdersByPhone(phoneId);
+        List<Order> orders = orderService.findOrdersByPhoneId(phoneId);
 
         return bms.mapTo(orders, OrderDTO.class);
     }
