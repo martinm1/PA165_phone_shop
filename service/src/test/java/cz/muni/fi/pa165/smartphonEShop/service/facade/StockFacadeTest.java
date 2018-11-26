@@ -178,6 +178,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void addPhone() {
+        //TODO
 //        Phone phoneAdd = new Phone();
 //        phoneAdd.setId(77L);
 //
@@ -206,6 +207,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void removePhone() {
+        //TODO
 
     }
 
