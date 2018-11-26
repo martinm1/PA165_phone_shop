@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
+import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PersonService;
 import java.time.LocalDate;
@@ -18,10 +19,13 @@ import java.util.Collections;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
 import org.mockito.Mock;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -31,6 +35,7 @@ import org.testng.annotations.Test;
  *
  * @author martin
  */
+@ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonFacadeTest {
     @Mock
     private PersonService personService;
@@ -173,7 +178,7 @@ public class PersonFacadeTest {
         
         order2 = new Order();
         order2.setId(5L);
-        
+       
         person2.addOrder(order2);
     }
     
@@ -263,12 +268,16 @@ public class PersonFacadeTest {
             return 7L;
         }).when(bms).mapTo(person1, PersonDTO.class);
 
-        personFacade.addOrder(10L, 7L);
-
+        
         when(personService.findPersonById(10L)).thenReturn(person1);
         when(bms.mapTo(person1, PersonDTO.class)).thenReturn(personDTO1);
         
+        Assert.assertTrue(personService.findPersonById(10L).getOrders().isEmpty());
+        
+        personFacade.addOrder(10L, 7L);
+        
         Assert.assertTrue(personFacade.findPersonById(10L).getOrders().contains(orderDTO));
+        Assert.assertTrue(personService.findPersonById(10L).getOrders().contains(orderTest));
     }
     
     @Test
@@ -277,11 +286,10 @@ public class PersonFacadeTest {
         OrderDTO orderDTO2 = new OrderDTO();
         orderDTO2.setId(5L);
         
-        
         doAnswer(invocationOnMock ->
         {
             person2.removeOrder(order2);
-            return 7L;
+            return 5L;
         }).when(personService).removeOrder(20L, 5L);
 
         when(personService.findPersonById(20L)).thenReturn(person2);
@@ -290,9 +298,43 @@ public class PersonFacadeTest {
         when(bms.mapTo(order2, OrderDTO.class)).thenReturn(orderDTO2);
 
         bms.mapTo(order2, OrderDTO.class);
+        
+        Assert.assertTrue(personService.findPersonById(20L).getOrders().contains(order2));
 
         personFacade.removeOrder(20L, 5L);
         
         Assert.assertTrue(personFacade.findPersonById(20L).getOrders().isEmpty());
+        Assert.assertTrue(personService.findPersonById(20L).getOrders().isEmpty());
+    }
+    
+    @Test
+    public void registerPerson()
+    {    
+        Person person3 = new Person();
+        person3.setAddress(address1);
+        person3.setDateOfBirth(LocalDate.MIN);
+        person3.setEmail("");
+        person3.setFirstName("");
+        person3.setGender(Gender.MALE);
+        person3.setId(Long.MIN_VALUE);
+        person3.setLastName("");
+        person3.setPersonType(PersonType.EMPLOYEE);
+        person3.setPhoneNumber("");
+        
+        PersonDTO personDTO3 = new PersonDTO();
+        personDTO3.setAddress(addressDTO1);
+        personDTO3.setDateOfBirth(LocalDate.MIN);
+        personDTO3.setEmail("");
+        personDTO3.setFirstName("");
+        personDTO3.setGender(Gender.MALE);
+        personDTO3.setId(30L);
+        personDTO3.setLastName("");
+        personDTO3.setPersonType(PersonType.EMPLOYEE);
+        personDTO3.setPhoneNumber("");
+        
+        
+        PersonDTO personDTO = bms.mapTo(person3, PersonDTO.class);
+        personFacade.registerPerson(personDTO3);
+        verify(personService).registerPerson(any(Person.class));
     }
 }
