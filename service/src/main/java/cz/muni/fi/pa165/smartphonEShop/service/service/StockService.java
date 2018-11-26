@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by Roman Nahalka
  * Class represents: StockService interface.
+ * @author xnahalka
  */
 public interface StockService
 {

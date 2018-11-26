@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
-import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 
 import java.util.List;
@@ -8,27 +8,28 @@ import java.util.List;
 /**
  * Created by Roman Nahalka
  * Interface represents: Manager for StockDaoImpl
+ * @author xnahalka
  */
 public interface StockDao
 {
     /**
      * Create new stock in database.
      * @param stock to be created.
-     * @throws IllegalArgumentException when stock is null.
+     * @throws DAOException when stock is null.
      */
     void create(Stock stock);
 
     /**
      * Update stock in database.
      * @param stock to be updated.
-     * @throws IllegalArgumentException when stock is null.
+     * @throws DAOException when stock is null.
      */
     void update(Stock stock);
 
     /**
      * Delete stock in database.
      * @param stock to be deleted.
-     * @throws IllegalArgumentException when stock is null.
+     * @throws DAOException when stock is null.
      */
     void delete(Stock stock);
 
@@ -36,7 +37,7 @@ public interface StockDao
      * Find stock with specific id in database.
      * @param id primary key for stock.
      * @return stock with given id, null if no such exists.
-     * @throws IllegalArgumentException when id is null or less then 0.
+     * @throws DAOException when id is null or less then 0.
      */
     Stock findById(Long id);
     

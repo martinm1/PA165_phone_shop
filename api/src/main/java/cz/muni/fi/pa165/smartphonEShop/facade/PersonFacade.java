@@ -9,6 +9,7 @@ import java.util.Collection;
 /**
  * Created by Roman Nahalka
  * Class represents: PersonFacade interface.
+ * @author xnahalka
  */
 
 public interface PersonFacade

@@ -22,6 +22,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 /**
  * Created by Roman Nahalka
+ * Class represents: Test for Stock dao.
+ * @author xnahalka
  */
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)

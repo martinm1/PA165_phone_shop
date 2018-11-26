@@ -4,10 +4,12 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import org.springframework.stereotype.Repository;
 
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 /**
  * Created by Stefan Holecko
@@ -23,7 +25,7 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void create(Address address) {
         if (address == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new DAOException("Address is null!");
         }
         entityManager.persist(address);
     }
@@ -31,7 +33,7 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void update(Address address) {
         if (address == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new DAOException("Address is null!");
         }
         entityManager.merge(address);
     }
@@ -39,7 +41,7 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void delete(Address address) {
         if (address == null) {
-            throw new IllegalArgumentException("Address is null!");
+            throw new DAOException("Address is null!");
         }
         if (entityManager.contains(address)) {
             entityManager.remove(address);
@@ -53,7 +55,7 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public Address findById(Long id) {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("AddressId is null or less than 0!");
+            throw new DAOException("AddressId is null or less than 0!");
         }
         return entityManager.find(Address.class, id);
     }

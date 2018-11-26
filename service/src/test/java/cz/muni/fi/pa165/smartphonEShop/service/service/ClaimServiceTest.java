@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Roman Nahalka
  * Class represents: Tests for ClaimService.
+ * @author xnahalka
  */
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
