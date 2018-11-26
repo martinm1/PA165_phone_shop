@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 
@@ -64,5 +65,11 @@ public interface PersonFacade
      * Register new person to system.
      * @param person New person.
      */
-    void registerPerson(PersonDTO person);
+    void registerPerson(PersonDTO person, String pass);
+
+    /**
+     * Authenticate user.
+     * @return true, if password matches the records.
+     */
+    boolean auth(PersonAuthDTO person);
 }
