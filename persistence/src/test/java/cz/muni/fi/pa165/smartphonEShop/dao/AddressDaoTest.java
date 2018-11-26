@@ -151,9 +151,12 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     {
         address.findById((long)-1);
     }
-    /*
+
     @Test
     public void findAllAddressesBy(){
+        address.create(address1);
+        address.create(address2);
+
         HashMap<AddressEnum, String> hashMap = new HashMap<>();
         HashMap<AddressEnum, String> hashMap1 = new HashMap<>();
 
@@ -166,10 +169,11 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
         List<Address> addresses =  address.findAllAddressesBy(hashMap);
         List<Address> addresses1 = address.findAllAddressesBy(hashMap1);
 
+
         Assert.assertTrue(addresses.contains(address1));
         Assert.assertFalse(addresses.contains(address2));
         
         Assert.assertTrue(addresses1.contains(address2));
         Assert.assertFalse(addresses1.contains(address1));
-    }*/
+    }
 }

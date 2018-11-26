@@ -58,10 +58,11 @@ public interface PhoneDao {
 
     /**
      * Find phones with specific price.
-     * @param price of phone.
+     * @param lowerBound of price of phone.
+     * @param upperBound of price of phone.
      * @return List of phones with given price.
      */
-    List<Phone> findPhonesByPrice(int lowerBound, int upperBound);
+    List<Phone> findPhonesByPriceInterval(int lowerBound, int upperBound);
 
     /**
      * Find phones with specific technical information.
@@ -82,5 +83,5 @@ public interface PhoneDao {
      * @param stockId primary key for stock.
      * @return List of phones with given stock.
      */
-    List<Phone> findPhonesByStock(Long stockId);
+    List<Phone> findPhonesByStockId(Long stockId);
 }

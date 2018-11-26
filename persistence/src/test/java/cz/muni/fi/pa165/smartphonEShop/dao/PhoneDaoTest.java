@@ -220,17 +220,17 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         phone.create(phone1);
         phone.create(phone2);
 
-        List<Phone> phones = phone.findPhonesByPrice(122,124);
+        List<Phone> phones = phone.findPhonesByPriceInterval(122,124);
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone1));
 
-        phones = phone.findPhonesByPrice(344,346);
+        phones = phone.findPhonesByPriceInterval(344,346);
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone2));
 
-        phones = phone.findPhonesByPrice(678,6000);
+        phones = phone.findPhonesByPriceInterval(678,6000);
 
         Assert.assertEquals(phones.size(), 0);
     }
@@ -283,12 +283,12 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         phone.create(phone1);
         phone.create(phone2);
 
-        List<Phone> phones = phone.findPhonesByStock(stock1.getId());
+        List<Phone> phones = phone.findPhonesByStockId(stock1.getId());
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone1));
 
-        phones = phone.findPhonesByStock(stock2.getId());
+        phones = phone.findPhonesByStockId(stock2.getId());
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone2));
