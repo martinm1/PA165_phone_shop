@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,8 @@ public class Person {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
+
+    private String passwordHash;
 
     @Column(nullable=false)
     private String firstName;
@@ -73,29 +76,22 @@ public class Person {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (! (obj instanceof Person))
-            return false;
-        Person other = (Person) obj;
-        return (    this.getFirstName().equals(other.getFirstName())
-                &&   this.getLastName().equals(other.getLastName())
-                &&  this.getAddress().equals(other.getAddress())
-                &&      this.getEmail().equals(other.getEmail())
-                &&this.getPhoneNumber().equals(other.getPhoneNumber())
-                &&this.getDateOfBirth().equals(other.getDateOfBirth())
-                &&     this.getGender().equals(other.getGender())
-                && this.getPersonType().equals(other.getPersonType()));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return Objects.equals(getFirstName(), person.getFirstName()) &&
+                Objects.equals(getLastName(), person.getLastName()) &&
+                Objects.equals(getAddress(), person.getAddress()) &&
+                Objects.equals(getEmail(), person.getEmail()) &&
+                Objects.equals(getPhoneNumber(), person.getPhoneNumber()) &&
+                Objects.equals(getDateOfBirth(), person.getDateOfBirth()) &&
+                getGender() == person.getGender() &&
+                getPersonType() == person.getPersonType();
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-        return result;
+        return Objects.hash(getEmail(), getPhoneNumber());
     }
 }

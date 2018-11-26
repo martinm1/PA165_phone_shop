@@ -66,7 +66,7 @@ public interface PersonService {
      * Register new person to system.
      * @param person New person.
      */
-    void registerPerson(Person person);
+    void registerPerson(Person person, String pass);
 
     /**
      * Add specific order to specific person.
@@ -81,4 +81,13 @@ public interface PersonService {
      * @param orderID id of order.
      */
     void removeOrder(Long personID, Long orderID);
+
+    /**
+     * Authenticate user.
+     * @param person represent person.
+     * @param pass to be checked.
+     * @return true, if password matches the records.
+     */
+    boolean auth(Person person, String pass);
+
 }
