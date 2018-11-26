@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Created by Roman Nahalka
+ * Class represents: Tests for Bean mapping service.
+ * @author xnahalka
+ */
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class BeanMappingServiceTest extends AbstractTestNGSpringContextTests
 {

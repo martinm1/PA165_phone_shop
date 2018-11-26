@@ -22,6 +22,8 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Roman Nahalka
+ * Class represents: Tests of phone dao.
+ * @author xnahalka
  */
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)

@@ -15,7 +15,8 @@ import java.util.List;
 
 /**
  * Created by Roman Nahalka
- * Class represents: Implementation of ClaimFacade.
+ * Class represents: Implementation of ClaimFacade
+ * @author xnahalka
  */
 
 public class ClaimFacadeImpl implements ClaimFacade

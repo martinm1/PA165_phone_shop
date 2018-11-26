@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Created by Roman Nahalka
+ * Class represents: Bean mapping service implementation.
+ * @author xnahalka
+ */
 @Service
 public class BeanMappingServiceImpl implements BeanMappingService
 {

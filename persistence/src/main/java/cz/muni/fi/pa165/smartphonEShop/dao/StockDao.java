@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by Roman Nahalka
  * Interface represents: Manager for StockDaoImpl
+ * @author xnahalka
  */
 public interface StockDao
 {

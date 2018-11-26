@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by Roman Nahalka
  * Interface represents: Manager for AddressDaoImpl
+ * @author xnahalka
  */
 public interface AddressDao
 {
