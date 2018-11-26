@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -65,6 +66,22 @@ public class StockDaoImpl implements StockDao{
     public List<Stock> findAll()
     {
         return em.createQuery("SELECT q FROM Stock q", Stock.class).getResultList();
+    }
+
+    @Override
+    public Stock findByName(String name) {
+        if (name == null)
+            throw new IllegalArgumentException("Stock name is null!");
+
+        try
+        {
+            return em.createQuery("SELECT p FROM Stock p WHERE p.name =: name", Stock.class)
+                                                .setParameter("name", name).getSingleResult();
+        }
+        catch (NoResultException ex)
+        {
+            return null;
+        }
     }
 
 

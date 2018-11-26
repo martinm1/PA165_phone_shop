@@ -38,6 +38,13 @@ public interface StockDao
      * @throws IllegalArgumentException when id is null or less then 0.
      */
     Stock findById(Long id);
+    
+    /**
+     * Find stock with specific name in database.
+     * @param name of stock.
+     * @return stock with given name, null if no such exists.
+     */
+    Stock findByName(String name);
 
     /**
      * @return List of all stocks in database.

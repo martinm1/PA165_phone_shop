@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.dao.AddressDao;
+import cz.muni.fi.pa165.smartphonEShop.dao.PhoneDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.StockDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,12 @@ public class StockServiceImpl implements StockService {
 
     @Autowired
     private StockDao stockDao;
+    
+    @Autowired
+    private AddressDao addressDao;
+    
+    @Autowired
+    private PhoneDao phoneDao;
 
     @Override
     public Long createStock(Stock stock) {
@@ -31,20 +39,17 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Stock findStockByName(String name) {
-        //TODO:: add method in stockDAO
-        return null;
+        return stockDao.findByName(name);
     }
 
     @Override
     public Stock findStockByAddressId(Long addressId) {
-        //TODO:: add method in stockDAO
-        return null;
+        return addressDao.findById(addressId).getStock();
     }
 
     @Override
     public Stock findStockByPhoneId(Long phoneId) {
-        //TODO:: add method in stockDAO
-        return null;
+        return phoneDao.findById(phoneId).getStock();
     }
 
     @Override
@@ -54,11 +59,11 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public void addPhone(Long stockId, Long phoneId) {
-        //TODO:: add method in stockDAO
+        stockDao.findById(stockId).addPhone(phoneDao.findById(phoneId));
     }
 
     @Override
     public void removePhone(Long stockId, Long phoneId) {
-        //TODO:: add method in stockDAO
+        stockDao.findById(stockId).removePhone(phoneDao.findById(phoneId));
     }
 }
