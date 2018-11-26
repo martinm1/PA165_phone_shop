@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.testng.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -212,55 +213,55 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertTrue(orderDao.findOrdersByPhoneId(order1.getPhone().getId()).contains(order2));
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void createNull()
     {
         orderDao.create(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void updateNull()
     {
         orderDao.update(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void deleteNull()
     {
         orderDao.delete(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNull()
     {
         orderDao.findById(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNegative()
     {
         orderDao.findById((long)-1);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findOrdersByPersonIdNull()
     {
         orderDao.findOrdersByPersonId(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findOrdersByPhoneIdNull()
     {
         orderDao.findOrdersByPhoneId(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findOrdersByOrderDateNull()
     {
         orderDao.findOrdersByOrderDate(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findOrdersByOrderStateNull()
     {
         orderDao.findOrdersByOrderState(null);

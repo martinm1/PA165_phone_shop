@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.smartphonEShop.entity.*;
 //import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.*;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.testng.Assert;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -239,47 +240,47 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(ClaimSolution.REPAIR, claimDao.findById(claim1.getId()).getWantedSolutionByCustomer());
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void updateNull() {
         claimDao.update(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void deleteNull() {
         claimDao.delete(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNull() {
         claimDao.findById(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNegative() {
         claimDao.findById(-1L);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void createNull(){
         claimDao.create(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findClaimByOrderIdNull(){
         claimDao.findClaimByOrderId(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findClaimByUserIdNull(){
         claimDao.findClaimByUserId(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findClaimByClaimSolutionNull(){
         claimDao.findClaimByClaimSolution(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findClaimByClaimStateNull(){
         claimDao.findClaimByClaimState(null);
     }

@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -158,31 +159,31 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         Assert.assertEquals("Vedlejsi", stock.findById(stock1.getId()).getName());
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void createNull()
     {
        stock.create(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void updateNull()
     {
         stock.update(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void deleteNull()
     {
         stock.delete(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNull()
     {
         stock.findById(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNegative()
     {
         stock.findById((long)-1);

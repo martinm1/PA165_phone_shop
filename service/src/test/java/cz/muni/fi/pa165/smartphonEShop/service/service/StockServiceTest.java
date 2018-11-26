@@ -191,7 +191,7 @@ public class StockServiceTest {
         List<Stock> ret = Arrays.asList(stock1, stock2);
         when(stockDao.findAll()).thenReturn(ret);
 
-        List<Stock> stocks = stockService.findAllStocks();
+        List<Stock> stocks = stockService.getAllStocks();
 
         Assert.assertEquals(2, stocks.size());
         Assert.assertTrue(stocks.contains(stock1));

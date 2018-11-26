@@ -64,7 +64,7 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
     public void getAllPhones() {
         List<Phone> retPhones = Arrays.asList(phone1, phone2);
 
-        when(phoneService.findAllPhones()).thenReturn(retPhones);
+        when(phoneService.getAllPhones()).thenReturn(retPhones);
         when(bms.mapTo(retPhones, PhoneDTO.class)).thenReturn(Arrays.asList(phoneDTO1,phoneDTO2));
 
         Collection<PhoneDTO> phones = phoneFacade.getAllPhones();

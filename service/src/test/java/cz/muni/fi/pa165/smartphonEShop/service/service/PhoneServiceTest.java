@@ -64,7 +64,7 @@ public class PhoneServiceTest  extends AbstractTestNGSpringContextTests {
         List<Phone> ret = Arrays.asList(phone1, phone2, phone3);
         when(phoneDao.findAll()).thenReturn(ret);
 
-        List<Phone> phones = phoneService.findAllPhones();
+        List<Phone> phones = phoneService.getAllPhones();
 
         Assert.assertEquals(3, phones.size());
         Assert.assertTrue(phones.contains(phone1));

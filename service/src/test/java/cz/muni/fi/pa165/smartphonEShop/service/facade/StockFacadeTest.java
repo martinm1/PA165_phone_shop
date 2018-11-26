@@ -146,7 +146,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
         List<Stock> stocks = Arrays.asList(stock1, stock2);
         List<StockDTO> stockDTOS = Arrays.asList(stockDTO1, stockDTO2);
 
-        when(stockService.findAllStocks()).thenReturn(stocks);
+        when(stockService.getAllStocks()).thenReturn(stocks);
         when(bms.mapTo(stocks, StockDTO.class)).thenReturn(stockDTOS);
 
         Collection<StockDTO> stockDTOS1 = stockFacade.getAllStocks();

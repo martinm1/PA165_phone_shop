@@ -66,5 +66,5 @@ public interface PhoneService
      * Find all phones.
      * @return List of all phones.
      */
-    List<Phone> findAllPhones();
+    List<Phone> getAllPhones();
 }

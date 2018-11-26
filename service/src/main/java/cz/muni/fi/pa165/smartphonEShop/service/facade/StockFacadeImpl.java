@@ -49,7 +49,7 @@ public class StockFacadeImpl implements StockFacade {
 
     @Override
     public Collection<StockDTO> getAllStocks() {
-        return beanMappingService.mapTo(stockService.findAllStocks(),StockDTO.class);
+        return beanMappingService.mapTo(stockService.getAllStocks(),StockDTO.class);
     }
 
     @Override
