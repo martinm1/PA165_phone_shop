@@ -66,63 +66,43 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public List<Address> findAllAddressesBy(HashMap<AddressEnum, String> specificator) {
-        Set<Address> resultset = new HashSet<>();
-        if(specificator.containsKey(AddressEnum.CITY)){
-            Set<Address> temp = new HashSet<>();
-
+        List<Address> list1 = new ArrayList<>();
+        List<Address> temp = new ArrayList<>();
+        if(specificator.containsKey(AddressEnum.CITY)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.city = :city", Address.class).
                     setParameter("city", specificator.get(AddressEnum.CITY)).
                     getResultList());
-
-            if(resultset.isEmpty()) {
-                resultset.addAll(temp);
-            }
-            else {
-                resultset.removeAll(temp);
-            }
+            list1 = temp;
         }
-        if(specificator.containsKey(AddressEnum.COUNTRY)){
-            Set<Address> temp = new HashSet<>();
 
+        if(specificator.containsKey(AddressEnum.COUNTRY)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.country = :country", Address.class).
-                    setParameter("country", specificator.get(AddressEnum.CITY)).
+                    setParameter("country", specificator.get(AddressEnum.COUNTRY)).
                     getResultList());
+            if (temp.size() != 0){
+                list1.retainAll(temp);
 
-            if(resultset.isEmpty()) {
-                resultset.addAll(temp);
+                }
             }
-            else {
-                resultset.removeAll(temp);
-            }
-        }
-        if(specificator.containsKey(AddressEnum.STREET_NAME)){
-            Set<Address> temp = new HashSet<>();
-
+        if(specificator.containsKey(AddressEnum.STREET_NAME)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.streetName = :streetName", Address.class).
-                    setParameter("streetName", specificator.get(AddressEnum.CITY)).
+                    setParameter("streetName", specificator.get(AddressEnum.STREET_NAME)).
                     getResultList());
-
-            if(resultset.isEmpty()) {
-                resultset.addAll(temp);
-            }
-            else {
-                resultset.removeAll(temp);
+            if (temp.size() != 0){
+                list1.retainAll(temp);
             }
         }
-        if(specificator.containsKey(AddressEnum.STREET_NUMBER)){
-            Set<Address> temp = new HashSet<>();
 
+        if(specificator.containsKey(AddressEnum.STREET_NUMBER)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.streetNumber = :streetNumber", Address.class).
-                    setParameter("streetNumber", specificator.get(AddressEnum.CITY)).
+                    setParameter("streetNumber", specificator.get(AddressEnum.STREET_NUMBER)).
                     getResultList());
+            if (temp.size() != 0){
+                list1.retainAll(temp);
 
-            if(resultset.isEmpty()) {
-                resultset.addAll(temp);
-            }
-            else {
-                resultset.removeAll(temp);
             }
         }
-        return resultset.stream().collect(Collectors.toList());
+        return list1;
     }
+
 }
