@@ -61,6 +61,7 @@ public interface ClaimDao {
      * Find claims with specific orderId
      * @param orderId of the  claim
      * @return Collection of claims with given orderId.
+     * @throws IllegalArgumentException when orderId is null or less than 0.
      */
     List<Claim> findClaimByOrderId(Long orderId);
 
@@ -68,6 +69,7 @@ public interface ClaimDao {
      * Find claims with specific userId
      * @param userId of the  claim
      * @return Collection of claims with given userId.
+     * @throws IllegalArgumentException when userId is null or less than 0.
      */
     List<Claim> findClaimByUserId(Long userId);
 
@@ -75,6 +77,7 @@ public interface ClaimDao {
      * Find claims with specific claimState
      * @param claimState of the  claim
      * @return Collection of claims with given claimState.
+     * @throws IllegalArgumentException when claimState is null.
      */
     List<Claim> findClaimByClaimState(ClaimState claimState);
 
@@ -82,6 +85,7 @@ public interface ClaimDao {
      * Find claims with specific claimSolution
      * @param claimSolution of the  claim
      * @return Collection of claims with given claimSolution.
+     * @throws IllegalArgumentException when claimSolution is null.
      */
     List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution);
 }

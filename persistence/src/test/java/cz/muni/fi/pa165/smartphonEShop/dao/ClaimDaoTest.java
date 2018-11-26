@@ -153,6 +153,50 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void findClaimByOrderId() {
+        claimDao.create(claim1);
+        claimDao.create(claim2);
+
+        Assert.assertEquals(1, claimDao.findClaimByOrderId(claim1.getOrder().getId()).size());
+        Assert.assertEquals(1, claimDao.findClaimByOrderId(claim2.getOrder().getId()).size());
+
+        Assert.assertTrue(claimDao.findClaimByOrderId(claim1.getOrder().getId()).contains(claim1));
+        Assert.assertTrue(claimDao.findClaimByOrderId(claim2.getOrder().getId()).contains(claim2));
+
+    }
+    @Test
+    public void findClaimByUserId() {
+        personDao.create(person);
+        claimDao.create(claim1);
+
+        Assert.assertEquals(1, claimDao.findClaimByUserId(person.getId()).size());
+        Assert.assertTrue(claimDao.findClaimByUserId(person.getId()).contains(claim1));
+    }
+    
+    @Test
+    public void findClaimByClaimState() {
+        claimDao.create(claim1);
+        claimDao.create(claim2);
+
+        Assert.assertEquals(1, claimDao.findClaimByClaimState(claim1.getClaimState()).size());
+        Assert.assertEquals(1, claimDao.findClaimByClaimState(claim1.getClaimState()).size());
+
+        Assert.assertTrue(claimDao.findClaimByClaimState(claim1.getClaimState()).contains(claim1));
+        Assert.assertTrue(claimDao.findClaimByClaimState(claim2.getClaimState()).contains(claim2));
+    }
+    @Test
+    public void findClaimByClaimSolution() {
+        claimDao.create(claim1);
+        claimDao.create(claim2);
+
+        Assert.assertTrue(claimDao.findClaimByClaimSolution(claim1.getWantedSolutionByCustomer()).contains(claim1));
+        Assert.assertTrue(claimDao.findClaimByClaimSolution(claim2.getWantedSolutionByCustomer()).contains(claim2));
+
+        Assert.assertEquals(1, claimDao.findClaimByClaimSolution(claim1.getWantedSolutionByCustomer()).size());
+        Assert.assertEquals(1, claimDao.findClaimByClaimSolution(claim1.getWantedSolutionByCustomer()).size());
+    }
+
+        @Test
     public void create() {
 
         List<Claim> claimList = claimDao.findAll();
@@ -218,6 +262,26 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull(){
         claimDao.create(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findClaimByOrderIdNull(){
+        claimDao.findClaimByOrderId(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findClaimByUserIdNull(){
+        claimDao.findClaimByUserId(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findClaimByClaimSolutionNull(){
+        claimDao.findClaimByClaimSolution(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findClaimByClaimStateNull(){
+        claimDao.findClaimByClaimState(null);
     }
 
 

@@ -54,6 +54,9 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByOrderId(Long orderId) {
+        if (orderId == null || orderId < 0){
+            throw new IllegalArgumentException("orderId is null or less than 0!");
+        }
         return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId",
                 Claim.class).
                 setParameter("orderId", orderId).
@@ -62,6 +65,9 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByUserId(Long userId) {
+        if (userId == null || userId < 0){
+            throw new IllegalArgumentException("orderId is null or less than 0!");
+        }
         return entityManager.createQuery
                 ("select c from Claim c join c.order o join o.person p where p.id = :userId", Claim.class).
                 setParameter("userId", userId).
@@ -70,6 +76,9 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByClaimState(ClaimState claimState) {
+        if (claimState == null){
+            throw new IllegalArgumentException("claimState is null!");
+        }
         return entityManager.createQuery("select c from Claim c where c.claimState = :claimState",
                 Claim.class).
                 setParameter("claimState", claimState).
@@ -78,7 +87,10 @@ public class ClaimDaoImpl implements ClaimDao{
 
     @Override
     public List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution) {
-        return entityManager.createQuery("select c from Claim c where c.claimSolution = :claimSolution",
+        if (claimSolution == null){
+            throw new IllegalArgumentException("claimState is null!");
+        }
+        return entityManager.createQuery("select c from Claim c where c.wantedSolutionByCustomer = :claimSolution",
                 Claim.class).
                 setParameter("claimSolution", claimSolution).
                 getResultList();
