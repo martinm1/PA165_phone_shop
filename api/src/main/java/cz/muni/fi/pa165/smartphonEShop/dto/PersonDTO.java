@@ -28,6 +28,7 @@ public class PersonDTO
     private PersonType personType;
     private AddressDTO address;
     private List<OrderDTO> orders;
+    private String passwordHash;
 
 
     @Override

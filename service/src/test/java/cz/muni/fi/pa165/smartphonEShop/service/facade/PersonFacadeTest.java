@@ -26,6 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -36,7 +37,7 @@ import org.testng.annotations.Test;
  * @author martin
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class PersonFacadeTest {
+public class PersonFacadeTest extends AbstractTestNGSpringContextTests {
     @Mock
     private PersonService personService;
     
@@ -97,6 +98,12 @@ public class PersonFacadeTest {
         
         personDTO1.setPhoneNumber("123");
         personDTO2.setPhoneNumber("456");
+
+        person1.setPasswordHash("ssss");
+        person2.setPasswordHash("llll");
+
+        personDTO1.setPasswordHash("ssss");
+        personDTO2.setPasswordHash("llll");
         
         person1.setDateOfBirth(LocalDate.ofYearDay(1, 2));
         person2.setDateOfBirth(LocalDate.ofYearDay(3, 4));
@@ -117,7 +124,7 @@ public class PersonFacadeTest {
         personDTO2.setPersonType(PersonType.SIGNED_USER);
         
         person1.setId(10L);
-        person1.setId(20L);
+        person2.setId(20L);
         
         personDTO1.setId(10L);
         personDTO2.setId(20L);
@@ -164,16 +171,16 @@ public class PersonFacadeTest {
         personDTO1.setAddress(addressDTO1);
         personDTO2.setAddress(addressDTO2);
         
-        List<Order> orders1 = new ArrayList();
+        List<Order> orders1 = new ArrayList<>();
         person1.setOrders(orders1);
         
-        List<Order> orders2 = new ArrayList();
+        List<Order> orders2 = new ArrayList<>();
         person2.setOrders(orders2);
         
-        List<OrderDTO> orderDTOs1 = new ArrayList();
+        List<OrderDTO> orderDTOs1 = new ArrayList<>();
         personDTO1.setOrders(orderDTOs1);
         
-        List<OrderDTO> orderDTOs2 = new ArrayList();
+        List<OrderDTO> orderDTOs2 = new ArrayList<>();
         personDTO2.setOrders(orderDTOs2);
         
         order2 = new Order();
@@ -309,32 +316,22 @@ public class PersonFacadeTest {
     
     @Test
     public void registerPerson()
-    {    
-        Person person3 = new Person();
-        person3.setAddress(address1);
-        person3.setDateOfBirth(LocalDate.MIN);
-        person3.setEmail("");
-        person3.setFirstName("");
-        person3.setGender(Gender.MALE);
-        person3.setId(Long.MIN_VALUE);
-        person3.setLastName("");
-        person3.setPersonType(PersonType.EMPLOYEE);
-        person3.setPhoneNumber("");
-        
-        PersonDTO personDTO3 = new PersonDTO();
-        personDTO3.setAddress(addressDTO1);
-        personDTO3.setDateOfBirth(LocalDate.MIN);
-        personDTO3.setEmail("");
-        personDTO3.setFirstName("");
-        personDTO3.setGender(Gender.MALE);
-        personDTO3.setId(30L);
-        personDTO3.setLastName("");
-        personDTO3.setPersonType(PersonType.EMPLOYEE);
-        personDTO3.setPhoneNumber("");
-        
-        
-        PersonDTO personDTO = bms.mapTo(person3, PersonDTO.class);
-        personFacade.registerPerson(personDTO3);
-        verify(personService).registerPerson(any(Person.class));
+    {
+        Person person = new Person();
+
+        PersonDTO personDTO = new PersonDTO();
+        personDTO.setId(30L);
+
+        doAnswer(invocationOnMock ->
+        {
+            person.setId(30L);
+            person.setPasswordHash("xxxpaxxx");
+            return 30L;
+        }).when(personService).registerPerson(person, "xxxpaxxx");
+
+        when(bms.mapTo(person, PersonDTO.class)).thenReturn(personDTO);
+
+        Assert.assertNotNull(personDTO.getId());
+        Assert.assertEquals(30L, personDTO.getId().longValue());
     }
 }
