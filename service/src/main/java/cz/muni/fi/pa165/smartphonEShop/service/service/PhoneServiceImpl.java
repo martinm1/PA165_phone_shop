@@ -41,7 +41,7 @@ public class PhoneServiceImpl implements PhoneService
     @Override
     public List<Phone> findPhonesByPrice(int lowerBound, int upperBound)
     {
-        return phoneDao.findPhonesByPrice(lowerBound, upperBound);
+        return phoneDao.findPhonesByPriceInterval(lowerBound, upperBound);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class PhoneServiceImpl implements PhoneService
     @Override
     public List<Phone> findPhonesByStock(Long stockId)
     {
-        return phoneDao.findPhonesByStock(stockId);
+        return phoneDao.findPhonesByStockId(stockId);
     }
 
     @Override
