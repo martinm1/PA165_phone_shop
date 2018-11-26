@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
+
 
 
 @Repository
@@ -19,7 +22,7 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public void create(Person person) {
         if (person == null){
-            throw new IllegalArgumentException("claim is null!");
+            throw new DAOException("claim is null!");
         }
         entityManager.persist(person);
     }
@@ -27,7 +30,7 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public void update(Person person) {
         if (person == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new DAOException("Address is null!");
         }
         entityManager.merge(person);
     }
@@ -35,7 +38,7 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public void delete(Person person) {
         if (person == null){
-            throw new IllegalArgumentException("Address is null!");
+            throw new DAOException("Address is null!");
         }
         entityManager.remove(person);
     }
@@ -43,7 +46,7 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public Person findById(Long id) {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("AddressId is null or less than 0!");
+            throw new DAOException("AddressId is null or less than 0!");
         }
         return entityManager.find(Person.class, id);
     }
@@ -52,7 +55,7 @@ public class PersonDaoImpl implements PersonDao{
     public Person findByEmail(String email)
     {
         if (email == null || email.isEmpty())
-            throw new IllegalArgumentException("Email is null!");
+            throw new DAOException("Email is null!");
 
         try
         {
@@ -69,7 +72,7 @@ public class PersonDaoImpl implements PersonDao{
     public Person findByPhoneNumber(String number)
     {
         if (number == null || number.isEmpty())
-            throw new IllegalArgumentException("Phone number is null!");
+            throw new DAOException("Phone number is null!");
 
         try
         {
@@ -87,7 +90,7 @@ public class PersonDaoImpl implements PersonDao{
     public List<Person> findByPersonType(PersonType type)
     {
         if (type == null)
-            throw new IllegalArgumentException("Person type is null!");
+            throw new DAOException("Person type is null!");
 
         return entityManager.createQuery("SELECT p FROM Person p WHERE p.personType =: type", Person.class)
                                                                 .setParameter("type", type).getResultList();
