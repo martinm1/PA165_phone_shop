@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 import cz.muni.fi.pa165.smartphonEShop.dao.AddressDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.PhoneDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.StockDao;
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,11 +60,19 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public void addPhone(Long stockId, Long phoneId) {
-        stockDao.findById(stockId).addPhone(phoneDao.findById(phoneId));
+        Stock stock = stockDao.findById(stockId);
+        Phone phone = phoneDao.findById(phoneId);
+
+        stock.addPhone(phone);
+        stockDao.update(stock);
     }
 
     @Override
     public void removePhone(Long stockId, Long phoneId) {
-        stockDao.findById(stockId).removePhone(phoneDao.findById(phoneId));
+        Stock stock = stockDao.findById(stockId);
+        Phone phone = phoneDao.findById(phoneId);
+
+        stock.removePhone(phone);
+        stockDao.update(stock);
     }
 }

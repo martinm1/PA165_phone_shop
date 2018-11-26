@@ -84,5 +84,39 @@ public class StockDaoImpl implements StockDao{
         }
     }
 
+    @Override
+    public Stock findByAddressId(Long addressId)
+    {
+        if (addressId == null)
+            throw new IllegalArgumentException("Address id is null!");
 
+        try
+        {
+            return em.createQuery("SELECT s FROM Stock s JOIN s.address a WHERE a.id =: addressId", Stock.class)
+                                    .setParameter("addressId", addressId).getSingleResult();
+        }
+
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public Stock findByPhoneId(Long phoneId)
+    {
+        if (phoneId == null)
+            throw new IllegalArgumentException("Phone id is null!");
+
+        try
+        {
+            return em.createQuery("SELECT s FROM Stock s JOIN s.phones p WHERE p.id =: phoneId", Stock.class)
+                                    .setParameter("phoneId", phoneId).getSingleResult();
+        }
+
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+    }
 }

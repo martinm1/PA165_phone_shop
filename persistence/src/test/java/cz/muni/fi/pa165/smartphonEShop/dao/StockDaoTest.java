@@ -42,22 +42,28 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     private Stock stock1;
     private Stock stock2;
 
+    private Address address1;
+    private Address address2;
+
+    private Phone phone1;
+    private Phone phone2;
+
     @BeforeMethod
     void setUp()
     {
         stock1 = new Stock();
         stock2 = new Stock();
-        Phone phone1 = new Phone();
-        Phone phone2 = new Phone();
+        phone1 = new Phone();
+        phone2 = new Phone();
 
 
-        Address address1 = new Address();
+        address1 = new Address();
         address1.setStreetNumber("3");
         address1.setCity("Brno");
         address1.setCountry("cz");
         address1.setStreetName("hrncirska");
 
-        Address address2 = new Address();
+        address2 = new Address();
         address2.setStreetNumber("3");
         address2.setCity("Brno");
         address2.setCountry("cz");
@@ -176,5 +182,25 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
     public void findByIdNegative()
     {
         stock.findById((long)-1);
+    }
+
+    @Test
+    public void findByPhoneId()
+    {
+        stock.create(stock1);
+        stock.create(stock2);
+
+        Assert.assertEquals(stock.findByPhoneId(phone1.getId()), stock1);
+        Assert.assertEquals(stock.findByPhoneId(phone2.getId()), stock2);
+    }
+
+    @Test
+    public void findByAddressId()
+    {
+        stock.create(stock1);
+        stock.create(stock2);
+
+        Assert.assertEquals(stock.findByAddressId(address1.getId()), stock1);
+        Assert.assertEquals(stock.findByAddressId(address2.getId()), stock2);
     }
 }

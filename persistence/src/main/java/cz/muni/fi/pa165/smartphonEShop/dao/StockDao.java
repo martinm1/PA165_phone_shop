@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 
 import java.util.List;
@@ -45,6 +46,20 @@ public interface StockDao
      * @return stock with given name, null if no such exists.
      */
     Stock findByName(String name);
+
+    /**
+     * Find stock with specific address id in database.
+     * @param addressId primary key of address.
+     * @return stock with given address id.
+     */
+    Stock findByAddressId(Long addressId);
+
+    /**
+     * Find stock with specific phone id in database.
+     * @param phoneId primary key of phone.
+     * @return stock with given phone id.
+     */
+    Stock findByPhoneId(Long phoneId);
 
     /**
      * @return List of all stocks in database.

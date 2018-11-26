@@ -90,8 +90,7 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public void addClaim(Long orderId, Long claimId)
-    {
+    public void addClaim(Long orderId, Long claimId) {
         orderService.addClaim(orderId, claimId);
     }
 

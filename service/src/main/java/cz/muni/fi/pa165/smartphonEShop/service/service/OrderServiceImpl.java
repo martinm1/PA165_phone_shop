@@ -2,10 +2,10 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.dao.ClaimDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.OrderDao;
+import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,19 +57,28 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void addClaim(Long orderId, Long claimId) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        orderDao.findById(orderId).addClaim(claimDao.findById(claimId));
+        Order order = orderDao.findById(orderId);
+        Claim claim = claimDao.findById(claimId);
+
+        /*if(order.getClaims().size() >= 3)
+            throw new TooManyClaimsException("Already 3 claims!");*/
+
+        order.addClaim(claim);
+        orderDao.update(order);
     }
 
     @Override
     public Long createOrder(Order order) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         orderDao.create(order);
         return order.getId();
     }
 
     @Override
     public void removeClaim(Long orderId, Long claimId) {
-        orderDao.findById(orderId).removeClaim(claimDao.findById(claimId));
+        Order order = orderDao.findById(orderId);
+        Claim claim = claimDao.findById(claimId);
+
+        order.removeClaim(claim);
+        orderDao.update(order);
     }
 }

@@ -53,8 +53,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void addOrder(Long personId, Long orderId) {
-        //TODO:: add method to PersonDAO
-        personDao.findById(personId).addOrder(orderDao.findById(orderId));
+        Person person = personDao.findById(personId);
+        Order order = orderDao.findById(orderId);
+
+        person.addOrder(order);
+        personDao.update(person);
     }
 
     @Override
