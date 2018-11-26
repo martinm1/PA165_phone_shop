@@ -29,10 +29,10 @@ public class Stock {
     @Column(nullable=false,unique=true)
     private String name;
   
-    @OneToMany(mappedBy = "stock")
+    @OneToMany//(mappedBy = "stock")
     private List<Phone> phones = new ArrayList<>();
 
-    @OneToOne(mappedBy = "stock")
+    @OneToOne//(mappedBy = "stock")
     @NotNull
     private Address address;
 
