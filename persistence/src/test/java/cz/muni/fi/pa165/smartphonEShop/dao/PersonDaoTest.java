@@ -127,6 +127,39 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         Assert.assertEquals(person2, person.findById(person2.getId()));
 
     }
+    
+    @Test
+    public void findByEmail()
+    {
+        person.create(person1);
+        person.create(person2);
+
+        Assert.assertEquals(person1, person.findByEmail(person1.getEmail()));
+        Assert.assertEquals(person2, person.findByEmail(person2.getEmail()));
+
+    }
+    
+    @Test
+    public void findByPhoneNumber()
+    {
+        person.create(person1);
+        person.create(person2);
+
+        Assert.assertEquals(person1, person.findByPhoneNumber(person1.getPhoneNumber()));
+        Assert.assertEquals(person2, person.findByPhoneNumber(person2.getPhoneNumber()));
+
+    }
+    
+    @Test
+    public void findByPersonType()
+    {
+        person.create(person1);
+        person.create(person2);
+
+        Assert.assertTrue(person.findByPersonType(person1.getPersonType()).contains(person1));
+        Assert.assertTrue(person.findByPersonType(person2.getPersonType()).contains(person2));
+
+    }
 
     @Test
     public void delete()
