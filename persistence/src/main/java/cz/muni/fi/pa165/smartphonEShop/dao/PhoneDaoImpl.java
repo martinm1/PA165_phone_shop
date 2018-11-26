@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -27,7 +28,7 @@ public class PhoneDaoImpl implements PhoneDao{
     public void create(Phone phone)
     {
         if (phone == null){
-            throw new IllegalArgumentException("Phone is null!");
+            throw new DAOException("Phone is null!");
         }
         em.persist(phone);
     }
@@ -36,7 +37,7 @@ public class PhoneDaoImpl implements PhoneDao{
     public void update(Phone phone)
     {
         if (phone == null){
-            throw new IllegalArgumentException("Phone is null!");
+            throw new DAOException("Phone is null!");
         }
         em.merge(phone);
     }
@@ -45,7 +46,7 @@ public class PhoneDaoImpl implements PhoneDao{
     public void delete(Phone phone)
     {
         if (phone == null){
-            throw new IllegalArgumentException("Phone is null!");
+            throw new DAOException("Phone is null!");
         }
         if(em.contains(phone)) em.remove(phone);
         else {
@@ -58,7 +59,7 @@ public class PhoneDaoImpl implements PhoneDao{
     public Phone findById(Long id)
     {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("PhoneId is null or less than 0!");
+            throw new DAOException("PhoneId is null or less than 0!");
         }
         return em.find(Phone.class, id);
     }
@@ -72,24 +73,36 @@ public class PhoneDaoImpl implements PhoneDao{
 
     @Override
     public List<Phone> findPhonesByModelName(String modelName) {
+        if (modelName == null){
+            throw new DAOException("ModelName is null or less than 0!");
+        }
         return em.createQuery("SELECT p FROM Phone p WHERE p.modelName =: modelName", Phone.class)
                                 .setParameter("modelName", modelName).getResultList();
     }
 
     @Override
     public List<Phone> findPhonesByPriceInterval(int lowerBound, int upperBound) {
+        if (lowerBound > upperBound){
+            throw new DAOException("lowerBound is higher then upperBound");
+        }
         return em.createQuery("SELECT p FROM Phone p WHERE p.price <: upperBound AND p.price>: lowerBound", Phone.class)
                                 .setParameter("lowerBound", lowerBound).setParameter("upperBound", upperBound).getResultList();
     }
 
     @Override
     public List<Phone> findPhonesByTechnicalInfo(String technicalInfo) {
+        if (technicalInfo == null){
+            throw new DAOException("technicalInfo is null or less than 0!");
+        }
         return em.createQuery("SELECT p FROM Phone p WHERE p.technicalInfo =: technicalInfo", Phone.class)
                                 .setParameter("technicalInfo", technicalInfo).getResultList();
     }
 
     @Override
     public List<Phone> findPhonesByManufacturer(Manufacturer manufacturer) {
+        if (manufacturer == null){
+            throw new DAOException("Manufacturer is null or less than 0!");
+        }
         return em.createQuery("SELECT p FROM Phone p WHERE p.manufacturer =: manufacturer", Phone.class)
                                 .setParameter("manufacturer", manufacturer).getResultList();
     }

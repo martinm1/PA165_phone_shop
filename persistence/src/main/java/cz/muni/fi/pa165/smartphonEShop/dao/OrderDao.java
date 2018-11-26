@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
-import java.util.List;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 
 /**
  * Created by Stefan Holecko
@@ -15,7 +15,7 @@ public interface OrderDao {
     /**
      * Create new order in database
      * @param order to be created.
-     * @throws IllegalArgumentException when order is null.
+     * @throws DAOException when order is null.
      */
     void create(Order order);
 
@@ -23,7 +23,7 @@ public interface OrderDao {
     /**
      * Update order in database
      * @param order to be updated
-     * @throws IllegalArgumentException when order is null.
+     * @throws DAOException when order is null.
      */
     void update(Order order);
 
@@ -31,7 +31,7 @@ public interface OrderDao {
     /**
      * Delete order from database
      * @param order to be removed
-     * @throws IllegalArgumentException when order is null.
+     * @throws DAOException when order is null.
      */
     void delete(Order order);
 
@@ -40,7 +40,7 @@ public interface OrderDao {
      * Find order with specified ID in database.
      * @param id primary key of requested order.
      * @return order with given id, null if no such exists.
-     * @throws IllegalArgumentException when id is null or less than 0.
+     * @throws DAOException when id is null or less than 0.
      */
     Order findById(Long id);
 
@@ -54,7 +54,7 @@ public interface OrderDao {
      * Find orders with specific state.
      * @param state of order.
      * @return Collection of orders with given state.
-     * @throws IllegalArgumentException when state is null.
+     * @throws DAOException when state is null.
      */
     List<Order> findOrdersByOrderState(OrderState state);
     
@@ -62,7 +62,7 @@ public interface OrderDao {
      * Find orders with specific order date.
      * @param orderDate of order.
      * @return Collection of orders with given order date.
-     * @throws IllegalArgumentException when orderDate is null.
+     * @throws DAOException when orderDate is null.
      */
     List<Order> findOrdersByOrderDate(LocalDate orderDate);
     
@@ -70,7 +70,7 @@ public interface OrderDao {
      * Find orders with specific person.
      * @param personId of order.
      * @return Collection of orders with given person.
-     * @throws IllegalArgumentException when personId is null or less than 0.
+     * @throws DAOException when personId is null or less than 0.
      */
     List<Order> findOrdersByPersonId(Long personId);
     
@@ -78,7 +78,7 @@ public interface OrderDao {
      * Find orders with specific phone.
      * @param phoneId of order.
      * @return Collection of orders with given phone.
-     * @throws IllegalArgumentException when phoneId is null or less than 0.
+     * @throws DAOException when phoneId is null or less than 0.
      */
     List<Order> findOrdersByPhoneId(Long phoneId);
 }
