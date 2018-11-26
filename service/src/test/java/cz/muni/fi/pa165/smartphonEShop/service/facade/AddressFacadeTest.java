@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -27,7 +28,7 @@ import static org.mockito.Mockito.when;
  * Class represents: Tests for addressFacade class
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class AddressFacadeTest {
+public class AddressFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private AddressService addressService;
@@ -95,6 +96,7 @@ public class AddressFacadeTest {
 
     @Test
     public void findAllAddressesBy() {
+        //TODO
 
     }
 
@@ -103,7 +105,7 @@ public class AddressFacadeTest {
         Address address = new Address();
 
         AddressDTO addressDTO = new AddressDTO();
-        address.setId(111L);
+        addressDTO.setId(111L);
 
         doAnswer(invocationOnMock ->
         {
@@ -113,8 +115,11 @@ public class AddressFacadeTest {
 
         when(bms.mapTo(address, AddressDTO.class)).thenReturn(addressDTO);
 
+        System.out.println(addressDTO);
+
         Assert.assertNotNull(addressDTO.getId());
         Assert.assertEquals(111L, addressDTO.getId().longValue());
+
     }
 
     @Test

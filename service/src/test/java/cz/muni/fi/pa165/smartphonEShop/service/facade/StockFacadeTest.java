@@ -1,12 +1,12 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
-import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
 import org.hibernate.service.spi.ServiceException;
@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -21,6 +22,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.doAnswer;
@@ -31,7 +33,7 @@ import static org.mockito.Mockito.when;
  * Class represents: Tests for stockFacade class
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class StockFacadeTest {
+public class StockFacadeTest extends AbstractTestNGSpringContextTests {
 
 
     @Mock
@@ -47,7 +49,7 @@ public class StockFacadeTest {
     private Stock stock2;
 
     private Phone phone1;
-    private Phone phone2;
+    private PhoneDTO phoneDTO1;
 
 
     private StockDTO stockDTO1;
@@ -78,13 +80,15 @@ public class StockFacadeTest {
         //setAddress?
 
         phone1 = new Phone();
-        phone2 = new Phone();
+        phoneDTO1 = new PhoneDTO();
+        //phone2 = new Phone();
 
         phone1.setId(21L);
-        phone2.setId(22L);
+        phoneDTO1.setId(21L);
+        //phone2.setId(22L);
 
         stock1.addPhone(phone1);
-        stock2.addPhone(phone2);
+        //stock2.addPhone(phone2);
     }
 
     @Test
@@ -94,8 +98,8 @@ public class StockFacadeTest {
         when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
         when(bms.mapTo(stock2, StockDTO.class)).thenReturn(stockDTO2);
 
-        Assert.assertEquals(stockDTO1, stockFacade.findStockByAddressId(111L));
-        Assert.assertEquals(stockDTO2, stockFacade.findStockByAddressId(222L));
+        Assert.assertEquals(stockDTO1, stockFacade.findStockById(111L));
+        Assert.assertEquals(stockDTO2, stockFacade.findStockById(222L));
     }
 
     @Test
@@ -137,7 +141,7 @@ public class StockFacadeTest {
 
     @Test
     public void findStockByPhoneId() {
-
+        //TODO
     }
 
     @Test
@@ -158,7 +162,7 @@ public class StockFacadeTest {
         Stock stock = new Stock();
 
         StockDTO stockDTO = new StockDTO();
-        stock.setId(111L);
+        stockDTO.setId(111L);
 
         doAnswer(invocationOnMock ->
         {
@@ -174,6 +178,29 @@ public class StockFacadeTest {
 
     @Test
     public void addPhone() {
+//        Phone phoneAdd = new Phone();
+//        phoneAdd.setId(77L);
+//
+//        PhoneDTO phoneDTO = new PhoneDTO();
+//        phoneDTO.setId(77L);
+//
+//        doAnswer(invocationOnMock ->
+//        {
+//            stock2.addPhone(phoneAdd);
+//            return 77L;
+//        }).when(stockService).addPhone(222L, 77L);
+//
+//        doAnswer(invocationOnMock ->
+//        {
+//            stockDTO2.setPhones(Collections.singletonList(phoneDTO));
+//            return 77L;
+//        }).when(bms).mapTo(stock2, StockDTO.class);
+//
+//        when(stockService.findStockById(222L)).thenReturn(stock2);
+//        when(bms.mapTo(stock2, StockDTO.class)).thenReturn(stockDTO2);
+//
+//        stockFacade.addPhone(222L, 77L);
+//        Assert.assertTrue(stockFacade.findStockById(222L).getPhones().contains(phoneDTO));
 
     }
 

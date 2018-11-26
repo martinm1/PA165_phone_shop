@@ -84,6 +84,7 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findOrdersByOrderStateTest(){
+        //TODO
 
 //        List<Order> orders;
 //        when(orderDao.findOrdersByOrderState(OrderState.ACCEPTED);
@@ -106,6 +107,7 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findOrdersByOrderDateTest(){
+        //TODO
 
 
     }
@@ -113,22 +115,32 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findOrdersByPersonTest(){
+        //TODO
+
     }
 
     @Test
     public void findOrdersByPhoneTest(){
+        //TODO
+
     }
 
     @Test
     public void addClaimTest(){
+        //TODO
+
     }
 
     @Test
     public void removeClaimTest(){
+        //TODO
+
     }
 
     @Test
     public void createOrderTest(){
+        //TODO
+
     }
 
 
