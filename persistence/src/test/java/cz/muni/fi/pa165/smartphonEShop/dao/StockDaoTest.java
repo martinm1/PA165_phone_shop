@@ -87,8 +87,12 @@ public class StockDaoTest extends AbstractTestNGSpringContextTests
         phone1.setManufacturer(Manufacturer.APPLE);
         phone2.setManufacturer(Manufacturer.HTC);
 
+        phone1.setStock(stock1);
+        phone2.setStock(stock2);
+
         phoneDao.create(phone1);
         phoneDao.create(phone2);
+
 
         stock1.addPhone(phone1);
         stock2.addPhone(phone2);
