@@ -56,7 +56,7 @@ public class StockFacadeImpl implements StockFacade {
 
     @Override
     public void addPhone(Long stockId, Long phoneId) {
-        stockService.findStockById(stockId).addPhone(phoneService.findPhoneById(phoneId));
+        stockService.addPhone(stockId, phoneId);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class StockFacadeImpl implements StockFacade {
 
     @Override
     public void removePhone(Long stockId, Long phoneId) {
-        stockService.findStockById(stockId).removePhone(phoneService.findPhoneById(phoneId));
+        stockService.removePhone(stockId, phoneId);
     }
     
 }
