@@ -12,6 +12,7 @@ import java.util.Objects;
 /**
  * Created by Roman Nahalka
  * Class represents: Data transfer object of Person.
+ * @author xnahalka
  */
 
 @Getter

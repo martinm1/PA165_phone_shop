@@ -3,15 +3,17 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
-import java.util.Collection;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.PersistenceContext;;
 import java.util.List;
-import javax.persistence.NoResultException;
 
+/**
+ * Created by Roman Nahalka
+ * Class represents: JPA implementation of Person.
+ * @author xnahalka
+ */
 @Repository
 public class OrderDaoImpl implements OrderDao
 {

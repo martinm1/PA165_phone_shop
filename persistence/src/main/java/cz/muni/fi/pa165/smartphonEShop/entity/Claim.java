@@ -11,6 +11,8 @@ import java.util.Objects;
 
 /**
  * Created by Roman Nahalka
+ * Class represents: Claim entity.
+ * @author xnahalka
  */
 
 @Entity
