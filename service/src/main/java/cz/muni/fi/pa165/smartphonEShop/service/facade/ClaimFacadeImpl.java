@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.ClaimService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
@@ -21,6 +22,9 @@ public class ClaimFacadeImpl implements ClaimFacade
 {
     @Autowired
     private ClaimService claimService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private BeanMappingService bms;
@@ -80,6 +84,14 @@ public class ClaimFacadeImpl implements ClaimFacade
 
     public Long createClaim(ClaimDTO claim)
     {
+        Claim mappedClaim = new Claim();
+
+        mappedClaim.setOrder(orderService.findOrderById(claim.getOrder().getId()));
+        mappedClaim.setClaimState(claim.getClaimState());
+        mappedClaim.setReasonOfClaim(claim.getReasonOfClaim());
+        mappedClaim.setTechnicalReport(claim.getTechnicalReport());
+        mappedClaim.setWantedSolutionByCustomer(claim.getWantedSolutionByCustomer());
+
         return claimService.createClaim(bms.mapTo(claim, Claim.class));
     }
 }
