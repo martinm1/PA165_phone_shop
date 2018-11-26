@@ -220,17 +220,17 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         phone.create(phone1);
         phone.create(phone2);
 
-        List<Phone> phones = phone.findPhonesByPrice(123);
+        List<Phone> phones = phone.findPhonesByPrice(122,124);
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone1));
 
-        phones = phone.findPhonesByPrice(345);
+        phones = phone.findPhonesByPrice(344,346);
 
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone2));
 
-        phones = phone.findPhonesByPrice(678);
+        phones = phone.findPhonesByPrice(678,6000);
 
         Assert.assertEquals(phones.size(), 0);
     }

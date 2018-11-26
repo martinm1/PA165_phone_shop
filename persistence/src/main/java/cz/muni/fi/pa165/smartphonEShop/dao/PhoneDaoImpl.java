@@ -77,9 +77,9 @@ public class PhoneDaoImpl implements PhoneDao{
     }
 
     @Override
-    public List<Phone> findPhonesByPrice(int price) {
-        return em.createQuery("SELECT p FROM Phone p WHERE p.price =: price", Phone.class)
-                                .setParameter("price", price).getResultList();
+    public List<Phone> findPhonesByPrice(int lowerBound, int upperBound) {
+        return em.createQuery("SELECT p FROM Phone p WHERE p.price <: upperBound AND p.price>: lowerBound", Phone.class)
+                                .setParameter("lowerBound", lowerBound).setParameter("upperBound", upperBound).getResultList();
     }
 
     @Override
