@@ -48,12 +48,11 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     private Stock stock1;
     private Stock stock2;
 
-    private Phone phone1;
-    private PhoneDTO phoneDTO1;
-
-
     private StockDTO stockDTO1;
     private StockDTO stockDTO2;
+
+    private Phone phone1;
+
 
     @BeforeClass
     public void setup() throws ServiceException {
@@ -77,22 +76,17 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
         stockDTO1.setName("Sklad1");
         stockDTO2.setName("Sklad2");
 
-        //setAddress?
-
         phone1 = new Phone();
-        phoneDTO1 = new PhoneDTO();
-        //phone2 = new Phone();
+        PhoneDTO phoneDTO1 = new PhoneDTO();
 
         phone1.setId(21L);
         phoneDTO1.setId(21L);
-        //phone2.setId(22L);
 
         stock1.addPhone(phone1);
-        //stock2.addPhone(phone2);
     }
 
     @Test
-    public void findStockById() {
+    public void findStockByIdTest() {
         when(stockService.findStockById(111L)).thenReturn(stock1);
         when(stockService.findStockById(222L)).thenReturn(stock2);
         when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
@@ -103,7 +97,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findStockByName() {
+    public void findStockByNameTest() {
         when(stockService.findStockByName("Sklad1")).thenReturn(stock1);
         when(stockService.findStockByName("Sklad2")).thenReturn(stock2);
         when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
@@ -114,7 +108,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findStockByAddressId() {
+    public void findStockByAddressIdTest() {
         Address address1 = new Address();
         Address address2 = new Address();
         AddressDTO addressDTO1 = new AddressDTO();
@@ -140,12 +134,15 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findStockByPhoneId() {
-        //TODO
+    public void findStockByPhoneIdTest() {
+        when(stockService.findStockByPhoneId(21L)).thenReturn(stock1);
+        when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
+
+        Assert.assertEquals(stockDTO1,stockFacade.findStockByPhoneId(21L));
     }
 
     @Test
-    public void getAllStocks() {
+    public void getAllStocksTest() {
         List<Stock> stocks = Arrays.asList(stock1, stock2);
         List<StockDTO> stockDTOS = Arrays.asList(stockDTO1, stockDTO2);
 
@@ -158,7 +155,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void createStock() {
+    public void createStockTest() {
         Stock stock = new Stock();
 
         StockDTO stockDTO = new StockDTO();
@@ -177,38 +174,62 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void addPhone() {
-        //TODO
-//        Phone phoneAdd = new Phone();
-//        phoneAdd.setId(77L);
-//
-//        PhoneDTO phoneDTO = new PhoneDTO();
-//        phoneDTO.setId(77L);
-//
-//        doAnswer(invocationOnMock ->
-//        {
-//            stock2.addPhone(phoneAdd);
-//            return 77L;
-//        }).when(stockService).addPhone(222L, 77L);
-//
-//        doAnswer(invocationOnMock ->
-//        {
-//            stockDTO2.setPhones(Collections.singletonList(phoneDTO));
-//            return 77L;
-//        }).when(bms).mapTo(stock2, StockDTO.class);
-//
-//        when(stockService.findStockById(222L)).thenReturn(stock2);
-//        when(bms.mapTo(stock2, StockDTO.class)).thenReturn(stockDTO2);
-//
-//        stockFacade.addPhone(222L, 77L);
-//        Assert.assertTrue(stockFacade.findStockById(222L).getPhones().contains(phoneDTO));
+    public void addPhoneTest() {
+        Phone phoneTest = new Phone();
+        phoneTest.setId(7L);
+
+        PhoneDTO phoneDTO = new PhoneDTO();
+        phoneDTO.setId(7L);
+
+        doAnswer(invocationOnMock ->
+        {
+            stock2.addPhone(phoneTest);
+            return 7L;
+        }).when(stockService).addPhone(stock2.getId(), 7L);
+
+        doAnswer(invocationOnMock ->
+        {
+            stockDTO2.setPhones(Collections.singletonList(phoneDTO));
+            return 7L;
+        }).when(bms).mapTo(stock2, StockDTO.class);
+
+
+        when(stockService.findStockById(stock2.getId())).thenReturn(stock2);
+        when(bms.mapTo(stock2, StockDTO.class)).thenReturn(stockDTO2);
+
+        Assert.assertTrue(stockService.findStockById(stock2.getId()).getPhones().isEmpty());
+
+        stockFacade.addPhone(stock2.getId(), 7L);
+
+        Assert.assertTrue(stockFacade.findStockById(stock2.getId()).getPhones().contains(phoneDTO));
+        Assert.assertTrue(stockService.findStockById(stock2.getId()).getPhones().contains(phoneTest));
 
     }
 
     @Test
-    public void removePhone() {
-        //TODO
+    public void removePhoneTest() {
+        PhoneDTO phoneDTO2 = new PhoneDTO();
+        phoneDTO2.setId(5L);
 
+        doAnswer(invocationOnMock ->
+        {
+            stock1.removePhone(phone1);
+            return 5L;
+        }).when(stockService).removePhone(stock1.getId(), 5L);
+
+        when(stockService.findStockById(stock1.getId())).thenReturn(stock1);
+        when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
+
+        when(bms.mapTo(phone1, PhoneDTO.class)).thenReturn(phoneDTO2);
+
+        bms.mapTo(phone1, PhoneDTO.class);
+
+        Assert.assertTrue(stockService.findStockById(stock1.getId()).getPhones().contains(phone1));
+
+        stockFacade.removePhone(stock1.getId(), 5L);
+
+        Assert.assertTrue(stockFacade.findStockById(stock1.getId()).getPhones().isEmpty());
+        Assert.assertTrue(stockService.findStockById(stock1.getId()).getPhones().isEmpty());
     }
 
 }

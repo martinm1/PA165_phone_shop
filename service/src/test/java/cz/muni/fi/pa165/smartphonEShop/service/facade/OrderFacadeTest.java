@@ -157,8 +157,8 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
     @Test
     public void findOrdersByPerson()
     {
-        when(orderService.findOrdersByPerson(1L)).thenReturn(Collections.singletonList(order1));
-        when(orderService.findOrdersByPerson(2L)).thenReturn(Collections.singletonList(order2));
+        when(orderService.findOrdersByPersonId(1L)).thenReturn(Collections.singletonList(order1));
+        when(orderService.findOrdersByPersonId(2L)).thenReturn(Collections.singletonList(order2));
         when(bms.mapTo(Collections.singletonList(order1), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO1));
         when(bms.mapTo(Collections.singletonList(order2), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO2));
 
@@ -176,8 +176,8 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
     @Test
     public void findOrdersByPhone()
     {
-        when(orderService.findOrdersByPhone(1L)).thenReturn(Collections.singletonList(order1));
-        when(orderService.findOrdersByPhone(2L)).thenReturn(Collections.singletonList(order2));
+        when(orderService.findOrdersByPhoneId(1L)).thenReturn(Collections.singletonList(order1));
+        when(orderService.findOrdersByPhoneId(2L)).thenReturn(Collections.singletonList(order2));
         when(bms.mapTo(Collections.singletonList(order1), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO1));
         when(bms.mapTo(Collections.singletonList(order2), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO2));
 

@@ -106,7 +106,7 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
         when(bms.mapTo(Collections.singletonList(phone1), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO1));
         when(bms.mapTo(Collections.singletonList(phone2), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO2));
 
-        Collection<PhoneDTO> foundPhones = phoneFacade.findPhonesByPrice(1);
+        Collection<PhoneDTO> foundPhones = phoneFacade.findPhonesByPrice(100);
         Assert.assertEquals(1,foundPhones.size());
         Assert.assertTrue(foundPhones.contains(phoneDTO1));
 
@@ -167,9 +167,4 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
         Assert.assertNotNull(phoneDTO.getId());
         Assert.assertEquals(3L, phoneDTO.getId().longValue());
     }
-
-
-
-
-
 }

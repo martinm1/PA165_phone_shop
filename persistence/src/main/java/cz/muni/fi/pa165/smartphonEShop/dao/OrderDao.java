@@ -69,12 +69,12 @@ public interface OrderDao {
      * @param personId of order.
      * @return Collection of orders with given person.
      */
-    List<Order> findOrdersByPerson(Long personId);
+    List<Order> findOrdersByPersonId(Long personId);
     
     /**
      * Find orders with specific phone.
      * @param phoneId of order.
      * @return Collection of orders with given phone.
      */
-    List<Order> findOrdersByPhone(Long phoneId);
+    List<Order> findOrdersByPhoneId(Long phoneId);
 }

@@ -40,13 +40,13 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Order> findOrdersByPerson(Long personId) {
-        return orderDao.findOrdersByPerson(personId);
+    public List<Order> findOrdersByPersonId(Long personId) {
+        return orderDao.findOrdersByPersonId(personId);
     }
 
     @Override
-    public List<Order> findOrdersByPhone(Long phoneId) {
-        return orderDao.findOrdersByPhone(phoneId);
+    public List<Order> findOrdersByPhoneId(Long phoneId) {
+        return orderDao.findOrdersByPhoneId(phoneId);
     }
    
 

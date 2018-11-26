@@ -54,7 +54,7 @@ public class PhoneFacadeImpl implements PhoneFacade {
 
     @Override
     public Collection<PhoneDTO> findPhonesByManufacturer(Manufacturer manufacturer) {
-        return beanMappingService.mapTo(phoneService.findPhonesByManufacture(manufacturer),PhoneDTO.class);
+        return beanMappingService.mapTo(phoneService.findPhonesByManufacturer(manufacturer),PhoneDTO.class);
     }
 
     @Override

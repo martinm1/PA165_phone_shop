@@ -84,7 +84,7 @@ public class AddressFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findAddressById() {
+    public void findAddressByIdTest() {
         when(addressService.findAddressById(111L)).thenReturn(address1);
         when(addressService.findAddressById(222L)).thenReturn(address2);
         when(bms.mapTo(address1, AddressDTO.class)).thenReturn(addressDTO1);
@@ -95,13 +95,13 @@ public class AddressFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void findAllAddressesBy() {
+    public void findAllAddressesByTest() {
         //TODO
 
     }
 
     @Test
-    public void createAddress() {
+    public void createAddressTest() {
         Address address = new Address();
 
         AddressDTO addressDTO = new AddressDTO();
@@ -123,7 +123,7 @@ public class AddressFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void getAllAddresses() {
+    public void getAllAddressesTest() {
         List<Address> addresses = Arrays.asList(address1, address2);
         List<AddressDTO> addressDTOList = Arrays.asList(addressDTO1, addressDTO2);
 
