@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
+import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
@@ -16,9 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
@@ -96,8 +95,29 @@ public class AddressFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void findAllAddressesByTest() {
-        //TODO
+        HashMap<AddressEnum, String> hashMap = new HashMap<>();
+        HashMap<AddressEnum, String> hashMap1 = new HashMap<>();
 
+        hashMap.put(AddressEnum.CITY, "Bratislava");
+        hashMap.put(AddressEnum.COUNTRY, "Slovakia");
+        hashMap.put(AddressEnum.STREET_NAME, "Rooseveltova");
+
+        hashMap1.put(AddressEnum.CITY, "Praha");
+        hashMap1.put(AddressEnum.COUNTRY, "Czech republic");
+
+        when(addressService.findAllAddressesBy(hashMap)).thenReturn(Collections.singletonList(address1));
+        when(addressService.findAllAddressesBy(hashMap1)).thenReturn(Collections.singletonList(address2));
+        when(bms.mapTo(Collections.singletonList(address1), AddressDTO.class)).thenReturn(Collections.singletonList(addressDTO1));
+        when(bms.mapTo(Collections.singletonList(address2), AddressDTO.class)).thenReturn(Collections.singletonList(addressDTO2));
+
+        Collection<AddressDTO> addresses1 = addressFacade.findAllAddressesBy(hashMap);
+        Collection<AddressDTO> addresses2 = addressFacade.findAllAddressesBy(hashMap1);
+
+        Assert.assertTrue(addresses1.contains(addressDTO1));
+        Assert.assertEquals(1,addresses1.size());
+
+        Assert.assertTrue(addresses2.contains(addressDTO2));
+        Assert.assertEquals(1,addresses2.size());
     }
 
     @Test

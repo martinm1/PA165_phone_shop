@@ -70,7 +70,7 @@ public class AddressDaoImpl implements AddressDao {
         if(specificator.containsKey(AddressEnum.CITY)){
             Set<Address> temp = new HashSet<>();
 
-            temp.addAll(entityManager.createQuery("select a from Address a where a.city = :city").
+            temp.addAll(entityManager.createQuery("select a from Address a where a.city = :city", Address.class).
                     setParameter("city", specificator.get(AddressEnum.CITY)).
                     getResultList());
 
@@ -84,7 +84,7 @@ public class AddressDaoImpl implements AddressDao {
         if(specificator.containsKey(AddressEnum.COUNTRY)){
             Set<Address> temp = new HashSet<>();
 
-            temp.addAll(entityManager.createQuery("select a from Address a where a.country = :country").
+            temp.addAll(entityManager.createQuery("select a from Address a where a.country = :country", Address.class).
                     setParameter("country", specificator.get(AddressEnum.CITY)).
                     getResultList());
 
@@ -98,7 +98,7 @@ public class AddressDaoImpl implements AddressDao {
         if(specificator.containsKey(AddressEnum.STREET_NAME)){
             Set<Address> temp = new HashSet<>();
 
-            temp.addAll(entityManager.createQuery("select a from Address a where a.streetName = :streetName").
+            temp.addAll(entityManager.createQuery("select a from Address a where a.streetName = :streetName", Address.class).
                     setParameter("streetName", specificator.get(AddressEnum.CITY)).
                     getResultList());
 
@@ -112,7 +112,7 @@ public class AddressDaoImpl implements AddressDao {
         if(specificator.containsKey(AddressEnum.STREET_NUMBER)){
             Set<Address> temp = new HashSet<>();
 
-            temp.addAll(entityManager.createQuery("select a from Address a where a.streetNumber = :streetNumber").
+            temp.addAll(entityManager.createQuery("select a from Address a where a.streetNumber = :streetNumber", Address.class).
                     setParameter("streetNumber", specificator.get(AddressEnum.CITY)).
                     getResultList());
 

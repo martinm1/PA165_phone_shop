@@ -22,8 +22,6 @@ public class StockFacadeImpl implements StockFacade {
     @Autowired
     private StockService stockService;
 
-    @Autowired
-    private PhoneService phoneService;
     
     @Autowired
     private BeanMappingService beanMappingService;
@@ -83,5 +81,4 @@ public class StockFacadeImpl implements StockFacade {
     public void removePhone(Long stockId, Long phoneId) {
         stockService.removePhone(stockId, phoneId);
     }
-    
 }
