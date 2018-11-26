@@ -66,7 +66,7 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public Collection<OrderDTO> findOrdersByPerson(Long personId)
+    public Collection<OrderDTO> findOrdersByPersonId(Long personId)
     {
         List<Order> orders = orderService.findOrdersByPersonId(personId);
 
@@ -74,7 +74,7 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public Collection<OrderDTO> findOrdersByPhone(Long phoneId)
+    public Collection<OrderDTO> findOrdersByPhoneId(Long phoneId)
     {
         List<Order> orders = orderService.findOrdersByPhoneId(phoneId);
 

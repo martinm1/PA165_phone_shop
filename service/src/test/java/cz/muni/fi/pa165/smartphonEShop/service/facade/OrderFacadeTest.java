@@ -159,12 +159,12 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
         when(bms.mapTo(Collections.singletonList(order1), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO1));
         when(bms.mapTo(Collections.singletonList(order2), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO2));
 
-        Collection<OrderDTO> ordtos = orderFacade.findOrdersByPerson(1L);
+        Collection<OrderDTO> ordtos = orderFacade.findOrdersByPersonId(1L);
 
         Assert.assertEquals(ordtos.size(), 1);
         Assert.assertTrue(ordtos.contains(orderDTO1));
 
-        ordtos = orderFacade.findOrdersByPerson(2L);
+        ordtos = orderFacade.findOrdersByPersonId(2L);
 
         Assert.assertEquals(ordtos.size(), 1);
         Assert.assertTrue(ordtos.contains(orderDTO2));
@@ -178,12 +178,12 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
         when(bms.mapTo(Collections.singletonList(order1), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO1));
         when(bms.mapTo(Collections.singletonList(order2), OrderDTO.class)).thenReturn(Collections.singletonList(orderDTO2));
 
-        Collection<OrderDTO> ordtos = orderFacade.findOrdersByPhone(1L);
+        Collection<OrderDTO> ordtos = orderFacade.findOrdersByPhoneId(1L);
 
         Assert.assertEquals(ordtos.size(), 1);
         Assert.assertTrue(ordtos.contains(orderDTO1));
 
-        ordtos = orderFacade.findOrdersByPhone(2L);
+        ordtos = orderFacade.findOrdersByPhoneId(2L);
 
         Assert.assertEquals(ordtos.size(), 1);
         Assert.assertTrue(ordtos.contains(orderDTO2));
