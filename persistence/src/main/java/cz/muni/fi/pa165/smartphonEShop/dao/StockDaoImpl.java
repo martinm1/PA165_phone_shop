@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import org.springframework.stereotype.Repository;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +27,7 @@ public class StockDaoImpl implements StockDao{
     public void create(Stock stock)
     {
         if (stock == null){
-            throw new IllegalArgumentException("Stock is null!");
+            throw new DAOException("Stock is null!");
         }
         em.persist(stock);
     }
@@ -35,7 +36,7 @@ public class StockDaoImpl implements StockDao{
     public void update(Stock stock)
     {
         if (stock == null){
-            throw new IllegalArgumentException("Stock is null!");
+            throw new DAOException("Stock is null!");
         }
         em.merge(stock);
     }
@@ -44,7 +45,7 @@ public class StockDaoImpl implements StockDao{
     public void delete(Stock stock)
     {
         if (stock == null){
-            throw new IllegalArgumentException("Stock is null!");
+            throw new DAOException("Stock is null!");
         }
         if(em.contains(stock)) em.remove(stock);
         else {
@@ -57,7 +58,7 @@ public class StockDaoImpl implements StockDao{
     public Stock findById(Long id)
     {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("StockId is null or less than 0!");
+            throw new DAOException("StockId is null or less than 0!");
         }
         return em.find(Stock.class, id);
     }
@@ -71,7 +72,7 @@ public class StockDaoImpl implements StockDao{
     @Override
     public Stock findByName(String name) {
         if (name == null)
-            throw new IllegalArgumentException("Stock name is null!");
+            throw new DAOException("Stock name is null!");
 
         try
         {
@@ -88,7 +89,7 @@ public class StockDaoImpl implements StockDao{
     public Stock findByAddressId(Long addressId)
     {
         if (addressId == null)
-            throw new IllegalArgumentException("Address id is null!");
+            throw new DAOException("Address id is null!");
 
         try
         {
@@ -106,7 +107,7 @@ public class StockDaoImpl implements StockDao{
     public Stock findByPhoneId(Long phoneId)
     {
         if (phoneId == null)
-            throw new IllegalArgumentException("Phone id is null!");
+            throw new DAOException("Phone id is null!");
 
         try
         {

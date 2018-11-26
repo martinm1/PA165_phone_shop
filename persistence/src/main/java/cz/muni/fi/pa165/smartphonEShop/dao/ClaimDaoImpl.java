@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import org.springframework.stereotype.Repository;
 
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -18,7 +20,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public void create(Claim claim) {
         if (claim == null){
-            throw new IllegalArgumentException("claim is null!");
+            throw new DAOException("claim is null!");
         }
         entityManager.persist(claim);
     }
@@ -26,7 +28,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public void update(Claim claim) {
         if (claim == null){
-            throw new IllegalArgumentException("claim is null!");
+            throw new DAOException("claim is null!");
         }
         entityManager.merge(claim);
     }
@@ -34,7 +36,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public void delete(Claim claim) {
         if (claim == null){
-            throw new IllegalArgumentException("claim is null!");
+            throw new DAOException("claim is null!");
         }
         entityManager.remove(claim);
     }
@@ -42,7 +44,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public Claim findById(Long id) {
         if (id == null || id < 0){
-            throw new IllegalArgumentException("claim is null or less than 0!");
+            throw new DAOException("claim is null or less than 0!");
         }
         return entityManager.find(Claim.class, id);
     }
@@ -55,7 +57,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public List<Claim> findClaimByOrderId(Long orderId) {
         if (orderId == null || orderId < 0){
-            throw new IllegalArgumentException("orderId is null or less than 0!");
+            throw new DAOException("orderId is null or less than 0!");
         }
         return entityManager.createQuery("select c from Claim c join c.order o where o.id = :orderId",
                 Claim.class).
@@ -66,7 +68,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public List<Claim> findClaimByUserId(Long userId) {
         if (userId == null || userId < 0){
-            throw new IllegalArgumentException("orderId is null or less than 0!");
+            throw new DAOException("orderId is null or less than 0!");
         }
         return entityManager.createQuery
                 ("select c from Claim c join c.order o join o.person p where p.id = :userId", Claim.class).
@@ -77,7 +79,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public List<Claim> findClaimByClaimState(ClaimState claimState) {
         if (claimState == null){
-            throw new IllegalArgumentException("claimState is null!");
+            throw new DAOException("claimState is null!");
         }
         return entityManager.createQuery("select c from Claim c where c.claimState = :claimState",
                 Claim.class).
@@ -88,7 +90,7 @@ public class ClaimDaoImpl implements ClaimDao{
     @Override
     public List<Claim> findClaimByClaimSolution(ClaimSolution claimSolution) {
         if (claimSolution == null){
-            throw new IllegalArgumentException("claimState is null!");
+            throw new DAOException("claimState is null!");
         }
         return entityManager.createQuery("select c from Claim c where c.wantedSolutionByCustomer = :claimSolution",
                 Claim.class).
