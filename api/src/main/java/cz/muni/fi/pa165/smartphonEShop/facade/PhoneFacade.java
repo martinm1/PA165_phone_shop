@@ -25,10 +25,11 @@ public interface PhoneFacade {
 
     /**
      * Find phones with specific price.
-     * @param price of phone.
+     * @param lowerBound of price of phone.
+     * @param upperBound of price of phone.
      * @return Collection of phones with given price.
      */
-    Collection<PhoneDTO> findPhonesByPrice (int price);
+    Collection<PhoneDTO> findPhonesByPriceInterval (int lowerBound, int upperBound);
 
     /**
      * Find phones with specific technical info.

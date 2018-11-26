@@ -35,10 +35,11 @@ public interface PhoneService
 
     /**
      * Find phones with specific price.
-     * @param price of phone.
-     * @return List of phones with given price.
+     * @param lowerBound of price of phone.
+     * @param upperBound of price of phone.
+     * @return Collection of phones with given price.
      */
-    List<Phone> findPhonesByPrice(int price);
+    List<Phone> findPhonesByPrice(int lowerBound, int upperBound);
 
     /**
      * Find phones with specific technical information.

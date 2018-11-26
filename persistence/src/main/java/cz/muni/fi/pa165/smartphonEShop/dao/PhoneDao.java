@@ -61,7 +61,7 @@ public interface PhoneDao {
      * @param price of phone.
      * @return List of phones with given price.
      */
-    List<Phone> findPhonesByPrice(int price);
+    List<Phone> findPhonesByPrice(int lowerBound, int upperBound);
 
     /**
      * Find phones with specific technical information.

@@ -100,17 +100,17 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
     }
     @Test
     public void findPhonesByPrice() {
-        when(phoneService.findPhonesByPrice(100)).thenReturn(Collections.singletonList(phone1));
-        when(phoneService.findPhonesByPrice(1000)).thenReturn(Collections.singletonList(phone2));
+        when(phoneService.findPhonesByPrice(99, 101)).thenReturn(Collections.singletonList(phone1));
+        when(phoneService.findPhonesByPrice(999,1001)).thenReturn(Collections.singletonList(phone2));
 
         when(bms.mapTo(Collections.singletonList(phone1), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO1));
         when(bms.mapTo(Collections.singletonList(phone2), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO2));
 
-        Collection<PhoneDTO> foundPhones = phoneFacade.findPhonesByPrice(100);
+        Collection<PhoneDTO> foundPhones = phoneFacade.findPhonesByPriceInterval(99, 101);
         Assert.assertEquals(1,foundPhones.size());
         Assert.assertTrue(foundPhones.contains(phoneDTO1));
 
-        foundPhones = phoneFacade.findPhonesByPrice(1000);
+        foundPhones = phoneFacade.findPhonesByPriceInterval(999,1001);
         Assert.assertEquals(1,foundPhones.size());
         Assert.assertTrue(foundPhones.contains(phoneDTO2));
     }
