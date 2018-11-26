@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.dao.OrderDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.PersonDao;
-import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
@@ -15,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import org.springframework.test.context.ContextConfiguration;
@@ -191,11 +189,17 @@ public class PersonServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void registerPerson(){
         Person person = new Person();
-        
-        //TODO: Netestuje se personService!
 
-        personDao.create(person);
-        verify(personDao, times(1)).create(person);
+        doAnswer(invocationOnMock ->
+        {
+            person.setId(40L);
+            return 40L;
+        }).when(personDao).create(person);
+
+        personService.registerPerson(person, "heslo");
+
+        Assert.assertNotNull(person.getId());
+        Assert.assertEquals(person.getId().longValue(), 40L);
     }
     
     @Test
