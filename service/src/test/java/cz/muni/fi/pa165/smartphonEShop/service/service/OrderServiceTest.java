@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.smartphonEShop.service.service;
 
+import cz.muni.fi.pa165.smartphonEShop.dao.ClaimDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.OrderDao;
+import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
@@ -26,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
 /**
@@ -38,6 +41,9 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private OrderDao orderDao;
+
+    @Mock
+    private ClaimDao claimDao;
 
     @Autowired
     @InjectMocks
@@ -178,25 +184,54 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void addClaimTest(){
-        //TODO
+        Claim claim = new Claim();
+        Assert.assertTrue(!order1.getClaims().contains(claim));
+
+        when(claimDao.findById(claim.getId())).thenReturn(claim);
+        when(orderDao.findById(order1.getId())).thenReturn(order1);
+
+        orderService.addClaim(order1.getId(), claim.getId());
+
+        Assert.assertTrue(order1.getClaims().contains(claim));
 
     }
 
     @Test
     public void removeClaimTest(){
-        //TODO
+        Claim claim = new Claim();
+        Assert.assertTrue(!order1.getClaims().contains(claim));
+
+        when(claimDao.findById(claim.getId())).thenReturn(claim);
+        when(orderDao.findById(order1.getId())).thenReturn(order1);
+
+        orderService.addClaim(order1.getId(), claim.getId());
+
+        Assert.assertTrue(order1.getClaims().contains(claim));
+
+        orderService.removeClaim(order1.getId(), claim.getId());
+
+        Assert.assertTrue(!order1.getClaims().contains(claim));
 
     }
 
     @Test
     public void createOrderTest(){
-        //TODO
+        Order order = new Order();
+
+        doAnswer(invocationOnMock ->
+        {
+            order.setId(40L);
+            return 40L;
+        }).when(orderDao).create(order);
+
+        orderService.createOrder(order);
+        Assert.assertNotNull(order.getId());
+        Assert.assertEquals(40L, order.getId().longValue());
 
     }
 
     @Test
-    public void getAllOrdersTest()
-    {
+    public void getAllOrdersTest() {
         when(orderDao.findAll()).thenReturn(Stream.of(order1, order2, order3).collect(Collectors.toList()));
 
         List<Order> orders = orderService.getAllOrders();
