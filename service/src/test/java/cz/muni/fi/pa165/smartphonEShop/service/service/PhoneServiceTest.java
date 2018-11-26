@@ -127,8 +127,8 @@ public class PhoneServiceTest  extends AbstractTestNGSpringContextTests {
     public void findPhonesByPrice()
     {
         List<Phone> ret = Arrays.asList(phone2, phone3);
-        when(phoneDao.findPhonesByPrice(99, 101)).thenReturn(Collections.singletonList(phone1));
-        when(phoneDao.findPhonesByPrice(999,1001)).thenReturn(ret);
+        when(phoneDao.findPhonesByPriceInterval(99, 101)).thenReturn(Collections.singletonList(phone1));
+        when(phoneDao.findPhonesByPriceInterval(999,1001)).thenReturn(ret);
 
         List<Phone> phones = phoneService.findPhonesByPrice(99, 101);
 
@@ -183,8 +183,8 @@ public class PhoneServiceTest  extends AbstractTestNGSpringContextTests {
     public void findPhonesByStock()
     {
         List<Phone> ret = Arrays.asList(phone2, phone3);
-        when(phoneDao.findPhonesByStock(1L)).thenReturn(Collections.singletonList(phone1));
-        when(phoneDao.findPhonesByStock(2L)).thenReturn(ret);
+        when(phoneDao.findPhonesByStockId(1L)).thenReturn(Collections.singletonList(phone1));
+        when(phoneDao.findPhonesByStockId(2L)).thenReturn(ret);
 
         List<Phone> phones = phoneService.findPhonesByStock(1L);
 
