@@ -64,7 +64,7 @@ public class PhoneServiceImpl implements PhoneService
     }
 
     @Override
-    public List<Phone> findAllPhones()
+    public List<Phone> getAllPhones()
     {
         return phoneDao.findAll();
     }

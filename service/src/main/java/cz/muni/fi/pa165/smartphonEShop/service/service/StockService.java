@@ -50,7 +50,7 @@ public interface StockService
      * Find all stocks.
      * @return List of all stocks.
      */
-    List<Stock> findAllStocks();
+    List<Stock> getAllStocks();
 
     /**
      * Add specific phone to specific stock.

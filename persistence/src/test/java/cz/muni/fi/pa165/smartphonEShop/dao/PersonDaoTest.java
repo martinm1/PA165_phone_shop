@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.dao;
 
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.DAOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -193,31 +194,31 @@ public class PersonDaoTest extends  AbstractTestNGSpringContextTests{
         Assert.assertEquals(person1, person.findById(person1.getId()));
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void createNull()
     {
         person.create(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void updateNull()
     {
         person.update(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void deleteNull()
     {
         person.delete(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNull()
     {
         person.findById(null);
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expectedExceptions = DAOException.class)
     public void findByIdNegative()
     {
         person.findById((long)-1);
