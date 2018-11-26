@@ -43,8 +43,8 @@ public class PhoneFacadeImpl implements PhoneFacade {
     }
 
     @Override
-    public Collection<PhoneDTO> findPhonesByPrice(int price) {
-        return beanMappingService.mapTo(phoneService.findPhonesByPrice(price),PhoneDTO.class);
+    public Collection<PhoneDTO> findPhonesByPriceInterval(int lowerBound, int upperBound) {
+        return beanMappingService.mapTo(phoneService.findPhonesByPrice(lowerBound, upperBound),PhoneDTO.class);
     }
 
     @Override

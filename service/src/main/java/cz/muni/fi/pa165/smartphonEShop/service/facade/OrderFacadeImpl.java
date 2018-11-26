@@ -6,6 +6,8 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.PersonService;
+import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,12 @@ public class OrderFacadeImpl implements OrderFacade
 {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private PersonService personService;
+
+    @Autowired
+    private PhoneService phoneService;
 
     @Autowired
     private BeanMappingService bms;
@@ -96,6 +104,13 @@ public class OrderFacadeImpl implements OrderFacade
     @Override
     public Long createOrder(OrderDTO order)
     {
+        Order mappedOrder = new Order();
+
+        mappedOrder.setOrderDate(order.getOrderDate());
+        mappedOrder.setPerson(personService.findPersonById(order.getPerson().getId()));
+        mappedOrder.setPhone(phoneService.findPhoneById(order.getPhone().getId()));
+        mappedOrder.setState(order.getState());
+
         return orderService.createOrder(bms.mapTo(order, Order.class));
     }
 }

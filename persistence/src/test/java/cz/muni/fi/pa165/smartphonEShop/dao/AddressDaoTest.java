@@ -11,6 +11,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import cz.muni.fi.pa165.smartphonEShop.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
+import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.BeforeMethod;
 /**
@@ -149,4 +151,25 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
     {
         address.findById((long)-1);
     }
+    /*
+    @Test
+    public void findAllAddressesBy(){
+        HashMap<AddressEnum, String> hashMap = new HashMap<>();
+        HashMap<AddressEnum, String> hashMap1 = new HashMap<>();
+
+        hashMap.put(AddressEnum.CITY, "Brno");
+        hashMap.put(AddressEnum.COUNTRY, "Česko");
+
+        hashMap1.put(AddressEnum.CITY, "Bratislava");
+        hashMap1.put(AddressEnum.COUNTRY, "Slovensko");
+
+        List<Address> addresses =  address.findAllAddressesBy(hashMap);
+        List<Address> addresses1 = address.findAllAddressesBy(hashMap1);
+
+        Assert.assertTrue(addresses.contains(address1));
+        Assert.assertFalse(addresses.contains(address2));
+        
+        Assert.assertTrue(addresses1.contains(address2));
+        Assert.assertFalse(addresses1.contains(address1));
+    }*/
 }

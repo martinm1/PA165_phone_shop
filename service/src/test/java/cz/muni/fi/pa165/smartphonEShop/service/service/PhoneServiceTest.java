@@ -127,15 +127,15 @@ public class PhoneServiceTest  extends AbstractTestNGSpringContextTests {
     public void findPhonesByPrice()
     {
         List<Phone> ret = Arrays.asList(phone2, phone3);
-        when(phoneDao.findPhonesByPrice(100)).thenReturn(Collections.singletonList(phone1));
-        when(phoneDao.findPhonesByPrice(1000)).thenReturn(ret);
+        when(phoneDao.findPhonesByPrice(99, 101)).thenReturn(Collections.singletonList(phone1));
+        when(phoneDao.findPhonesByPrice(999,1001)).thenReturn(ret);
 
-        List<Phone> phones = phoneService.findPhonesByPrice(100);
+        List<Phone> phones = phoneService.findPhonesByPrice(99, 101);
 
         Assert.assertEquals(1, phones.size());
         Assert.assertTrue(phones.contains(phone1));
 
-        phones = phoneService.findPhonesByPrice(1000);
+        phones = phoneService.findPhonesByPrice(999,1001);
 
         Assert.assertEquals(2, phones.size());
         Assert.assertTrue(phones.contains(phone2));
