@@ -208,23 +208,28 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void removePhoneTest() {
-        PhoneDTO phoneDTO = new PhoneDTO();
-        phoneDTO.setId(phone1.getId());
+        PhoneDTO phoneDTO2 = new PhoneDTO();
+        phoneDTO2.setId(5L);
 
         doAnswer(invocationOnMock ->
         {
             stock1.removePhone(phone1);
-            return 111L;
-        }).when(stockService).removePhone(stock1.getId(), phone1.getId());
+            return 5L;
+        }).when(stockService).removePhone(stock1.getId(), 5L);
 
         when(stockService.findStockById(stock1.getId())).thenReturn(stock1);
         when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
-        when(bms.mapTo(phone1, PhoneDTO.class)).thenReturn(phoneDTO);
+
+        when(bms.mapTo(phone1, PhoneDTO.class)).thenReturn(phoneDTO2);
 
         bms.mapTo(phone1, PhoneDTO.class);
 
-        stockFacade.removePhone(stock1.getId(), phone1.getId());
-        Assert.assertNull(stockFacade.findStockById(stock1.getId()).getPhones());
+        Assert.assertTrue(stockService.findStockById(stock1.getId()).getPhones().contains(phone1));
+
+        stockFacade.removePhone(stock1.getId(), 5L);
+
+        Assert.assertTrue(stockFacade.findStockById(stock1.getId()).getPhones().isEmpty());
+        Assert.assertTrue(stockService.findStockById(stock1.getId()).getPhones().isEmpty());
     }
 
 }
