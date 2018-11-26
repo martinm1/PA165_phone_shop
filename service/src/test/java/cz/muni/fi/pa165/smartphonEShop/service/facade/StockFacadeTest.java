@@ -51,6 +51,9 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
     private StockDTO stockDTO1;
     private StockDTO stockDTO2;
 
+    private Phone phone1;
+
+
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
@@ -73,7 +76,7 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
         stockDTO1.setName("Sklad1");
         stockDTO2.setName("Sklad2");
 
-        Phone phone1 = new Phone();
+        phone1 = new Phone();
         PhoneDTO phoneDTO1 = new PhoneDTO();
 
         phone1.setId(21L);
@@ -172,14 +175,56 @@ public class StockFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void addPhoneTest() {
-        //TODO
+        Phone phoneTest = new Phone();
+        phoneTest.setId(7L);
 
+        PhoneDTO phoneDTO = new PhoneDTO();
+        phoneDTO.setId(7L);
+
+        doAnswer(invocationOnMock ->
+        {
+            stock2.addPhone(phoneTest);
+            return 7L;
+        }).when(stockService).addPhone(stock2.getId(), 7L);
+
+        doAnswer(invocationOnMock ->
+        {
+            stockDTO2.setPhones(Collections.singletonList(phoneDTO));
+            return 7L;
+        }).when(bms).mapTo(stock2, StockDTO.class);
+
+
+        when(stockService.findStockById(stock2.getId())).thenReturn(stock2);
+        when(bms.mapTo(stock2, StockDTO.class)).thenReturn(stockDTO2);
+
+        Assert.assertTrue(stockService.findStockById(stock2.getId()).getPhones().isEmpty());
+
+        stockFacade.addPhone(stock2.getId(), 7L);
+
+        Assert.assertTrue(stockFacade.findStockById(stock2.getId()).getPhones().contains(phoneDTO));
+        Assert.assertTrue(stockService.findStockById(stock2.getId()).getPhones().contains(phoneTest));
 
     }
 
     @Test
     public void removePhoneTest() {
-        //TODO
+        PhoneDTO phoneDTO = new PhoneDTO();
+        phoneDTO.setId(phone1.getId());
+
+        doAnswer(invocationOnMock ->
+        {
+            stock1.removePhone(phone1);
+            return 111L;
+        }).when(stockService).removePhone(stock1.getId(), phone1.getId());
+
+        when(stockService.findStockById(stock1.getId())).thenReturn(stock1);
+        when(bms.mapTo(stock1, StockDTO.class)).thenReturn(stockDTO1);
+        when(bms.mapTo(phone1, PhoneDTO.class)).thenReturn(phoneDTO);
+
+        bms.mapTo(phone1, PhoneDTO.class);
+
+        stockFacade.removePhone(stock1.getId(), phone1.getId());
+        Assert.assertNull(stockFacade.findStockById(stock1.getId()).getPhones());
     }
 
 }
