@@ -51,7 +51,7 @@ public class PhoneServiceImpl implements PhoneService
     }
 
     @Override
-    public List<Phone> findPhonesByManufacture(Manufacturer manufacturer)
+    public List<Phone> findPhonesByManufacturer(Manufacturer manufacturer)
     {
         return phoneDao.findPhonesByManufacturer(manufacturer);
     }
