@@ -19,10 +19,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
@@ -238,10 +235,10 @@ public class OrderFacadeTest extends AbstractTestNGSpringContextTests
 
         bms.mapTo(claim, ClaimDTO.class);
 
+        Assert.assertTrue(orderService.findOrderById(10L).getClaims().contains(claim));
+
         orderFacade.removeClaim(10L, 5L);
-        //Assert.assertEquals(orderFacade.findOrderById(10L).getClaims().size(), 0);
-        //Assert.assertFalse(orderFacade.findOrderById(10L).getClaims().contains(claimDTO));
-        Assert.assertNull(orderFacade.findOrderById(10L).getClaims());
+        Assert.assertNull(orderFacade.findOrderById(10L).getClaims()); //Null, because dozer map empty List to null.
     }
 
     @Test
