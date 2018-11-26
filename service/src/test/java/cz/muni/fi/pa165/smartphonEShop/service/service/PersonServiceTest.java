@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.service;
 
 import cz.muni.fi.pa165.smartphonEShop.dao.OrderDao;
 import cz.muni.fi.pa165.smartphonEShop.dao.PersonDao;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
@@ -15,13 +16,13 @@ import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+
 import org.springframework.test.context.ContextConfiguration;
 import org.mockito.Mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -32,7 +33,7 @@ import org.testng.annotations.Test;
  * @author martin
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class PersonServiceTest {
+public class PersonServiceTest extends AbstractTestNGSpringContextTests {
     @Mock
     private PersonDao personDao;
     
@@ -80,6 +81,9 @@ public class PersonServiceTest {
         
         person1.setPersonType(PersonType.ADMIN);
         person2.setPersonType(PersonType.SIGNED_USER);
+
+        person1.setPasswordHash("ssss");
+        person2.setPasswordHash("llll");
         
         Address address1 = new Address();
         Address address2 = new Address();
@@ -188,6 +192,8 @@ public class PersonServiceTest {
     public void registerPerson(){
         Person person = new Person();
         
+        //TODO: Netestuje se personService!
+
         personDao.create(person);
         verify(personDao, times(1)).create(person);
     }
@@ -208,5 +214,21 @@ public class PersonServiceTest {
         personService.removeOrder(person1.getId(), order.getId());
         
         Assert.assertTrue(!person1.getOrders().contains(order));
+    }
+
+    @Test
+    public void authTest()
+    {
+        Person person = new Person();
+
+        doAnswer(invocationOnMock ->
+        {
+            person.setId(40L);
+            return 40L;
+        }).when(personDao).create(person);
+
+        personService.registerPerson(person, "heslo");
+
+        Assert.assertTrue(personService.auth(person, "heslo"));
     }
 }

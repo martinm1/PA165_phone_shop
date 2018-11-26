@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
@@ -333,5 +334,18 @@ public class PersonFacadeTest extends AbstractTestNGSpringContextTests {
 
         Assert.assertNotNull(personDTO.getId());
         Assert.assertEquals(30L, personDTO.getId().longValue());
+    }
+
+    @Test
+    public void authPerson()
+    {
+        PersonAuthDTO personAuth = new PersonAuthDTO();
+        personAuth.setPersonID(10L);
+        personAuth.setPass("ssss");
+
+        when(personService.findPersonById(10L)).thenReturn(person1);
+        when(personService.auth(person1, "ssss")).thenReturn(true);
+
+        Assert.assertTrue(personFacade.auth(personAuth));
     }
 }
