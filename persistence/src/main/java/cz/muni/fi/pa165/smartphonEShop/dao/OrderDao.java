@@ -54,6 +54,7 @@ public interface OrderDao {
      * Find orders with specific state.
      * @param state of order.
      * @return Collection of orders with given state.
+     * @throws IllegalArgumentException when state is null.
      */
     List<Order> findOrdersByOrderState(OrderState state);
     
@@ -61,6 +62,7 @@ public interface OrderDao {
      * Find orders with specific order date.
      * @param orderDate of order.
      * @return Collection of orders with given order date.
+     * @throws IllegalArgumentException when orderDate is null.
      */
     List<Order> findOrdersByOrderDate(LocalDate orderDate);
     
@@ -68,6 +70,7 @@ public interface OrderDao {
      * Find orders with specific person.
      * @param personId of order.
      * @return Collection of orders with given person.
+     * @throws IllegalArgumentException when personId is null or less than 0.
      */
     List<Order> findOrdersByPersonId(Long personId);
     
@@ -75,6 +78,7 @@ public interface OrderDao {
      * Find orders with specific phone.
      * @param phoneId of order.
      * @return Collection of orders with given phone.
+     * @throws IllegalArgumentException when phoneId is null or less than 0.
      */
     List<Order> findOrdersByPhoneId(Long phoneId);
 }

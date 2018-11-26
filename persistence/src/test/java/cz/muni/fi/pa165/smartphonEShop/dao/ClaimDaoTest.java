@@ -172,7 +172,7 @@ public class ClaimDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(1, claimDao.findClaimByUserId(person.getId()).size());
         Assert.assertTrue(claimDao.findClaimByUserId(person.getId()).contains(claim1));
     }
-    
+
     @Test
     public void findClaimByClaimState() {
         claimDao.create(claim1);

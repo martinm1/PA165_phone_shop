@@ -80,7 +80,7 @@ public class OrderDaoImpl implements OrderDao
 
     @Override
     public List<Order> findOrdersByPersonId(Long personId) {
-        if (personId == null)
+        if (personId == null || personId < 0)
             throw new IllegalArgumentException("Person id date is null!");
         
         return em.createQuery("SELECT o FROM Order o WHERE o.person.id =: personId", Order.class)
@@ -89,7 +89,7 @@ public class OrderDaoImpl implements OrderDao
 
     @Override
     public List<Order> findOrdersByPhoneId(Long phoneId) {
-        if (phoneId == null)
+        if (phoneId == null || phoneId < 0)
             throw new IllegalArgumentException("Phone id date is null!");
         
         return em.createQuery("SELECT o FROM Order o WHERE o.phone.id =: phoneId", Order.class)

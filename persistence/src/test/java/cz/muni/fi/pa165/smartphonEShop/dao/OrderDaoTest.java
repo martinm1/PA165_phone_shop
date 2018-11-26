@@ -104,10 +104,10 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         order1.setState(OrderState.CREATED);
 
         order2 = new Order();
-        order2.setOrderDate(LocalDate.ofYearDay(2018,10));
+        order2.setOrderDate(LocalDate.ofYearDay(2018,11));
         order2.setPerson(person);
         order2.setPhone(phone);
-        order2.setState(OrderState.CREATED);
+        order2.setState(OrderState.FINISHED);
 
     }
 
@@ -165,6 +165,53 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(OrderState.FINISHED, orderDao.findById(order1.getId()).getState());
     }
 
+
+    @Test
+    public void findOrdersByOrderState() {
+        orderDao.create(order1);
+        orderDao.create(order2);
+
+        Assert.assertEquals(1, orderDao.findOrdersByOrderState(order1.getState()).size());
+        Assert.assertEquals(1, orderDao.findOrdersByOrderState(order2.getState()).size());
+
+        Assert.assertTrue(orderDao.findOrdersByOrderState(order1.getState()).contains(order1));
+        Assert.assertTrue(orderDao.findOrdersByOrderState(order2.getState()).contains(order2));
+    }
+
+    @Test
+    public void findOrdersByOrderDate() {
+        orderDao.create(order1);
+        orderDao.create(order2);
+
+        Assert.assertEquals(1, orderDao.findOrdersByOrderDate(order1.getOrderDate()).size());
+        Assert.assertEquals(1, orderDao.findOrdersByOrderDate(order2.getOrderDate()).size());
+
+        Assert.assertTrue(orderDao.findOrdersByOrderDate(order1.getOrderDate()).contains(order1));
+        Assert.assertTrue(orderDao.findOrdersByOrderDate(order2.getOrderDate()).contains(order2));
+    }
+
+    @Test
+    public void findOrdersByPersonId() {
+        orderDao.create(order1);
+        orderDao.create(order2);
+
+        Assert.assertEquals(2, orderDao.findOrdersByPersonId(order1.getPerson().getId()).size());
+
+        Assert.assertTrue(orderDao.findOrdersByPersonId(order1.getPerson().getId()).contains(order1));
+        Assert.assertTrue(orderDao.findOrdersByPersonId(order1.getPerson().getId()).contains(order2));
+    }
+
+    @Test
+    public void findOrdersByPhoneId() {
+        orderDao.create(order1);
+        orderDao.create(order2);
+
+        Assert.assertEquals(2, orderDao.findOrdersByPhoneId(order1.getPhone().getId()).size());
+
+        Assert.assertTrue(orderDao.findOrdersByPhoneId(order1.getPhone().getId()).contains(order1));
+        Assert.assertTrue(orderDao.findOrdersByPhoneId(order1.getPhone().getId()).contains(order2));
+    }
+
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void createNull()
     {
@@ -194,4 +241,29 @@ public class OrderDaoTest extends AbstractTestNGSpringContextTests {
     {
         orderDao.findById((long)-1);
     }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findOrdersByPersonIdNull()
+    {
+        orderDao.findOrdersByPersonId(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findOrdersByPhoneIdNull()
+    {
+        orderDao.findOrdersByPhoneId(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findOrdersByOrderDateNull()
+    {
+        orderDao.findOrdersByOrderDate(null);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void findOrdersByOrderStateNull()
+    {
+        orderDao.findOrdersByOrderState(null);
+    }
+
 }
