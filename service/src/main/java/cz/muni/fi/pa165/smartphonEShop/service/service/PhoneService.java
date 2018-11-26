@@ -52,7 +52,7 @@ public interface PhoneService
      * @param manufacturer of phones.
      * @return List of phones with given manufacturer.
      */
-    List<Phone> findPhonesByManufacture(Manufacturer manufacturer);
+    List<Phone> findPhonesByManufacturer(Manufacturer manufacturer);
 
     /**
      * Find phones with specific stock.
