@@ -188,5 +188,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
     <module>persistence</module>
     <module>api</module>
     <module>service</module>
+    <module>spring-mvc</module>
+    <module>rest</module>
+    <module>ws</module>
 </modules>
 </project>
