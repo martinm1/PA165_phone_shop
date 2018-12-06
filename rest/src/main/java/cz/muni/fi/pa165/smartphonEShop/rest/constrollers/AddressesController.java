@@ -23,12 +23,22 @@ public class AddressesController
     @Inject
     private AddressFacade addressFacade;
 
+    /**
+     * Get collection of addresses
+     * @return AddressDTO
+     */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final Collection<AddressDTO> getAddresses()
     {
         return addressFacade.getAllAddresses();
     }
 
+    /**
+     * Get Address by id.
+     * @param id primary key for address.
+     * @return AddressDTO
+     * @throws ResourceNotFoundException
+     */
     @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final AddressDTO getAddress(@PathVariable("id") long id)
     {
@@ -41,9 +51,15 @@ public class AddressesController
             throw new ResourceNotFoundException();
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE
-                    , produces = MediaType.APPLICATION_JSON_VALUE)
-    public final AddressDTO createAddress(@RequestBody AddressDTO addressDTO) throws Exception
+    /**
+     * Create a new address.
+     * @param addressDTO with required field for creation.
+     * @return created address.
+     * @throws ResourceAlreadyExistingException
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    public final AddressDTO createAddress(@RequestBody AddressDTO addressDTO)
     {
         try
         {

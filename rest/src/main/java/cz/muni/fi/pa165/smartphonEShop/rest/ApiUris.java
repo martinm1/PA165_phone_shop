@@ -1,6 +1,9 @@
 package cz.muni.fi.pa165.smartphonEShop.rest;
 
-
+/**
+ * Created by Roman Nahalka
+ * @author xnahalka
+ */
 public abstract class ApiUris
 {
     public static final String ROOT_URI_ADDRESSES = "/addresses";
