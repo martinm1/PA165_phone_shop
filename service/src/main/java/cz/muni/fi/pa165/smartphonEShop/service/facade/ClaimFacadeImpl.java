@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
@@ -83,16 +84,27 @@ public class ClaimFacadeImpl implements ClaimFacade
 
     @Override
 
-    public Long createClaim(ClaimDTO claim)
+    public Long createClaim(ClaimCreateDTO claim)
     {
         Claim mappedClaim = new Claim();
 
         mappedClaim.setOrder(orderService.findOrderById(claim.getOrder().getId()));
-        mappedClaim.setClaimState(claim.getClaimState());
+        mappedClaim.setClaimState(ClaimState.CREATED);
         mappedClaim.setReasonOfClaim(claim.getReasonOfClaim());
-        mappedClaim.setTechnicalReport(claim.getTechnicalReport());
         mappedClaim.setWantedSolutionByCustomer(claim.getWantedSolutionByCustomer());
 
         return claimService.createClaim(bms.mapTo(claim, Claim.class));
+    }
+
+    @Override
+    public void acceptClaim(Long id)
+    {
+
+    }
+
+    @Override
+    public void rejectClaim(Long id)
+    {
+
     }
 }

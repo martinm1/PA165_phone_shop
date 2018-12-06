@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dao.ClaimDao;
 import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
+import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,29 @@ public class ClaimServiceImpl implements ClaimService {
     public Long createClaim(Claim claim) {
         claimDao.create(claim);
         return claim.getId();
+    }
+
+    @Override
+    public void acceptClaim(Claim claim)
+    {
+        isInCreatedState(claim);
+        claim.setClaimState(ClaimState.ACCEPTED);
+
+        claimDao.update(claim);
+    }
+
+    @Override
+    public void rejectClaim(Claim claim)
+    {
+        isInCreatedState(claim);
+        claim.setClaimState(ClaimState.REJECTED);
+
+        claimDao.update(claim);
+    }
+
+    private void isInCreatedState(Claim claim)
+    {
+        if(claim.getClaimState() != ClaimState.CREATED)
+            throw new EshopServiceException("Cannot change state from another state then created!");
     }
 }

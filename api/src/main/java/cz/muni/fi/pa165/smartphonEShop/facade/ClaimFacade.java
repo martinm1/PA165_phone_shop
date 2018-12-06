@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
@@ -59,6 +60,10 @@ public interface ClaimFacade {
      * Register new claim to system.
      * @param claim New claim.
      */
-    Long createClaim(ClaimDTO claim);
+    Long createClaim(ClaimCreateDTO claim);
+
+    void acceptClaim(Long id);
+
+    void rejectClaim(Long id);
 
 }
