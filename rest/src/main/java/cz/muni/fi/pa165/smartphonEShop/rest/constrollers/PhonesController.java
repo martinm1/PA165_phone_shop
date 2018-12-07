@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.rest.constrollers;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
+import cz.muni.fi.pa165.smartphonEShop.rest.ApiUris;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceAlreadyExistingException;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceNotFoundException;
 import java.util.Collection;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author martin
  */
+@RestController
+@RequestMapping(ApiUris.ROOT_URI_PHONES)
 public class PhonesController {
     @Inject
     private PhoneFacade phoneFacade;
