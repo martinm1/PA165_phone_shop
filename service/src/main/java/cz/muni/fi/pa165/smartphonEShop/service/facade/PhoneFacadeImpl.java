@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PhoneCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
@@ -69,7 +70,7 @@ public class PhoneFacadeImpl implements PhoneFacade {
 
 
     @Override
-    public Long createPhone(PhoneDTO phoneDTO) {
+    public Long createPhone(PhoneCreateDTO phoneDTO) {
         Phone phone = new Phone();
 
         phone.setManufacturer(phoneDTO.getManufacturer());
