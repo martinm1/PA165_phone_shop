@@ -80,4 +80,15 @@ public interface OrderService {
      */
     void cancelOrder(Order order);
 
+    /**
+     * Sets orderState to accepted.
+     * @param order to be set to accepted.
+     */
+    void acceptOrder(Order order);
+
+    /**
+     * Sets orderState to finished.
+     * @param order to be set to finished.
+     */
+    void finishOrder(Order order);
 }

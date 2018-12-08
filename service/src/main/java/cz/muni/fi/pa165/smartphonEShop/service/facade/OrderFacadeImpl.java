@@ -119,4 +119,14 @@ public class OrderFacadeImpl implements OrderFacade
     public void cancelOrder(Long id) {
         orderService.cancelOrder(orderService.findOrderById(id));
     }
+
+    @Override
+    public void acceptOrder(Long id) {
+        orderService.acceptOrder(orderService.findOrderById(id));
+    }
+
+    @Override
+    public void finishOrder(Long id) {
+        orderService.finishOrder(orderService.findOrderById(id));
+    }
 }

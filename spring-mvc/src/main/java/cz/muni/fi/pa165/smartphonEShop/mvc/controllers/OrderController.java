@@ -25,7 +25,6 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Stefan Holecko
@@ -136,7 +135,28 @@ public class OrderController {
         return "redirect:" + uriBuilder.path("/order/detail/{id}").buildAndExpand(id).encode().toUriString();
     }
 
+    @RequestMapping(value = "/finish/{id}", method = RequestMethod.POST)
+    public String finish(@PathVariable long id, Model model,UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes) {
+        try {
+            orderFacade.finishOrder(id);
+            redirectAttributes.addFlashAttribute("alert_success", "Order number "+id+" was finished.");
+        } catch (EshopServiceException ex) {
+            log.warn("cannot finish order {}",id);
+            redirectAttributes.addFlashAttribute("alert_danger", "Order number "+id+" was not finished. "+ex.getMessage());
+        }
+        return "redirect:" + uriBuilder.path("/order/detail/{id}").buildAndExpand(id).encode().toUriString();
+    }
 
-
+    @RequestMapping(value = "/accept/{id}", method = RequestMethod.POST)
+    public String accept(@PathVariable long id, Model model,UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes) {
+        try {
+            orderFacade.acceptOrder(id);
+            redirectAttributes.addFlashAttribute("alert_success", "Order number "+id+" was accepted.");
+        } catch (EshopServiceException ex) {
+            log.warn("cannot accept order {}", id);
+            redirectAttributes.addFlashAttribute("alert_danger", "Order number "+id+" was not accepted. "+ex.getMessage());
+        }
+        return "redirect:" + uriBuilder.path("/order/detail/{id}").buildAndExpand(id).encode().toUriString();
+    }
 
 }

@@ -80,4 +80,16 @@ public interface OrderFacade {
      * @param id of order.
      */
     void cancelOrder(Long id);
+
+    /**
+     * Sets orderState to accepted.
+     * @param id of order.
+     */
+    void acceptOrder(Long id);
+
+    /**
+     * Sets orderState to finished.
+     * @param id of order.
+     */
+    void finishOrder(Long id);
 }

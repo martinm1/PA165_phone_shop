@@ -90,14 +90,30 @@ public class OrderServiceImpl implements OrderService{
     @Override
     //TODO TEST
     public void cancelOrder(Order order) {
-        if (order.getState() != OrderState.ACCEPTED){
+        if (order.getState() != OrderState.CREATED){
             throw new EshopServiceException(("The transition from: " + order.getState()
                     + " to ACCEPTED is not allowed!"));
         }
         order.setState(OrderState.CANCELED);
     }
 
+    @Override
+    //TODO TEST
+    public void acceptOrder(Order order) {
+        if (order.getState() != OrderState.CREATED){
+            throw new EshopServiceException(("The transition from: " + order.getState()
+                    + " to ACCEPTED is not allowed!"));
+        }
+        order.setState(OrderState.ACCEPTED);
+    }
 
-
-
+    @Override
+    //TODO TEST
+    public void finishOrder(Order order) {
+        if (order.getState() != OrderState.ACCEPTED){
+            throw new EshopServiceException(("The transition from: " + order.getState()
+                    + " to FINISHED is not allowed!"));
+        }
+        order.setState(OrderState.FINISHED);
+    }
 }
