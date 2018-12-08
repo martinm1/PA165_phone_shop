@@ -40,4 +40,14 @@ public class OrderCreateDTO {
     public int hashCode() {
         return Objects.hash(getState(), getOrderDate(), getPerson(), getPhone());
     }
+
+    @Override
+    public String toString() {
+        return "OrderCreateDTO{" +
+                "state=" + state +
+                ", orderDate=" + orderDate +
+                ", person=" + person +
+                ", phone=" + phone +
+                '}';
+    }
 }

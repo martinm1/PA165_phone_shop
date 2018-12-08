@@ -64,6 +64,5 @@ public interface PhoneFacade {
      * @param phone New phone.
      * @return phone id
      */
-    //Long createPhone(PhoneDTO phone);
     Long createPhone(PhoneCreateDTO phone);
 }

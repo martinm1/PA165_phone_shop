@@ -135,7 +135,7 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findPhonesByManufacturer() {
         when(phoneService.findPhonesByManufacturer(Manufacturer.APPLE)).thenReturn(Collections.singletonList(phone1));
-        when(phoneService.findPhonesByManufacturer(Manufacturer.HUEAWEI)).thenReturn(Collections.singletonList(phone2));
+        when(phoneService.findPhonesByManufacturer(Manufacturer.HUAWEI)).thenReturn(Collections.singletonList(phone2));
 
         when(bms.mapTo(Collections.singletonList(phone1), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO1));
         when(bms.mapTo(Collections.singletonList(phone2), PhoneDTO.class)).thenReturn(Collections.singletonList(phoneDTO2));
@@ -144,7 +144,7 @@ public class PhoneFacadeTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(1,foundPhones.size());
         Assert.assertTrue(foundPhones.contains(phoneDTO1));
 
-        foundPhones = phoneFacade.findPhonesByManufacturer(Manufacturer.HUEAWEI);
+        foundPhones = phoneFacade.findPhonesByManufacturer(Manufacturer.HUAWEI);
         Assert.assertEquals(1,foundPhones.size());
         Assert.assertTrue(foundPhones.contains(phoneDTO2));
 

@@ -275,7 +275,7 @@ public class PhoneDaoTest extends AbstractTestNGSpringContextTests
         Assert.assertEquals(phones.size(), 1);
         Assert.assertTrue(phones.contains(phone2));
 
-        phones = phone.findPhonesByManufacturer(Manufacturer.HUEAWEI);
+        phones = phone.findPhonesByManufacturer(Manufacturer.HUAWEI);
 
         Assert.assertEquals(phones.size(), 0);
     }
