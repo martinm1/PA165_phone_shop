@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 
@@ -71,5 +72,12 @@ public interface OrderFacade {
      * Register new order to system.
      * @param order New order.
      */
-    Long createOrder(OrderDTO order);
+    Long createOrder(OrderCreateDTO order);
+
+
+    /**
+     * Sets orderState to canceled.
+     * @param id of order.
+     */
+    void cancelOrder(Long id);
 }

@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
@@ -102,15 +103,20 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public Long createOrder(OrderDTO order)
+    public Long createOrder(OrderCreateDTO order)
     {
         Order mappedOrder = new Order();
 
         mappedOrder.setOrderDate(order.getOrderDate());
         mappedOrder.setPerson(personService.findPersonById(order.getPerson().getId()));
         mappedOrder.setPhone(phoneService.findPhoneById(order.getPhone().getId()));
-        mappedOrder.setState(order.getState());
+        mappedOrder.setState(OrderState.CREATED);
 
         return orderService.createOrder(bms.mapTo(order, Order.class));
+    }
+
+    @Override
+    public void cancelOrder(Long id) {
+        orderService.cancelOrder(orderService.findOrderById(id));
     }
 }

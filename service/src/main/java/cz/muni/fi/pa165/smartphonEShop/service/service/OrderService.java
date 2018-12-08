@@ -73,4 +73,11 @@ public interface OrderService {
      * @return id of created order.
      */
     Long createOrder(Order order);
+
+    /**
+     * Sets orderState to canceled.
+     * @param order to be set to canceled.
+     */
+    void cancelOrder(Order order);
+
 }
