@@ -50,8 +50,10 @@ public class OrderController {
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     //TODO personId, phoneId date???
+    // dalo by sa to cez HttpServletRequest ale to sa neodporuca podla vzoroveho riesenia
     public String list(@PathVariable String filter, Model model, Long personId, Long phoneId, LocalDate date) {
         Collection<OrderDTO> orders;
+
         switch (filter) {
             case "all":
                 orders = orderFacade.getAllOrders(); break;

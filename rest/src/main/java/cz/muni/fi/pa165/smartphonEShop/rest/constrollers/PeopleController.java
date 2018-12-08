@@ -69,7 +69,7 @@ public class PeopleController {
      * @return PersonDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final PersonDTO getPersonByEmail(@PathVariable("email") String email) throws Exception {
 
         logger.debug("rest getPersonByEmail({})", email);
@@ -88,7 +88,7 @@ public class PeopleController {
      * @return PersonDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{phone_number}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final PersonDTO getPersonByPhoneNumber(@PathVariable("phone_number") String phoneNumber) throws Exception {
 
         logger.debug("rest getPersonByEmail({})", phoneNumber);

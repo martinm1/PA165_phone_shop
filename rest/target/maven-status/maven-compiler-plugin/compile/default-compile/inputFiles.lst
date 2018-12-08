@@ -1,7 +1,9 @@
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/Initializer.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/exceptions/ResourceNotFoundException.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/constrollers/AddressesController.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/exceptions/ResourceAlreadyExistingException.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/exceptions/InvalidParameteException.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/ApiUris.java
-/home/martin/data-linux/projects/PA165/PA165_phone_shop/rest/src/main/java/cz/muni/fi/pa165/smartphonEShop/rest/constrollers/StocksController.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\Initializer.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\constrollers\AddressesController.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\constrollers\StocksController.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\ApiUris.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\constrollers\PhonesController.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\exceptions\InvalidParameteException.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\constrollers\PeopleController.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\exceptions\ResourceAlreadyExistingException.java
+C:\Users\stevo\Downloads\pa165\PA165_phone_shop\rest\src\main\java\cz\muni\fi\pa165\smartphonEShop\rest\exceptions\ResourceNotFoundException.java
