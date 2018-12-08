@@ -33,7 +33,7 @@ public class PhoneController {
     }
 
     /**
-     * Prepares an empty form for order.
+     * Prepares an empty form for phone.
      *
      * @param model data to be displayed
      * @return JSP page
@@ -44,4 +44,6 @@ public class PhoneController {
         model.addAttribute("phoneCreate", new PhoneCreateDTO());
         return "phone/new";
     }
+
+
 }
