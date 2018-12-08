@@ -49,27 +49,28 @@ public class OrderController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
-    public String list(@PathVariable String filter, Model model) {
+    //TODO personId, phoneId date???
+    public String list(@PathVariable String filter, Model model, Long personId, Long phoneId, LocalDate date) {
         Collection<OrderDTO> orders;
         switch (filter) {
             case "all":
-                orders = orderFacade.getAllOrders();
-                break;
+                orders = orderFacade.getAllOrders(); break;
             case "created":
-                orders = orderFacade.findOrdersByOrderState(OrderState.CREATED);
-                break;
+                orders = orderFacade.findOrdersByOrderState(OrderState.CREATED); break;
             case "finished":
-                orders = orderFacade.findOrdersByOrderState(OrderState.FINISHED);
-                break;
+                orders = orderFacade.findOrdersByOrderState(OrderState.FINISHED); break;
             case "canceled":
-                orders = orderFacade.findOrdersByOrderState(OrderState.CANCELED);
-                break;
+                orders = orderFacade.findOrdersByOrderState(OrderState.CANCELED); break;
             case "accepted":
-                orders = orderFacade.findOrdersByOrderState(OrderState.ACCEPTED);
-                break;
+                orders = orderFacade.findOrdersByOrderState(OrderState.ACCEPTED); break;
             case "outdated":
-                orders = orderFacade.findOrdersByOrderState(OrderState.OUTDATED);
-                break;
+                orders = orderFacade.findOrdersByOrderState(OrderState.OUTDATED); break;
+            case "by_person_id":
+                orders = orderFacade.findOrdersByPersonId(personId); break;
+            case "by_phone_id":
+                orders = orderFacade.findOrdersByPhoneId(phoneId); break;
+            case "date":
+                orders = orderFacade.findOrdersByOrderDate(date); break;
             default:
                 orders = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);

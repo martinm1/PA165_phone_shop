@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -42,7 +43,9 @@ public class PhoneController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
-    public String list(@PathVariable String filter, Model model) {
+    public String list(@PathVariable String filter, Model model,
+                       String modelName, Long stockId, String technicalInfo,
+                       int priceLowerBound, int priceUpperBound) {
         Collection<PhoneDTO> phones;
         switch (filter) {
             case "all":
@@ -62,6 +65,18 @@ public class PhoneController {
                 break;
             case "lg":
                 phones = phoneFacade.findPhonesByManufacturer(Manufacturer.LG);
+                break;
+            case "model_name":
+                phones = phoneFacade.findPhonesByModelName(modelName);
+                break;
+            case "stock_id":
+                phones = phoneFacade.findPhonesByStockID(stockId);
+                break;
+            case "technicalInfo":
+                phones = phoneFacade.findPhonesByTechnicalInfo(technicalInfo);
+                break;
+            case "price":
+                phones = phoneFacade.findPhonesByPriceInterval(priceLowerBound,priceUpperBound);
                 break;
             default:
                 phones = new ArrayList<>();
