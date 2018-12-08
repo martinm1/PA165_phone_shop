@@ -28,7 +28,7 @@ import java.util.Collection;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: Order spring mvc controller.
  */
 
 @Controller

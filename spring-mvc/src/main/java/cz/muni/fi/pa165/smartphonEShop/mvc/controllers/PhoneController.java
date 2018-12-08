@@ -18,13 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by Stefan Holecko
- * Class represents:
+ * Class represents: Phone spring mvc controller.
  */
 
 public class PhoneController {
