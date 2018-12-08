@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.StockCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import java.util.Collection;
 
@@ -48,7 +49,7 @@ public interface StockFacade {
      * Register new stock to system.
      * @param stock New stock.
      */
-    Long createStock(StockDTO stock);
+    Long createStock(StockCreateDTO stock);
 
     /**
      * Add specific phone to specific stock.

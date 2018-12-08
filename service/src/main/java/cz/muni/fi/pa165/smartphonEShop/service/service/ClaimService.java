@@ -61,4 +61,8 @@ public interface ClaimService {
      * @param claim New claim.
      */
     Long createClaim(Claim claim);
+
+    void acceptClaim(Claim claim);
+
+    void rejectClaim(Claim claim);
 }

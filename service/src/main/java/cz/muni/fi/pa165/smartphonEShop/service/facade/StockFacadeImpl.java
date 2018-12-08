@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.StockCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
@@ -58,7 +59,7 @@ public class StockFacadeImpl implements StockFacade {
     }
 
     @Override
-    public Long createStock(StockDTO stockDTO) {
+    public Long createStock(StockCreateDTO stockDTO) {
         List<Phone> phones = new ArrayList();
         Stock newstock = new Stock();
         
@@ -68,8 +69,7 @@ public class StockFacadeImpl implements StockFacade {
         address.setCountry(stockDTO.getAddress().getCountry());
         address.setStreetName(stockDTO.getAddress().getStreetName());
         address.setStreetNumber(stockDTO.getAddress().getStreetNumber());
-        
-        newstock.setId(stockDTO.getId());
+
         newstock.setAddress(address);
         newstock.setName(stockDTO.getName());
         newstock.setPhones(phones);
