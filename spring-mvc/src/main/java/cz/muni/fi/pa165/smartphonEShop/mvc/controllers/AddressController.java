@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -31,7 +28,7 @@ public class AddressController {
     private AddressFacade addressFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model, String country, String city, String street, String number)
+    public String list(Model model, @RequestParam(value = "country") String country, @RequestParam(value = "city")String city,@RequestParam(value = "street") String street,@RequestParam(value = "number") String number)
     {
 
         HashMap<AddressEnum,String> specificator = new HashMap<>();
@@ -43,7 +40,6 @@ public class AddressController {
             specificator.put(AddressEnum.STREET_NAME, street);
         if(number != null)
             specificator.put(AddressEnum.STREET_NUMBER, number);
-
 
         if(specificator.size() == 0) {
             model.addAttribute("addresses", addressFacade.getAllAddresses());

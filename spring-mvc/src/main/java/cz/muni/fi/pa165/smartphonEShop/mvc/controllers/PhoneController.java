@@ -10,10 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -34,7 +31,7 @@ public class PhoneController {
     private PhoneFacade phoneFacade;
 
     /**
-     * Shows a list of all phones and filtered by specified manufacturer,
+     * Shows a list of all phones filtered by specified manufacturer,
      * with the ability to add, delete or edit.
      *
      * @param filter selects which phones should be displayed
@@ -42,16 +39,9 @@ public class PhoneController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
-    //TODO modelName, stockId, technicalInfo, priceLowerBound, priceUpperBound???
-    // dalo by sa to cez HttpServletRequest ale to sa neodporuca podla vzoroveho riesenia
-    public String list(@PathVariable String filter, Model model,
-                       String modelName, Long stockId, String technicalInfo,
-                       int priceLowerBound, int priceUpperBound) {
+    public String listByManufacturer(@PathVariable String filter, Model model) {
         Collection<PhoneDTO> phones;
         switch (filter) {
-            case "all":
-                phones = phoneFacade.getAllPhones();
-                break;
             case "apple":
                 phones = phoneFacade.findPhonesByManufacturer(Manufacturer.APPLE);
                 break;
@@ -67,18 +57,6 @@ public class PhoneController {
             case "lg":
                 phones = phoneFacade.findPhonesByManufacturer(Manufacturer.LG);
                 break;
-            case "model_name":
-                phones = phoneFacade.findPhonesByModelName(modelName);
-                break;
-            case "stock_id":
-                phones = phoneFacade.findPhonesByStockID(stockId);
-                break;
-            case "technicalInfo":
-                phones = phoneFacade.findPhonesByTechnicalInfo(technicalInfo);
-                break;
-            case "price":
-                phones = phoneFacade.findPhonesByPriceInterval(priceLowerBound,priceUpperBound);
-                break;
             default:
                 phones = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
@@ -87,7 +65,44 @@ public class PhoneController {
         return "phone/list";
     }
 
+    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    public String listAll(Model model) {
+        Collection<PhoneDTO> phones = phoneFacade.getAllPhones();
+        model.addAttribute("phonesAll", phones);
+        return "phone/list";
+    }
 
+
+    @RequestMapping(value = "/listByTechnicalInfo", method = RequestMethod.GET)
+    public String listByTechnicalInfo(Model model, @RequestParam("technicalInfo") String technicalInfo) {
+        Collection<PhoneDTO> phones = phoneFacade.findPhonesByTechnicalInfo(technicalInfo);
+        model.addAttribute("listByTechnicalInfo", phones);
+        return "phone/list";
+    }
+
+    @RequestMapping(value = "/listByStockId", method = RequestMethod.GET)
+    public String listByStockId(Model model, @RequestParam("stockId") long stockId) {
+        Collection<PhoneDTO> phones = phoneFacade.findPhonesByStockID(stockId);
+        model.addAttribute("listByStockId", phones);
+        return "phone/list";
+    }
+
+    @RequestMapping(value = "/listByPrice", method = RequestMethod.GET)
+    public String listByPrice(Model model, @RequestParam("priceLow") int priceLow,
+                              @RequestParam("priceHigh") int priceHigh ) {
+        Collection<PhoneDTO> phones = phoneFacade.findPhonesByPriceInterval(priceLow,priceHigh);
+        model.addAttribute("listByPrice", phones);
+        return "phone/list";
+    }
+
+
+
+    @RequestMapping(value = "/listByModelName", method = RequestMethod.GET)
+    public String listByModelName(Model model, @RequestParam("modelName") String modelName) {
+        Collection<PhoneDTO> phones = phoneFacade.findPhonesByModelName(modelName);
+        model.addAttribute("listByModelName", phones);
+        return "phone/list";
+    }
 
     /**
      * Prepares an empty form for phone.
