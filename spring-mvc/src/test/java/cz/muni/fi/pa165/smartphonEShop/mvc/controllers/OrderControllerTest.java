@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,7 +16,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.print.attribute.standard.Media;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,7 +59,7 @@ public class OrderControllerTest
     }
 
     @Test
-    public void testList() throws Exception
+    public void listByStateTest() throws Exception
     {
         List<OrderDTO> orders = Collections.singletonList(orderDTO);
 

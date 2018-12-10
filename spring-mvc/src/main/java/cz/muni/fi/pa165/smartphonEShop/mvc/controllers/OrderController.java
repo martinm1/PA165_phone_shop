@@ -68,7 +68,7 @@ public class OrderController {
         return "order/list";
     }
 
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<OrderDTO> orders = orderFacade.getAllOrders();
         model.addAttribute("ordersAll", orders);
