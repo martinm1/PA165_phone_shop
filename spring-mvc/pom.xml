@@ -66,5 +66,26 @@
     <artifactId>spring-mvc</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <build>
+        <!-- what to do when only "mvn" is run -->
+        <defaultGoal>cargo:run</defaultGoal>
+        <!-- name of the produced war -->
+        <finalName>pa165</finalName>
+        <plugins>
+            <!--  embedded tomcat 8 -->
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+            </plugin>
+            <!--  embedded tomcat 7 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>/pa165</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     
 </project>

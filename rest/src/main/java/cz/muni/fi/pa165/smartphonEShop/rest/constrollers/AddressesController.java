@@ -64,7 +64,7 @@ public class AddressesController
     {
         try
         {
-            Long id = addressFacade.createAddress(addressDTO); //TODO: CreateDTO
+            Long id = addressFacade.createAddress(addressDTO);
             return addressFacade.findAddressById(id);
         }
 
