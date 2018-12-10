@@ -68,7 +68,7 @@ public class PhoneController {
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<PhoneDTO> phones = phoneFacade.getAllPhones();
-        model.addAttribute("listAll", phones);
+        model.addAttribute("phonesAll", phones);
         return "phone/list";
     }
 
