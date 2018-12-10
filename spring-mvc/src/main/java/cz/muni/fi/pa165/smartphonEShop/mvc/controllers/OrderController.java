@@ -13,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -40,7 +37,7 @@ public class OrderController {
     private OrderFacade orderFacade;
 
     /**
-     * Shows a list of all orders and filtered by specified orderState
+     * Shows a list of all orders filtered by specified orderState
      * with the ability to add, delete or edit.
      *
      * @param filter selects which orders should be displayed
@@ -48,14 +45,9 @@ public class OrderController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
-    //TODO personId, phoneId date???
-    // dalo by sa to cez HttpServletRequest ale to sa neodporuca podla vzoroveho riesenia
-    public String list(@PathVariable String filter, Model model, Long personId, Long phoneId, LocalDate date) {
+    public String listBySate(@PathVariable String filter, Model model) {
         Collection<OrderDTO> orders;
-
         switch (filter) {
-            case "all":
-                orders = orderFacade.getAllOrders(); break;
             case "created":
                 orders = orderFacade.findOrdersByOrderState(OrderState.CREATED); break;
             case "finished":
@@ -66,17 +58,39 @@ public class OrderController {
                 orders = orderFacade.findOrdersByOrderState(OrderState.ACCEPTED); break;
             case "outdated":
                 orders = orderFacade.findOrdersByOrderState(OrderState.OUTDATED); break;
-            case "by_person_id":
-                orders = orderFacade.findOrdersByPersonId(personId); break;
-            case "by_phone_id":
-                orders = orderFacade.findOrdersByPhoneId(phoneId); break;
-            case "date":
-                orders = orderFacade.findOrdersByOrderDate(date); break;
             default:
                 orders = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
         }
-        model.addAttribute("orders", orders);
+        model.addAttribute("ordersByState", orders);
+        return "order/list";
+    }
+
+    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    public String listAll(Model model) {
+        Collection<OrderDTO> orders = orderFacade.getAllOrders();
+        model.addAttribute("listAll", orders);
+        return "order/list";
+    }
+
+    @RequestMapping(value = "/listByPerson", method = RequestMethod.GET)
+    public String listByPersonId(Model model, @RequestParam("personId") long personId) {
+        Collection<OrderDTO> orders = orderFacade.findOrdersByPersonId(personId);
+        model.addAttribute("ordersByPersonId", orders);
+        return "order/list";
+    }
+
+    @RequestMapping(value = "/listByPhoneId/", method = RequestMethod.GET)
+    public String listByPhoneId(Model model, @RequestParam("phoneId") long phoneId) {
+        Collection<OrderDTO> orders = orderFacade.findOrdersByPhoneId(phoneId);
+        model.addAttribute("ordersByPhoneId", orders);
+        return "order/list";
+    }
+
+    @RequestMapping(value = "/listByDate", method = RequestMethod.GET)
+    public String listByDate(Model model, @RequestParam("date") LocalDate date) {
+        Collection<OrderDTO> orders = orderFacade.findOrdersByOrderDate(date);
+        model.addAttribute("ordersByDate", orders);
         return "order/list";
     }
 
