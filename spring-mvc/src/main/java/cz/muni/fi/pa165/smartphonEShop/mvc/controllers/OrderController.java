@@ -125,7 +125,7 @@ public class OrderController {
         Long id = orderFacade.createOrder(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Order " + id + " was created");
-        return "redirect:" + uriBuilder.path("/phone/list").toUriString();
+        return "redirect:" + uriBuilder.path("/order/list").toUriString();
     }
 
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)

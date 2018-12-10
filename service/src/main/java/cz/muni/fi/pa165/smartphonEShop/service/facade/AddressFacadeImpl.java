@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
@@ -50,11 +51,10 @@ public class AddressFacadeImpl implements AddressFacade{
     }
 
     @Override
-    public Long createAddress(AddressDTO addressDTO) {
+    public Long createAddress(AddressCreateDTO addressDTO) {
         List<Person> people = new ArrayList();
         
         Address address = new Address();
-        address.setId(addressDTO.getId());
         address.setCity(addressDTO.getCity());
         address.setCountry(addressDTO.getCountry());
         address.setPeople(people);
