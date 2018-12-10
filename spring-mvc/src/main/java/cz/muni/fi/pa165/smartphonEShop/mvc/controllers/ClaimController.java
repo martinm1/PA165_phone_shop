@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -69,7 +70,14 @@ public class ClaimController
 //            case "order_id":
 //                claims = claimFacade.findClaimByOrderId(id);
 //                break;
+
+            default:
+                claims = new ArrayList<>();
+                model.addAttribute("alert_danger", "Unkown filter " + filter);
         }
+
+        model.addAttribute("claims", claims);
+        return "claim/list";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
