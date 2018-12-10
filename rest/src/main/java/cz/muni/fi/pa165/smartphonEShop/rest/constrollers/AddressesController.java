@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.rest.constrollers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.AddressFacade;
 import cz.muni.fi.pa165.smartphonEShop.rest.ApiUris;
@@ -59,7 +60,7 @@ public class AddressesController
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
-    public final AddressDTO createAddress(@RequestBody AddressDTO addressDTO)
+    public final AddressDTO createAddress(@RequestBody AddressCreateDTO addressDTO)
     {
         try
         {
