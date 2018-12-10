@@ -6,8 +6,12 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Claim;
 import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
+import javafx.animation.Transition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +73,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Long createOrder(Order order) {
+        order.setState(OrderState.CREATED);
         orderDao.create(order);
         return order.getId();
     }
@@ -80,5 +85,35 @@ public class OrderServiceImpl implements OrderService{
 
         order.removeClaim(claim);
         orderDao.update(order);
+    }
+
+    @Override
+    //TODO TEST
+    public void cancelOrder(Order order) {
+        if (order.getState() != OrderState.CREATED){
+            throw new EshopServiceException(("The transition from: " + order.getState()
+                    + " to ACCEPTED is not allowed!"));
+        }
+        order.setState(OrderState.CANCELED);
+    }
+
+    @Override
+    //TODO TEST
+    public void acceptOrder(Order order) {
+        if (order.getState() != OrderState.CREATED){
+            throw new EshopServiceException(("The transition from: " + order.getState()
+                    + " to ACCEPTED is not allowed!"));
+        }
+        order.setState(OrderState.ACCEPTED);
+    }
+
+    @Override
+    //TODO TEST
+    public void finishOrder(Order order) {
+        if (order.getState() != OrderState.ACCEPTED){
+            throw new EshopServiceException(("The transition from: " + order.getState()
+                    + " to FINISHED is not allowed!"));
+        }
+        order.setState(OrderState.FINISHED);
     }
 }

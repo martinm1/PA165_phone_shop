@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PhoneCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import java.util.Collection;
@@ -61,6 +62,7 @@ public interface PhoneFacade {
     /**
      * creates new phone in system.
      * @param phone New phone.
+     * @return phone id
      */
-    Long createPhone(PhoneDTO phone);
+    Long createPhone(PhoneCreateDTO phone);
 }

@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -19,7 +20,7 @@ public class PhoneCreateDTO {
     @Size(min = 3, max = 50)
     private String modelName;
     @NotNull
-    @Size(min = 1)
+    @Min(1)
     private int price;
     @NotNull
     @Size(min = 3, max = 1500)
@@ -44,4 +45,14 @@ public class PhoneCreateDTO {
         return Objects.hash(getModelName(), getTechnicalInfo(), getManufacturer());
     }
 
+    @Override
+    public String toString() {
+        return "PhoneCreateDTO{" +
+                "modelName='" + modelName + '\'' +
+                ", price=" + price +
+                ", technicalInfo='" + technicalInfo + '\'' +
+                ", manufacturer=" + manufacturer +
+                ", stock=" + stock +
+                '}';
+    }
 }

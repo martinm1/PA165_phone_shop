@@ -165,14 +165,14 @@ public class PhoneServiceTest  extends AbstractTestNGSpringContextTests {
     {
         List<Phone> ret = Arrays.asList(phone2, phone3);
         when(phoneDao.findPhonesByManufacturer(Manufacturer.APPLE)).thenReturn(Collections.singletonList(phone1));
-        when(phoneDao.findPhonesByManufacturer(Manufacturer.HUEAWEI)).thenReturn(ret);
+        when(phoneDao.findPhonesByManufacturer(Manufacturer.HUAWEI)).thenReturn(ret);
 
         List<Phone> phones = phoneService.findPhonesByManufacturer(Manufacturer.APPLE);
 
         Assert.assertEquals(1, phones.size());
         Assert.assertTrue(phones.contains(phone1));
 
-        phones = phoneService.findPhonesByManufacturer(Manufacturer.HUEAWEI);
+        phones = phoneService.findPhonesByManufacturer(Manufacturer.HUAWEI);
 
         Assert.assertEquals(2, phones.size());
         Assert.assertTrue(phones.contains(phone2));
