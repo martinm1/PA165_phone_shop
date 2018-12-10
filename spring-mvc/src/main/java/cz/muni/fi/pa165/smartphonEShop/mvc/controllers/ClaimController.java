@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @Controller
 @RequestMapping("/claim")
+@Setter
 public class ClaimController
 {
     @Autowired

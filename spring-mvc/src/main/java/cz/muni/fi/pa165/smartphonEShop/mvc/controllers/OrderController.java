@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import lombok.Setter;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/order")
+@Setter
 public class OrderController {
 
     final static Logger log = LoggerFactory.getLogger(OrderController.class);
