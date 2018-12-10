@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.smartphonEShop.facade;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
@@ -42,6 +43,6 @@ public interface AddressFacade {
      * @param address New address.
      * @return primary key(id) of address
      */
-    Long createAddress(AddressDTO address);
+    Long createAddress(AddressCreateDTO address);
 
 }
