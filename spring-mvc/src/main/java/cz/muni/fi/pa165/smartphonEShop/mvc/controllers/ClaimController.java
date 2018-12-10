@@ -128,6 +128,6 @@ public class ClaimController
             redirectAttributes.addFlashAttribute("alert_danger", "Claim number" + id + " was not rejected " + ex.getMessage());
         }
 
-        return "redirect: " +builder.path("/claim/detail/{id}").buildAndExpand(id).encode().toUriString();
+        return "redirect: " + builder.path("/claim/detail/{id}").buildAndExpand(id).encode().toUriString();
     }
 }

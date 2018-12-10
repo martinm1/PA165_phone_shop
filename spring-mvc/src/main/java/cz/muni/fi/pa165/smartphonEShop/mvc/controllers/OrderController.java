@@ -53,7 +53,7 @@ public class OrderController {
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     //TODO personId, phoneId date???
     // dalo by sa to cez HttpServletRequest ale to sa neodporuca podla vzoroveho riesenia
-    public String list(@PathVariable String filter, Model model, Long personId, Long phoneId, LocalDate date) {
+    public String list(@PathVariable String filter, Model model) {
         Collection<OrderDTO> orders;
 
         switch (filter) {
@@ -69,12 +69,12 @@ public class OrderController {
                 orders = orderFacade.findOrdersByOrderState(OrderState.ACCEPTED); break;
             case "outdated":
                 orders = orderFacade.findOrdersByOrderState(OrderState.OUTDATED); break;
-            case "by_person_id":
+            /*case "by_person_id":
                 orders = orderFacade.findOrdersByPersonId(personId); break;
             case "by_phone_id":
                 orders = orderFacade.findOrdersByPhoneId(phoneId); break;
             case "date":
-                orders = orderFacade.findOrdersByOrderDate(date); break;
+                orders = orderFacade.findOrdersByOrderDate(date); break;*/
             default:
                 orders = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
