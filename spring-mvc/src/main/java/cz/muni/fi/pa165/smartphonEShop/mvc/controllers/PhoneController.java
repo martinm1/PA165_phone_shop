@@ -43,7 +43,6 @@ public class PhoneController {
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     //TODO modelName, stockId, technicalInfo, priceLowerBound, priceUpperBound???
-    // dalo by sa to cez HttpServletRequest ale to sa neodporuca podla vzoroveho riesenia
     public String list(@PathVariable String filter, Model model,
                        String modelName, Long stockId, String technicalInfo,
                        int priceLowerBound, int priceUpperBound) {
@@ -86,8 +85,6 @@ public class PhoneController {
         model.addAttribute("phones", phones);
         return "phone/list";
     }
-
-
 
     /**
      * Prepares an empty form for phone.
