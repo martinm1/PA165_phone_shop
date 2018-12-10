@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/order")
+@Setter
 public class OrderController {
 
     final static Logger log = LoggerFactory.getLogger(OrderController.class);
