@@ -16,6 +16,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,6 +72,63 @@ public class OrderControllerTest
             .andExpect(status().isOk())
             .andExpect(model().attribute("ordersByState", orders))
             .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listAllTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.getAllOrders()).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/all")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersAll", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByPersonTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.findOrdersByPersonId(5L)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byPerson?personId=5")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersByPersonId", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByPhoneTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.findOrdersByPhoneId(5L)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byPhone?phoneId=5")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersByPhoneId", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByDateTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        LocalDate date = LocalDate.of(2018, 12, 11);
+
+        when(orderFacade.findOrdersByOrderDate(date)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byDate?date=11.12.2018")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(model().attribute("ordersByDate", orders))
+                .andExpect(forwardedUrl("order/list"));
     }
 
     @Test
