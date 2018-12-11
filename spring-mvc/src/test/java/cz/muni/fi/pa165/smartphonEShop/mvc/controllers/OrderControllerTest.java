@@ -68,7 +68,7 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/accepted")
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("orders", orders))
+            .andExpect(model().attribute("ordersByState", orders))
             .andExpect(forwardedUrl("order/list"));
     }
 
@@ -95,7 +95,7 @@ public class OrderControllerTest
     }
 
     @Test
-    public void createTest() throws Exception //TODO
+    public void createTest() throws Exception
     {
         OrderCreateDTO createDTO = new OrderCreateDTO();
 
@@ -103,7 +103,8 @@ public class OrderControllerTest
 
         this.mockMvc.perform(post("/order/create")
         .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().is3xxRedirection())
+                .andExpect(flash().attributeExists("alert_success"));
     }
 
     @Test
