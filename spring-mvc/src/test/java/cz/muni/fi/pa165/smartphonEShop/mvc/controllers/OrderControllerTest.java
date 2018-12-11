@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
@@ -17,7 +19,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,6 +72,16 @@ public class OrderControllerTest
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
             .andExpect(model().attribute("ordersByState", orders))
+            .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void nonExistingStateTest() throws Exception
+    {
+        this.mockMvc.perform(get("/order/list/acc")
+            .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+            .andExpect(status().isOk())
+            .andExpect(model().attributeExists("alert_danger"))
             .andExpect(forwardedUrl("order/list"));
     }
 
@@ -135,7 +146,7 @@ public class OrderControllerTest
     public void newTest() throws Exception
     {
         this.mockMvc.perform(get("/order/new")
-        .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("orderCreate"))
                 .andExpect(forwardedUrl("order/new"));
@@ -158,12 +169,18 @@ public class OrderControllerTest
     {
         OrderCreateDTO createDTO = new OrderCreateDTO();
 
+        createDTO.setState(OrderState.CREATED);
+        createDTO.setOrderDate(LocalDate.of(2018, 12, 11));
+        createDTO.setPerson(new PersonDTO());
+        createDTO.setPhone(new PhoneDTO());
+
         when(orderFacade.createOrder(createDTO)).thenReturn(10L);
 
         this.mockMvc.perform(post("/order/create")
-        .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(flash().attributeExists("alert_success"));
+                .flashAttr("orderCreate", createDTO)
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(flash().attributeExists("alert_success"))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test

@@ -3,9 +3,11 @@ import cz.muni.fi.pa165.smartphonEShop.dto.PhoneCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,6 +25,9 @@ import java.util.Collection;
  * Class represents: Phone spring mvc controller.
  */
 
+@Controller
+@RequestMapping("/phone")
+@Setter
 public class PhoneController {
 
     final static Logger log = LoggerFactory.getLogger(OrderController.class);
@@ -65,7 +70,7 @@ public class PhoneController {
         return "phone/list";
     }
 
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<PhoneDTO> phones = phoneFacade.getAllPhones();
         model.addAttribute("phonesAll", phones);
@@ -73,34 +78,34 @@ public class PhoneController {
     }
 
 
-    @RequestMapping(value = "/listByTechnicalInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byTechnicalInfo", method = RequestMethod.GET)
     public String listByTechnicalInfo(Model model, @RequestParam("technicalInfo") String technicalInfo) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByTechnicalInfo(technicalInfo);
-        model.addAttribute("listByTechnicalInfo", phones);
+        model.addAttribute("phonesByTechnicalInfo", phones);
         return "phone/list";
     }
 
-    @RequestMapping(value = "/listByStockId", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byStockId", method = RequestMethod.GET)
     public String listByStockId(Model model, @RequestParam("stockId") long stockId) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByStockID(stockId);
-        model.addAttribute("listByStockId", phones);
+        model.addAttribute("phonesByStockId", phones);
         return "phone/list";
     }
 
-    @RequestMapping(value = "/listByPrice", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byPrice", method = RequestMethod.GET)
     public String listByPrice(Model model, @RequestParam("priceLow") int priceLow,
                               @RequestParam("priceHigh") int priceHigh ) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByPriceInterval(priceLow,priceHigh);
-        model.addAttribute("listByPrice", phones);
+        model.addAttribute("phonesByPrice", phones);
         return "phone/list";
     }
 
 
 
-    @RequestMapping(value = "/listByModelName", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byModelName", method = RequestMethod.GET)
     public String listByModelName(Model model, @RequestParam("modelName") String modelName) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByModelName(modelName);
-        model.addAttribute("listByModelName", phones);
+        model.addAttribute("phonesByModelName", phones);
         return "phone/list";
     }
 
@@ -126,7 +131,7 @@ public class PhoneController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("categoryCreate") PhoneCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("phoneCreate") PhoneCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
         //in case of validation error forward back to the the form

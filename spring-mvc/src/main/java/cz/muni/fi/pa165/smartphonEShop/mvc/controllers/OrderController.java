@@ -121,7 +121,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("categoryCreate") OrderCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("orderCreate") OrderCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
         //in case of validation error forward back to the the form
