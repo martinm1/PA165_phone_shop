@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import lombok.Setter;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 
@@ -68,29 +69,29 @@ public class OrderController {
         return "order/list";
     }
 
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<OrderDTO> orders = orderFacade.getAllOrders();
         model.addAttribute("ordersAll", orders);
         return "order/list";
     }
 
-    @RequestMapping(value = "/listByPerson", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byPerson", method = RequestMethod.GET)
     public String listByPersonId(Model model, @RequestParam("personId") long personId) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByPersonId(personId);
         model.addAttribute("ordersByPersonId", orders);
         return "order/list";
     }
 
-    @RequestMapping(value = "/listByPhoneId/", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byPhone", method = RequestMethod.GET)
     public String listByPhoneId(Model model, @RequestParam("phoneId") long phoneId) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByPhoneId(phoneId);
         model.addAttribute("ordersByPhoneId", orders);
         return "order/list";
     }
 
-    @RequestMapping(value = "/listByDate", method = RequestMethod.GET)
-    public String listByDate(Model model, @RequestParam("date") LocalDate date) {
+    @RequestMapping(value = "/list/byDate", method = RequestMethod.GET)
+    public String listByDate(Model model, @RequestParam("date") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByOrderDate(date);
         model.addAttribute("ordersByDate", orders);
         return "order/list";
@@ -120,7 +121,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("categoryCreate") OrderCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("orderCreate") OrderCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
         //in case of validation error forward back to the the form
