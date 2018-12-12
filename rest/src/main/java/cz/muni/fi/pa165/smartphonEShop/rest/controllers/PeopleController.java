@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.smartphonEShop.rest.constrollers;
+package cz.muni.fi.pa165.smartphonEShop.rest.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
