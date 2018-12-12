@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -32,25 +33,13 @@ public class ClaimController
     @Autowired
     private ClaimFacade claimFacade;
 
-    @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
-    public String list(@PathVariable String filter, Model model)
+    @RequestMapping(value = "/list/state/{filter}", method = RequestMethod.GET)
+    public String listByState(@PathVariable String filter, Model model)
     {
         Collection<ClaimDTO> claims;
 
         switch (filter)
         {
-            case "all":
-                claims = claimFacade.getAllClaims();
-                break;
-
-            case "money":
-                claims = claimFacade.findClaimByClaimSolution(ClaimSolution.MONEY);
-                break;
-
-            case "repair":
-                claims = claimFacade.findClaimByClaimSolution(ClaimSolution.REPAIR);
-                break;
-
             case "created":
                 claims = claimFacade.findClaimByClaimState(ClaimState.CREATED);
                 break;
@@ -63,20 +52,66 @@ public class ClaimController
                 claims = claimFacade.findClaimByClaimState(ClaimState.REJECTED);
                 break;
 
-//            case "user_id":
-//                claims = claimFacade.findClaimByUserId(id);
-//                break;
-//
-//            case "order_id":
-//                claims = claimFacade.findClaimByOrderId(id);
-//                break;
+            default:
+                claims = new ArrayList<>();
+                model.addAttribute("alert_danger", "Unkown filter " + filter);
+        }
+
+        model.addAttribute("claimsByState", claims);
+        return "claim/list";
+    }
+
+    @RequestMapping(value = "/list/solution/{filter}", method = RequestMethod.GET)
+    public String listBySolution(@PathVariable String filter, Model model)
+    {
+        Collection<ClaimDTO> claims;
+
+        switch (filter)
+        {
+            case "money":
+                claims = claimFacade.findClaimByClaimSolution(ClaimSolution.MONEY);
+                break;
+
+            case "repair":
+                claims = claimFacade.findClaimByClaimSolution(ClaimSolution.REPAIR);
+                break;
 
             default:
                 claims = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unkown filter " + filter);
         }
 
-        model.addAttribute("claims", claims);
+        model.addAttribute("claimsBySolution", claims);
+        return "claim/list";
+    }
+
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
+    public String listAll(Model model)
+    {
+        Collection<ClaimDTO> claims;
+
+        claims = claimFacade.getAllClaims();
+        model.addAttribute("allClaims", claims);
+        return "claim/list";
+    }
+
+    @RequestMapping(value = "/list/byPerson", method = RequestMethod.GET)
+    public String listByUserId(@RequestParam("personId") long id, Model model)
+    {
+        Collection<ClaimDTO> claims;
+
+        claims = claimFacade.findClaimByUserId(id);
+        model.addAttribute("claimsByPerson", claims);
+        return "claim/list";
+    }
+
+    @RequestMapping(value = "/list/byOrder", method = RequestMethod.GET)
+    public String listByOrderId(@RequestParam("orderId") long id, Model model)
+    {
+        Collection<ClaimDTO> claims;
+
+        claims = claimFacade.findClaimByOrderId(id);
+        model.addAttribute("claimsByOrder", claims);
         return "claim/list";
     }
 
