@@ -57,7 +57,7 @@ public class PeopleControllerTest extends AbstractTestNGSpringContextTests
     @BeforeMethod
     public void testPrepare()
     {
-        PersonDTO person = new PersonDTO();
+        person = new PersonDTO();
 
         person.setId(10L);
         person.setEmail("neco@tamto.cz");
@@ -93,7 +93,7 @@ public class PeopleControllerTest extends AbstractTestNGSpringContextTests
     {
         when(personFacade.findPersonByEmail(person.getEmail())).thenReturn(person);
 
-        this.mockMvc.perform(get("/people/neco@tamto.cz"))
+        this.mockMvc.perform(get("/people/byEmail/neco@tamto.cz"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.email").value("neco@tamto.cz"));
@@ -104,7 +104,7 @@ public class PeopleControllerTest extends AbstractTestNGSpringContextTests
     {
         when(personFacade.findPersonByPhoneNumber(person.getPhoneNumber())).thenReturn(person);
 
-        this.mockMvc.perform(get("/people/777666999"))
+        this.mockMvc.perform(get("/people/byPhoneNumber/777666999"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.phoneNumber").value("777666999"));
