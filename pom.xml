@@ -255,5 +255,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
     <module>spring-mvc</module>
     <module>rest</module>
     <module>ws</module>
+    <module>sample-data</module>
 </modules>
 </project>
