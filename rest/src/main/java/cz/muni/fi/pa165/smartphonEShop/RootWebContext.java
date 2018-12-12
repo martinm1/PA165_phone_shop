@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.rest.mixin.PersonDTOMixin;
+import cz.muni.fi.pa165.smartphonEShop.service.config.ServiceConfiguration;
+import cz.muni.pa165.smartphonEShop.sampledata.EshopWithSampleDataConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -20,7 +22,7 @@ import java.util.Locale;
 
 @EnableWebMvc
 @Configuration
-//@Import()//TODO sample data
+@Import({ServiceConfiguration.class, EshopWithSampleDataConfiguration.class})
 @ComponentScan(basePackages = {"cz.muni.fi.pa165.smartphonEShop.rest.controllers"})
 public class RootWebContext implements WebMvcConfigurer
 {

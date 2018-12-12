@@ -10,6 +10,8 @@ import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.ClaimService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
  * @author xnahalka
  */
 
+@Service
+@Transactional
 public class ClaimFacadeImpl implements ClaimFacade
 {
     @Autowired
