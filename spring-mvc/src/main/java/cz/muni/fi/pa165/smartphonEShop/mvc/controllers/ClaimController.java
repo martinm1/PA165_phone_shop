@@ -33,6 +33,12 @@ public class ClaimController
     @Autowired
     private ClaimFacade claimFacade;
 
+    /**
+     * Get all claims filtered by claim state.
+     * @param filter state of claim.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/list/state/{filter}", method = RequestMethod.GET)
     public String listByState(@PathVariable String filter, Model model)
     {
@@ -61,6 +67,12 @@ public class ClaimController
         return "claim/list";
     }
 
+    /**
+     * Get all claims filtered by wanted solution.
+     * @param filter solution.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/list/solution/{filter}", method = RequestMethod.GET)
     public String listBySolution(@PathVariable String filter, Model model)
     {
@@ -85,6 +97,11 @@ public class ClaimController
         return "claim/list";
     }
 
+    /**
+     * Get all claims.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model)
     {
@@ -95,6 +112,12 @@ public class ClaimController
         return "claim/list";
     }
 
+    /**
+     * Get all claims of one person.
+     * @param id primary key for person.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/list/byPerson", method = RequestMethod.GET)
     public String listByUserId(@RequestParam("personId") long id, Model model)
     {
@@ -105,6 +128,12 @@ public class ClaimController
         return "claim/list";
     }
 
+    /**
+     * Gett all claims of one order.
+     * @param id primary key for order.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/list/byOrder", method = RequestMethod.GET)
     public String listByOrderId(@RequestParam("orderId") long id, Model model)
     {
@@ -115,6 +144,11 @@ public class ClaimController
         return "claim/list";
     }
 
+    /**
+     * Prepares a empty form.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newClaim(Model model)
     {
@@ -123,6 +157,12 @@ public class ClaimController
         return "claim/new";
     }
 
+    /**
+     * Get one claim by id.
+     * @param id primary key for claim.
+     * @param model data to display.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") long id, Model model)
     {
@@ -130,6 +170,14 @@ public class ClaimController
         return "claim/view";
     }
 
+    /**
+     * Accept claim.
+     * @param id primary key for claim.
+     * @param model data to display.
+     * @param builder path builder.
+     * @param redirectAttributes attributes for redirection.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/accept/{id}")
     public String accept(@PathVariable("id") long id, Model model, UriComponentsBuilder builder,
                          RedirectAttributes redirectAttributes)
@@ -145,9 +193,17 @@ public class ClaimController
             redirectAttributes.addFlashAttribute("alert_danger", "Claim number" + id + " was not accepted " + ex.getMessage());
         }
 
-        return "redirect: " +builder.path("/claim/detail/{id}").buildAndExpand(id).encode().toUriString();
+        return "redirect: " + builder.path("/claim/detail/{id}").buildAndExpand(id).encode().toUriString();
     }
 
+    /**
+     * Reject claim.
+     * @param id primary key for claim.
+     * @param model data to display.
+     * @param builder path builder.
+     * @param redirectAttributes attributes for redirection.
+     * @return JSP page name.
+     */
     @RequestMapping(value = "/reject/{id}")
     public String reject(@PathVariable("id") long id, Model model, UriComponentsBuilder builder,
                          RedirectAttributes redirectAttributes)
