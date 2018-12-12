@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author xnahalka
  */
 @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
-public class InvalidParameteException extends RuntimeException
+public class InvalidParameterException extends RuntimeException
 {
 
 }

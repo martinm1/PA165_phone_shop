@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.dto.StockCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
 import cz.muni.fi.pa165.smartphonEShop.rest.ApiUris;
-import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.InvalidParameteException;
+import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.InvalidParameterException;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceAlreadyExistingException;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceNotFoundException;
 import org.springframework.http.MediaType;
@@ -42,10 +42,64 @@ public class StocksController
      * @return StockDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final StockDTO getStock(@PathVariable("id") long id)
     {
         StockDTO stockDTO = stockFacade.findStockById(id);
+
+        if(stockDTO != null)
+            return stockDTO;
+
+        else
+            throw new ResourceNotFoundException();
+    }
+
+    /**
+     * Get stock by name.
+     * @param name of stock.
+     * @return StockDTO
+     * @throws ResourceNotFoundException
+     */
+    @RequestMapping(value = "byName/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final StockDTO getStockByName(@PathVariable("name") String name)
+    {
+        StockDTO stockDTO = stockFacade.findStockByName(name);
+
+        if(stockDTO != null)
+            return stockDTO;
+
+        else
+            throw new ResourceNotFoundException();
+    }
+
+    /**
+     * Get stock by address
+     * @param id primary key for address.
+     * @return StockDTO
+     * @throws ResourceNotFoundException
+     */
+    @RequestMapping(value = "byAddress/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final StockDTO getStockByAddress(@PathVariable("id") long id)
+    {
+        StockDTO stockDTO = stockFacade.findStockByAddressId(id);
+
+        if(stockDTO != null)
+            return stockDTO;
+
+        else
+            throw new ResourceNotFoundException();
+    }
+
+    /**
+     * Get stock by phone.
+     * @param id primary key for phone.
+     * @return StockDTO
+     * @throws ResourceNotFoundException
+     */
+    @RequestMapping(value = "byPhone/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final StockDTO getStockByPhone(@PathVariable("id") long id)
+    {
+        StockDTO stockDTO = stockFacade.findStockByPhoneId(id);
 
         if(stockDTO != null)
             return stockDTO;
@@ -81,7 +135,7 @@ public class StocksController
      * @param id primary key for stock.
      * @param phoneDTO to be added.
      * @return updated stock.
-     * @throws InvalidParameteException
+     * @throws InvalidParameterException
      */
     @RequestMapping(value = "{id}/phones", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
@@ -95,7 +149,7 @@ public class StocksController
 
         catch (Exception ex)
         {
-            throw new InvalidParameteException();
+            throw new InvalidParameterException();
         }
     }
 
@@ -104,7 +158,7 @@ public class StocksController
      * @param id primary key fro stock.
      * @param phoneDTO to be removed.
      * @return updated stock.
-     * @throws InvalidParameteException
+     * @throws InvalidParameterException
      */
     @RequestMapping(value = "{id}/phones", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -118,7 +172,7 @@ public class StocksController
 
         catch (Exception ex)
         {
-            throw  new InvalidParameteException();
+            throw  new InvalidParameterException();
         }
     }
 }
