@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.smartphonEShop.rest.constrollers;
+package cz.muni.fi.pa165.smartphonEShop.rest.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.awt.*;
 import java.util.Collection;
 
 @RestController

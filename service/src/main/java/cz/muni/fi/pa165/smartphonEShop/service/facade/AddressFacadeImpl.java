@@ -18,11 +18,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author martin
  */
+@Service
+@Transactional
 public class AddressFacadeImpl implements AddressFacade{
     
     @Autowired
