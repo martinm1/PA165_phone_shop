@@ -35,7 +35,7 @@ public class ClaimsController {
      * @return ClaimDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final ClaimDTO getClaim(@PathVariable("id") long id)
     {
         ClaimDTO claimDTO = claimFacade.findClaimById(id);
