@@ -146,6 +146,4 @@ public class PhoneController {
         redirectAttributes.addFlashAttribute("alert_success", "Phone " + id + " was created");
         return "redirect:" + uriBuilder.path("/phone/list").toUriString();
     }
-
-
 }
