@@ -1,8 +1,7 @@
-package cz.muni.fi.pa165.smartphonEShop.rest.constrollers;
+package cz.muni.fi.pa165.smartphonEShop.rest.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
-import cz.muni.fi.pa165.smartphonEShop.entity.Order;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import cz.muni.fi.pa165.smartphonEShop.rest.ApiUris;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceAlreadyExistingException;
@@ -11,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.awt.*;
 import java.util.Collection;
 
 @RestController

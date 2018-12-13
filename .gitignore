@@ -80,6 +80,8 @@ service/release.properties
 service/pom.xml.releaseBackup
 service/pom.xml.tag
 /api/target/
+/spring-mvc/target/
+/sample-data/target/
 
 #folder project begone
 project/

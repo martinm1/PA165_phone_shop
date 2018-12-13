@@ -2,12 +2,13 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,7 +18,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.print.attribute.standard.Media;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class OrderControllerTest
     }
 
     @Test
-    public void testList() throws Exception
+    public void listByStateTest() throws Exception
     {
         List<OrderDTO> orders = Collections.singletonList(orderDTO);
 
@@ -70,15 +71,82 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/accepted")
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("orders", orders))
+            .andExpect(model().attribute("ordersByState", orders))
             .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void nonExistingStateTest() throws Exception
+    {
+        this.mockMvc.perform(get("/order/list/acc")
+            .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+            .andExpect(status().isOk())
+            .andExpect(model().attributeExists("alert_danger"))
+            .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listAllTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.getAllOrders()).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/all")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersAll", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByPersonTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.findOrdersByPersonId(5L)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byPerson?personId=5")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersByPersonId", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByPhoneTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        when(orderFacade.findOrdersByPhoneId(5L)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byPhone?phoneId=5")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("ordersByPhoneId", orders))
+                .andExpect(forwardedUrl("order/list"));
+    }
+
+    @Test
+    public void listByDateTest() throws Exception
+    {
+        List<OrderDTO> orders = Collections.singletonList(orderDTO);
+
+        LocalDate date = LocalDate.of(2018, 12, 11);
+
+        when(orderFacade.findOrdersByOrderDate(date)).thenReturn(orders);
+
+        this.mockMvc.perform(get("/order/list/byDate?date=11.12.2018")
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(model().attribute("ordersByDate", orders))
+                .andExpect(forwardedUrl("order/list"));
     }
 
     @Test
     public void newTest() throws Exception
     {
         this.mockMvc.perform(get("/order/new")
-        .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("orderCreate"))
                 .andExpect(forwardedUrl("order/new"));
@@ -97,14 +165,21 @@ public class OrderControllerTest
     }
 
     @Test
-    public void createTest() throws Exception //TODO
+    public void createTest() throws Exception
     {
         OrderCreateDTO createDTO = new OrderCreateDTO();
+
+        createDTO.setState(OrderState.CREATED);
+        createDTO.setOrderDate(LocalDate.of(2018, 12, 11));
+        createDTO.setPerson(new PersonDTO());
+        createDTO.setPhone(new PhoneDTO());
 
         when(orderFacade.createOrder(createDTO)).thenReturn(10L);
 
         this.mockMvc.perform(post("/order/create")
-        .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .flashAttr("orderCreate", createDTO)
+                .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
+                .andExpect(flash().attributeExists("alert_success"))
                 .andExpect(status().is3xxRedirection());
     }
 
