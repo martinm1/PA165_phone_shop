@@ -73,4 +73,16 @@ public class ClaimsControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.[?(@.id==111)].reasonOfClaim").value("nefunguje"));
     }
+
+    @Test
+    public void getClaimTest() throws Exception {
+        when(claimFacade.findClaimById(claimDTO.getId())).thenReturn(claimDTO);
+
+        this.mockMvc.perform(get("/claims/111"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.reasonOfClaim").value("nefunguje"));
+    }
+
+
 }

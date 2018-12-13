@@ -1,17 +1,16 @@
 package cz.muni.fi.pa165.smartphonEShop.rest.controllers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import cz.muni.fi.pa165.smartphonEShop.rest.ApiUris;
+import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceAlreadyExistingException;
 import cz.muni.fi.pa165.smartphonEShop.rest.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -98,9 +97,5 @@ public class PeopleController {
         }
         return personDTO;
     }
-
-
-
-    //TODO GetPeopleByPersonType??
 }
 

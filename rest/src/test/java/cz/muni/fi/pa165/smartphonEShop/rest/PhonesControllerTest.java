@@ -64,7 +64,7 @@ public class PhonesControllerTest {
     }
 
     @Test
-    public void getClaimsTest() throws Exception {
+    public void getPhonesTest() throws Exception {
         when(phoneFacade.getAllPhones()).thenReturn(Collections.singletonList(phoneDTO));
 
         this.mockMvc.perform(get("/phones"))
@@ -72,5 +72,17 @@ public class PhonesControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.[?(@.id==111)].modelName").value("iPhone 8 Plus"));
     }
+
+    @Test
+    public void getPhoneTest() throws Exception {
+        when(phoneFacade.findPhoneById(phoneDTO.getId())).thenReturn(phoneDTO);
+
+        this.mockMvc.perform(get("/phones/111"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.modelName").value("iPhone 8 Plus"));
+    }
+
+
 
 }

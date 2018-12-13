@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.service.facade;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
@@ -72,7 +73,7 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public void registerPerson(PersonDTO person, String pass) {
+    public void registerPerson(PersonCreateDTO person, String pass) {
         Person guest = new Person();
 
         Address address = new Address();
