@@ -154,7 +154,7 @@ public class AddressControllerTest {
         specificatorCityCountry.put(AddressEnum.CITY, "Brno");
         specificatorCityCountry.put(AddressEnum.COUNTRY, "Czechia");
         when(addressFacade.findAllAddressesBy(specificatorCityCountry)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?city=Brno")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&city=Brno")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -169,7 +169,7 @@ public class AddressControllerTest {
         specificatorCityStreetName.put(AddressEnum.CITY, "Brno");
         specificatorCityStreetName.put(AddressEnum.STREET_NAME, "Kroftova");
         when(addressFacade.findAllAddressesBy(specificatorCityStreetName)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?city=Brno?street=Kroftova")
+        this.mockMvc.perform(get("/address/list/by?city=Brno&street=Kroftova")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -184,7 +184,7 @@ public class AddressControllerTest {
         specificatorCityStreetNumber.put(AddressEnum.CITY, "Brno");
         specificatorCityStreetNumber.put(AddressEnum.STREET_NUMBER, "25");
         when(addressFacade.findAllAddressesBy(specificatorCityStreetNumber)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?city=Brno?number=25")
+        this.mockMvc.perform(get("/address/list/by?city=Brno&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -199,7 +199,7 @@ public class AddressControllerTest {
         specificatorCountryStreetName.put(AddressEnum.STREET_NAME, "Kroftova");
         specificatorCountryStreetName.put(AddressEnum.COUNTRY, "Czechia");
         when(addressFacade.findAllAddressesBy(specificatorCountryStreetName)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?street=Kroftova")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&street=Kroftova")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -214,7 +214,7 @@ public class AddressControllerTest {
         specificatorCountryStreetNumber.put(AddressEnum.STREET_NUMBER, "25");
         specificatorCountryStreetNumber.put(AddressEnum.COUNTRY, "Czechia");
         when(addressFacade.findAllAddressesBy(specificatorCountryStreetNumber)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?number=25")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -229,7 +229,7 @@ public class AddressControllerTest {
         specificatorStreetNumberName.put(AddressEnum.STREET_NUMBER, "25");
         specificatorStreetNumberName.put(AddressEnum.STREET_NAME, "Kroftova");
         when(addressFacade.findAllAddressesBy(specificatorStreetNumberName)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?street=Kroftova?number=25")
+        this.mockMvc.perform(get("/address/list/by?street=Kroftova&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -246,7 +246,7 @@ public class AddressControllerTest {
         specificatorCityCountryName.put(AddressEnum.COUNTRY, "Czechia");
         specificatorCityCountryName.put(AddressEnum.STREET_NAME, "Kroftova");
         when(addressFacade.findAllAddressesBy(specificatorCityCountryName)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?city=Brno?street=Kroftova")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&city=Brno&street=Kroftova")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -262,7 +262,7 @@ public class AddressControllerTest {
         specificatorCityCountryNumber.put(AddressEnum.COUNTRY, "Czechia");
         specificatorCityCountryNumber.put(AddressEnum.STREET_NUMBER, "25");
         when(addressFacade.findAllAddressesBy(specificatorCityCountryNumber)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?city=Brno?number=25")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&city=Brno&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -278,7 +278,7 @@ public class AddressControllerTest {
         specificatorCityNameNumber.put(AddressEnum.STREET_NAME, "Kroftova");
         specificatorCityNameNumber.put(AddressEnum.STREET_NUMBER, "25");
         when(addressFacade.findAllAddressesBy(specificatorCityNameNumber)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?city=Brno?street=Kroftova?number=25")
+        this.mockMvc.perform(get("/address/list/by?city=Brno&street=Kroftova&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -294,7 +294,7 @@ public class AddressControllerTest {
         specificatorCountryNumberName.put(AddressEnum.COUNTRY, "Czechia");
         specificatorCountryNumberName.put(AddressEnum.STREET_NUMBER, "25");
         when(addressFacade.findAllAddressesBy(specificatorCountryNumberName)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?street=Kroftova?number=25")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&street=Kroftova&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -302,7 +302,7 @@ public class AddressControllerTest {
     }
 
     @Test
-    public void listByCityAll() throws Exception {
+    public void listByAll() throws Exception {
         List<AddressDTO> addresses = Collections.singletonList(addressDTO);
 
         HashMap<AddressEnum,String> specificatorAll = new HashMap<>();
@@ -311,7 +311,7 @@ public class AddressControllerTest {
         specificatorAll.put(AddressEnum.STREET_NUMBER, "25");
         specificatorAll.put(AddressEnum.CITY, "Brno");
         when(addressFacade.findAllAddressesBy(specificatorAll)).thenReturn(addresses);
-        this.mockMvc.perform(get("/address/list/by?country=Czechia?city=Brno?street=Kroftova?number=25")
+        this.mockMvc.perform(get("/address/list/by?country=Czechia&city=Brno&street=Kroftova&number=25")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("addresses", addresses))
@@ -322,8 +322,7 @@ public class AddressControllerTest {
     public void listByEmptyTest() throws Exception {
         List<AddressDTO> addresses = Collections.singletonList(addressDTO);
 
-        HashMap<AddressEnum,String> specificatorEmpty = new HashMap<>();
-        when(addressFacade.findAllAddressesBy(specificatorEmpty)).thenReturn(addresses);
+        when(addressFacade.getAllAddresses()).thenReturn(addresses);
         this.mockMvc.perform(get("/address/list/by")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
