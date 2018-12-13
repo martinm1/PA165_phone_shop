@@ -41,7 +41,7 @@ public class PhonesController {
      * @return PhoneDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final PhoneDTO getPhone(@PathVariable("id") long id)
     {
         PhoneDTO phoneDTO = phoneFacade.findPhoneById(id);

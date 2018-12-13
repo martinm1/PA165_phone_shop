@@ -1,9 +1,0 @@
-cz\muni\fi\pa165\smartphonEShop\rest\exceptions\InvalidParameteException.class
-cz\muni\fi\pa165\smartphonEShop\rest\constrollers\PeopleController.class
-cz\muni\fi\pa165\smartphonEShop\rest\exceptions\ResourceAlreadyExistingException.class
-cz\muni\fi\pa165\smartphonEShop\rest\exceptions\ResourceNotFoundException.class
-cz\muni\fi\pa165\smartphonEShop\Initializer.class
-cz\muni\fi\pa165\smartphonEShop\rest\ApiUris.class
-cz\muni\fi\pa165\smartphonEShop\rest\constrollers\AddressesController.class
-cz\muni\fi\pa165\smartphonEShop\rest\constrollers\StocksController.class
-cz\muni\fi\pa165\smartphonEShop\rest\constrollers\PhonesController.class
