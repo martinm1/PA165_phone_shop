@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
+
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import cz.muni.fi.pa165.smartphonEShop.facade.AddressFacade;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.HashMap;
 
 @Controller
 @RequestMapping("/address")
 public class AddressController {
 
-    final static Logger log = LoggerFactory.getLogger(OrderController.class);
+    final static Logger log = LoggerFactory.getLogger(AddressController.class);
 
     @Autowired
+    @Setter
     private AddressFacade addressFacade;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model, @RequestParam(value = "country") String country, @RequestParam(value = "city")String city,@RequestParam(value = "street") String street,@RequestParam(value = "number") String number)
-    {
+    @RequestMapping(value = "/list/by", method = RequestMethod.GET)
+    public String listBy(Model model,
+                         @RequestParam(value = "country") String country,
+                         @RequestParam(value = "city")String city,
+                         @RequestParam(value = "street") String street,
+                         @RequestParam(value = "number") String number) {
 
         HashMap<AddressEnum,String> specificator = new HashMap<>();
         if(country != null)
@@ -51,6 +58,7 @@ public class AddressController {
 
     }
 
+
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newAddress(Model model)
     {
@@ -66,7 +74,7 @@ public class AddressController {
         return "address/view";
     }
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("categoryCreate") AddressCreateDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("addressCreate") AddressCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
         //in case of validation error forward back to the the form
