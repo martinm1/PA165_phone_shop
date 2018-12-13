@@ -1,10 +1,8 @@
 package cz.muni.fi.pa165.smartphonEShop.rest;
 
-import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
 import cz.muni.fi.pa165.smartphonEShop.mvc.controllers.StockController;
-import cz.muni.fi.pa165.smartphonEShop.rest.controllers.StocksController;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -62,7 +60,7 @@ public class StockControllerTest {
     public void testView() {
 
     }
-    
+
     @Test
     public void testNewStrock() {
 
