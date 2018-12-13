@@ -35,7 +35,7 @@ public class OrdersController {
      * @return OrderDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final OrderDTO getOrder(@PathVariable("id") long id)
     {
         OrderDTO orderDTO = orderFacade.findOrderById(id);

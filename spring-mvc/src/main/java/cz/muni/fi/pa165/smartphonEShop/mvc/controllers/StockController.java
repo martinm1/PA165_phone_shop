@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class StockController {
     final static Logger log = LoggerFactory.getLogger(StockController.class);
 
     @Autowired
+    @Setter
     private StockFacade stockFacade;
 
     
