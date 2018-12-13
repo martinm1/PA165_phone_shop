@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
+
 import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import cz.muni.fi.pa165.smartphonEShop.facade.AddressFacade;
 import lombok.Setter;
@@ -31,9 +31,12 @@ public class AddressController {
     @Setter
     private AddressFacade addressFacade;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String listBy(Model model, @RequestParam(value = "country") String country, @RequestParam(value = "city")String city,@RequestParam(value = "street") String street,@RequestParam(value = "number") String number)
-    {
+    @RequestMapping(value = "/list/by", method = RequestMethod.GET)
+    public String listBy(Model model,
+                         @RequestParam(value = "country") String country,
+                         @RequestParam(value = "city")String city,
+                         @RequestParam(value = "street") String street,
+                         @RequestParam(value = "number") String number) {
 
         HashMap<AddressEnum,String> specificator = new HashMap<>();
         if(country != null)
@@ -55,12 +58,6 @@ public class AddressController {
 
     }
 
-    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
-    public String listAll(Model model) {
-        Collection<AddressDTO> addresses = addressFacade.getAllAddresses();
-        model.addAttribute("addressAll", addresses);
-        return "address/list";
-    }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newAddress(Model model)
