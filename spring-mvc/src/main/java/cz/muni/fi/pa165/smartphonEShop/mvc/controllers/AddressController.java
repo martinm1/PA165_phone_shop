@@ -33,10 +33,10 @@ public class AddressController {
 
     @RequestMapping(value = "/list/by", method = RequestMethod.GET)
     public String listBy(Model model,
-                         @RequestParam(value = "country") String country,
-                         @RequestParam(value = "city")String city,
-                         @RequestParam(value = "street") String street,
-                         @RequestParam(value = "number") String number) {
+                         @RequestParam(value = "country", required = false) String country,
+                         @RequestParam(value = "city", required = false)String city,
+                         @RequestParam(value = "street", required = false) String street,
+                         @RequestParam(value = "number", required = false) String number) {
 
         HashMap<AddressEnum,String> specificator = new HashMap<>();
         if(country != null)
