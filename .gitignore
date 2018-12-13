@@ -82,6 +82,7 @@ service/pom.xml.tag
 /api/target/
 /spring-mvc/target/
 /sample-data/target/
+/rest/target/
 
 #folder project begone
 project/
