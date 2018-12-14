@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Jakub Ondrusek
- * Class represents: Tests for stock mvc controller.
+ * Class represents: Tests for Person mvc controller.
  */
 @WebAppConfiguration
 public class PersonControllerTest {

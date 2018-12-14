@@ -12,13 +12,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
+import java.util.Collections;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 /**
@@ -57,4 +66,23 @@ public class AddressControlerTest {
        addressDTO.setStreetNumber("bohviekolko");
     }
 
+    @Test
+    public void getAddressesTest() throws Exception {
+        when(addressFacade.getAllAddresses()).thenReturn(Collections.singletonList(addressDTO));
+
+        this.mockMvc.perform(get("/stocks"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.[?(@.id==111)].city").value("Brno"));
+    }
+
+    @Test
+    public void getStockTest() throws Exception {
+        when(addressFacade.findAddressById(addressDTO.getId())).thenReturn(addressDTO);
+
+        this.mockMvc.perform(get("/stocks/111"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.city").value("Brno"));
+    }
 }
