@@ -42,16 +42,16 @@ public class StockController {
      * @param model data to display
      * @return JSP page name
      */
-    @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
-        model.addAttribute("stocks", stockFacade.getAllStocks());
+        model.addAttribute("stocksAll", stockFacade.getAllStocks());
         return "stock/list";
     }
     
-    @RequestMapping(value = "/list/byPerson", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/byAddress", method = RequestMethod.GET)
     public String listByAddressId(Model model, @RequestParam("addressId") long addressId) {
         StockDTO stock = stockFacade.findStockByAddressId(addressId);
-        model.addAttribute("stockByPersonId", stock);
+        model.addAttribute("stockByAddressId", stock);
         return "stock/list";
     }
     

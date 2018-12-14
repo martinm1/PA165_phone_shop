@@ -39,7 +39,7 @@ public class PersonController {
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") long id, Model model) {
         log.debug("view person by Id");
-        model.addAttribute("order", personFacade.findPersonById(id));
+        model.addAttribute("person", personFacade.findPersonById(id));
         return "person/view";
     }
     

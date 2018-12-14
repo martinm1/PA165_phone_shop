@@ -79,7 +79,7 @@ public class PersonControllerTest {
         this.mockMvc.perform(get("/person/list/all")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("peopleAll", people))
+                .andExpect(model().attribute("people", people))
                 .andExpect(forwardedUrl("person/list"));
     }
 
@@ -89,7 +89,7 @@ public class PersonControllerTest {
 
         when(personFacade.findPersonByEmail("haha@mail.com")).thenReturn(personDTO);
 
-        this.mockMvc.perform(get("/person/list/byEmail")
+        this.mockMvc.perform(get("/person/list/byEmail?email=haha@mail.com")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("personByEmail", personDTO))
@@ -101,7 +101,7 @@ public class PersonControllerTest {
     public void testListByPhoneNumber () throws Exception{
         when(personFacade.findPersonByPhoneNumber("0909123123")).thenReturn(personDTO);
 
-        this.mockMvc.perform(get("/person/list/byPhoneNumber")
+        this.mockMvc.perform(get("/person/list/byPhoneNumber?phoneNumber=0909123123")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("personByPhoneNumber", personDTO))
@@ -110,7 +110,7 @@ public class PersonControllerTest {
 
     @Test
     public void testListByPersonTypeUnsigned () {
-    
+
     }
 
     @Test
