@@ -11,6 +11,8 @@ import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class PersonController {
     final static Logger log = LoggerFactory.getLogger(PersonController.class);
 
     @Autowired
+    @Setter
     private PersonFacade personFacade;
     
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
