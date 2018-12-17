@@ -31,7 +31,6 @@
                     <td>${phone.id}</td>
                     <td><c:out value="${phone.modelName}"/></td>
                     <td><c:out value="${phone.price}"/></td>
-                    <td><c:out value="${phone.technicalInfo}"/></td>
                     <td><c:out value="${phone.manufacturer}"/></td>
                 </tr>
             </c:forEach>
