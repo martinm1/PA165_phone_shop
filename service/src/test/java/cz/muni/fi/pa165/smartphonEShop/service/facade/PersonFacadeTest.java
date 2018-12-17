@@ -340,11 +340,11 @@ public class PersonFacadeTest extends AbstractTestNGSpringContextTests {
     public void authPerson()
     {
         PersonAuthDTO personAuth = new PersonAuthDTO();
-        personAuth.setPersonID(10L);
+        personAuth.setEmail("neco@neco.cz");
         personAuth.setPass("ssss");
 
-        when(personService.findPersonById(10L)).thenReturn(person1);
-        when(personService.auth(person1, "ssss")).thenReturn(true);
+        when(personService.findPersonByEmail("neco@neco.cz")).thenReturn(person1);
+        when(personService.auth("neco@neco.cz", "ssss")).thenReturn(true);
 
         Assert.assertTrue(personFacade.auth(personAuth));
     }

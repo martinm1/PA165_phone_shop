@@ -228,11 +228,13 @@ public class PersonServiceTest extends AbstractTestNGSpringContextTests {
         doAnswer(invocationOnMock ->
         {
             person.setId(40L);
+            person.setEmail("neco@neco.cz");
             return 40L;
         }).when(personDao).create(person);
 
         personService.registerPerson(person, "heslo");
+        when(personDao.findByEmail("neco@neco.cz")).thenReturn(person);
 
-        Assert.assertTrue(personService.auth(person, "heslo"));
+        Assert.assertTrue(personService.auth("neco@neco.cz", "heslo"));
     }
 }

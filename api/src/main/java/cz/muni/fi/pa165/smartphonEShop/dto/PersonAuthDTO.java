@@ -13,6 +13,6 @@ import lombok.Setter;
 @Setter
 public class PersonAuthDTO
 {
-    private Long personID;
+    private String email;
     private String pass;
 }

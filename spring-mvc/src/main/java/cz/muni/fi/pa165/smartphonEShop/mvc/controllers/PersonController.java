@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
@@ -84,7 +85,7 @@ public class PersonController {
      * @param model data to display
      * @return JSP page name
      */
-    @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         model.addAttribute("people", personFacade.getAllPeople());
         return "person/list";
@@ -101,5 +102,13 @@ public class PersonController {
         log.debug("new()");
         model.addAttribute("personCreate", new PersonCreateDTO());
         return "person/new";
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public String auth(Model model, @RequestParam("user") String user, @RequestParam("pass") String pass)
+    {
+        model.addAttribute("login", new PersonAuthDTO());
+
+        return "home";
     }
 }

@@ -84,10 +84,10 @@ public interface PersonService {
 
     /**
      * Authenticate user.
-     * @param person represent person.
+     * @param email represent person email.
      * @param pass to be checked.
      * @return true, if password matches the records.
      */
-    boolean auth(Person person, String pass);
+    boolean auth(String email, String pass);
 
 }
