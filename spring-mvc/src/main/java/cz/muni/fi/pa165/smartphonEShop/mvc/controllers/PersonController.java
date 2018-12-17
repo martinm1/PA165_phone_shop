@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.AddressCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
@@ -105,6 +106,7 @@ public class PersonController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newPerson(Model model) {
         log.debug("new()");
+//        model.addAttribute("addressCreate", new AddressCreateDTO());
         model.addAttribute("personCreate", new PersonCreateDTO());
         return "person/new";
     }
