@@ -42,8 +42,8 @@ public class PersonCreateDTO {
 //    @NotNull
 //    private PersonType personType;
     
-//    @NotNull
-//    private AddressDTO address;
+   @NotNull
+    private AddressCreateDTO address;
     
     @NotNull
     @Size(min = 6)

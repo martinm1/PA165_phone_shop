@@ -45,13 +45,13 @@ public class Person {
     @JoinColumn
     private Address address;
     
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String email;
     
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String phoneNumber;
     
-    @Column(nullable=false)
+    @Column
     private LocalDate dateOfBirth;
     
     @Column(nullable=false)
