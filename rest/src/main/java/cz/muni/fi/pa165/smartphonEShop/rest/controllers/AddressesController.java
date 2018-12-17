@@ -40,7 +40,7 @@ public class AddressesController
      * @return AddressDTO
      * @throws ResourceNotFoundException
      */
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final AddressDTO getAddress(@PathVariable("id") long id)
     {
         AddressDTO addressDTO = addressFacade.findAddressById(id);

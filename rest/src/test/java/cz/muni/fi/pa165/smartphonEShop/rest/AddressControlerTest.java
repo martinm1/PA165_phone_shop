@@ -70,17 +70,17 @@ public class AddressControlerTest {
     public void getAddressesTest() throws Exception {
         when(addressFacade.getAllAddresses()).thenReturn(Collections.singletonList(addressDTO));
 
-        this.mockMvc.perform(get("/stocks"))
+        this.mockMvc.perform(get("/addresses"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.[?(@.id==111)].city").value("Brno"));
     }
 
     @Test
-    public void getStockTest() throws Exception {
+    public void getAddressTest() throws Exception {
         when(addressFacade.findAddressById(addressDTO.getId())).thenReturn(addressDTO);
 
-        this.mockMvc.perform(get("/stocks/111"))
+        this.mockMvc.perform(get("/addresses/111"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.city").value("Brno"));
