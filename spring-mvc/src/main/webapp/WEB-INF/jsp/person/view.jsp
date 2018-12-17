@@ -42,7 +42,8 @@
                         <th>ID</th>
                         <th>State</th>
                         <th>Date</th>
-                        <th>Phone</th>
+                        <th>Manufacturer</th>
+                        <th>Model</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                             <td><c:out value="${order.id}"/></td>
                             <td><c:out value="${order.state}"/></td>
                             <td><my:localDate date="${order.orderDate}" pattern="dd-MM-yyyy"/></td>
+                            <td><c:out value="${order.phone.manufacturer}"/></td>
                             <td><c:out value="${order.phone.modelName}"/></td>
                         </tr>
                     </c:forEach>
