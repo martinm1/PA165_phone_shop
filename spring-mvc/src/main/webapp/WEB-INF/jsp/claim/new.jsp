@@ -44,6 +44,17 @@
                 <div class="col-sm-10">
                     <form:input path="order" cssClass="form-control"/>
                     <form:errors path="order" cssClass="form-block"/>
+
+
+
+                    <%--<select>--%>
+                        <%--<c:forEach items="${orders}" var="order" >--%>
+                                <%--<option value="<c:out value='${order.id}'/>" >--%>
+                                    <%--<c:out value='${order.toString()}'/>--%>
+                                <%--</option>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
+
                 </div>
             </div>
 

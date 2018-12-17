@@ -37,7 +37,7 @@
                     <td><c:out value="${stock.address.city}"/></td>
                     <td><c:out value="${stock.address.country}"/></td>
                     <td class="button">
-                        <form method="post"
+                        <form method="get"
                               action="/pa165/phone/list/byStockId?stockId=${stock.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
@@ -46,5 +46,11 @@
             </c:forEach>
             </tbody>
         </table>
+        <div>
+            <form method="get"
+                  action="/pa165/stock/create" >
+                <input class="btn btn-warning" type="submit" value="Create new stock" />
+            </form>
+        </div>
     </jsp:attribute>
 </my:pagetemplate>

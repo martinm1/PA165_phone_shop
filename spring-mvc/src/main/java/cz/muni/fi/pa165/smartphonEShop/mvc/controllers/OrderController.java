@@ -97,6 +97,12 @@ public class OrderController {
         return "order/list";
     }
 
+
+    @ModelAttribute("claimSolution")
+    public OrderState[] orderState() {
+        return OrderState.values();
+    }
+
     /**
      * Prepares an empty form for order.
      *
