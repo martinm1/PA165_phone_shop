@@ -12,6 +12,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <my:pagetemplate title="Claims">
     <jsp:attribute name="body">
         <table class="table">
