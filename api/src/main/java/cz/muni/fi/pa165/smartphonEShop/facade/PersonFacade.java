@@ -67,7 +67,7 @@ public interface PersonFacade
      * Register new person to system.
      * @param person New person.
      */
-    void registerPerson(PersonCreateDTO person, String pass);
+    Long registerPerson(PersonCreateDTO person, String pass);
 
     /**
      * Authenticate user.

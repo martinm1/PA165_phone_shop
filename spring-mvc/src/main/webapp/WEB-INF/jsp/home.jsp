@@ -12,7 +12,12 @@
                 <p>Please note that without being signed in you can only</p>
                 <p>view our sortiment but cant interact with it in any way</p>
 
-                <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/newAuth" role="button"> Login form</a> </p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/newAuth" role="button"> Login form</a>
+                        <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/new" role="button"> Register form</a>
+                    </div>
+                </div>
             </div>
         </jsp:attribute>
 </my:pagetemplate>

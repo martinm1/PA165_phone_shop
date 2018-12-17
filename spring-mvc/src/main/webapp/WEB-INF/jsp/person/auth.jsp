@@ -33,5 +33,11 @@
         </tr>
     </table>
     </form:form>
+
+        <c:if test="${not empty msg}">
+             <div class="alert alert-danger" align="center">
+                 <c:out value="${msg}"/>
+             </div>
+        </c:if>
     </jsp:attribute>
 </my:pagetemplate>

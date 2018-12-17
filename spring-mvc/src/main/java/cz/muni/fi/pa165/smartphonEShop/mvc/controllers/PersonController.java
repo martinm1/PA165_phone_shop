@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
+import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -107,6 +109,30 @@ public class PersonController {
         return "person/new";
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("personCreate") PersonCreateDTO person, BindingResult bindingResult,
+                               Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+    {
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                log.trace("FieldError: {}", fe);
+            }
+            return "person/new";
+        }
+        //create product
+        personFacade.registerPerson(person, person.getPassword());
+                //report success
+        redirectAttributes.addFlashAttribute("alert_success", "Person " /*+ id*/ + " was created");
+        return "redirect:" + uriBuilder.path("/person/list").toUriString();
+    }
+
+
+    @ModelAttribute("genders")
+    public Gender[] genders() {
+        return Gender.values();
+    }
+
     @RequestMapping(value = "/newAuth", method = RequestMethod.GET)
     public String newAuth(Model model)
     {
@@ -129,10 +155,19 @@ public class PersonController {
             return "person/auth";
         }
 
-        personFacade.auth(person);
+        if(personFacade.auth(person))
+        {
+            Long id = personFacade.findPersonByEmail(person.getEmail()).getId();
 
-        Long id = personFacade.findPersonByEmail(person.getEmail()).getId();
+            return "redirect:" + uriBuilder.path("/person/view/" + id).toUriString();
+        }
 
-        return "redirect:" + uriBuilder.path("/person/view/" + id).toUriString();
+        else
+        {
+            model.addAttribute("msg", "Wrong email or password");
+
+            return "person/auth";
+        }
+
     }
 }

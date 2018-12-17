@@ -61,9 +61,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void registerPerson(Person person, String pass) {
+    public Long registerPerson(Person person, String pass) {
         person.setPasswordHash(createHash(pass));
         personDao.create(person);
+
+        return person.getId();
     }
 
     @Override
