@@ -28,7 +28,7 @@
             <tr>
                 <td>${address.id}</td>
                 <td><c:out value="${address.streetName}"/></td>
-                <td><c:out value="${address.streetNumber4}"/></td>
+                <td><c:out value="${address.streetNumber}"/></td>
                 <td><c:out value="${address.country}"/></td>
                 <td><c:out value="${address.city}"/></td>
             </tr>
