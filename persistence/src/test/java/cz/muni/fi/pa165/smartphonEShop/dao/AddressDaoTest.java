@@ -16,6 +16,8 @@ import cz.muni.fi.pa165.smartphonEShop.enums.AddressEnum;
 import java.util.HashMap;
 import java.util.List;
 import org.testng.annotations.BeforeMethod;
+import sun.rmi.runtime.Log;
+
 /**
  *
  * @author martin
@@ -166,6 +168,7 @@ public class AddressDaoTest extends  AbstractTestNGSpringContextTests{
 
         hashMap1.put(AddressEnum.CITY, "Bratislava");
         hashMap1.put(AddressEnum.COUNTRY, "Slovensko");
+
 
         List<Address> addresses =  address.findAllAddressesBy(hashMap);
         List<Address> addresses1 = address.findAllAddressesBy(hashMap1);

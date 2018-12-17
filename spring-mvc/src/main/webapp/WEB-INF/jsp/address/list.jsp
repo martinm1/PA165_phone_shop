@@ -12,25 +12,36 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Addressess">
+<my:pagetemplate title="Addresses">
     <jsp:attribute name="body">
+        <div class="container">
+
+        </div>
+        <div class="container">
         <table class="table">
-            <caption>Adresses</caption>
+            <caption>Addresses</caption>
             <thead>
             <tr>
                 <th>ID</th>
-                <th>address</th>
+                <th>Street Name</th>
+                <th>Street Number</th>
+                <th>Country</th>
+                <th>City</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${addresses}" var = "address">
                 <tr>
                     <td>${address.id}</td>
-                    <td><c:out value="${address.toString()}"/></td>
+                    <td><c:out value="${address.streetName}"/></td>
+                    <td><c:out value="${address.streetNumber}"/></td>
+                    <td><c:out value="${address.country}"/></td>
+                    <td><c:out value="${address.city}"/></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        </div>
     </jsp:attribute>
 </my:pagetemplate>
 

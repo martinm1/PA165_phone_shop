@@ -71,40 +71,53 @@ public class AddressDaoImpl implements AddressDao {
         List<Address> list1 = new ArrayList<>();
         List<Address> temp = new ArrayList<>();
         if(specificator.containsKey(AddressEnum.CITY)) {
+
             temp.addAll(entityManager.createQuery("select a from Address a where a.city = :city", Address.class).
                     setParameter("city", specificator.get(AddressEnum.CITY)).
                     getResultList());
-            list1 = temp;
+                if (list1.isEmpty())
+                    list1= new ArrayList<>(temp);
+                else
+                    list1.retainAll(temp);
+                temp.clear();
+
         }
 
         if(specificator.containsKey(AddressEnum.COUNTRY)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.country = :country", Address.class).
                     setParameter("country", specificator.get(AddressEnum.COUNTRY)).
                     getResultList());
-            if (temp.size() != 0){
-                list1.retainAll(temp);
+                if (list1.isEmpty())
+                    list1= new ArrayList<>(temp);
+                else
+                    list1.retainAll(temp);
+                temp.clear();
 
-                }
-            }
+        }
         if(specificator.containsKey(AddressEnum.STREET_NAME)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.streetName = :streetName", Address.class).
                     setParameter("streetName", specificator.get(AddressEnum.STREET_NAME)).
                     getResultList());
-            if (temp.size() != 0){
-                list1.retainAll(temp);
-            }
+                if (list1.isEmpty())
+                    list1= new ArrayList<>(temp);
+                else
+                    list1.retainAll(temp);
+                temp.clear();
         }
 
         if(specificator.containsKey(AddressEnum.STREET_NUMBER)) {
             temp.addAll(entityManager.createQuery("select a from Address a where a.streetNumber = :streetNumber", Address.class).
                     setParameter("streetNumber", specificator.get(AddressEnum.STREET_NUMBER)).
                     getResultList());
-            if (temp.size() != 0){
-                list1.retainAll(temp);
+                if (list1.isEmpty())
+                    list1= new ArrayList<>(temp);
+                else
+                    list1.retainAll(temp);
+                temp.clear();
 
-            }
         }
         return list1;
+
     }
 
 }
