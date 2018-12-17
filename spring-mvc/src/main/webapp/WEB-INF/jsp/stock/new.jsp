@@ -21,7 +21,7 @@
                    modelAttribute="stockCreate" cssClass="form-horizontal">
 
             <div class="form-group">
-                <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
+                <form:label path="name" cssClass="col-sm-2 control-label">Name:</form:label>
                 <div class="col-sm-10">
                     <form:input path="name" cssClass="form-control"/>
                     <form:errors path="name" cssClass="help-block"/>
@@ -29,13 +29,38 @@
             </div>
 
             <div class="form-group">
-                <form:label path="order" cssClass="col-sm-2 control-label">Address</form:label>
+                <form:label path="address.streetName" cssClass="col-sm-2 control-label">Street name: </form:label>
                 <div class="col-sm-10">
-                    <form:input path="address" cssClass="form-control"/>
-                    <form:errors path="address" cssClass="form-block"/>
+                    <form:input path="address.streetName" cssClass="form-control"/>
+                    <form:errors path="address.streetName" cssClass="help-block"/>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Create product</button>
+
+                <div class="form-group">
+                    <form:label path="address.streetNumber" cssClass="col-sm-2 control-label">Street number: </form:label>
+                    <div class="col-sm-10">
+                        <form:input path="address.streetNumber" cssClass="form-control"/>
+                        <form:errors path="address.streetNumber" cssClass="form-block"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <form:label path="address.city" cssClass="col-sm-2 control-label">City: </form:label>
+                    <div class="col-sm-10">
+                        <form:input path="address.city" cssClass="form-control"/>
+                        <form:errors path="address.city" cssClass="form-block"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <form:label path="address.country" cssClass="col-sm-2 control-label">Country: </form:label>
+                    <div class="col-sm-10">
+                        <form:input path="address.country" cssClass="form-control"/>
+                        <form:errors path="address.country" cssClass="form-block"/>
+                    </div>
+                </div>
+
+            <button class="btn btn-primary" type="submit">Create stock</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
