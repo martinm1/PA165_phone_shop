@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,31 +18,36 @@ import lombok.Setter;
 @Setter
 public class PersonCreateDTO {
     @NotNull
+    @Size(min = 2, max = 50)
     private String firstName;
     
     @NotNull
+    @Size(min = 2, max = 50)
     private String lastName;
     
     @NotNull
+    @Size(min = 7, max = 100)
     private String email;
     
     @NotNull
+    @Size(min = 9, max = 9)
     private String phoneNumber;
     
-    @NotNull
-    private LocalDate dateOfBirth;
+//    @NotNull
+//    private LocalDate dateOfBirth;
     
     @NotNull
     private Gender gender;
+
+//    @NotNull
+//    private PersonType personType;
+    
+//    @NotNull
+//    private AddressDTO address;
     
     @NotNull
-    private PersonType personType;
-    
-    @NotNull
-    private AddressDTO address;
-    
-    @NotNull
-    private String passwordHash;
+    @Size(min = 6)
+    private String password;
 
     @Override
     public boolean equals(Object o)
@@ -52,16 +59,13 @@ public class PersonCreateDTO {
                 Objects.equals(getLastName(), personDTO.getLastName()) &&
                 Objects.equals(getEmail(), personDTO.getEmail()) &&
                 Objects.equals(getPhoneNumber(), personDTO.getPhoneNumber()) &&
-                Objects.equals(getDateOfBirth(), personDTO.getDateOfBirth()) &&
-                getGender() == personDTO.getGender() &&
-                getPersonType() == personDTO.getPersonType() &&
-                Objects.equals(getAddress(), personDTO.getAddress());
+                getGender() == personDTO.getGender();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getFirstName(), getLastName(), getEmail(), getPhoneNumber(), getDateOfBirth(), getGender(), getPersonType(), getAddress());
+        return Objects.hash(getFirstName(), getLastName(), getEmail(), getPhoneNumber(), getGender());
     }
 
     @Override
@@ -72,10 +76,7 @@ public class PersonCreateDTO {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
                 ", gender=" + gender +
-                ", personType=" + personType +
-                ", address=" + address +
                 '}';
     }
 }
