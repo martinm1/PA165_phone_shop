@@ -66,7 +66,7 @@ public interface PersonService {
      * Register new person to system.
      * @param person New person.
      */
-    void registerPerson(Person person, String pass);
+    Long registerPerson(Person person, String pass);
 
     /**
      * Add specific order to specific person.
