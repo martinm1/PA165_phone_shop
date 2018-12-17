@@ -105,10 +105,10 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String auth(Model model, @RequestParam("user") String user, @RequestParam("pass") String pass)
+    public String auth(Model model)
     {
         model.addAttribute("login", new PersonAuthDTO());
 
-        return "home";
+        return "person/auth";
     }
 }

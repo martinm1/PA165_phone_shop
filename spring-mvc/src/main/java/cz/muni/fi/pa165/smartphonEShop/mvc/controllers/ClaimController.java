@@ -10,13 +10,14 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -155,6 +156,25 @@ public class ClaimController
         ClaimCreateDTO claimCreateDTO = new ClaimCreateDTO();
         model.addAttribute("claimCreate", claimCreateDTO);
         return "claim/new";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("claimCreate") ClaimCreateDTO claim, BindingResult bindingResult,
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+    {
+        if(bindingResult.hasErrors())
+        {
+            for(FieldError fe : bindingResult.getFieldErrors())
+            {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+
+            return "claim/new";
+        }
+
+        Long id = claimFacade.createClaim(claim);
+        redirectAttributes.addFlashAttribute("alert_success", "Claim " + id + " was created");
+        return "redirect:" + uriBuilder.path("/claim/list").toUriString();
     }
 
     /**
