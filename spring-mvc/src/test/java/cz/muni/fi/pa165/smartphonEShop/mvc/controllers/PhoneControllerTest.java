@@ -90,7 +90,7 @@ public class PhoneControllerTest
         this.mockMvc.perform(get("/phone/list/all")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("phonesAll", phones))
+                .andExpect(model().attribute("phones", phones))
                 .andExpect(forwardedUrl("phone/list"));
     }
 
@@ -104,7 +104,7 @@ public class PhoneControllerTest
         this.mockMvc.perform(get("/phone/list/byTechnicalInfo?technicalInfo=je to mobil")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("phonesByTechnicalInfo", phones))
+                .andExpect(model().attribute("phones", phones))
                 .andExpect(forwardedUrl("phone/list"));
     }
 
@@ -118,7 +118,7 @@ public class PhoneControllerTest
         this.mockMvc.perform(get("/phone/list/byStockId?stockId=5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("phonesByStockId", phones))
+                .andExpect(model().attribute("phones", phones))
                 .andExpect(forwardedUrl("phone/list"));
     }
 
@@ -132,7 +132,7 @@ public class PhoneControllerTest
         this.mockMvc.perform(get("/phone/list/byPrice?priceLow=100&priceHigh=500")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("phonesByPrice", phones))
+                .andExpect(model().attribute("phones", phones))
                 .andExpect(forwardedUrl("phone/list"));
     }
 
@@ -146,7 +146,7 @@ public class PhoneControllerTest
         this.mockMvc.perform(get("/phone/list/byModelName?modelName=model")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("phonesByModelName", phones))
+                .andExpect(model().attribute("phones", phones))
                 .andExpect(forwardedUrl("phone/list"));
     }
 

@@ -86,7 +86,7 @@ public class StockControllerTest {
         this.mockMvc.perform(get("/stock/list/all")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("stocksAll", stocks))
+                .andExpect(model().attribute("stocks", stocks))
                 .andExpect(forwardedUrl("stock/list"));
     }
 
@@ -97,7 +97,7 @@ public class StockControllerTest {
         this.mockMvc.perform(get("/stock/list/byName?name=niceName")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("stockByName", stockDTO))
+                .andExpect(model().attribute("stock", stockDTO))
                 .andExpect(forwardedUrl("stock/list"));
 
     }
@@ -109,7 +109,7 @@ public class StockControllerTest {
         this.mockMvc.perform(get("/stock/list/byAddress?addressId=22")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("stockByAddressId", stockDTO))
+                .andExpect(model().attribute("stock", stockDTO))
                 .andExpect(forwardedUrl("stock/list"));
     }
 
