@@ -45,7 +45,7 @@
                     <td><c:out value="${order.phone.modelName}"/></td>
                     <td><c:out value="${order.phone.manufacturer}"/></td>
                     <td class="button">
-                        <form method="post"
+                        <form method="get"
                               action="/pa165/order/view/${order.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
@@ -54,6 +54,12 @@
             </c:forEach>
             </tbody>
         </table>
+        <div>
+            <form method="get"
+                  action="/pa165/order/create" >
+                <input class="btn btn-warning" type="submit" value="Create new order" />
+            </form>
+        </div>
     </jsp:attribute>
 </my:pagetemplate>
 
