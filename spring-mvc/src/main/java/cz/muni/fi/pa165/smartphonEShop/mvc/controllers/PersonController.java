@@ -161,6 +161,8 @@ public class PersonController {
         {
             Long id = personFacade.findPersonByEmail(person.getEmail()).getId();
 
+            model.addAttribute("authPerson", personFacade.findPersonById(id));
+
             return "redirect:" + uriBuilder.path("/person/view/" + id).toUriString();
         }
 
