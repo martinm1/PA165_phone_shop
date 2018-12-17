@@ -12,10 +12,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Addressess">
+<my:pagetemplate title="Addresses">
     <jsp:attribute name="body">
         <table class="table">
-            <caption>Adresses</caption>
+            <caption>Addresses</caption>
             <thead>
             <tr>
                 <th>ID</th>
