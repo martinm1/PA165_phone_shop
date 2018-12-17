@@ -76,7 +76,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean auth(String email, String pass) {
-        return validatePassword(pass, personDao.findByEmail(email).getPasswordHash());
+        Person person = personDao.findByEmail(email);
+
+        if(person == null)
+            return false;
+
+        return validatePassword(pass, person.getPasswordHash());
     }
 
     //see  https://crackstation.net/hashing-security.htm#javasourcecode
