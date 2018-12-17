@@ -13,24 +13,27 @@
     <table align="center">
         <tr>
             <td>
-                <form:label path="email">Email: </form:label>
+                Email:
             </td>
             <td>
-                <form:input path="email" name="email" id="mail" />
+                <input type="text" name="email" id="mail" />
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="pass">Password: </form:label>
+                Password:
             </td>
             <td>
-                <form:password path="pass" name="pass" id="pass" />
+                <input type="password" name="password"/>
             </td>
         </tr>
         <tr>
             <td></td>
             <td align="left">
-                <form:button id="login" name="login">Login</form:button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Login
+                </button>
             </td>
         </tr>
     </table>
