@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
 import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
+import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PhoneService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.StockService;
@@ -27,6 +28,8 @@ public class StockFacadeImpl implements StockFacade {
     @Autowired
     private StockService stockService;
 
+    @Autowired
+    private AddressService addressService;
     
     @Autowired
     private BeanMappingService beanMappingService;
@@ -77,6 +80,8 @@ public class StockFacadeImpl implements StockFacade {
         newstock.setAddress(address);
         newstock.setName(stockDTO.getName());
         newstock.setPhones(phones);
+
+        addressService.createAddress(address);
         stockService.createStock(newstock);
         return newstock.getId();
     }

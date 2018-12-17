@@ -21,7 +21,7 @@ public class StockCreateDTO
     private String name;
 
     @NotNull
-    private AddressDTO address;
+    private AddressCreateDTO address;
 
     @Override
     public boolean equals(Object o)
