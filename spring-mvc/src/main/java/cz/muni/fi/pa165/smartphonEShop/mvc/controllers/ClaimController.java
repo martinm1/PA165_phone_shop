@@ -64,7 +64,7 @@ public class ClaimController
                 model.addAttribute("alert_danger", "Unkown filter " + filter);
         }
 
-        model.addAttribute("claimsByState", claims);
+        model.addAttribute("claims", claims);
         return "claim/list";
     }
 
@@ -94,7 +94,7 @@ public class ClaimController
                 model.addAttribute("alert_danger", "Unkown filter " + filter);
         }
 
-        model.addAttribute("claimsBySolution", claims);
+        model.addAttribute("claims", claims);
         return "claim/list";
     }
 
@@ -109,7 +109,7 @@ public class ClaimController
         Collection<ClaimDTO> claims;
 
         claims = claimFacade.getAllClaims();
-        model.addAttribute("allClaims", claims);
+        model.addAttribute("claims", claims);
         return "claim/list";
     }
 
@@ -125,7 +125,7 @@ public class ClaimController
         Collection<ClaimDTO> claims;
 
         claims = claimFacade.findClaimByUserId(id);
-        model.addAttribute("claimsByPerson", claims);
+        model.addAttribute("claims", claims);
         return "claim/list";
     }
 
@@ -141,7 +141,7 @@ public class ClaimController
         Collection<ClaimDTO> claims;
 
         claims = claimFacade.findClaimByOrderId(id);
-        model.addAttribute("claimsByOrder", claims);
+        model.addAttribute("claims", claims);
         return "claim/list";
     }
 

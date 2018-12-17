@@ -92,7 +92,7 @@ public class PersonControllerTest {
         this.mockMvc.perform(get("/person/list/byEmail?email=haha@mail.com")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("personByEmail", personDTO))
+                .andExpect(model().attribute("person", personDTO))
                 .andExpect(forwardedUrl("person/list"));
 
     }
@@ -104,7 +104,7 @@ public class PersonControllerTest {
         this.mockMvc.perform(get("/person/list/byPhoneNumber?phoneNumber=0909123123")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("personByPhoneNumber", personDTO))
+                .andExpect(model().attribute("person", personDTO))
                 .andExpect(forwardedUrl("person/list"));
     }
 

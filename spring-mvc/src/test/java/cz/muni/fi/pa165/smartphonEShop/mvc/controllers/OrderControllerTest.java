@@ -71,7 +71,7 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/accepted")
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("ordersByState", orders))
+            .andExpect(model().attribute("orders", orders))
             .andExpect(forwardedUrl("order/list"));
     }
 
@@ -95,7 +95,7 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/all")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("ordersAll", orders))
+                .andExpect(model().attribute("orders", orders))
                 .andExpect(forwardedUrl("order/list"));
     }
 
@@ -109,7 +109,7 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/byPerson?personId=5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("ordersByPersonId", orders))
+                .andExpect(model().attribute("orders", orders))
                 .andExpect(forwardedUrl("order/list"));
     }
 
@@ -123,7 +123,7 @@ public class OrderControllerTest
         this.mockMvc.perform(get("/order/list/byPhone?phoneId=5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("ordersByPhoneId", orders))
+                .andExpect(model().attribute("orders", orders))
                 .andExpect(forwardedUrl("order/list"));
     }
 
@@ -138,7 +138,7 @@ public class OrderControllerTest
 
         this.mockMvc.perform(get("/order/list/byDate?date=11.12.2018")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
-                .andExpect(model().attribute("ordersByDate", orders))
+                .andExpect(model().attribute("orders", orders))
                 .andExpect(forwardedUrl("order/list"));
     }
 

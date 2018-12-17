@@ -64,7 +64,7 @@ public class ClaimControllerTest {
         this.mockMvc.perform(get("/claim/list/state/accepted")
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("claimsByState", claims))
+            .andExpect(model().attribute("claims", claims))
             .andExpect(forwardedUrl("claim/list"));
     }
     
@@ -88,7 +88,7 @@ public class ClaimControllerTest {
         this.mockMvc.perform(get("/claim/list/solution/money")
             .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
             .andExpect(status().isOk())
-            .andExpect(model().attribute("claimsBySolution", claims))
+            .andExpect(model().attribute("claims", claims))
             .andExpect(forwardedUrl("claim/list"));
     }
     
@@ -112,7 +112,7 @@ public class ClaimControllerTest {
         this.mockMvc.perform(get("/claim/list/all")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("allClaims", claims))
+                .andExpect(model().attribute("claims", claims))
                 .andExpect(forwardedUrl("claim/list"));
     }
     
@@ -126,7 +126,7 @@ public class ClaimControllerTest {
         this.mockMvc.perform(get("/claim/list/byPerson?personId=5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("claimsByPerson", claims))
+                .andExpect(model().attribute("claims", claims))
                 .andExpect(forwardedUrl("claim/list"));
     }
     
@@ -140,7 +140,7 @@ public class ClaimControllerTest {
         this.mockMvc.perform(get("/claim/list/byOrder?orderId=5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("claimsByOrder", claims))
+                .andExpect(model().attribute("claims", claims))
                 .andExpect(forwardedUrl("claim/list"));
     }
     
