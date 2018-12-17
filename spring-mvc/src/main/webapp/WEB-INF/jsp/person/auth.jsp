@@ -4,10 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <my:pagetemplate>
     <jsp:attribute name="body">
         <form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">
+        <%--<form:form id="loginForm" method="post" action="login">--%>
     <table align="center">
         <tr>
             <td>
