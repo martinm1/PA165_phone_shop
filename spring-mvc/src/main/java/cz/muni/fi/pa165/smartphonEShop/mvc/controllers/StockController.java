@@ -51,14 +51,14 @@ public class StockController {
     @RequestMapping(value = "/list/byAddress", method = RequestMethod.GET)
     public String listByAddressId(Model model, @RequestParam("addressId") long addressId) {
         StockDTO stock = stockFacade.findStockByAddressId(addressId);
-        model.addAttribute("stocks", stock);
+        model.addAttribute("stock", stock);
         return "stock/list";
     }
     
     @RequestMapping(value = "/list/byName", method = RequestMethod.GET)
     public String listByName(Model model, @RequestParam("name") String name) {
         StockDTO stock = stockFacade.findStockByName(name);
-        model.addAttribute("stocks", stock);
+        model.addAttribute("stock", stock);
         return "stock/list";
     }
 

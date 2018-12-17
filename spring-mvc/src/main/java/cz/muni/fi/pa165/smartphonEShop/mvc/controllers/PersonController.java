@@ -50,14 +50,14 @@ public class PersonController {
     @RequestMapping(value = "/list/byEmail", method = RequestMethod.GET)
     public String listByEmail(Model model, @RequestParam("email") String email) {
         PersonDTO person = personFacade.findPersonByEmail(email);
-        model.addAttribute("people", person);
+        model.addAttribute("person", person);
         return "person/list";
     }
     
     @RequestMapping(value = "/list/byPhoneNumber", method = RequestMethod.GET)
     public String listByPhoneNumber(Model model, @RequestParam("phoneNumber") String phoneNumber) {
         PersonDTO person = personFacade.findPersonByPhoneNumber(phoneNumber);
-        model.addAttribute("people", person);
+        model.addAttribute("person", person);
         return "person/list";
     }
     
