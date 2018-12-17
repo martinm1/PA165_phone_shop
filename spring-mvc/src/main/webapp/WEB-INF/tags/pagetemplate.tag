@@ -43,19 +43,6 @@
                         <li><my:a href="/claim/list/all">Claims</my:a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">Javadocs</li>
-                        <li><a href="http://docs.oracle.com/javase/8/docs/api/">JDK 8 API</a></li>
-                        <li><a href="http://docs.oracle.com/javaee/6/api/">Java EE 6 API</a></li>
-                        <li><a href="http://docs.spring.io/spring/docs/current/javadoc-api/">Spring API</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Other</li>
-                        <li><a href="http://getbootstrap.com/css/">Bootstrap CSS</a></li>
-                        <li><a href="http://getbootstrap.com/components/">Bootstrap components</a></li>
-                    </ul>
-                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

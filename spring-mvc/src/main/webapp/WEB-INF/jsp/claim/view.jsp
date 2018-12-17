@@ -17,16 +17,16 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Wanted resolution</th>
-                <th>Technical report</th>
-                <th>Reason of claim</th>
-                <th>Claim state</th>
-                <th>Order</th>
-                <th>Order date</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Phone number</th>
+                <th>ID:</th>
+                <th>Wanted resolution:</th>
+                <th>Technical report:</th>
+                <th>Reason of claim:</th>
+                <th>Claim state:</th>
+                <th>Order:</th>
+                <th>Order date:</th>
+                <th>First name:</th>
+                <th>Last name:</th>
+                <th>Phone number:</th>
 
             </tr>
             </thead>

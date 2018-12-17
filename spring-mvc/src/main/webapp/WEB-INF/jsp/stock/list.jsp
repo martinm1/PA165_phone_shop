@@ -18,13 +18,13 @@
             <caption>People</caption>
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Street name</th>
-                <th>Street number</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Phones in stock</th>
+                <th>ID:</th>
+                <th>Name:</th>
+                <th>Street name:</th>
+                <th>Street number:</th>
+                <th>City:</th>
+                <th>Country:</th>
+                <th>Phones in stock:</th>
             </tr>
             </thead>
             <tbody>
@@ -38,7 +38,7 @@
                     <td><c:out value="${stock.address.country}"/></td>
                     <td class="button">
                         <form method="post"
-                              action="TODO" >
+                              action="/pa165/phone/list/byStockId?stockId=${stock.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
                     </td>
