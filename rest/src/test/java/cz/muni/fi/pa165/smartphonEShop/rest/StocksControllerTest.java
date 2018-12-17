@@ -1,13 +1,9 @@
 package cz.muni.fi.pa165.smartphonEShop.rest;
 
 import cz.muni.fi.pa165.smartphonEShop.RootWebContext;
-import cz.muni.fi.pa165.smartphonEShop.dto.AddressDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
-import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
-import cz.muni.fi.pa165.smartphonEShop.facade.AddressFacade;
-import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
-import cz.muni.fi.pa165.smartphonEShop.rest.controllers.AddressesController;
-import cz.muni.fi.pa165.smartphonEShop.rest.controllers.PhonesController;
+import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
+import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
+import cz.muni.fi.pa165.smartphonEShop.rest.controllers.StocksController;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -32,57 +28,56 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 /**
  * Created by Jakub Ondrusek
- * Class represents: Tests for address rest controller.
+ * Class represents: Tests for stock mvc controller.
  */
 @WebAppConfiguration
 @ContextConfiguration(classes = {RootWebContext.class})
-public class AddressControlerTest {
+public class StocksControllerTest {
     @Mock
-    private AddressFacade addressFacade;
+    private StockFacade stockFacade;
 
     @Autowired
     @InjectMocks
-    private AddressesController addressesController;
+    private StocksController stocksController;
+
+    private StockDTO stockDTO;
 
     private MockMvc mockMvc;
-
-    private AddressDTO addressDTO;
 
     @BeforeClass
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = standaloneSetup(addressesController).setMessageConverters(new MappingJackson2HttpMessageConverter())
+        mockMvc = standaloneSetup(stocksController).setMessageConverters(new MappingJackson2HttpMessageConverter())
                 .build();
     }
 
     @BeforeMethod
     public void testPrepare() {
-       addressDTO = new AddressDTO();
-
-       addressDTO.setId(111L);
-       addressDTO.setCity("Brno");
-       addressDTO.setCountry("cesko");
-       addressDTO.setStreetName("hrncirska");
-       addressDTO.setStreetNumber("bohviekolko");
+        stockDTO = new StockDTO();
+        stockDTO.setId(111L);
+        //stockDTO.setAddress();
+        stockDTO.setName("stock1");
+        //stockDTO.setPhones();
     }
 
     @Test
-    public void getAddressesTest() throws Exception {
-        when(addressFacade.getAllAddresses()).thenReturn(Collections.singletonList(addressDTO));
+    public void getStocksTest() throws Exception {
+        when(stockFacade.getAllStocks()).thenReturn(Collections.singletonList(stockDTO));
 
         this.mockMvc.perform(get("/stocks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.[?(@.id==111)].city").value("Brno"));
+                .andExpect(jsonPath("$.[?(@.id==111)].name").value("stock1"));
     }
 
     @Test
     public void getStockTest() throws Exception {
-        when(addressFacade.findAddressById(addressDTO.getId())).thenReturn(addressDTO);
+        when(stockFacade.findStockById(stockDTO.getId())).thenReturn(stockDTO);
 
         this.mockMvc.perform(get("/stocks/111"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.city").value("Brno"));
+                .andExpect(jsonPath("$.name").value("stock1"));
     }
 }
+
