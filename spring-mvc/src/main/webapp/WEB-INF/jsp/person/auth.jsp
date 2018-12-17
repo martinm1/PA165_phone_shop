@@ -22,7 +22,7 @@
                 <form:label path="pass">Password: </form:label>
             </td>
             <td>
-                <form:label path="pass" name="pass" id="pass" />
+                <form:password path="pass" name="pass" id="pass" />
             </td>
         </tr>
         <tr>

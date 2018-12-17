@@ -7,13 +7,12 @@
 
 <my:pagetemplate>
         <jsp:attribute name="body">
-            <div style = "text-align:center">
+            <div class="jumbotron">
                 <h1>Welcome to our PhonEshop</h1>
                 <p>Please note that without being signed in you can only</p>
                 <p>view our sortiment but cant interact with it in any way</p>
-                <a href="">I wish to continue without signing</a>
-                Dont have an account?<br>
-                <a href="">Sign up right now!</a>
+
+                <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/newAuth" role="button"> Login form</a> </p>
             </div>
         </jsp:attribute>
 </my:pagetemplate>

@@ -24,10 +24,10 @@
                 <td>${person.id}</td>
                 <td><c:out value="${person.firstName}"/></td>
                 <td><c:out value="${person.lastName}"/></td>
-                <td><c:out value="${person.address}"/></td>
+                <%--<td><c:out value="${person.address}"/></td>--%>
                 <td><c:out value="${person.email}"/></td>
                 <td><c:out value="${person.phoneNumber}"/></td>
-                <td><fmt:formatDate value="${user.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
+                <td><my:localDate date="${person.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
                 <td><c:out value="${person.gender}"/></td>
             </tr>
             </tbody>
@@ -50,7 +50,7 @@
                         <tr>
                             <td><c:out value="${order.id}"/></td>
                             <td><c:out value="${order.state}"/></td>
-                            <td><fmt:formatDate value="${order.orderDate}" type="date" dateStyle="medium"/></td>
+                            <td><my:localDate date="${order.orderDate}" pattern="dd-MM-yyyy"/></td>
                             <td><c:out value="${order.phone.modelName}"/></td>
                         </tr>
                     </c:forEach>
