@@ -1,12 +1,9 @@
 package cz.muni.fi.pa165.smartphonEShop.dto;
 
-import cz.muni.fi.pa165.smartphonEShop.entity.Person;
-import cz.muni.fi.pa165.smartphonEShop.entity.Stock;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Collections;
-import java.util.List;
+
 import java.util.Objects;
 
 @Getter
