@@ -30,7 +30,7 @@
                     <td><c:out value="${person.address}"/></td>
                     <td><c:out value="${person.email}"/></td>
                     <td><c:out value="${person.phoneNumber}"/></td>
-                    <td><fmt:formatDate value="${user.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
+                    <td><my:localDate date="${person.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
                     <td><c:out value="${person.gender}"/></td>
                 </tr>
             </c:forEach>

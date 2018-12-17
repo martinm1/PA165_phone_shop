@@ -73,25 +73,25 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public void registerPerson(PersonCreateDTO person, String pass) {
+    public Long registerPerson(PersonCreateDTO person, String pass) {
         Person guest = new Person();
 
         Address address = new Address();
-        address.setStreetName(person.getAddress().getStreetName());
-        address.setStreetNumber(person.getAddress().getStreetName());
-        address.setCountry(person.getAddress().getCountry());
-        address.setCity(person.getAddress().getCity());
+//        address.setStreetName(person.getAddress().getStreetName());
+//        address.setStreetNumber(person.getAddress().getStreetName());
+//        address.setCountry(person.getAddress().getCountry());
+//        address.setCity(person.getAddress().getCity());
 
         guest.setEmail(person.getEmail());
         guest.setAddress(address);
-        guest.setDateOfBirth(person.getDateOfBirth());
+//        guest.setDateOfBirth(person.getDateOfBirth());
         guest.setFirstName(person.getFirstName());
         guest.setGender(person.getGender());
         guest.setLastName(person.getLastName());
-        guest.setPersonType(person.getPersonType());
+//        guest.setPersonType(person.getPersonType());
         guest.setPhoneNumber(person.getPhoneNumber());
 
-        personService.registerPerson(guest, pass);
+        return personService.registerPerson(guest, pass);
     }
 
     @Override
