@@ -41,16 +41,16 @@
                 </div>
             </div>
 
-            <!-- TODO:: manufacaturer is enum, possible?-->
-            <div class="form-group>">
-                <form:label path="manufacturer" cssClass="col-sm-2 control-label">Manufacturer</form:label>
-                <div class="col-sm-10">
-                    <form:input path="manufacturer" cssClass="form-control"/>
-                    <form:errors path="manufacturer" cssClass="form-block"/>
-                </div>
-            </div>
-
-            <%--TODO--%>
+         <div class="form-group">
+             <form:label path="manufacturer" cssClass="col-sm-2 control-label">Manufacturer: </form:label>
+             <div class="col-sm-10">
+                    <form:select path="manufacturer" cssClass="form-control">
+                        <c:forEach items="${manufacturers}" var="c">
+                            <form:option value="${c}">${c}</form:option>
+                        </c:forEach>
+                    </form:select>
+             </div>
+         </div>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
