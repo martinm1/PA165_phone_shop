@@ -65,35 +65,35 @@ public class OrderController {
                 orders = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
         }
-        model.addAttribute("ordersByState", orders);
+        model.addAttribute("orders", orders);
         return "order/list";
     }
 
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<OrderDTO> orders = orderFacade.getAllOrders();
-        model.addAttribute("ordersAll", orders);
+        model.addAttribute("orders", orders);
         return "order/list";
     }
 
     @RequestMapping(value = "/list/byPerson", method = RequestMethod.GET)
     public String listByPersonId(Model model, @RequestParam("personId") long personId) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByPersonId(personId);
-        model.addAttribute("ordersByPersonId", orders);
+        model.addAttribute("orders", orders);
         return "order/list";
     }
 
     @RequestMapping(value = "/list/byPhone", method = RequestMethod.GET)
     public String listByPhoneId(Model model, @RequestParam("phoneId") long phoneId) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByPhoneId(phoneId);
-        model.addAttribute("ordersByPhoneId", orders);
+        model.addAttribute("orders", orders);
         return "order/list";
     }
 
     @RequestMapping(value = "/list/byDate", method = RequestMethod.GET)
     public String listByDate(Model model, @RequestParam("date") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByOrderDate(date);
-        model.addAttribute("ordersByDate", orders);
+        model.addAttribute("orders", orders);
         return "order/list";
     }
 

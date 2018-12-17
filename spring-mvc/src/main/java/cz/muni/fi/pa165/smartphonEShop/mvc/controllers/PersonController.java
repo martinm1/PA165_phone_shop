@@ -50,14 +50,14 @@ public class PersonController {
     @RequestMapping(value = "/list/byEmail", method = RequestMethod.GET)
     public String listByEmail(Model model, @RequestParam("email") String email) {
         PersonDTO person = personFacade.findPersonByEmail(email);
-        model.addAttribute("personByEmail", person);
+        model.addAttribute("people", person);
         return "person/list";
     }
     
     @RequestMapping(value = "/list/byPhoneNumber", method = RequestMethod.GET)
     public String listByPhoneNumber(Model model, @RequestParam("phoneNumber") String phoneNumber) {
         PersonDTO person = personFacade.findPersonByPhoneNumber(phoneNumber);
-        model.addAttribute("personByPhoneNumber", person);
+        model.addAttribute("people", person);
         return "person/list";
     }
     
@@ -78,7 +78,7 @@ public class PersonController {
                 people = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
         }
-        model.addAttribute("peopleByPersonType", people);
+        model.addAttribute("people", people);
         return "person/list";
     } 
     
