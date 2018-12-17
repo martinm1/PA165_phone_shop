@@ -33,9 +33,10 @@
                 <p>Please note that without being signed in you can only</p>
                 <p>view our sortiment but cant interact with it in any way</p>
                 <a href="">I wish to continue without signing</a>
-                <form action="/action_page.php">
-                    <input type="text" name="username" value="username"><br>
-                    <input type="text" name="password" value="password"><br>
+                <form>
+                    <input type="text" name="username" value="username"/><br>
+                    Password:<br>
+                    <input type="text" name="password" value="password"/><br><br>
                     <input type="submit" value="Sign in">
                 </form>
                 Dont have an account?<br>
