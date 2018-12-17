@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: jakub
   Date: 17/12/2018
-  Time: 17:54
+  Time: 18:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
@@ -12,28 +12,25 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Phones">
+<my:pagetemplate title="Addressess">
     <jsp:attribute name="body">
         <table class="table">
-            <caption>Phones</caption>
+            <caption>Adresses</caption>
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Model Name</th>
-                <th>Price</th>
-                <th>Manufacturer</th>
+                <th>address</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${phones}" var = "phone">
+            <c:forEach items="${addresses}" var = "address">
                 <tr>
-                    <td>${phone.id}</td>
-                    <td><c:out value="${phone.modelName}"/></td>
-                    <td><c:out value="${phone.price}"/></td>
-                    <td><c:out value="${phone.manufacturer}"/></td>
+                    <td>${address.id}</td>
+                    <td><c:out value="${address.toString()}"/></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </jsp:attribute>
 </my:pagetemplate>
+
