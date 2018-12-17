@@ -29,12 +29,15 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity httpSecurity) throws Exception
     {
         httpSecurity
+                .csrf().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/auth")
-                .permitAll();
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Override

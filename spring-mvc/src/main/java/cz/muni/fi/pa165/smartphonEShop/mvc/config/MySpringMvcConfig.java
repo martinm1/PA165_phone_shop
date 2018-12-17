@@ -29,7 +29,7 @@ public class MySpringMvcConfig implements WebMvcConfigurer
     public void addViewControllers(ViewControllerRegistry registry)
     {
         registry.addViewController("/").setViewName("home");
-        registry.addViewController("/auth").setViewName("auth");
+        registry.addViewController("/login").setViewName("login");
     }
 
     @Override

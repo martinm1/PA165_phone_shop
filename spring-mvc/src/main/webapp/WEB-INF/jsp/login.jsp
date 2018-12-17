@@ -5,18 +5,19 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
 <my:pagetemplate>
     <jsp:attribute name="body">
         <%--<form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">--%>
-        <form name="loginForm" method="post" action="auth">
+        <form name="f" th:th:action="@{/login}" method="post" action="login">
     <table align="center">
         <tr>
             <td>
                 Email:
             </td>
             <td>
-                <input type="text" name="email" id="mail" />
+                <input type="text" name="username" />
             </td>
         </tr>
         <tr>

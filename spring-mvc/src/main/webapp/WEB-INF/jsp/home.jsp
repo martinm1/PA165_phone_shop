@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <security:authorize access="!isAuthenticated()">
-                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/auth" role="button"> Login form</a>
+                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/login" role="button"> Login form</a>
                             <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/new" role="button"> Register form</a>
                         </security:authorize>
                     </div>
