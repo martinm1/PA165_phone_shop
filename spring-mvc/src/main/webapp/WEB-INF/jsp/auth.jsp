@@ -8,8 +8,8 @@
 
 <my:pagetemplate>
     <jsp:attribute name="body">
-        <form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">
-        <%--<form:form id="loginForm" method="post" action="login">--%>
+        <%--<form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">--%>
+        <form name="loginForm" method="post" action="auth">
     <table align="center">
         <tr>
             <td>
@@ -34,7 +34,7 @@
             </td>
         </tr>
     </table>
-    </form:form>
+    </form>
 
         <c:if test="${not empty msg}">
              <div class="alert alert-danger" align="center">
