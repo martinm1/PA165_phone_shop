@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.smartphonEShop.entity.Address;
 import cz.muni.fi.pa165.smartphonEShop.entity.Person;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
+import cz.muni.fi.pa165.smartphonEShop.service.service.AddressService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.BeanMappingService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.OrderService;
 import cz.muni.fi.pa165.smartphonEShop.service.service.PersonService;
@@ -29,6 +30,9 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private AddressService addressService;
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -77,10 +81,10 @@ public class PersonFacadeImpl implements PersonFacade {
         Person guest = new Person();
 
         Address address = new Address();
-//        address.setStreetName(person.getAddress().getStreetName());
-//        address.setStreetNumber(person.getAddress().getStreetName());
-//        address.setCountry(person.getAddress().getCountry());
-//        address.setCity(person.getAddress().getCity());
+        address.setStreetName(person.getAddress().getStreetName());
+       address.setStreetNumber(person.getAddress().getStreetName());
+       address.setCountry(person.getAddress().getCountry());
+        address.setCity(person.getAddress().getCity());
 
         guest.setEmail(person.getEmail());
         guest.setAddress(address);
@@ -88,9 +92,10 @@ public class PersonFacadeImpl implements PersonFacade {
         guest.setFirstName(person.getFirstName());
         guest.setGender(person.getGender());
         guest.setLastName(person.getLastName());
-//        guest.setPersonType(person.getPersonType());
+        guest.setPersonType(PersonType.SIGNED_USER);
         guest.setPhoneNumber(person.getPhoneNumber());
 
+        addressService.createAddress(address);
         return personService.registerPerson(guest, pass);
     }
 
