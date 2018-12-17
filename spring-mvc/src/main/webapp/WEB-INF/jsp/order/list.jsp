@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: stevo
   Date: 17.12.2018
-  Time: 14:39
+  Time: 20:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="false" session="false" %>
@@ -13,31 +13,40 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<my:pagetemplate title="Claims">
+<my:pagetemplate title="Orders">
     <jsp:attribute name="body">
         <table class="table">
-            <caption>People</caption>
+            <caption>Orders</caption>
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Wanted resolution</th>
-                <th>Technical report</th>
-                <th>Reason of claim</th>
-                <th>Claim state</th>
-                <th>View claim</th>
+                <th>Order state:</th>
+                <th>Order date:</th>
+                <th>First name:</th>
+                <th>Last name:</th>
+                <th>Phone number:</th>
+                <th>Email:</th>
+                <th>Ordered item:</th>
+                <th>Manufacturer:</th>
+
+
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${claims}" var = "claim">
+            <c:forEach items="${orders}" var = "order">
                 <tr>
-                    <td>${claim.id}</td>
-                    <td><c:out value="${claim.wantedSolutionByCustomer}"/></td>
-                    <td><c:out value="${claim.technicalReport}"/></td>
-                    <td><c:out value="${claim.reasonOfClaim}"/></td>
-                    <td><c:out value="${claim.claimState}"/></td>
+                    <td>${order.id}</td>
+                    <td><c:out value="${order.state}"/></td>
+                    <td><c:out value="${order.orderDate}"/></td>
+                    <td><c:out value="${order.person.firstName}"/></td>
+                    <td><c:out value="${order.person.lastName}"/></td>
+                    <td><c:out value="${order.person.phoneNumber}"/></td>
+                    <td><c:out value="${order.person.email}"/></td>
+                    <td><c:out value="${order.phone.modelName}"/></td>
+                    <td><c:out value="${order.phone.manufacturer}"/></td>
                     <td class="button">
                         <form method="post"
-                              action="/pa165/claim/view/${claim.id}" >
+                              action="/pa165/order/view/${order.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
                     </td>
@@ -47,3 +56,4 @@
         </table>
     </jsp:attribute>
 </my:pagetemplate>
+

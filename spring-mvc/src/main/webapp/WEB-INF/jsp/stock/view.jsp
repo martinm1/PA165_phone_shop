@@ -17,12 +17,12 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Street name</th>
-                <th>Street number</th>
-                <th>City</th>
-                <th>Country</th>
+                <th>ID:</th>
+                <th>Name:</th>
+                <th>Street name:</th>
+                <th>Street number:</th>
+                <th>City:</th>
+                <th>Country:</th>
             </tr>
             </thead>
             <tbody>
@@ -44,11 +44,11 @@
                     <caption>Phones</caption>
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Model name</th>
-                        <th>Manufacturer</th>
-                        <th>Specifications</th>
-                        <th>Price</th>
+                        <th>ID:</th>
+                        <th>Model name:</th>
+                        <th>Manufacturer:</th>
+                        <th>Specifications:</th>
+                        <th>Price:</th>
                     </tr>
                     </thead>
                     <tbody>
