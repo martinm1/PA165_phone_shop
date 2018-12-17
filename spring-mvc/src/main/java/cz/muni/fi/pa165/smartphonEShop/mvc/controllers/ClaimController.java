@@ -157,6 +157,11 @@ public class ClaimController
         model.addAttribute("claimCreate", claimCreateDTO);
         return "claim/new";
     }
+    @ModelAttribute("claimSolution")
+    public ClaimSolution[] claimSolutions()
+    {
+        return ClaimSolution.values();
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("claimCreate") ClaimCreateDTO claim, BindingResult bindingResult,

@@ -12,8 +12,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
+
 <my:pagetemplate title="New stock">
     <jsp:attribute name="body">
+
         <form:form method="post" action="${pageContext.request.contextPath}/stock/create"
                    modelAttribute="stockCreate" cssClass="form-horizontal">
 
@@ -32,8 +35,6 @@
                     <form:errors path="address" cssClass="form-block"/>
                 </div>
             </div>
-            <%--TODO--%>
-
             <button class="btn btn-primary" type="submit">Create product</button>
         </form:form>
     </jsp:attribute>

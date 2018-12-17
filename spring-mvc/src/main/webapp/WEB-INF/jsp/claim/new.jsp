@@ -25,16 +25,18 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <form:label path="wantedSolutionByCustomer" cssClass="col-sm-2 control-label">Wanted solution</form:label>
-                <div class="col-sm-10">
-                    <input type="text" list="types"/>
-                    <datalist id="types">
-                        <option>MONEY</option>
-                        <option>REPAIR</option>
-                    </datalist>
-                </div>
-            </div>
+
+          <div class="form-group">
+              <form:label path="wantedSolutionByCustomer" cssClass="col-sm-2 control-label">Wanted resolution</form:label>
+              <div class="col-sm-10">
+                    <form:select path="wantedSolutionByCustomer" cssClass="form-control">
+                        <c:forEach items="${claimSolution}" var="c">
+                            <form:option value="${c}">${c}</form:option>
+                        </c:forEach>
+                    </form:select>
+                  <form:errors path="wantedSolutionByCustomer" cssClass="error"/>
+              </div>
+          </div>
 
             <div class="form-group">
                 <form:label path="order" cssClass="col-sm-2 control-label">Order</form:label>
@@ -43,7 +45,7 @@
                     <form:errors path="order" cssClass="form-block"/>
                 </div>
             </div>
-            <%--TODO--%>
+
 
 
 
