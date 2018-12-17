@@ -73,7 +73,7 @@ public class PhoneController {
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         Collection<PhoneDTO> phones = phoneFacade.getAllPhones();
-        model.addAttribute("phonesAll", phones);
+        model.addAttribute("phones", phones);
         return "phone/list";
     }
 
@@ -81,14 +81,14 @@ public class PhoneController {
     @RequestMapping(value = "/list/byTechnicalInfo", method = RequestMethod.GET)
     public String listByTechnicalInfo(Model model, @RequestParam("technicalInfo") String technicalInfo) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByTechnicalInfo(technicalInfo);
-        model.addAttribute("phonesByTechnicalInfo", phones);
+        model.addAttribute("phones", phones);
         return "phone/list";
     }
 
     @RequestMapping(value = "/list/byStockId", method = RequestMethod.GET)
     public String listByStockId(Model model, @RequestParam("stockId") long stockId) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByStockID(stockId);
-        model.addAttribute("phonesByStockId", phones);
+        model.addAttribute("phones", phones);
         return "phone/list";
     }
 
@@ -96,7 +96,7 @@ public class PhoneController {
     public String listByPrice(Model model, @RequestParam("priceLow") int priceLow,
                               @RequestParam("priceHigh") int priceHigh ) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByPriceInterval(priceLow,priceHigh);
-        model.addAttribute("phonesByPrice", phones);
+        model.addAttribute("phones", phones);
         return "phone/list";
     }
 
@@ -105,7 +105,7 @@ public class PhoneController {
     @RequestMapping(value = "/list/byModelName", method = RequestMethod.GET)
     public String listByModelName(Model model, @RequestParam("modelName") String modelName) {
         Collection<PhoneDTO> phones = phoneFacade.findPhonesByModelName(modelName);
-        model.addAttribute("phonesByModelName", phones);
+        model.addAttribute("phones", phones);
         return "phone/list";
     }
 

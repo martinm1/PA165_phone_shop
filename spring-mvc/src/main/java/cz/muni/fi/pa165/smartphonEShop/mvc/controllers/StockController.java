@@ -44,21 +44,21 @@ public class StockController {
      */
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
-        model.addAttribute("stocksAll", stockFacade.getAllStocks());
+        model.addAttribute("stocks", stockFacade.getAllStocks());
         return "stock/list";
     }
     
     @RequestMapping(value = "/list/byAddress", method = RequestMethod.GET)
     public String listByAddressId(Model model, @RequestParam("addressId") long addressId) {
         StockDTO stock = stockFacade.findStockByAddressId(addressId);
-        model.addAttribute("stockByAddressId", stock);
+        model.addAttribute("stocks", stock);
         return "stock/list";
     }
     
     @RequestMapping(value = "/list/byName", method = RequestMethod.GET)
     public String listByName(Model model, @RequestParam("name") String name) {
         StockDTO stock = stockFacade.findStockByName(name);
-        model.addAttribute("stockByName", stock);
+        model.addAttribute("stocks", stock);
         return "stock/list";
     }
 
