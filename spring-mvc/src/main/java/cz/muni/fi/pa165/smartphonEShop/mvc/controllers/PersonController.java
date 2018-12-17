@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
@@ -18,10 +19,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.validation.Valid;
 
 /**
  *
@@ -84,7 +88,7 @@ public class PersonController {
      * @param model data to display
      * @return JSP page name
      */
-    @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public String listAll(Model model) {
         model.addAttribute("people", personFacade.getAllPeople());
         return "person/list";
@@ -101,5 +105,34 @@ public class PersonController {
         log.debug("new()");
         model.addAttribute("personCreate", new PersonCreateDTO());
         return "person/new";
+    }
+
+    @RequestMapping(value = "/newAuth", method = RequestMethod.GET)
+    public String newAuth(Model model)
+    {
+        model.addAttribute("login", new PersonAuthDTO());
+
+        return "person/auth";
+    }
+
+    @RequestMapping(value = "auth", method = RequestMethod.POST)
+    public String auth(@Valid @ModelAttribute("login") PersonAuthDTO person, BindingResult bindingResult,
+                       Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+    {
+        if(bindingResult.hasErrors())
+        {
+            for(FieldError fe : bindingResult.getFieldErrors())
+            {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+
+            return "person/auth";
+        }
+
+        personFacade.auth(person);
+
+        Long id = personFacade.findPersonByEmail(person.getEmail()).getId();
+
+        return "redirect:" + uriBuilder.path("/person/view/" + id).toUriString();
     }
 }
