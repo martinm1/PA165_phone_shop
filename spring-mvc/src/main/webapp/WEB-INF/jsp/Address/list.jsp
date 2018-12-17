@@ -19,20 +19,14 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Street Name</th>
-                <th>Street Number</th>
-                <th>Country</th>
-                <th>City</th>
+                <th>address</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${addresses}" var = "address">
                 <tr>
                     <td>${address.id}</td>
-                    <td><c:out value="${address.streetName}"/></td>
-                    <td><c:out value="${address.streetNumber4}"/></td>
-                    <td><c:out value="${address.country}"/></td>
-                    <td><c:out value="${address.city}"/></td>
+                    <td><c:out value="${address.toString()}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -53,3 +53,4 @@
             <%--TODO--%>
         </form:form>
     </jsp:attribute>
+</my:pagetemplate>
