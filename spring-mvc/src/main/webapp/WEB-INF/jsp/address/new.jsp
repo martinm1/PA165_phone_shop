@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <%--TODO--%>
+            <button class="btn btn-primary" type="submit">create address</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>

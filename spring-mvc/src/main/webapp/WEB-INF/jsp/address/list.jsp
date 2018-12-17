@@ -37,6 +37,12 @@
                     <td><c:out value="${address.streetNumber}"/></td>
                     <td><c:out value="${address.country}"/></td>
                     <td><c:out value="${address.city}"/></td>
+                    <td class="button">
+                        <form method="get"
+                              action="/pa165/address/view/${address.id}" >
+                            <input class="btn btn-warning" type="submit" value="View" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

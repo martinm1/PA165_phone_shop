@@ -14,6 +14,7 @@
 
 <my:pagetemplate title="Phones">
     <jsp:attribute name="body">
+
         <table class="table">
             <caption>Phones</caption>
             <thead>
@@ -31,9 +32,22 @@
                     <td><c:out value="${phone.modelName}"/></td>
                     <td><c:out value="${phone.price}"/></td>
                     <td><c:out value="${phone.manufacturer}"/></td>
+                    <td class="button">
+                        <form method="get"
+                              action="/pa165/phone/view/${phone.id}" >
+                            <input class="btn btn-warning" type="submit" value="View" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <div>
+        <form method="get"
+              action="/pa165/phone/new" >
+            <input class="btn btn-warning" type="submit" value="Create new Phone" />
+        </form>
+        </div>
+
     </jsp:attribute>
 </my:pagetemplate>

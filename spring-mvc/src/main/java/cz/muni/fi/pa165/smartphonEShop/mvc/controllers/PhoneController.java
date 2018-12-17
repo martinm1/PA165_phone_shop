@@ -128,7 +128,11 @@ public class PhoneController {
         model.addAttribute("phone", phoneFacade.findPhoneById(id));
         return "phone/view";
     }
-
+    @ModelAttribute("manufacturers")
+    public Manufacturer[] manufacturers()
+    {
+        return Manufacturer.values();
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("phoneCreate") PhoneCreateDTO formBean, BindingResult bindingResult,
