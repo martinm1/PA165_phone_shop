@@ -40,7 +40,7 @@ public class Phone {
     private Order order;
 
     @ManyToOne
-    @JoinColumn//(nullable=false)
+    @JoinColumn
     private Stock stock;
 
 
