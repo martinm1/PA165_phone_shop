@@ -229,8 +229,7 @@ public class ClaimController
 
 
     @RequestMapping(value = "/addReport", method = RequestMethod.POST)
-    public String addTechnicalReport(@RequestBody BindingResult bindingResult,
-                                     @Valid @ModelAttribute("claim") ClaimReportDTO claim,
+    public String addTechnicalReport(@Valid @ModelAttribute("claim") ClaimReportDTO claim, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
     {
         if (bindingResult.hasErrors()) {
