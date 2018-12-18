@@ -19,20 +19,32 @@
         <form:form method="post" action="${pageContext.request.contextPath}/order/create"
                    modelAttribute="orderCreate" cssClass="form-horizontal">
 
+            <%--<div class="form-group">--%>
+                <%--<div class="col-sm-10">--%>
+                    <%--<my:localDate date=""--%>
+                    <%--<form:hidden path="orderDate" cssClass="form-control" value="${orderCreate.orderDate}"/>--%>
+                    <%--<form:errors path="orderDate" cssClass="help-block"/>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+
             <div class="form-group">
-                <form:label path="orderDate" cssClass="col-sm-2 control-label">Order date</form:label>
                 <div class="col-sm-10">
-                    <form:input path="orderDate" cssClass="form-control" disabled="true"/>
-                    <form:errors path="orderDate" cssClass="help-block"/>
+                    <form:hidden path="person" cssClass="form-control" value="${personId}"/>
+                    <form:errors path="person" cssClass="form-block"/>
                 </div>
             </div>
 
             <div class="form-group">
-                <form:label path="person" cssClass="col-sm-2 control-label">Person</form:label>
-                <c:set var="username"><security:authentication property="principal.name"/> <security:authentication property="principal.lastName"/></c:set>
                 <div class="col-sm-10">
-                    <form:input path="person" cssClass="form-control" value="${username}" disabled="true"/>
-                    <form:errors path="person" cssClass="form-block"/>
+                    <form:hidden path="state" cssClass="form-control" value="${orderCreate.state}"/>
+                    <form:errors path="state" cssClass="help-block"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <form:hidden path="phone" cssClass="form-control" value="${phone.id}"/>
+                    <form:errors path="phone" cssClass="form-block"/>
                 </div>
             </div>
 
@@ -52,7 +64,7 @@
                 </tr>
                 </tbody>
             </table>
-        <button class="btn btn-primary" type="submit">Create order</button>
+           <button class="btn btn-primary" type="submit">Create order</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
