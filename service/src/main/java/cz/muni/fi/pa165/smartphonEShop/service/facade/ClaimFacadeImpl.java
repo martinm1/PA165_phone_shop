@@ -88,14 +88,15 @@ public class ClaimFacadeImpl implements ClaimFacade
 
     @Override
 
-    public Long createClaim(ClaimCreateDTO claim)
+    public Long createClaim(ClaimCreateDTO claim, Long orderId)
     {
         Claim mappedClaim = new Claim();
 
-        mappedClaim.setOrder(orderService.findOrderById(claim.getOrder().getId()));
+        mappedClaim.setOrder(orderService.findOrderById(orderId));
         mappedClaim.setClaimState(ClaimState.CREATED);
         mappedClaim.setReasonOfClaim(claim.getReasonOfClaim());
         mappedClaim.setWantedSolutionByCustomer(claim.getWantedSolutionByCustomer());
+
 
         return claimService.createClaim(bms.mapTo(claim, Claim.class));
     }
@@ -103,12 +104,14 @@ public class ClaimFacadeImpl implements ClaimFacade
     @Override
     public void acceptClaim(Long id)
     {
-
+        Claim claim = claimService.findClaimById(id);
+        claimService.acceptClaim(claim);
     }
 
     @Override
     public void rejectClaim(Long id)
     {
-
+        Claim claim = claimService.findClaimById(id);
+        claimService.rejectClaim(claim);
     }
 }

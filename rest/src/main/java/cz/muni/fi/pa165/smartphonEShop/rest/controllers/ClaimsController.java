@@ -55,11 +55,11 @@ public class ClaimsController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final ClaimDTO createClaim(@RequestBody ClaimCreateDTO claimDTO)
+    public final ClaimDTO createClaim(@RequestBody ClaimCreateDTO claimDTO, @RequestParam("orderId") long orderId)
     {
         try
         {
-            Long id = claimFacade.createClaim(claimDTO);
+            Long id = claimFacade.createClaim(claimDTO,orderId);
             return claimFacade.findClaimById(id);
         }
 

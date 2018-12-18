@@ -60,7 +60,7 @@ public interface ClaimFacade {
      * Register new claim to system.
      * @param claim New claim.
      */
-    Long createClaim(ClaimCreateDTO claim);
+    Long createClaim(ClaimCreateDTO claim, Long orderId);
 
     void acceptClaim(Long id);
 
