@@ -36,7 +36,7 @@
                     <td><c:out value="${claim.reasonOfClaim}"/></td>
                     <td><c:out value="${claim.claimState}"/></td>
                     <td class="button">
-                        <form method="post"
+                        <form method="get"
                               action="/pa165/claim/view/${claim.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>

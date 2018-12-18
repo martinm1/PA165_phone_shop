@@ -40,10 +40,12 @@
     </table>
     </form>
 
-        <c:if test="${not empty msg}">
-             <div class="alert alert-danger" align="center">
-                 <c:out value="${msg}"/>
-             </div>
+        <c:if test="${param.error ne null}">
+            <div class="alert alert-danger" align="center">Wrong email or password!</div>
+        </c:if>
+
+        <c:if test="${param.logout ne null}">
+            <div class="alert alert-success" align="center">Logout successful</div>
         </c:if>
     </jsp:attribute>
 </my:pagetemplate>

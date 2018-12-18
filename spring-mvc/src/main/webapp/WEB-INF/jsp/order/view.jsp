@@ -45,42 +45,44 @@
             </tbody>
         </table>
 
-        <div class="row">
-            <div class="col-xs-6">
-                <table class="table">
-                    <caption>Claims</caption>
-                    <thead>
-                    <tr>
-                        <th>ID:</th>
-                        <th>Wanted resolution:</th>
-                        <th>Technical report:</th>
-                        <th>Reason of claim:</th>
-                        <th>Claim state:</th>
-                        <th>Order:</th>
-                        <th>Order date:</th>
-                        <th>First name:</th>
-                        <th>Last name:</th>
-                        <th>Phone number:</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${order.claims}" var="claim">
+       <c:if test="${not empty order.claims}">
+            <div class="row">
+                <div class="col-xs-6">
+                    <table class="table">
+                        <caption>Claims</caption>
+                        <thead>
                         <tr>
-                            <td>${claim.id}</td>
-                            <td><c:out value="${claim.wantedSolutionByCustomer}"/></td>
-                            <td><c:out value="${claim.technicalReport}"/></td>
-                            <td><c:out value="${claim.reasonOfClaim}"/></td>
-                            <td><c:out value="${claim.claimState}"/></td>
-                            <td><c:out value="${claim.order.phone.modelName}"/></td>
-                            <td><c:out value="${claim.order.orderDate}"/></td>
-                            <td><c:out value="${claim.order.person.firstName}"/></td>
-                            <td><c:out value="${claim.order.person.lastName}"/></td>
-                            <td><c:out value="${claim.order.person.phoneNumber}"/></td>
+                            <th>ID:</th>
+                            <th>Wanted resolution:</th>
+                            <th>Technical report:</th>
+                            <th>Reason of claim:</th>
+                            <th>Claim state:</th>
+                            <th>Order:</th>
+                            <th>Order date:</th>
+                            <th>First name:</th>
+                            <th>Last name:</th>
+                            <th>Phone number:</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${order.claims}" var="claim">
+                            <tr>
+                                <td>${claim.id}</td>
+                                <td><c:out value="${claim.wantedSolutionByCustomer}"/></td>
+                                <td><c:out value="${claim.technicalReport}"/></td>
+                                <td><c:out value="${claim.reasonOfClaim}"/></td>
+                                <td><c:out value="${claim.claimState}"/></td>
+                                <td><c:out value="${claim.order.phone.modelName}"/></td>
+                                <td><c:out value="${claim.order.orderDate}"/></td>
+                                <td><c:out value="${claim.order.person.firstName}"/></td>
+                                <td><c:out value="${claim.order.person.lastName}"/></td>
+                                <td><c:out value="${claim.order.person.phoneNumber}"/></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </c:if>
     </jsp:attribute>
 </my:pagetemplate>

@@ -45,7 +45,7 @@
                     <td><c:out value="${order.phone.modelName}"/></td>
                     <td><c:out value="${order.phone.manufacturer}"/></td>
                     <td class="button">
-                        <form method="post"
+                        <form method="get"
                               action="/pa165/order/view/${order.id}" >
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>

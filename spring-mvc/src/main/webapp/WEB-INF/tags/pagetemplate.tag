@@ -33,7 +33,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <security:authorize access="isAuthenticated()">
+                    <security:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -45,6 +45,11 @@
                             <li><my:a href="/claim/list/all">Claims</my:a></li>
                         </ul>
                     </li>
+                </security:authorize>
+
+                <security:authorize access="hasRole('ROLE_USER')">
+                    <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
+                    <li><a href="${pageContext.request.contextPath}/order/list/byPerson?personId=${userId}">My orders</a> </li>
                 </security:authorize>
 
                 <security:authorize access="isAuthenticated()">
