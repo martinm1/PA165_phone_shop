@@ -13,6 +13,8 @@ public class PersonIdContainingUser  extends User implements PersonUserDetails
 
     private final String name;
 
+    private final String lastName;
+
     public PersonIdContainingUser(
             String username, String password, boolean enabled,
             boolean accountNonExpired, boolean credentialsNonExpired,
@@ -20,7 +22,8 @@ public class PersonIdContainingUser  extends User implements PersonUserDetails
             Long trainerId, String firstName, String lastName) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.personId = trainerId;
-        this.name = firstName + " " + lastName;
+        this.name = firstName;
+        this.lastName = lastName;
     }
 
     public PersonIdContainingUser(String username, String password, Collection<? extends GrantedAuthority> authorities
@@ -28,6 +31,7 @@ public class PersonIdContainingUser  extends User implements PersonUserDetails
     {
         super(username, password, authorities);
         this.personId = personId;
-        this.name = firstName + " " + lastName;
+        this.name = firstName;
+        this.lastName = lastName;
     }
 }

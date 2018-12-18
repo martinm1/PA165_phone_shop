@@ -103,11 +103,12 @@ public class OrderFacadeImpl implements OrderFacade
     }
 
     @Override
-    public Long createOrder(OrderCreateDTO order)
+    public Long createOrder(OrderCreateDTO order,  Long phoneId)
     {
         Order mappedOrder = new Order();
 
         mappedOrder.setOrderDate(order.getOrderDate());
+        mappedOrder.setPhone(phoneService.findPhoneById(phoneId));
         mappedOrder.setPerson(personService.findPersonById(order.getPerson().getId()));
         mappedOrder.setPhone(phoneService.findPhoneById(order.getPhone().getId()));
         mappedOrder.setState(OrderState.CREATED);
