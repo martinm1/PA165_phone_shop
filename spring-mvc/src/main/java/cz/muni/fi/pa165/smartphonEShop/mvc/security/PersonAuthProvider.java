@@ -49,7 +49,7 @@ public class PersonAuthProvider implements AuthenticationProvider
         if(person.getPersonType() == PersonType.ADMIN)
             auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-        UserDetails user = new PersonIdContainingUser(name, pass, auths, person.getId());
+        UserDetails user = new PersonIdContainingUser(name, pass, auths, person.getId(), person.getFirstName(), person.getLastName());
 
         return new UsernamePasswordAuthenticationToken(user, pass, auths);
     }
