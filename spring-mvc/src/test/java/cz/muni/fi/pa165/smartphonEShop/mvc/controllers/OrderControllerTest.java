@@ -185,7 +185,7 @@ public class OrderControllerTest
         when(orderFacade.createOrder(createDTO,5L)).thenReturn(10L);
 
 
-        this.mockMvc.perform(post("/order/create/5")
+        this.mockMvc.perform(post("/order/create")
                 .flashAttr("orderCreate", createDTO)
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(flash().attributeExists("alert_success"))

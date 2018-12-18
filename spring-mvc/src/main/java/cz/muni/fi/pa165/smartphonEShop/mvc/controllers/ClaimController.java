@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.ClaimReportDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
@@ -218,30 +219,31 @@ public class ClaimController
 
 
     @RequestMapping(value = "/newReport/{id}", method = RequestMethod.GET)
-    public String newReport(@PathVariable("id") long id, Model model, ModelMap map)
+    public String newReport(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("claim", claimFacade.findClaimById(id));
-        map.addAttribute("id", id);
+        model.addAttribute("claim", new ClaimReportDTO());
+        model.addAttribute("id", id);
         return "claim/newReport";
     }
 
 
 
-    @RequestMapping(value = "/addReport/{id}", method = RequestMethod.POST)
-    public String addTechnicalReport(@PathVariable("id") long id, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, ClaimDTO claim, UriComponentsBuilder uriBuilder)
+    @RequestMapping(value = "/addReport", method = RequestMethod.POST)
+    public String addTechnicalReport(@RequestBody BindingResult bindingResult,
+                                     @Valid @ModelAttribute("claim") ClaimReportDTO claim,
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
     {
         if (bindingResult.hasErrors()) {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-            return "person/new";
+            return "claim/new";
         }
         //create product
-        claimFacade.addReport(id, claim.getTechnicalReport());
+        claimFacade.addReport(claim.getId(), claim.getTechnicalReport());
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Claim report was changed");
-        return "redirect:" + uriBuilder.path("/claim/list").toUriString();
+        return "redirect:" + uriBuilder.path("/claim/list/all").toUriString();
     }
 
     /**
