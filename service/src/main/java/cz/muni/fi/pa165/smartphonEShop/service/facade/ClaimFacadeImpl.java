@@ -114,4 +114,10 @@ public class ClaimFacadeImpl implements ClaimFacade
         Claim claim = claimService.findClaimById(id);
         claimService.rejectClaim(claim);
     }
+
+    @Override
+    public void addReport(Long id, String report) {
+        Claim claim = claimService.findClaimById(id);
+        claimService.addReport(claim,report);
+    }
 }

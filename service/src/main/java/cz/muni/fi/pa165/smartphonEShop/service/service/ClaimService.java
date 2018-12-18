@@ -65,4 +65,7 @@ public interface ClaimService {
     void acceptClaim(Claim claim);
 
     void rejectClaim(Claim claim);
+
+    void addReport(Claim claim, String report);
+
 }

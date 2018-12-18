@@ -2,10 +2,12 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
+import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,9 @@ public class ClaimController
 {
     @Autowired
     private ClaimFacade claimFacade;
+
+    @Autowired
+    private OrderFacade orderFacade;
 
     /**
      * Get all claims filtered by claim state.
@@ -156,7 +161,7 @@ public class ClaimController
     {
         ClaimCreateDTO claimCreateDTO = new ClaimCreateDTO();
         model.addAttribute("claimCreate", claimCreateDTO);
-        map.addAttribute("orderId",orderId);
+        map.addAttribute("order",orderFacade.findOrderById(orderId));
 
         return "claim/new";
     }
@@ -167,9 +172,9 @@ public class ClaimController
         return ClaimSolution.values();
     }
 
-    @RequestMapping(value = "/create/{orderId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("claimCreate") ClaimCreateDTO claim, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable("orderId") long orderId)
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
     {
         if(bindingResult.hasErrors())
         {
@@ -180,7 +185,7 @@ public class ClaimController
 
             return "claim/new";
         }
-        Long id = claimFacade.createClaim(claim,orderId);
+        Long id = claimFacade.createClaim(claim, claim.getOrder().getId());
         redirectAttributes.addFlashAttribute("alert_success", "Claim " + id + " was created");
         return "redirect:" + uriBuilder.path("/claim/list").toUriString();
     }
@@ -196,6 +201,47 @@ public class ClaimController
     {
         model.addAttribute("claim", claimFacade.findClaimById(id));
         return "claim/view";
+    }
+
+
+
+//    @RequestMapping(value = "/newReport/{id}", method = RequestMethod.GET)
+//    public String newReport(Model model, @PathVariable("id") long id)
+//    {
+//        String report = new String();
+//        model.addAttribute("report", report);
+//
+//        return "claim/newReport";
+//    }
+
+
+
+
+    @RequestMapping(value = "/newReport/{id}", method = RequestMethod.GET)
+    public String newReport(@PathVariable("id") long id, Model model, ModelMap map)
+    {
+        model.addAttribute("claim", claimFacade.findClaimById(id));
+        map.addAttribute("id", id);
+        return "claim/newReport";
+    }
+
+
+
+    @RequestMapping(value = "/addReport/{id}", method = RequestMethod.POST)
+    public String addTechnicalReport(@PathVariable("id") long id, BindingResult bindingResult,
+                         Model model, RedirectAttributes redirectAttributes, ClaimDTO claim, UriComponentsBuilder uriBuilder)
+    {
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+            return "person/new";
+        }
+        //create product
+        claimFacade.addReport(id, claim.getTechnicalReport());
+        //report success
+        redirectAttributes.addFlashAttribute("alert_success", "Claim report was changed");
+        return "redirect:" + uriBuilder.path("/claim/list").toUriString();
     }
 
     /**

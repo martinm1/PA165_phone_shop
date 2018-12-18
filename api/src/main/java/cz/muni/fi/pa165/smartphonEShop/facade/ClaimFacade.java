@@ -64,8 +64,8 @@ public interface ClaimFacade {
 
     void acceptClaim(Long id);
 
-
-    //TODO javadoc
     void rejectClaim(Long id);
+
+    void addReport(Long id, String report);
 
 }
