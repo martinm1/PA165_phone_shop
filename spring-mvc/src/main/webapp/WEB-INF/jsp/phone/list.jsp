@@ -39,9 +39,10 @@
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
                     </td>
+                    <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
                     <td class="button">
                         <form method="get"
-                              action="/pa165/order/new/${phone.id}" >
+                              action="/pa165/order/new/${phone.id}/${userId}" >
                             <input class="btn btn-warning" type="submit" value="Order now" />
                         </form>
                     </td>
@@ -52,7 +53,7 @@
         <security:authorize access="hasRole('ROLE_ADMIN')">
         <div>
         <form method="get"
-              action="/pa165/phone/new" >
+              action="/pa165/phone/new/" >
             <input class="btn btn-warning" type="submit" value="Create new Phone" />
         </form>
         </div>

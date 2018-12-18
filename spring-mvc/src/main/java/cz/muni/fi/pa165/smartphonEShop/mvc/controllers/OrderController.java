@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
 import lombok.Setter;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
@@ -43,6 +44,9 @@ public class OrderController {
 
     @Autowired
     private PhoneFacade phoneFacade;
+
+    @Autowired
+    private PersonFacade personFacade;
 
     /**
      * Shows a list of all orders filtered by specified orderState
@@ -114,14 +118,16 @@ public class OrderController {
      * @param model data to be displayed
      * @return JSP page
      */
-    @RequestMapping(value = "/new/{phoneId}", method = RequestMethod.GET)
-    public String newOrder(Model model, ModelMap map, @PathVariable("phoneId") long phoneId) {
+    @RequestMapping(value = "/new/{phoneId}/{userId}", method = RequestMethod.GET)
+    public String newOrder(Model model, ModelMap map, @PathVariable("phoneId") long phoneId, @PathVariable("userId") long userId) {
         log.debug("new()");
         OrderCreateDTO orderCreateDTO = new OrderCreateDTO();
-        orderCreateDTO.setOrderDate(LocalDate.now());
         orderCreateDTO.setState(OrderState.CREATED);
+        orderCreateDTO.setPerson(userId);
+        orderCreateDTO.setPhone(phoneId);
         model.addAttribute("phone",phoneFacade.findPhoneById(phoneId));
         model.addAttribute("orderCreate", orderCreateDTO);
+        model.addAttribute("personId", userId);
         return "order/new";
     }
 
@@ -148,10 +154,11 @@ public class OrderController {
             return "order/new";
         }
         //create product
-        Long id = orderFacade.createOrder(formBean, formBean.getPhone().getId());
+        Long id = orderFacade.createOrder(formBean);
+
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Order " + id + " was created");
-        return "redirect:" + uriBuilder.path("/order/list").toUriString();
+        return "redirect:" + uriBuilder.path("/").toUriString();
     }
 
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
