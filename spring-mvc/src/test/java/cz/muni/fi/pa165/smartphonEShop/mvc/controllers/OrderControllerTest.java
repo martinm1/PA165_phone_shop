@@ -1,12 +1,12 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
-import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
-import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.*;
+import cz.muni.fi.pa165.smartphonEShop.entity.Phone;
+import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
+import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.when;
@@ -39,6 +40,9 @@ public class OrderControllerTest
     @Mock
     private OrderFacade orderFacade;
 
+    @Mock
+    private PhoneFacade phoneFacade;
+
     private OrderDTO orderDTO;
 
     private MockMvc mockMvc;
@@ -50,6 +54,7 @@ public class OrderControllerTest
 
         OrderController orderController = new OrderController();
         orderController.setOrderFacade(orderFacade);
+        orderController.setPhoneFacade(phoneFacade);
 
         mockMvc = MockMvcBuilders.standaloneSetup(orderController).build();
     }
@@ -145,7 +150,9 @@ public class OrderControllerTest
     @Test
     public void newTest() throws Exception
     {
-        this.mockMvc.perform(get("/order/new")
+        when(phoneFacade.findPhoneById(1L)).thenReturn(new PhoneDTO());
+
+        this.mockMvc.perform(get("/order/new/1")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("orderCreate"))
@@ -172,11 +179,13 @@ public class OrderControllerTest
         createDTO.setState(OrderState.CREATED);
         createDTO.setOrderDate(LocalDate.of(2018, 12, 11));
         createDTO.setPerson(new PersonDTO());
+
         createDTO.setPhone(new PhoneDTO());
 
-        when(orderFacade.createOrder(createDTO)).thenReturn(10L);
+        when(orderFacade.createOrder(createDTO,5L)).thenReturn(10L);
 
-        this.mockMvc.perform(post("/order/create")
+
+        this.mockMvc.perform(post("/order/create/5")
                 .flashAttr("orderCreate", createDTO)
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(flash().attributeExists("alert_success"))
