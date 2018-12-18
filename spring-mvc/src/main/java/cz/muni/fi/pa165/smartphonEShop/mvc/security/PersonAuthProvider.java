@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
+import cz.muni.fi.pa165.smartphonEShop.mvc.exceptions.AuthException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,11 +33,15 @@ public class PersonAuthProvider implements AuthenticationProvider
 
         PersonDTO person = personFacade.findPersonByEmail(name);
 
+        if(person == null)
+            throw new AuthException("Bad email or password!");
+
         PersonAuthDTO personAuthDTO = new PersonAuthDTO();
         personAuthDTO.setPass(pass);
         personAuthDTO.setEmail(name);
 
-        personFacade.auth(personAuthDTO);
+        if(!personFacade.auth(personAuthDTO))
+            throw new AuthException("Bad email or password!");
 
         List<GrantedAuthority> auths = new ArrayList<>();
         auths.add(new SimpleGrantedAuthority("ROLE_USER"));

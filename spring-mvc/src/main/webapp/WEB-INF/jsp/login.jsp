@@ -5,41 +5,47 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
 <my:pagetemplate>
     <jsp:attribute name="body">
-        <form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">
-        <%--<form:form id="loginForm" method="post" action="login">--%>
+        <%--<form:form id="loginForm" method="post" action="${pageContext.request.contextPath}/person/auth" modelAttribute="login">--%>
+        <form name="f" th:th:action="@{/login}" method="post" action="login">
     <table align="center">
         <tr>
             <td>
-                <form:label path="email">Email: </form:label>
+                Email:
             </td>
             <td>
-                <form:input path="email" name="email" id="mail" />
+                <input type="text" name="username" />
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="pass">Password: </form:label>
+                Password:
             </td>
             <td>
-                <form:password path="pass" name="pass" id="pass" />
+                <input type="password" name="password"/>
             </td>
         </tr>
         <tr>
             <td></td>
             <td align="left">
-                <form:button id="login" name="login">Login</form:button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Login
+                </button>
             </td>
         </tr>
     </table>
-    </form:form>
+    </form>
 
-        <c:if test="${not empty msg}">
-             <div class="alert alert-danger" align="center">
-                 <c:out value="${msg}"/>
-             </div>
+        <c:if test="${param.error ne null}">
+            <div class="alert alert-danger" align="center">Wrong email or password!</div>
+        </c:if>
+
+        <c:if test="${param.logout ne null}">
+            <div class="alert alert-success" align="center">Logout successful</div>
         </c:if>
     </jsp:attribute>
 </my:pagetemplate>

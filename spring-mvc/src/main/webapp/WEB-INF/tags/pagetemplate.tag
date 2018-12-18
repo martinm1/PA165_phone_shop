@@ -5,6 +5,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="${pageContext.request.locale}">
@@ -32,17 +33,30 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sprava<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><my:a href="/order/list/all">Orders</my:a></li>
-                        <li><my:a href="/person/list/all">People</my:a></li>
-                        <li><my:a href="/phone/list/all">Phones</my:a></li>
-                        <li><my:a href="/stock/list/all">Stocks</my:a></li>
-                        <li><my:a href="/address/list/by">Addresses</my:a></li>
-                        <li><my:a href="/claim/list/all">Claims</my:a></li>
-                    </ul>
-                </li>
+                    <security:authorize access="hasRole('ROLE_ADMIN')">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><my:a href="/order/list/all">Orders</my:a></li>
+                            <li><my:a href="/person/list/all">People</my:a></li>
+                            <li><my:a href="/phone/list/all">Phones</my:a></li>
+                            <li><my:a href="/stock/list/all">Stocks</my:a></li>
+                            <li><my:a href="/address/list/by">Addresses</my:a></li>
+                            <li><my:a href="/claim/list/all">Claims</my:a></li>
+                        </ul>
+                    </li>
+                </security:authorize>
+
+                <security:authorize access="hasRole('ROLE_USER')">
+                    <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
+                    <li><a href="${pageContext.request.contextPath}/order/list/byPerson?personId=${userId}">My orders</a> </li>
+                </security:authorize>
+
+                <security:authorize access="isAuthenticated()">
+                    <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
+                    <li><a href="${pageContext.request.contextPath}/person/view/${userId}">My profile</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                </security:authorize>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -52,19 +66,6 @@
         <c:if test="${not empty title}">
             <div class="page-header">
                 <h1><c:out value="${title}"/></h1>
-            </div>
-        </c:if>
-
-        <c:if test="${not empty authPerson}">
-            <div class="row">
-                <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <c:out value="${authPerson.firstName} ${authPerson.lastName}"/>
-                        </div>
-                    </div>
-                </div>
             </div>
         </c:if>
 
