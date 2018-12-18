@@ -161,7 +161,7 @@ public class ClaimController
     {
         ClaimCreateDTO claimCreateDTO = new ClaimCreateDTO();
         model.addAttribute("claimCreate", claimCreateDTO);
-        map.addAttribute("order",orderFacade.findOrderById(orderId));
+        map.addAttribute("orderId", orderId);
 
         return "claim/new";
     }
@@ -185,9 +185,9 @@ public class ClaimController
 
             return "claim/new";
         }
-        Long id = claimFacade.createClaim(claim, claim.getOrder().getId());
+        Long id = claimFacade.createClaim(claim, claim.getOrderId());
         redirectAttributes.addFlashAttribute("alert_success", "Claim " + id + " was created");
-        return "redirect:" + uriBuilder.path("/claim/list").toUriString();
+        return "redirect:" + uriBuilder.path("/claim/list/all").toUriString();
     }
 
     /**

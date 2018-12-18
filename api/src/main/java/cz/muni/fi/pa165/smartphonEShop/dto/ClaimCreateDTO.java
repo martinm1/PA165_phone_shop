@@ -18,7 +18,7 @@ import java.util.Objects;
 public class ClaimCreateDTO
 {
     @NotNull
-    private OrderDTO order;
+    private Long orderId;
 
     @NotNull
     private ClaimSolution wantedSolutionByCustomer;
@@ -33,21 +33,21 @@ public class ClaimCreateDTO
         if (this == o) return true;
         if (!(o instanceof ClaimCreateDTO)) return false;
         ClaimCreateDTO that = (ClaimCreateDTO) o;
-        return Objects.equals(getOrder(), that.getOrder()) &&
+        return Objects.equals(getOrderId(), that.getOrderId()) &&
                 getWantedSolutionByCustomer() == that.getWantedSolutionByCustomer();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getOrder(), getWantedSolutionByCustomer());
+        return Objects.hash(getOrderId(), getWantedSolutionByCustomer());
     }
 
     @Override
     public String toString()
     {
         return "ClaimCreateDTO{" +
-                "order=" + order +
+                "order=" + orderId +
                 ", wantedSolutionByCustomer=" + wantedSolutionByCustomer +
                 ", reasonOfClaim='" + reasonOfClaim + '\'' +
                 '}';

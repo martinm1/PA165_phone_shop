@@ -98,7 +98,7 @@ public class ClaimFacadeImpl implements ClaimFacade
         mappedClaim.setWantedSolutionByCustomer(claim.getWantedSolutionByCustomer());
 
 
-        return claimService.createClaim(bms.mapTo(claim, Claim.class));
+        return claimService.createClaim(mappedClaim);
     }
 
     @Override
