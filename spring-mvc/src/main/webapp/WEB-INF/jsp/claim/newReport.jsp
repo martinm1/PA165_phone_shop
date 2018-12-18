@@ -13,9 +13,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<my:pagetemplate title="New claim">
+<my:pagetemplate title="Add report">
     <jsp:attribute name="body">
-        <form:form method="post" action="${pageContext.request.contextPath}/claim/addReport/${id}"
+        <form:form method="post" action="${pageContext.request.contextPath}/claim/addReport"
                    modelAttribute="claim"  cssClass="form-horizontal">
 
             <div class="form-group">
@@ -23,6 +23,13 @@
                 <div class="col-sm-10">
                     <form:input path="technicalReport" cssClass="form-control"/>
                     <form:errors path="technicalReport" cssClass="help-block"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <form:hidden path="id" cssClass="form-control" value="${id}"/>
+                    <form:errors path="id" cssClass="help-block"/>
                 </div>
             </div>
 

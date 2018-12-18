@@ -29,6 +29,7 @@
 
             <div class="form-group">
                 <div class="col-sm-10">
+
                     <form:hidden path="person" cssClass="form-control" value="${personId}"/>
                     <form:errors path="person" cssClass="form-block"/>
                 </div>
