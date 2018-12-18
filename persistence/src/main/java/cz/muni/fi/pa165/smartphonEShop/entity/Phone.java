@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,15 +38,12 @@ public class Phone {
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
-    @OneToOne(mappedBy = "phone")
-    private Order order;
+    @OneToMany
+    private List<Order> orders = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn
     private Stock stock;
-
-
-
 
     @Override
     public boolean equals(Object o) {

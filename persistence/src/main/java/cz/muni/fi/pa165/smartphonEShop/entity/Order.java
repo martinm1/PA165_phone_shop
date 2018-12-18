@@ -38,7 +38,7 @@ public class Order {
     @JoinColumn
     private Person person;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Phone phone;
     
