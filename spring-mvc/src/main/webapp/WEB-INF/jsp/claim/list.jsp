@@ -45,11 +45,5 @@
             </c:forEach>
             </tbody>
         </table>
-        <div>
-           <form method="get"
-                 action="/pa165/claim/create" >
-               <input class="btn btn-warning" type="submit" value="Create new claim" />
-           </form>
-        </div>
     </jsp:attribute>
 </my:pagetemplate>

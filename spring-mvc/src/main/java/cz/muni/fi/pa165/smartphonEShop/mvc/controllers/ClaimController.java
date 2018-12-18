@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -150,13 +151,16 @@ public class ClaimController
      * @param model data to display.
      * @return JSP page name.
      */
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newClaim(Model model)
+    @RequestMapping(value = "/new/{orderId}", method = RequestMethod.GET)
+    public String newClaim(Model model, ModelMap map, @PathVariable("orderId") long orderId)
     {
         ClaimCreateDTO claimCreateDTO = new ClaimCreateDTO();
         model.addAttribute("claimCreate", claimCreateDTO);
+        map.addAttribute("orderId",orderId);
+
         return "claim/new";
     }
+
     @ModelAttribute("claimSolution")
     public ClaimSolution[] claimSolutions()
     {
@@ -165,7 +169,7 @@ public class ClaimController
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("claimCreate") ClaimCreateDTO claim, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder,@RequestParam("orderId") long orderId)
     {
         if(bindingResult.hasErrors())
         {
@@ -176,8 +180,7 @@ public class ClaimController
 
             return "claim/new";
         }
-
-        Long id = claimFacade.createClaim(claim);
+        Long id = claimFacade.createClaim(claim,orderId);
         redirectAttributes.addFlashAttribute("alert_success", "Claim " + id + " was created");
         return "redirect:" + uriBuilder.path("/claim/list").toUriString();
     }

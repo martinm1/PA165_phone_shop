@@ -147,7 +147,7 @@ public class ClaimControllerTest {
     @Test
     public void newClaimTest() throws Exception
     {
-        this.mockMvc.perform(get("/claim/new")
+        this.mockMvc.perform(get("/claim/new/5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("claimCreate"))

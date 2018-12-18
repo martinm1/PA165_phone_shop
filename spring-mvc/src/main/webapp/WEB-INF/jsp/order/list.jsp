@@ -47,7 +47,13 @@
                     <td class="button">
                         <form method="get"
                               action="/pa165/order/view/${order.id}" >
-                            <input class="btn btn-warning" type="submit" value="View" />
+                            <input class="btn btn-warning" type="submit" value="View orders" />
+                        </form>
+                    </td>
+                    <td class="button">
+                        <form method="get"
+                              action="/pa165/claim/new?orderId=${order.id}" >
+                            <input class="btn btn-warning" type="submit" value="New claim" />
                         </form>
                     </td>
                 </tr>
