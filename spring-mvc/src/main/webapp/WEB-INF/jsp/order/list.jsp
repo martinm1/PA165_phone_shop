@@ -50,12 +50,6 @@
             </c:forEach>
             </tbody>
         </table>
-        <div>
-            <form method="get"
-                  action="/pa165/order/create" >
-                <input class="btn btn-warning" type="submit" value="Create new order" />
-            </form>
-        </div>
     </jsp:attribute>
 </my:pagetemplate>
 

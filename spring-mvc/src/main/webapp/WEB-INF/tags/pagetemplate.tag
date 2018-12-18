@@ -52,6 +52,11 @@
                     <li><a href="${pageContext.request.contextPath}/order/list/byPerson?personId=${userId}">My orders</a> </li>
                 </security:authorize>
 
+                <security:authorize access="hasRole('ROLE_USER')">
+                    <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
+                    <li><a href="${pageContext.request.contextPath}/phone/list/all">Phones</a></li>
+                </security:authorize>
+
                 <security:authorize access="isAuthenticated()">
                     <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
                     <li><a href="${pageContext.request.contextPath}/person/view/${userId}">My profile</a></li>

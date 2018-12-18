@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.OrderState;
+import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
 import lombok.Setter;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -38,6 +40,9 @@ public class OrderController {
 
     @Autowired
     private OrderFacade orderFacade;
+
+    @Autowired
+    private PhoneFacade phoneFacade;
 
     /**
      * Shows a list of all orders filtered by specified orderState
@@ -109,12 +114,13 @@ public class OrderController {
      * @param model data to be displayed
      * @return JSP page
      */
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newOrder(Model model) {
+    @RequestMapping(value = "/new/{phoneId}", method = RequestMethod.GET)
+    public String newOrder(Model model, ModelMap map, @PathVariable("phoneId") long phoneId) {
         log.debug("new()");
         OrderCreateDTO orderCreateDTO = new OrderCreateDTO();
         orderCreateDTO.setOrderDate(LocalDate.now());
         orderCreateDTO.setState(OrderState.CREATED);
+        model.addAttribute("phone",phoneFacade.findPhoneById(phoneId));
         model.addAttribute("orderCreate", orderCreateDTO);
         return "order/new";
     }
@@ -142,7 +148,7 @@ public class OrderController {
             return "order/new";
         }
         //create product
-        Long id = orderFacade.createOrder(formBean);
+        Long id = orderFacade.createOrder(formBean, formBean.getPhone().getId());
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Order " + id + " was created");
         return "redirect:" + uriBuilder.path("/order/list").toUriString();
