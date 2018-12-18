@@ -24,8 +24,8 @@ public class PersonIdContainingUser  extends User implements PersonUserDetails
         this.personId = trainerId;
     }
 
-    public PersonIdContainingUser(String username, String password, Collection<? extends GrantedAuthority> authorities, Long trainerId) {
+    public PersonIdContainingUser(String username, String password, Collection<? extends GrantedAuthority> authorities, Long personId) {
         super(username, password, authorities);
-        this.personId = trainerId;
+        this.personId = personId;
     }
 }

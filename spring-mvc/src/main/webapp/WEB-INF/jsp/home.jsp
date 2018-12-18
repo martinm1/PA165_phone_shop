@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <my:pagetemplate>
         <jsp:attribute name="body">
@@ -14,8 +15,10 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/newAuth" role="button"> Login form</a>
-                        <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/new" role="button"> Register form</a>
+                        <security:authorize access="!isAuthenticated()">
+                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/login" role="button"> Login form</a>
+                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/new" role="button"> Register form</a>
+                        </security:authorize>
                     </div>
                 </div>
             </div>
