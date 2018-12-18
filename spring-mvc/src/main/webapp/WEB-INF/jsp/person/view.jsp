@@ -33,32 +33,38 @@
             </tbody>
         </table>
 
-        <div class="row">
-            <div class="col-xs-6">
-                <table class="table">
-                    <caption>Orders</caption>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>State</th>
-                        <th>Date</th>
-                        <th>Manufacturer</th>
-                        <th>Model</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${person.orders}" var="order">
+        <c:if test="${not empty person.orders}">
+            <div class="row">
+                <div class="col-xs-6">
+                    <table class="table">
+                        <caption>Orders</caption>
+                        <thead>
                         <tr>
-                            <td><c:out value="${order.id}"/></td>
-                            <td><c:out value="${order.state}"/></td>
-                            <td><my:localDate date="${order.orderDate}" pattern="dd-MM-yyyy"/></td>
-                            <td><c:out value="${order.phone.manufacturer}"/></td>
-                            <td><c:out value="${order.phone.modelName}"/></td>
+                            <th>Manufacturer</th>
+                            <th>Model</th>
+                            <th>Date</th>
+                            <th>State</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${person.orders}" var="order">
+                            <tr>
+                                <td><c:out value="${order.phone.manufacturer}"/></td>
+                                <td><c:out value="${order.phone.modelName}"/></td>
+                                <td><my:localDate date="${order.orderDate}" pattern="dd-MM-yyyy"/></td>
+                                <td><c:out value="${order.state}"/></td>
+                                <td class="button">
+                                    <form method="get"
+                                          action="/pa165/order/view/${order.id}" >
+                                        <input class="btn btn-warning" type="submit" value="View order" />
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </c:if>
     </jsp:attribute>
 </my:pagetemplate>

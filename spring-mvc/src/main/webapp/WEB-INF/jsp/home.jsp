@@ -10,17 +10,6 @@
         <jsp:attribute name="body">
             <div class="jumbotron">
                 <h1>Welcome to our PhonEshop</h1>
-                <p>Please note that without being signed in you can only</p>
-                <p>view our sortiment but cant interact with it in any way</p>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <security:authorize access="!isAuthenticated()">
-                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/login" role="button"> Login form</a>
-                            <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/person/new" role="button"> Register form</a>
-                        </security:authorize>
-                    </div>
-                </div>
             </div>
         </jsp:attribute>
 </my:pagetemplate>
