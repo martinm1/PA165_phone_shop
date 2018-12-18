@@ -20,14 +20,9 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Order state:</th>
-                <th>Order date:</th>
-                <th>First name:</th>
-                <th>Last name:</th>
-                <th>Phone number:</th>
-                <th>Email:</th>
-                <th>Ordered item:</th>
-                <th>Manufacturer:</th>
+                <th>Order state</th>
+                <th>Ordered item</th>
+                <th>Manufacturer</th>
 
 
             </tr>
@@ -37,11 +32,6 @@
                 <tr>
                     <td>${order.id}</td>
                     <td><c:out value="${order.state}"/></td>
-                    <td><c:out value="${order.orderDate}"/></td>
-                    <td><c:out value="${order.person.firstName}"/></td>
-                    <td><c:out value="${order.person.lastName}"/></td>
-                    <td><c:out value="${order.person.phoneNumber}"/></td>
-                    <td><c:out value="${order.person.email}"/></td>
                     <td><c:out value="${order.phone.modelName}"/></td>
                     <td><c:out value="${order.phone.manufacturer}"/></td>
                     <td class="button">

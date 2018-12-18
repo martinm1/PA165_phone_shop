@@ -41,6 +41,12 @@
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
                     </td>
+                    <td class="button">
+                        <form method="get"
+                              action="/pa165/claim/newReport/${claim.id}" >
+                            <input class="btn btn-warning" type="submit" value="Add report" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

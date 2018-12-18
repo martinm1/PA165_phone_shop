@@ -81,4 +81,11 @@ public class ClaimServiceImpl implements ClaimService {
         if(claim.getClaimState() != ClaimState.CREATED)
             throw new EshopServiceException("Cannot change state from another state then created!");
     }
+
+    @Override
+    public void addReport(Claim claim, String report) {
+        claim.setTechnicalReport(report);
+
+        claimDao.update(claim);
+    }
 }

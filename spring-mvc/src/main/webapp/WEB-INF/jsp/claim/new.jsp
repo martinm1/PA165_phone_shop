@@ -15,7 +15,7 @@
 
 <my:pagetemplate title="New claim">
     <jsp:attribute name="body">
-        <form:form method="post" action="${pageContext.request.contextPath}/claim/create/${orderId}"
+        <form:form method="post" action="${pageContext.request.contextPath}/claim/create"
                    modelAttribute="claimCreate"  cssClass="form-horizontal">
 
             <div class="form-group">
@@ -23,6 +23,14 @@
                 <div class="col-sm-10">
                     <form:input path="reasonOfClaim" cssClass="form-control"/>
                     <form:errors path="reasonOfClaim" cssClass="help-block"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <%--<form:label path="order" cssClass="col-sm-2 control-label">Reason of claim:</form:label>--%>
+                <div class="col-sm-10">
+                    <form:hidden path="order" cssClass="form-control" value="${order}" />
+                    <form:errors path="order" cssClass="help-block"/>
                 </div>
             </div>
 

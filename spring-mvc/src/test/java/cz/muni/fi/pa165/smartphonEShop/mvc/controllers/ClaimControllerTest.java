@@ -1,13 +1,18 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
 import cz.muni.fi.pa165.smartphonEShop.dto.ClaimDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.OrderDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimSolution;
 import cz.muni.fi.pa165.smartphonEShop.enums.ClaimState;
 import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
 import java.util.Collections;
 import java.util.List;
+
+import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import org.mockito.Mock;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.mockito.Mockito.when;
@@ -31,6 +36,9 @@ public class ClaimControllerTest {
     @Mock
     private ClaimFacade claimFacade;
 
+    @Mock
+    private OrderFacade orderFacade;
+
     private ClaimDTO claimDTO;
 
     private MockMvc mockMvc;
@@ -43,6 +51,7 @@ public class ClaimControllerTest {
 
         ClaimController claimController = new ClaimController();
         claimController.setClaimFacade(claimFacade);
+        claimController.setOrderFacade(orderFacade);
 
         mockMvc = MockMvcBuilders.standaloneSetup(claimController).build();
     }
@@ -147,6 +156,8 @@ public class ClaimControllerTest {
     @Test
     public void newClaimTest() throws Exception
     {
+        when(orderFacade.findOrderById(any())).thenReturn(new OrderDTO());
+
         this.mockMvc.perform(get("/claim/new/5")
                 .accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
                 .andExpect(status().isOk())
