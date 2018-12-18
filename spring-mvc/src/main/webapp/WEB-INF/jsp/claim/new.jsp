@@ -15,11 +15,11 @@
 
 <my:pagetemplate title="New claim">
     <jsp:attribute name="body">
-        <form:form method="post" action="${pageContext.request.contextPath}/claim/create?orderId=${orderId}"
+        <form:form method="post" action="${pageContext.request.contextPath}/claim/create/${orderId}"
                    modelAttribute="claimCreate"  cssClass="form-horizontal">
 
             <div class="form-group">
-                <form:label path="reasonOfClaim" cssClass="col-sm-2 control-label">Reason of claim</form:label>
+                <form:label path="reasonOfClaim" cssClass="col-sm-2 control-label">Reason of claim:</form:label>
                 <div class="col-sm-10">
                     <form:input path="reasonOfClaim" cssClass="form-control"/>
                     <form:errors path="reasonOfClaim" cssClass="help-block"/>
@@ -28,7 +28,7 @@
 
 
           <div class="form-group">
-              <form:label path="wantedSolutionByCustomer" cssClass="col-sm-2 control-label">Wanted resolution</form:label>
+              <form:label path="wantedSolutionByCustomer" cssClass="col-sm-2 control-label">Wanted resolution:</form:label>
               <div class="col-sm-10">
                     <form:select path="wantedSolutionByCustomer" cssClass="form-control">
                         <c:forEach items="${claimSolution}" var="c">
@@ -38,11 +38,7 @@
                   <form:errors path="wantedSolutionByCustomer" cssClass="error"/>
               </div>
           </div>
-
-
-
-
-        <button class="btn btn-primary" type="submit">Create product</button>
+        <button class="btn btn-primary" type="submit">Create claim</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>

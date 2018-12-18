@@ -167,9 +167,9 @@ public class ClaimController
         return ClaimSolution.values();
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create/{orderId}", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("claimCreate") ClaimCreateDTO claim, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder,@RequestParam("orderId") long orderId)
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable("orderId") long orderId)
     {
         if(bindingResult.hasErrors())
         {

@@ -42,7 +42,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
         Address stockAddress = address("Botanicka", "1", "Brno", "Czech Republic");
 
         Person admin = person("Roman", "Nahalka", "heslo", adminAddress,
-                "487562@mail.muni.cz", "666999666", LocalDate.of(1994, 4, 5),
+                "admin@admin.cz", "666999666", LocalDate.of(1994, 4, 5),
                 Gender.MALE, PersonType.ADMIN);
         Person customer = person("David", "Novak", "heslo", customerAddress,
                 "neco@seznam.cz", "333111222", LocalDate.of(1997, 7, 20),

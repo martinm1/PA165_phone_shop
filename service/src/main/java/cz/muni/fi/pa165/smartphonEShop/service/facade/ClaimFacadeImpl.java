@@ -104,12 +104,14 @@ public class ClaimFacadeImpl implements ClaimFacade
     @Override
     public void acceptClaim(Long id)
     {
-
+        Claim claim = claimService.findClaimById(id);
+        claimService.acceptClaim(claim);
     }
 
     @Override
     public void rejectClaim(Long id)
     {
-
+        Claim claim = claimService.findClaimById(id);
+        claimService.rejectClaim(claim);
     }
 }
