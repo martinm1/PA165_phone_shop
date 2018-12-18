@@ -75,7 +75,7 @@ public class PhoneFacadeImpl implements PhoneFacade {
 
         phone.setManufacturer(phoneDTO.getManufacturer());
         phone.setModelName(phoneDTO.getModelName());
-        phone.setOrder(phone.getOrder());
+        //phone.setOrder(phone.getOrder());
         phone.setPrice(phoneDTO.getPrice());
         phone.setStock(stockService.findStockById(phoneDTO.getStock().getId()));
         phone.setTechnicalInfo(phoneDTO.getTechnicalInfo());

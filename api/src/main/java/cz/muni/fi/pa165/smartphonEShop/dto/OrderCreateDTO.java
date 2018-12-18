@@ -19,11 +19,9 @@ public class OrderCreateDTO {
     @NotNull
     private OrderState state;
     @NotNull
-    private LocalDate orderDate;
+    private Long person;
     @NotNull
-    private PersonDTO person;
-    @NotNull
-    private PhoneDTO phone;
+    private Long phone;
 
     @Override
     public boolean equals(Object o) {
@@ -31,21 +29,19 @@ public class OrderCreateDTO {
         if (!(o instanceof OrderCreateDTO)) return false;
         OrderCreateDTO that = (OrderCreateDTO) o;
         return getState() == that.getState() &&
-                Objects.equals(getOrderDate(), that.getOrderDate()) &&
                 Objects.equals(getPerson(), that.getPerson()) &&
                 Objects.equals(getPhone(), that.getPhone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getState(), getOrderDate(), getPerson(), getPhone());
+        return Objects.hash(getState(), getPerson(), getPhone());
     }
 
     @Override
     public String toString() {
         return "OrderCreateDTO{" +
                 "state=" + state +
-                ", orderDate=" + orderDate +
                 ", person=" + person +
                 ", phone=" + phone +
                 '}';
