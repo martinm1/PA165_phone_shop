@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ public class AddressController {
     private AddressFacade addressFacade;
 
     @RequestMapping(value = "/list/by", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listBy(Model model,
                          @RequestParam(value = "country", required = false) String country,
                          @RequestParam(value = "city", required = false)String city,

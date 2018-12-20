@@ -20,6 +20,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,6 +52,7 @@ public class PersonController {
     }
     
     @RequestMapping(value = "/list/byEmail", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listByEmail(Model model, @RequestParam("email") String email) {
         PersonDTO person = personFacade.findPersonByEmail(email);
         model.addAttribute("person", person);
@@ -58,6 +60,7 @@ public class PersonController {
     }
     
     @RequestMapping(value = "/list/byPhoneNumber", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listByPhoneNumber(Model model, @RequestParam("phoneNumber") String phoneNumber) {
         PersonDTO person = personFacade.findPersonByPhoneNumber(phoneNumber);
         model.addAttribute("person", person);
@@ -65,6 +68,7 @@ public class PersonController {
     }
     
     @RequestMapping(value = "/list/byPersonType", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listByPersonType(@PathVariable String filter, Model model) {
         Collection<PersonDTO>  people;// = personFacade.getPeopleByPersonType(personType);
         
@@ -92,6 +96,7 @@ public class PersonController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listAll(Model model) {
         model.addAttribute("people", personFacade.getAllPeople());
         return "person/list";
@@ -104,6 +109,7 @@ public class PersonController {
      * @return JSP page
      */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String newPerson(Model model) {
         log.debug("new()");
 //        model.addAttribute("addressCreate", new AddressCreateDTO());
@@ -112,6 +118,7 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String create(@Valid @ModelAttribute("personCreate") PersonCreateDTO person, BindingResult bindingResult,
                                Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
     {
@@ -126,7 +133,7 @@ public class PersonController {
         personFacade.registerPerson(person, person.getPassword());
                 //report success
         redirectAttributes.addFlashAttribute("alert_success", "Person " /*+ id*/ + " was created");
-        return "redirect:" + uriBuilder.path("/person/list").toUriString();
+        return "redirect:" + uriBuilder.path("/person/list/all").toUriString();
     }
 
 

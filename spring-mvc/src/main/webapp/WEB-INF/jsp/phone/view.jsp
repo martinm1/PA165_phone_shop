@@ -12,7 +12,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Pgone View">
+<my:pagetemplate title="Phone View">
     <jsp:attribute name="body">
         <table class="table">
             <thead>
@@ -23,7 +23,6 @@
                 <th>Technical Info</th>
                 <th>Manufacturer</th>
                 <th>Stock</th>
-                <th>Stock Address</th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +33,6 @@
                 <td><c:out value="${phone.technicalInfo}"/></td>
                 <td><c:out value="${phone.manufacturer}"/></td>
                 <td><c:out value="${phone.stock.name}"/></td>
-                <td><c:out value="${phone.stock.address.toString()}"/></td>
             </tr>
             </tbody>
         </table>

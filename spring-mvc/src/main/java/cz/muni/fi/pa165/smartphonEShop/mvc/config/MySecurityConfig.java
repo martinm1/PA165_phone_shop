@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.smartphonEShop.mvc.security.PersonAuthProvider;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 @EnableWebSecurity
 @EnableWebMvc
 @ComponentScan(basePackages = "cz.muni.fi.pa165.smartphonEShop.mvc.security")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MySecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Inject
@@ -37,7 +39,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
     }
 
     @Override

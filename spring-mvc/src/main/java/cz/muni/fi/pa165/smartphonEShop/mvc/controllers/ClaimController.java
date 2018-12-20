@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.smartphonEShop.facade.ClaimFacade;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -68,7 +69,7 @@ public class ClaimController
 
             default:
                 claims = new ArrayList<>();
-                model.addAttribute("alert_danger", "Unkown filter " + filter);
+                model.addAttribute("alert_danger", "Unknown filter " + filter);
         }
 
         model.addAttribute("claims", claims);
@@ -98,7 +99,7 @@ public class ClaimController
 
             default:
                 claims = new ArrayList<>();
-                model.addAttribute("alert_danger", "Unkown filter " + filter);
+                model.addAttribute("alert_danger", "Unknown filter " + filter);
         }
 
         model.addAttribute("claims", claims);
@@ -111,6 +112,7 @@ public class ClaimController
      * @return JSP page name.
      */
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listAll(Model model)
     {
         Collection<ClaimDTO> claims;
@@ -188,7 +190,7 @@ public class ClaimController
         }
         Long id = claimFacade.createClaim(claim, claim.getOrderId());
         redirectAttributes.addFlashAttribute("alert_success", "Claim " + id + " was created");
-        return "redirect:" + uriBuilder.path("/claim/list/all").toUriString();
+        return "redirect:" + uriBuilder.path("/claim/view/" + id.toString()).toUriString();
     }
 
     /**
@@ -219,6 +221,7 @@ public class ClaimController
 
 
     @RequestMapping(value = "/newReport/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String newReport(@PathVariable("id") long id, Model model)
     {
         model.addAttribute("claim", new ClaimReportDTO());
@@ -229,6 +232,7 @@ public class ClaimController
 
 
     @RequestMapping(value = "/addReport", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addTechnicalReport(@Valid @ModelAttribute("claim") ClaimReportDTO claim, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
     {
@@ -254,6 +258,7 @@ public class ClaimController
      * @return JSP page name.
      */
     @RequestMapping(value = "/accept/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String accept(@PathVariable("id") long id, Model model, UriComponentsBuilder builder,
                          RedirectAttributes redirectAttributes)
     {
@@ -280,6 +285,7 @@ public class ClaimController
      * @return JSP page name.
      */
     @RequestMapping(value = "/reject/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String reject(@PathVariable("id") long id, Model model, UriComponentsBuilder builder,
                          RedirectAttributes redirectAttributes)
     {

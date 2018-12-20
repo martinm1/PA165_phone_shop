@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,6 +75,7 @@ public class StockController {
      * @return JSP page
      */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String newStock(Model model) {
         log.debug("new()");
         model.addAttribute("stockCreate", new StockCreateDTO());
@@ -81,6 +83,7 @@ public class StockController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String create(@Valid @ModelAttribute("stockCreate") StockCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         log.debug("create(formBean={})", formBean);
