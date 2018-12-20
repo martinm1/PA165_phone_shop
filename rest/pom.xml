@@ -13,7 +13,10 @@
     <artifactId>rest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>war</packaging>
+
     <build>
+        <defaultGoal>cargo:run</defaultGoal>
         <plugins>
             <!--  embedded tomcat 8 -->
             <plugin>
@@ -25,7 +28,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <path>/eshop-rest</path>
+                    <path>/pa165/rest</path>
                 </configuration>
             </plugin>
         </plugins>
