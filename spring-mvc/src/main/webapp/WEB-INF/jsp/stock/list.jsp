@@ -38,7 +38,8 @@
                     <td><c:out value="${stock.address.country}"/></td>
                     <td class="button">
                         <form method="get"
-                              action="/pa165/phone/list/byStockId?stockId=${stock.id}" >
+                              action="/pa165/phone/list/byStockId">
+                            <input type=hidden name="stockId" value="${stock.id}">
                             <input class="btn btn-warning" type="submit" value="View" />
                         </form>
                     </td>
