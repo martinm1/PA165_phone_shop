@@ -11,6 +11,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <my:pagetemplate title="New phone">
     <jsp:attribute name="body">
@@ -63,8 +64,9 @@
              </div>
          </div>
              
-             
+         <security:authorize access="hasRole('ROLE_ADMIN')">
          <button class="btn btn-primary" type="submit">Create phone</button>
+         </security:authorize>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
