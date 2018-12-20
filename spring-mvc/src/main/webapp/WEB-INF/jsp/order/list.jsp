@@ -9,6 +9,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -23,7 +24,7 @@
                 <th>Order state</th>
                 <th>Ordered item</th>
                 <th>Manufacturer</th>
-
+                <th>Number of claims</th>
 
             </tr>
             </thead>
@@ -34,18 +35,22 @@
                     <td><c:out value="${order.state}"/></td>
                     <td><c:out value="${order.phone.modelName}"/></td>
                     <td><c:out value="${order.phone.manufacturer}"/></td>
+                    <td>${fn:length(order.claims)}</td>
                     <td class="button">
                         <form method="get"
                               action="/pa165/order/view/${order.id}" >
                             <input class="btn btn-warning" type="submit" value="View order" />
                         </form>
                     </td>
-                    <td class="button">
-                        <form method="get"
-                              action="/pa165/claim/new/${order.id}" >
-                            <input class="btn btn-warning" type="submit" value="New claim" />
-                        </form>
-                    </td>
+
+                    <c:if test="${fn:length(order.claims) lt 3}">
+                        <td class="button">
+                            <form method="get"
+                                  action="/pa165/claim/new/${order.id}" >
+                                <input class="btn btn-warning" type="submit" value="New claim" />
+                            </form>
+                        </td>
+                    </c:if>
                 </tr>
             </c:forEach>
             </tbody>

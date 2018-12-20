@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <my:pagetemplate title="User View">
     <jsp:attribute name="body">
@@ -44,6 +45,7 @@
                             <th>Model</th>
                             <th>Date</th>
                             <th>State</th>
+                            <th>Number of claims</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +55,16 @@
                                 <td><c:out value="${order.phone.modelName}"/></td>
                                 <td><my:localDate date="${order.orderDate}" pattern="dd-MM-yyyy"/></td>
                                 <td><c:out value="${order.state}"/></td>
+                                <td>${fn:length(order.claims)}</td>
+
+                                <c:if test="${fn:length(order.claims) lt 3}">
+                                    <td class="button">
+                                        <form method="get"
+                                              action="/pa165/claim/new/${order.id}" >
+                                            <input class="btn btn-warning" type="submit" value="New claim" />
+                                        </form>
+                                    </td>
+                                </c:if>
                                 <td class="button">
                                     <form method="get"
                                           action="/pa165/order/view/${order.id}" >
