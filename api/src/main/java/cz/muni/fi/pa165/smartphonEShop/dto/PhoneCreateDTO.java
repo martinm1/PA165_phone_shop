@@ -28,7 +28,8 @@ public class PhoneCreateDTO {
     @NotNull
     private Manufacturer manufacturer;
     @NotNull
-    private StockDTO stock;
+    private Long stock;
+    //private StockDTO stock;
 
     @Override
     public boolean equals(Object o) {

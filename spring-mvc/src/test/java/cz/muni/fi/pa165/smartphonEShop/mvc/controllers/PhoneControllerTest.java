@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
+import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
@@ -33,6 +34,9 @@ public class PhoneControllerTest
 {
     @Mock
     private PhoneFacade phoneFacade;
+    
+    @Mock
+    private StockFacade stockFacade;
 
     private PhoneDTO phoneDTO;
 
@@ -45,6 +49,7 @@ public class PhoneControllerTest
 
         PhoneController phoneController = new PhoneController();
         phoneController.setPhoneFacade(phoneFacade);
+        phoneController.setStockFacade(stockFacade);
 
         mockMvc = MockMvcBuilders.standaloneSetup(phoneController).build();
     }
@@ -181,7 +186,8 @@ public class PhoneControllerTest
         phone.setPrice(250);
         phone.setTechnicalInfo("nejake informace");
         phone.setManufacturer(Manufacturer.HTC);
-        phone.setStock(new StockDTO());
+        //phone.setStock(new StockDTO());
+        phone.setStock(1L);
 
         when(phoneFacade.createPhone(phone)).thenReturn(5L);
 

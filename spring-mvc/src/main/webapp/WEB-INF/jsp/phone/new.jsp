@@ -51,6 +51,20 @@
                     </form:select>
              </div>
          </div>
+             
+         <div class="form-group">
+             <form:label path="stock" cssClass="col-sm-2 control-label">Stock: </form:label>
+             <div class="col-sm-10">
+                    <form:select path="stock" cssClass="form-control">
+                        <c:forEach items="${stocks}" var="c">
+                            <form:option value="${c}">${c}</form:option>
+                        </c:forEach>
+                    </form:select>
+             </div>
+         </div>
+             
+             
+         <button class="btn btn-primary" type="submit">Create phone</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
