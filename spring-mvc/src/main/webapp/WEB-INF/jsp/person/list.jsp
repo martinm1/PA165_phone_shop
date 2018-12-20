@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <my:pagetemplate title="People">
     <jsp:attribute name="body">
@@ -36,5 +37,14 @@
             </c:forEach>
             </tbody>
         </table>
+
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+        <div>
+            <form method="get"
+                  action="${pageContext.request.contextPath}/person/new/" >
+                <input class="btn btn-warning" type="submit" value="Create new person" />
+            </form>
+        </div>
+        </security:authorize>
     </jsp:attribute>
 </my:pagetemplate>
