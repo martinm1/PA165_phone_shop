@@ -22,6 +22,13 @@ public interface PersonService {
     Person findPersonById(Long id);
 
     /**
+     * Find admin with specific id.
+     * @param id primary key for admin.
+     * @return Person with given id.
+     */
+    Person findAdminById(Long id);
+
+    /**
      * Find person with specific email address.
      * @param email of person.
      * @return Person with given email.
@@ -40,6 +47,12 @@ public interface PersonService {
      * @return Collection of all people.
      */
     List<Person> getAllPeople();
+
+    /**
+     * Find all admis in system.
+     * @return Collection of all people.
+     */
+    List<Person> getAllAdmins();
 
     /**
      * Find all people with specific type.
@@ -89,5 +102,7 @@ public interface PersonService {
      * @return true, if password matches the records.
      */
     boolean auth(String email, String pass);
+
+    void changePersonType(Person person, PersonType personType);
 
 }

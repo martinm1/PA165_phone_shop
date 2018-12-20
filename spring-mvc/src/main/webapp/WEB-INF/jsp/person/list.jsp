@@ -14,7 +14,7 @@
                 <th>ID</th>
                 <th>First name</th>
                 <th>Last name</th>
-                <%--<th>Address</th>--%>
+                <th>Type</th>
                 <th>Email</th>
                 <th>Phone number</th>
                 <th>Date of birth</th>
@@ -27,11 +27,20 @@
                     <td>${person.id}</td>
                     <td><c:out value="${person.firstName}"/></td>
                     <td><c:out value="${person.lastName}"/></td>
-                    <%--<td><c:out value="${person.address}"/></td>--%>
+                    <td><c:out value="${person.personType}"/></td>
+
+                <%--<td><c:out value="${person.address}"/></td>--%>
                     <td><c:out value="${person.email}"/></td>
                     <td><c:out value="${person.phoneNumber}"/></td>
                     <td><my:localDate date="${person.dateOfBirth}" pattern="dd-MM-yyyy"/></td>
                     <td><c:out value="${person.gender}"/></td>
+
+                    <td class="button">
+                        <form method="get"
+                              action="/pa165/person/newChangePersonType/${person.id}" >
+                            <input class="btn btn-warning" type="submit" value="Change type" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

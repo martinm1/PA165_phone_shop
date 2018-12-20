@@ -44,10 +44,12 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public Person findById(Long id) {
         if (id == null || id < 0){
-            throw new DAOException("AddressId is null or less than 0!");
+            throw new DAOException("PersonId is null or less than 0!");
         }
         return entityManager.find(Person.class, id);
     }
+
+
 
     @Override
     public Person findByEmail(String email)
@@ -59,6 +61,23 @@ public class PersonDaoImpl implements PersonDao{
         {
             return entityManager.createQuery("SELECT p FROM Person p WHERE p.email =: email", Person.class)
                                                 .setParameter("email", email).getSingleResult();
+        }
+        catch (NoResultException ex)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public Person findAdminById(Long id)
+    {
+        if (id == null || id < 0){
+            throw new DAOException("PersonId is null or less than 0!");
+        }
+        try
+        {
+            return entityManager.createQuery("SELECT p FROM Person p WHERE p.personType =: personType", Person.class)
+                    .setParameter("personType", PersonType.ADMIN).getSingleResult();
         }
         catch (NoResultException ex)
         {
@@ -90,8 +109,8 @@ public class PersonDaoImpl implements PersonDao{
         if (type == null)
             throw new DAOException("Person type is null!");
 
-        return entityManager.createQuery("SELECT p FROM Person p WHERE p.personType =: type", Person.class)
-                                                                .setParameter("type", type).getResultList();
+        return entityManager.createQuery("SELECT p FROM Person p WHERE p.personType =: personType", Person.class)
+                                                                .setParameter("personType", type).getResultList();
     }
 
     @Override

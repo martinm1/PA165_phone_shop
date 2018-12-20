@@ -43,6 +43,12 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
+    public PersonDTO findAdminById(Long id) {
+        Person admin = personService.findAdminById(id);
+        return (admin == null) ? null : beanMappingService.mapTo(admin,PersonDTO.class);
+    }
+
+    @Override
     public PersonDTO findPersonByEmail(String email) {
         Person phone = personService.findPersonByEmail(email);
         return (phone == null) ? null : beanMappingService.mapTo(phone,PersonDTO.class);
@@ -57,6 +63,11 @@ public class PersonFacadeImpl implements PersonFacade {
     @Override
     public Collection<PersonDTO> getAllPeople() {
         return beanMappingService.mapTo(personService.getAllPeople(),PersonDTO.class);
+    }
+
+    @Override
+    public Collection<PersonDTO> getAllAdmins() {
+        return beanMappingService.mapTo(personService.getAllAdmins(),PersonDTO.class);
     }
 
     @Override
@@ -103,5 +114,11 @@ public class PersonFacadeImpl implements PersonFacade {
     public boolean auth(PersonAuthDTO person)
     {
         return personService.auth(person.getEmail(), person.getPass());
+    }
+
+    @Override
+    public void changePersonType(Long id, PersonType personType) {
+        Person person = personService.findPersonById(id);
+        personService.changePersonType(person,personType);
     }
 }

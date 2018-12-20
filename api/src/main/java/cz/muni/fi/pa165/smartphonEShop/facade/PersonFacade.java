@@ -23,6 +23,13 @@ public interface PersonFacade
     PersonDTO findPersonById(Long id);
 
     /**
+     * Find admin with specific id
+     * @param id primary key for admin
+     * @return Admin with given id.
+     */
+    PersonDTO findAdminById(Long id);
+
+    /**
      * Find person with specific email address.
      * @param email of person.
      * @return Person with given email.
@@ -35,6 +42,8 @@ public interface PersonFacade
      * @return Person with given phone number.
      */
     PersonDTO findPersonByPhoneNumber (String phoneNumber);
+
+    Collection<PersonDTO> getAllAdmins();
 
     /**
      * Find all people.
@@ -74,4 +83,6 @@ public interface PersonFacade
      * @return true, if password matches the records.
      */
     boolean auth(PersonAuthDTO person);
+
+    void changePersonType(Long id, PersonType personType);
 }

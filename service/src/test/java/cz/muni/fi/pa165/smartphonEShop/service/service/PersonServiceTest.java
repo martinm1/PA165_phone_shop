@@ -104,7 +104,7 @@ public class PersonServiceTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void findAddressById()
+    public void findPersonById()
     {
         when(personDao.findById(person1.getId())).thenReturn(person1);
         when(personDao.findById(person2.getId())).thenReturn(person2);
@@ -115,9 +115,21 @@ public class PersonServiceTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(person, person1);
         Assert.assertEquals(person3, person2);
     }
+
+    @Test
+    public void findAdminById() {
+        when(personDao.findAdminById(person1.getId())).thenReturn(person1);
+        when(personDao.findAdminById(person2.getId())).thenReturn(null);
+
+        Person person = personService.findAdminById(person1.getId());
+        Person person3 = personService.findAdminById(person2.getId());
+
+        Assert.assertEquals(person, person1);
+        Assert.assertNotEquals(person3, person2);
+    }
     
     @Test
-    public void findAddressByEmail()
+    public void findPersonByEmail()
     {
         when(personDao.findByEmail(person1.getEmail())).thenReturn(person1);
         when(personDao.findByEmail(person2.getEmail())).thenReturn(person2);
