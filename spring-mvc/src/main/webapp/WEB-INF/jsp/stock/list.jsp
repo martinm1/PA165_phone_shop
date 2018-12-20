@@ -48,7 +48,7 @@
         </table>
         <div>
             <form method="get"
-                  action="/pa165/stock/create" >
+                  action="/pa165/stock/new/" >
                 <input class="btn btn-warning" type="submit" value="Create new stock" />
             </form>
         </div>
