@@ -44,6 +44,15 @@ public interface PersonDao {
      */
     Person findById(Long id);
 
+
+    /**
+     * Find admin with specified ID in database.
+     * @param id primary key of requested admin.
+     * @return admin with given id, null if no such exists.
+     * @throws DAOException when id is null or less than 0.
+     */
+    Person findAdminById(Long id);
+
     /**
      * Find person with specified email in database.
      * @param email of requested person.

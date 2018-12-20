@@ -5,10 +5,13 @@
  */
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonAuthDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.PersonChangePersonTypeDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PersonDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.Gender;
 import cz.muni.fi.pa165.smartphonEShop.enums.PersonType;
+import cz.muni.fi.pa165.smartphonEShop.enums.PersonTypeReduced;
 import cz.muni.fi.pa165.smartphonEShop.facade.PersonFacade;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -134,48 +137,54 @@ public class PersonController {
     }
 
 
+
+
     @ModelAttribute("genders")
     public Gender[] genders() {
         return Gender.values();
     }
 
-    /*@RequestMapping(value = "/newAuth", method = RequestMethod.GET)
-    public String newAuth(Model model)
-    {
-        model.addAttribute("login", new PersonAuthDTO());
 
-        return "person/auth";
-    }*/
 
-    /*@RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String auth(@Valid @ModelAttribute("login") PersonAuthDTO person, BindingResult bindingResult,
-                       Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+    @RequestMapping(value = "/newChangePersonType/{id}", method = RequestMethod.GET)
+    public String newChangePersonType(@PathVariable("id") long id, Model model)
     {
-        if(bindingResult.hasErrors())
-        {
-            for(FieldError fe : bindingResult.getFieldErrors())
-            {
+        model.addAttribute("person", new PersonChangePersonTypeDTO());
+        model.addAttribute("id", id);
+        return "person/newChangePersonType";
+    }
+
+
+
+    @RequestMapping(value = "/addPersonType", method = RequestMethod.POST)
+    public String addPersonType(@Valid @ModelAttribute("person") PersonChangePersonTypeDTO person, BindingResult bindingResult,
+                                     Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder)
+    {
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-
-            return "auth";
+            return "person/list";
         }
 
-        if(personFacade.auth(person))
-        {
-            Long id = personFacade.findPersonByEmail(person.getEmail()).getId();
+        if (personFacade.getAllAdmins().size() == 1
+                && person.getPersonType() != PersonType.ADMIN
+                && personFacade.findAdminById(person.getId()) != null){
 
-            redirectAttributes.addFlashAttribute("authPerson", personFacade.findPersonById(id));
+            model.addAttribute( "chyba", "Can not delete only admin");
 
-            return "redirect:" + uriBuilder.path("/person/view/" + id).toUriString();
+            return "person/newChangePersonType";
         }
+        //create product
+        personFacade.changePersonType(person.getId(), person.getPersonType());
+        //report success
+        redirectAttributes.addFlashAttribute("alert_success", "Person type was changed");
+        return "redirect:" + uriBuilder.path("/person/list/all").toUriString();
+    }
 
-        else
-        {
-            model.addAttribute("msg", "Wrong email or password");
-
-            return "auth";
-        }
-
-    }*/
+    @ModelAttribute("personTypeR")
+    public PersonTypeReduced[] personTypeR()
+    {
+        return PersonTypeReduced.values();
+    }
 }

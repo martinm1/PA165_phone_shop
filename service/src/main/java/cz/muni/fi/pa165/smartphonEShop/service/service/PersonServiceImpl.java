@@ -32,6 +32,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Person findAdminById(Long id) {
+        return personDao.findAdminById(id);
+    }
+
+
+    @Override
     public Person findPersonByEmail(String email) {
         return personDao.findByEmail(email);
     }
@@ -44,6 +50,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> getAllPeople() {
         return personDao.findAll();
+    }
+
+    @Override
+    public List<Person> getAllAdmins() {
+        return personDao.findByPersonType(PersonType.ADMIN);
     }
 
     @Override
@@ -148,5 +159,11 @@ public class PersonServiceImpl implements PersonService {
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();
         return paddingLength > 0 ? String.format("%0" + paddingLength + "d", 0) + hex : hex;
+    }
+
+    @Override
+    public void changePersonType(Person person, PersonType personType) {
+        person.setPersonType(personType);
+        personDao.update(person);
     }
 }
