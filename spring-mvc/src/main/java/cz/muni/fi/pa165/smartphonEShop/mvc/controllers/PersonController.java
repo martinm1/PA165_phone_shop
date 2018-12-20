@@ -130,7 +130,7 @@ public class PersonController {
         personFacade.registerPerson(person, person.getPassword());
                 //report success
         redirectAttributes.addFlashAttribute("alert_success", "Person " /*+ id*/ + " was created");
-        return "redirect:" + uriBuilder.path("/person/list").toUriString();
+        return "redirect:" + uriBuilder.path("/person/list/all").toUriString();
     }
 
 
