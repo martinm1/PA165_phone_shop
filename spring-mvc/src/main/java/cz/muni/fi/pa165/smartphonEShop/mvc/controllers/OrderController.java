@@ -8,6 +8,7 @@ import lombok.Setter;
 import cz.muni.fi.pa165.smartphonEShop.exceptions.EshopServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import cz.muni.fi.pa165.smartphonEShop.facade.OrderFacade;
 
@@ -57,6 +58,7 @@ public class OrderController {
      * @return JSP page name
      */
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listBySate(@PathVariable String filter, Model model) {
         Collection<OrderDTO> orders;
         switch (filter) {
@@ -79,6 +81,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listAll(Model model) {
         Collection<OrderDTO> orders = orderFacade.getAllOrders();
         model.addAttribute("orders", orders);
@@ -93,6 +96,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/list/byPhone", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listByPhoneId(Model model, @RequestParam("phoneId") long phoneId) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByPhoneId(phoneId);
         model.addAttribute("orders", orders);
@@ -100,6 +104,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/list/byDate", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String listByDate(Model model, @RequestParam("date") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         Collection<OrderDTO> orders = orderFacade.findOrdersByOrderDate(date);
         model.addAttribute("orders", orders);
@@ -174,6 +179,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/finish/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String finish(@PathVariable long id, Model model,UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes) {
         try {
             orderFacade.finishOrder(id);
@@ -186,6 +192,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/accept/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String accept(@PathVariable long id, Model model,UriComponentsBuilder uriBuilder,RedirectAttributes redirectAttributes) {
         try {
             orderFacade.acceptOrder(id);

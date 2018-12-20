@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -122,6 +123,7 @@ public class PhoneController {
      * @return JSP page
      */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String newPhone(Model model) {
         log.debug("new()");
         model.addAttribute("phoneCreate", new PhoneCreateDTO());
@@ -157,6 +159,7 @@ public class PhoneController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String create(@Valid @ModelAttribute("phoneCreate") PhoneCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder/*, @PathVariable("stockName") String stockName*/) {
         log.debug("create(formBean={})", formBean);
