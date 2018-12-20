@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.smartphonEShop.mvc.controllers;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneCreateDTO;
 import cz.muni.fi.pa165.smartphonEShop.dto.PhoneDTO;
+import cz.muni.fi.pa165.smartphonEShop.dto.StockDTO;
 import cz.muni.fi.pa165.smartphonEShop.enums.Manufacturer;
 import cz.muni.fi.pa165.smartphonEShop.facade.PhoneFacade;
+import cz.muni.fi.pa165.smartphonEShop.facade.StockFacade;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.springframework.lang.Nullable;
 
 /**
  * Created by Stefan Holecko
@@ -34,6 +37,9 @@ public class PhoneController {
 
     @Autowired
     private PhoneFacade phoneFacade;
+    
+    @Autowired
+    private StockFacade stockFacade;
 
     /**
      * Shows a list of all phones filtered by specified manufacturer,
@@ -133,10 +139,26 @@ public class PhoneController {
     {
         return Manufacturer.values();
     }
+    
+    @ModelAttribute("stocks")
+    public Long[] stocks()
+    {
+        int i = 0;
+        //String[] stocks = new String[stockFacade.getAllStocks().size()];
+        //StockDTO[] stocks = new StockDTO[stockFacade.getAllStocks().size()];
+        Long[] stocks = new Long[stockFacade.getAllStocks().size()];
+        for(StockDTO stockDTO : stockFacade.getAllStocks()){
+            //stocks[i] = stockDTO.getName();
+            //stocks[i] = stockDTO;
+            stocks[i] = stockDTO.getId();
+            i++;
+        }
+        return stocks;
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("phoneCreate") PhoneCreateDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder/*, @PathVariable("stockName") String stockName*/) {
         log.debug("create(formBean={})", formBean);
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
@@ -149,10 +171,11 @@ public class PhoneController {
             }
             return "phone/new";
         }
+       // formBean.setStock(stockFacade.findStockByName(formBean.));
         //create product
         Long id = phoneFacade.createPhone(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Phone " + id + " was created");
-        return "redirect:" + uriBuilder.path("/phone/list").toUriString();
+        return "redirect:" + uriBuilder.path("/phone/list/all").toUriString();
     }
 }
