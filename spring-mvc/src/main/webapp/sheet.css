@@ -1,3 +1,8 @@
+#body
+{
+    background-image: url("https://fitzdecarts.com/wp-content/uploads/2018/03/cool-website-backgrounds.jpg");
+}
+
 #logo
 {
     background: url('logo.svg') no-repeat;
@@ -5,4 +10,9 @@
     height: 64px;
     float: left;
     margin: 7px 0px 0px 20px;
+}
+
+#jumbo {
+    background: rgba(255, 244, 244, 0.7);
+    text-align: center;
 }
