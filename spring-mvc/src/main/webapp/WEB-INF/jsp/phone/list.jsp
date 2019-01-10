@@ -15,7 +15,7 @@
 
 <my:pagetemplate title="Phones">
     <jsp:attribute name="body">
-
+        <div class="jumbotron" id="jumbo">
         <table class="table">
             <caption>Phones</caption>
             <thead>
@@ -50,6 +50,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
         <security:authorize access="hasRole('ROLE_ADMIN')">
         <div>
         <form method="get"
