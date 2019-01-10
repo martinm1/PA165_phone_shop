@@ -8,7 +8,7 @@
 
 <my:pagetemplate title="People">
     <jsp:attribute name="body">
-        <table class="table">
+        <table class="table" id="t1">
             <caption>People</caption>
             <thead>
             <tr>
@@ -20,6 +20,7 @@
                 <th>Phone number</th>
                 <th>Date of birth</th>
                 <th>Gender</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

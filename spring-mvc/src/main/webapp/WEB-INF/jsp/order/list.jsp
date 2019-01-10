@@ -16,7 +16,7 @@
 
 <my:pagetemplate title="Orders">
     <jsp:attribute name="body">
-        <table class="table">
+        <table class="table" id="t1">
             <caption>Orders</caption>
             <thead>
             <tr>
@@ -25,6 +25,8 @@
                 <th>Ordered item</th>
                 <th>Manufacturer</th>
                 <th>Number of claims</th>
+                <th></th>
+                <th></th>
 
             </tr>
             </thead>
