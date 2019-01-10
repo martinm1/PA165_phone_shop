@@ -4,5 +4,19 @@
     width: 128px;
     height: 64px;
     float: left;
-    margin: 7px 0px 0px 20px;
+    /*margin: 7px 0px 0px 7px;*/
+}
+
+tr:hover
+{
+    background-color: #ddd;
+}
+
+#off
+{
+background: url('logout.png') no-repeat;
+float: left;
+/*margin: 25px 20px 0px 75px;*/
+width: 32px;
+height: 32px;
 }

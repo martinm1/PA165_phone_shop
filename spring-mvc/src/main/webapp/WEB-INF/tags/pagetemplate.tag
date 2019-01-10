@@ -61,7 +61,7 @@
                 <security:authorize access="isAuthenticated()">
                     <c:set var="userId"><security:authentication property="principal.personId"/></c:set>
                     <li><a href="${pageContext.request.contextPath}/person/view/${userId}">My profile</a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout"><div id="off"></div> </a></li>
                 </security:authorize>
             </ul>
         </div><!--/.nav-collapse -->
@@ -77,7 +77,7 @@
 
         <jsp:invoke fragment="body"/>
 
-        <footer class="footer">
+        <footer id="jumbo">
             <p>&copy;&nbsp;<%=java.time.Year.now().toString()%>&nbsp;Masaryk University</p>
         </footer>
     </div>
