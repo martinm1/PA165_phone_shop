@@ -14,12 +14,8 @@
 
 <my:pagetemplate title="Addresses">
     <jsp:attribute name="body" >
-        <div class="container">
-
-        </div>
-        <div class="container">
+        <div class="jumbotron" id="jumbo">
         <table class="table" id="t1">
-            <caption>Addresses</caption>
             <thead>
             <tr>
                 <th>ID</th>

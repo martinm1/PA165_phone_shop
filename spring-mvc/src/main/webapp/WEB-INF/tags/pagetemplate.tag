@@ -68,10 +68,12 @@
     </div>
 </nav>
 
-    <div class="container">
+    <div class="container" style="text-align: center">
         <c:if test="${not empty title}">
-            <div class="page-header">
-                <h1><c:out value="${title}"/></h1>
+            <div id="custom_container">
+                <div class="page-header">
+                    <h1><c:out value="${title}"/></h1>
+                </div>
             </div>
         </c:if>
 

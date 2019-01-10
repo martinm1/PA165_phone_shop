@@ -8,8 +8,8 @@
 
 <my:pagetemplate title="People">
     <jsp:attribute name="body">
+        <div class="jumbotron" id="jumbo">
         <table class="table" id="t1">
-            <caption>People</caption>
             <thead>
             <tr>
                 <th>ID</th>
@@ -47,6 +47,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
         <div>

@@ -14,8 +14,8 @@
 
 <my:pagetemplate title="Stocks">
     <jsp:attribute name="body">
+        <div class="jumbotron" id="jumbo">
         <table class="table" id="t1">
-            <caption>People</caption>
             <thead>
             <tr>
                 <th>ID</th>
@@ -47,6 +47,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
         <div>
             <form method="get"
                   action="/pa165/stock/new/" >
