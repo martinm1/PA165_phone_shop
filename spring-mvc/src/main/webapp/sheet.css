@@ -12,10 +12,10 @@
     /*margin: 7px 0px 0px 7px;*/
 }
 
-tr:hover
-{
-    background-color: #ddd;
-}
+/*tr:hover*/
+/*{*/
+    /*background-color: #ddd;*/
+/*}*/
 
 #off
 {
@@ -31,3 +31,37 @@ height: 32px;
     background: rgba(255, 244, 244, 0.7);
     text-align: center;
 }
+
+/*table, td, th*/
+/*{*/
+    /*border: 1px solid black;*/
+    /*border-collapse: collapse;*/
+    /*opacity: 0.95;*/
+    /*background: rgba(255, 244, 244, 0.7);*/
+    /*padding: 8px;*/
+
+/*}*/
+
+#t1 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#t1 td, #t1 th {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+#t1 tr:hover {background-color: #ddd;}
+
+#t1 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+

@@ -16,7 +16,7 @@
 <my:pagetemplate title="Phones">
     <jsp:attribute name="body">
         <div class="jumbotron" id="jumbo">
-        <table class="table">
+        <table class="table" id="t1">
             <caption>Phones</caption>
             <thead>
             <tr>
@@ -24,6 +24,8 @@
                 <th>Model Name</th>
                 <th>Price</th>
                 <th>Manufacturer</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

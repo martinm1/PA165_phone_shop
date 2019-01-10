@@ -14,17 +14,17 @@
 
 <my:pagetemplate title="Stocks">
     <jsp:attribute name="body">
-        <table class="table">
+        <table class="table" id="t1">
             <caption>People</caption>
             <thead>
             <tr>
-                <th>ID:</th>
-                <th>Name:</th>
-                <th>Street name:</th>
-                <th>Street number:</th>
-                <th>City:</th>
-                <th>Country:</th>
-                <th>Phones in stock:</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Street name</th>
+                <th>Street number</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Phones in stock</th>
             </tr>
             </thead>
             <tbody>

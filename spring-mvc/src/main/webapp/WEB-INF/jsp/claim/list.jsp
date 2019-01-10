@@ -15,7 +15,7 @@
 
 <my:pagetemplate title="Claims">
     <jsp:attribute name="body">
-        <table class="table">
+        <table class="table" id="t1">
             <caption>People</caption>
             <thead>
             <tr>
