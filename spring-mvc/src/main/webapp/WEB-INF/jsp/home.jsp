@@ -8,7 +8,7 @@
 
 <my:pagetemplate>
         <jsp:attribute name="body">
-            <div class="jumbotron">
+            <div class="jumbotron" id="jumbo">
                 <h1>Welcome to our PhonEshop</h1>
             </div>
         </jsp:attribute>
