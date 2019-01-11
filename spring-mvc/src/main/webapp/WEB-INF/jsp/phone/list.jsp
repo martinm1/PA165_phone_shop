@@ -17,7 +17,6 @@
     <jsp:attribute name="body">
         <div class="jumbotron" id="jumbo">
         <table class="table" id="t1">
-            <caption>Phones</caption>
             <thead>
             <tr>
                 <th>ID</th>

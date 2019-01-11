@@ -8,6 +8,7 @@
 
 <my:pagetemplate title="User View">
     <jsp:attribute name="body">
+        <div class="jumbotron" id="jumbo">
         <table class="table">
             <thead>
             <tr>
@@ -34,6 +35,8 @@
             </tbody>
         </table>
 
+
+        <div class="jumbotron" id="jumbo">
         <c:if test="${not empty person.orders}">
             <div class="row">
                 <div class="col-xs-6">
@@ -78,5 +81,6 @@
                 </div>
             </div>
         </c:if>
+        </div>
     </jsp:attribute>
 </my:pagetemplate>

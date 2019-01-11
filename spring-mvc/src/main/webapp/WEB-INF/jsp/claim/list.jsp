@@ -15,8 +15,8 @@
 
 <my:pagetemplate title="Claims">
     <jsp:attribute name="body">
+        <div class="jumbotron" id="jumbo">
         <table class="table" id="t1">
-            <caption>People</caption>
             <thead>
             <tr>
                 <th>ID</th>
@@ -51,5 +51,6 @@
             </c:forEach>
             </tbody>
         </table>
+        </div>
     </jsp:attribute>
 </my:pagetemplate>
