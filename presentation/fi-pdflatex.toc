@@ -1,0 +1,11 @@
+\select@language {english}
+\beamer@sectionintoc {1}{Phone Shop}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Phone Shop}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Function}{3}{0}{1}
+\beamer@subsectionintoc {1}{3}{Business Logic}{4}{0}{1}
+\beamer@subsectionintoc {1}{4}{Used Technologies}{5}{0}{1}
+\beamer@subsectionintoc {1}{5}{User Interface}{6}{0}{1}
+\beamer@subsectionintoc {1}{6}{Team Cooperation}{7}{0}{1}
+\beamer@subsectionintoc {1}{7}{Answers to Questions}{8}{0}{1}
+\beamer@subsectionintoc {1}{8}{Feedback on PA165}{9}{0}{1}
+\beamer@subsectionintoc {1}{9}{Goodbye}{10}{0}{1}
