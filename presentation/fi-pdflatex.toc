@@ -6,6 +6,5 @@
 \beamer@subsectionintoc {1}{4}{Used Technologies}{5}{0}{1}
 \beamer@subsectionintoc {1}{5}{User Interface}{6}{0}{1}
 \beamer@subsectionintoc {1}{6}{Team Cooperation}{7}{0}{1}
-\beamer@subsectionintoc {1}{7}{Answers to Questions}{8}{0}{1}
-\beamer@subsectionintoc {1}{8}{Feedback on PA165}{9}{0}{1}
-\beamer@subsectionintoc {1}{9}{Goodbye}{10}{0}{1}
+\beamer@subsectionintoc {1}{7}{Feedback on PA165}{8}{0}{1}
+\beamer@subsectionintoc {1}{8}{Goodbye}{9}{0}{1}
